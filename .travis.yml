@@ -1,0 +1,18 @@
+language: ruby
+rvm:
+- 2.4.1
+bundler_args: "--jobs=2"
+cache: bundler
+services:
+- postgresql
+before_script:
+- cp .travis/database.yml config/database.yml
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- psql -c 'create database xanyah_test' -U postgres
+script:
+- bundle exec rake db:environment:set RAILS_ENV=test
+- bundle exec rake db:reset RAILS_ENV=test
+# - bundle exec rspec
+- bundle exec codeclimate-test-reporter
