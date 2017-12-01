@@ -2,8 +2,8 @@ version: '2'
 services:
   xanyah-db:
     image: postgres:9.6
-    container-name: xanyah-db
-    environment: 
+    container_name: xanyah-db
+    environment:
       POSTGRES_DB: xanyah_development
       POSTGRES_USER: xanyah
       POSTGRES_PASSWORD:
@@ -11,7 +11,7 @@ services:
       - 6501:5432/tcp
   xanyah-db-test:
     image: postgres:9.6
-    container-name: xanyah-db-test
+    container_name: xanyah-db-test
     environment:
       POSTGRES_DB: xanyah_test
       POSTGRES_USER: xanyah
