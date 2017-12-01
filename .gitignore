@@ -14,3 +14,9 @@
 !/tmp/.keep
 
 .byebug_history
+
+.DS_Store
+
+# Env files
+.env*
+!.env.example
