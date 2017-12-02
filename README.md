@@ -5,7 +5,7 @@
 ## Installation
 
 - Clone this repo
-- Copy `.env.example` into `.env` (Or refer to [`dotenv-rails` docs](https://github.com/bkeepers/dotenv#dotenv-))
+- Copy `.env.example` into `.env` (or `.env.test` depending on your environments)
 - Install gems: `bundle install`
 - Set up your database:
   - Create it with Docker-Compose by running `docker-compose up`
