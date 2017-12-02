@@ -1,5 +1,7 @@
 # Xanyah API
 
+[![Travis CI](https://img.shields.io/travis/xanyah/xanyah-api.svg)](https://travis-ci.org/xanyah/xanyah-api) [![CodeClimate maintenability](https://img.shields.io/codeclimate/github/xanyah/xanyah-api.svg)](https://codeclimate.com/github/xanyah/xanyah-api) [![CodeClimate test coverage](https://img.shields.io/codeclimate/coverage/github/xanyah/xanyah-api.svg)](https://codeclimate.com/github/xanyah/xanyah-api)
+
 ## Installation
 
 - Clone this repo
