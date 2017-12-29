@@ -12,6 +12,10 @@
   - Run the migrations: `rake db:migrate`
 - You're all set ! :tada:
 
+## Generating docs
+
+- `rake docs:generate`
+
 ## Our stack
 
 - Ruby on Rails

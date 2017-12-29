@@ -3,14 +3,16 @@ rvm:
 - 2.4.1
 bundler_args: "--jobs=2"
 cache: bundler
+env:
+  - "RAILS_ENV=test"
 services:
-- postgresql
+  - postgresql
 before_script:
-- cp .travis/database.yml config/database.yml
-- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
-  > ./cc-test-reporter
-- chmod +x ./cc-test-reporter
-- psql -c 'create database xanyah_test' -U postgres
+  - cp .travis/database.yml config/database.yml
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+    > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - RAILS_ENV=test bundle exec rake db:create db:migrate
 script: 
 env:
   global:
