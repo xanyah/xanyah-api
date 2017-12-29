@@ -29,18 +29,15 @@ module XanyahApi
     config.api_only = true
 
     config.generators do |g|
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
       g.orm :active_record, primary_key_type: :uuid
-    end
-
-    config.generators do |generate|
-      generate.test_framework :rspec,
+      g.test_framework :rspec,
             fixtures: true,
             view_specs: false,
             helper_specs: false,
             routing_specs: true,
             controller_specs: true,
             request_specs: true
-       generate.fixture_replacement :factory_bot, dir: "spec/factories"
     end
   end
 end
