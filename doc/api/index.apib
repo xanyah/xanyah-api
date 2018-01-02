@@ -1,12 +1,71 @@
 FORMAT: A1
 
-# Group Store
+# Group Stores
 
 ## Stores collection [/stores]
 
++ Parameters
+  + name (required) - Store&#39;s name
+  + address - Store&#39;s address
+  + country (required) - Store&#39;s country
+  + key (required) - Store&#39;s key
+
+### Create a store [POST]
+
++ Request Create a store (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: SRbEHpU5yLI1PuIPeV1TZg
+        Token-Type: Bearer
+        Client: cVwo49F6ZG31Di2OMOkJyw
+        Expiry: 1516146085
+        Uid: breanne.rath@reynolds.io
+
+    + Body
+
+        {
+          "store": {
+            "name": "Kutch Group",
+            "address": "13009 Hackett Parkways",
+            "country": "PR",
+            "key": "konader"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "id": "84442186-2545-49d0-8d17-916b30941ae3",
+          "key": "konader",
+          "name": "Kutch Group",
+          "address": "13009 Hackett Parkways",
+          "country": "PR",
+          "created_at": "2018-01-02T23:41:25.541Z",
+          "updated_at": "2018-01-02T23:41:25.541Z"
+        }
+
 ### Returns all stores [GET]
 
-+ Request List all stores
++ Request List all stores (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: Bbl5MbJE3nG1Yi58lM6Q3A
+        Token-Type: Bearer
+        Client: 076BAD2b4rxC2np0foNkZA
+        Expiry: 1516146085
+        Uid: ebba_schulist@emmerich.net
 
 + Response 200 (application/json)
 
@@ -18,12 +77,12 @@ FORMAT: A1
 
         [
           {
-            "id": "fff26b63-ee68-4cde-9acf-7ff39ca6fa9e",
-            "key": "haag",
-            "name": "Feest-Pagac",
-            "address": "9770 Wade Common",
-            "country": "CD",
-            "created_at": "2017-12-29T23:09:57.529Z",
-            "updated_at": "2017-12-29T23:09:57.529Z"
+            "id": "3c90cdc1-e96f-4261-b036-d5f3b9709cd9",
+            "key": "jaskolski",
+            "name": "Bashirian Inc",
+            "address": "360 Rowe Throughway",
+            "country": "MX",
+            "created_at": "2018-01-02T23:41:25.123Z",
+            "updated_at": "2018-01-02T23:41:25.123Z"
           }
         ]
