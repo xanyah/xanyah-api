@@ -1,5 +1,280 @@
 FORMAT: A1
 
+# Group Authentication
+
+## Authentication [/auth]
+
++ Parameters
+  + email (required) - User&#39;s email
+  + password (required) - User&#39;s password
+  + password_confirmation (required) - User&#39;s password confirmation
+  + confirm_success_url (required) - URL to redirect to on email confirmation
+
+### Delete current user [DELETE]
+
++ Request Delete current user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: nTZsImZRIFurGxYEToStuQ
+        Token-Type: Bearer
+        Client: RO3Hd0ZoF2z_FlPOHtkVDA
+        Expiry: 1516177954
+        Uid: deion@wolffblick.co
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "status": "success",
+          "message": "Account with UID 'deion@wolffblick.co' has been destroyed."
+        }
+
+### Sign up user [POST]
+
++ Request Sign up user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "email": "price@medhurst.io",
+          "password": "RuLiEhZ4M28wNjYl",
+          "password_confirmation": "RuLiEhZ4M28wNjYl",
+          "confirm_success_url": "http://pacochalockman.org/keeley"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "status": "success",
+          "data": {
+            "id": "47c9fad8-9235-48d7-a452-56c3aa948a32",
+            "provider": "email",
+            "uid": "price@medhurst.io",
+            "name": null,
+            "email": "price@medhurst.io",
+            "created_at": "2018-01-03T08:32:34.413Z",
+            "updated_at": "2018-01-03T08:32:34.413Z"
+          }
+        }
+
+### Update current user [PATCH]
+
++ Request Update current user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: wN3n5BbfssnbbXmrXqMxLw
+        Token-Type: Bearer
+        Client: ISgudw4wcNrsNLwrNfQNrA
+        Expiry: 1516177955
+        Uid: liliane@roberts.io
+
+    + Body
+
+        {
+          "password": "ToMoUsS3SkN9G4Z",
+          "password_confirmation": "ToMoUsS3SkN9G4Z"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "status": "success",
+          "data": {
+            "id": "6343e6f5-3654-47ee-8676-ea584fed7532",
+            "email": "liliane@roberts.io",
+            "provider": "email",
+            "uid": "liliane@roberts.io",
+            "name": "Josue Quitzon",
+            "created_at": "2018-01-03T08:32:35.086Z",
+            "updated_at": "2018-01-03T08:32:35.165Z"
+          }
+        }
+
+## User session [auth/sign_in]
+
++ Parameters
+  + email (required) - User&#39;s email
+  + password (required) - User&#39;s password
+
+### Sign in user [POST]
+
++ Request Sign in user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "email": "therese@dickiturner.info",
+          "password": "Y9Mu6qQm"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: Ij8V_Zvl-27kwQIoCUGKlQ
+        token-type: Bearer
+        client: rXbCBSiQEALBkzFXNSLu1A
+        expiry: 1516177955
+        uid: therese@dickiturner.info
+
+    + Body
+
+        {
+          "data": {
+            "id": "b736e8f6-4a2b-49ee-932c-127ece967064",
+            "email": "therese@dickiturner.info",
+            "provider": "email",
+            "uid": "therese@dickiturner.info",
+            "name": "Percival Cassin"
+          }
+        }
+
+## User session [auth/sign_out]
+
+### Sign out user [DELETE]
+
++ Request Sign out user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: Zr60sBSysuWPx7cy9teIxg
+        Token-Type: Bearer
+        Client: OkBAnfaVUagBccmT1yEueA
+        Expiry: 1516177955
+        Uid: ofelia@volkmankeler.io
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "success": true
+        }
+
+## User password [auth/password]
+
++ Parameters
+  + password (required) - User&#39;s new password
+  + password_confirmation (required) - User&#39;s new password confirmation
+
+### Update current user&#39;s password [PATCH]
+
++ Request Update current user&#39;s password (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: P7nHjWNjfEynHJKTt72LAQ
+        Token-Type: Bearer
+        Client: lLvzD6SrXcfOGClV2hYJUw
+        Expiry: 1516177955
+        Uid: hellen_kozey@mcclure.io
+
+    + Body
+
+        {
+          "password": "Dg950d1pA5KzQyH",
+          "password_confirmation": "Dg950d1pA5KzQyH"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "success": true,
+          "data": {
+            "id": "4b90c9ac-2b7e-4b7d-ad00-c58a62c384b4",
+            "provider": "email",
+            "email": "hellen_kozey@mcclure.io",
+            "uid": "hellen_kozey@mcclure.io",
+            "name": "Mrs. Issac Raynor",
+            "created_at": "2018-01-03T08:32:35.798Z",
+            "updated_at": "2018-01-03T08:32:35.878Z"
+          },
+          "message": "Your password has been successfully updated."
+        }
+
+## User session [auth/validate_token]
+
+### Validate user session [GET]
+
++ Request Validate user session (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: aZPvbgSYnCBdUwWbrwnr8g
+        Token-Type: Bearer
+        Client: 1JPH6xY_4ODlJS87uF7pmA
+        Expiry: 1516177955
+        Uid: emily.baumbach@blandavonrueden.net
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "success": true,
+          "data": {
+            "id": "9002c997-1e99-4d8d-b939-74b7259937d2",
+            "provider": "email",
+            "uid": "emily.baumbach@blandavonrueden.net",
+            "name": "Marilie Feest",
+            "email": "emily.baumbach@blandavonrueden.net"
+          }
+        }
+
 # Group Stores
 
 ## Stores collection [/stores]
@@ -18,20 +293,20 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: SRbEHpU5yLI1PuIPeV1TZg
+        Access-Token: W--Taq46fs8o7cur7GOavg
         Token-Type: Bearer
-        Client: cVwo49F6ZG31Di2OMOkJyw
-        Expiry: 1516146085
-        Uid: breanne.rath@reynolds.io
+        Client: uvRiOG_BaoZQNZ0jsCDVyQ
+        Expiry: 1516177956
+        Uid: stephania@okeefe.biz
 
     + Body
 
         {
           "store": {
-            "name": "Kutch Group",
-            "address": "13009 Hackett Parkways",
-            "country": "PR",
-            "key": "konader"
+            "name": "Ritchie-Larson",
+            "address": "37340 Durward Brooks",
+            "country": "SM",
+            "key": "hoppecorwin"
           }
         }
 
@@ -44,13 +319,13 @@ FORMAT: A1
     + Body
 
         {
-          "id": "84442186-2545-49d0-8d17-916b30941ae3",
-          "key": "konader",
-          "name": "Kutch Group",
-          "address": "13009 Hackett Parkways",
-          "country": "PR",
-          "created_at": "2018-01-02T23:41:25.541Z",
-          "updated_at": "2018-01-02T23:41:25.541Z"
+          "id": "4a1f7d7d-f671-4b2e-b4cf-b8e1fe4cca70",
+          "key": "hoppecorwin",
+          "name": "Ritchie-Larson",
+          "address": "37340 Durward Brooks",
+          "country": "SM",
+          "created_at": "2018-01-03T08:32:36.299Z",
+          "updated_at": "2018-01-03T08:32:36.299Z"
         }
 
 ### Returns all stores [GET]
@@ -61,11 +336,11 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: Bbl5MbJE3nG1Yi58lM6Q3A
+        Access-Token: B3cZA4_I8h50h6es3DMEHQ
         Token-Type: Bearer
-        Client: 076BAD2b4rxC2np0foNkZA
-        Expiry: 1516146085
-        Uid: ebba_schulist@emmerich.net
+        Client: Dq_xQaFEL4sXmgyLcsCoYQ
+        Expiry: 1516177956
+        Uid: elbert@kiehnhowe.com
 
 + Response 200 (application/json)
 
@@ -77,12 +352,12 @@ FORMAT: A1
 
         [
           {
-            "id": "3c90cdc1-e96f-4261-b036-d5f3b9709cd9",
-            "key": "jaskolski",
-            "name": "Bashirian Inc",
-            "address": "360 Rowe Throughway",
-            "country": "MX",
-            "created_at": "2018-01-02T23:41:25.123Z",
-            "updated_at": "2018-01-02T23:41:25.123Z"
+            "id": "5994f2ad-da94-44fc-87ca-b3fa3036000a",
+            "key": "feil",
+            "name": "Larkin, Nikolaus and Lebsack",
+            "address": "40637 Gleason Plain",
+            "country": "GY",
+            "created_at": "2018-01-03T08:32:35.920Z",
+            "updated_at": "2018-01-03T08:32:35.920Z"
           }
         ]

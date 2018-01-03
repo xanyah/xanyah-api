@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
           :confirmable, :lockable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :store_memberships
+  has_many :store_memberships, dependent: :destroy
   has_many :stores, through: :store_memberships
 end

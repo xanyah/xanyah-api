@@ -1,0 +1,57 @@
+{
+  "resource": "Authentication",
+  "resource_explanation": null,
+  "http_method": "POST",
+  "route": "auth/sign_in",
+  "description": "Sign in user",
+  "explanation": null,
+  "parameters": [
+    {
+      "required": true,
+      "name": "email",
+      "description": "User's email",
+      "properties_description": "required"
+    },
+    {
+      "required": true,
+      "name": "password",
+      "description": "User's password",
+      "properties_description": "required"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "POST",
+      "request_path": "auth/sign_in",
+      "request_body": "{\n          \"email\": \"therese@dickiturner.info\",\n          \"password\": \"Y9Mu6qQm\"\n        }",
+      "request_headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n          \"data\": {\n            \"id\": \"b736e8f6-4a2b-49ee-932c-127ece967064\",\n            \"email\": \"therese@dickiturner.info\",\n            \"provider\": \"email\",\n            \"uid\": \"therese@dickiturner.info\",\n            \"name\": \"Percival Cassin\"\n          }\n        }",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "access-token": "Ij8V_Zvl-27kwQIoCUGKlQ",
+        "token-type": "Bearer",
+        "client": "rXbCBSiQEALBkzFXNSLu1A",
+        "expiry": "1516177955",
+        "uid": "therese@dickiturner.info"
+      },
+      "response_content_type": "application/json",
+      "curl": null,
+      "request_headers_text": "Accept: application/json\nContent-Type: application/json",
+      "request_query_parameters_text": null,
+      "response_headers_text": "Content-Type: application/json; charset=utf-8\naccess-token: Ij8V_Zvl-27kwQIoCUGKlQ\ntoken-type: Bearer\nclient: rXbCBSiQEALBkzFXNSLu1A\nexpiry: 1516177955\nuid: therese@dickiturner.info",
+      "has_request?": true,
+      "has_response?": true
+    }
+  ]
+}

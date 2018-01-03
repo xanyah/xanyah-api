@@ -1,0 +1,79 @@
+{
+  "resources": [
+    {
+      "name": "Authentication",
+      "explanation": null,
+      "examples": [
+        {
+          "description": "Delete current user",
+          "link": "authentication/delete_current_user.json",
+          "groups": "all",
+          "route": "/auth",
+          "method": "delete"
+        },
+        {
+          "description": "Sign in user",
+          "link": "authentication/sign_in_user.json",
+          "groups": "all",
+          "route": "auth/sign_in",
+          "method": "post"
+        },
+        {
+          "description": "Sign out user",
+          "link": "authentication/sign_out_user.json",
+          "groups": "all",
+          "route": "auth/sign_out",
+          "method": "delete"
+        },
+        {
+          "description": "Sign up user",
+          "link": "authentication/sign_up_user.json",
+          "groups": "all",
+          "route": "/auth",
+          "method": "post"
+        },
+        {
+          "description": "Update current user",
+          "link": "authentication/update_current_user.json",
+          "groups": "all",
+          "route": "/auth",
+          "method": "patch"
+        },
+        {
+          "description": "Update current user's password",
+          "link": "authentication/update_current_user's_password.json",
+          "groups": "all",
+          "route": "auth/password",
+          "method": "patch"
+        },
+        {
+          "description": "Validate user session",
+          "link": "authentication/validate_user_session.json",
+          "groups": "all",
+          "route": "auth/validate_token",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "name": "Stores",
+      "explanation": null,
+      "examples": [
+        {
+          "description": "Create a store",
+          "link": "stores/create_a_store.json",
+          "groups": "all",
+          "route": "/stores",
+          "method": "post"
+        },
+        {
+          "description": "List all stores",
+          "link": "stores/list_all_stores.json",
+          "groups": "all",
+          "route": "/stores",
+          "method": "get"
+        }
+      ]
+    }
+  ]
+}

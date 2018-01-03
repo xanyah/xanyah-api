@@ -28,10 +28,10 @@ resource 'Stores' do
 
     post 'Create a store' do
       with_options scope: :store do
-        parameter :name, "Store's name", required: true
-        parameter :address, "Store's address"
-        parameter :country, "Store's country", required: true
-        parameter :key, "Store's key", required: true
+        parameter :name, "Store's name", scope: :store, required: true
+        parameter :address, "Store's address", scope: :store
+        parameter :country, "Store's country", scope: :store, required: true
+        parameter :key, "Store's key", scope: :store, required: true
       end
 
       let(:name) { store[:name] }
