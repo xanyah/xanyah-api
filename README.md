@@ -7,6 +7,7 @@
 - Clone this repo
 - Copy `.env.example` into `.env` (or `.env.test` depending on your environments)
 - Install gems: `bundle install`
+- Install packages: `yarn` or `npm install`
 - Set up your database:
   - Create it with Docker-Compose by running `docker-compose up`
   - Run the migrations: `rake db:migrate`
@@ -14,7 +15,7 @@
 
 ## Generating docs
 
-- `rake docs:generate`
+- `yarn docs`
 
 ## Our stack
 
