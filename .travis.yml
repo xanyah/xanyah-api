@@ -1,0 +1,25 @@
+language: ruby
+rvm:
+  - 2.4.1
+bundler_args: "--jobs=2"
+cache: bundler
+env:
+  - "RAILS_ENV=test"
+services:
+  - postgresql
+before_script:
+  - cp .travis/database.yml config/database.yml
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+    > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - bundle exec rake db:create db:migrate
+script:
+  - bundle exec rspec
+env:
+  global:
+    secure: sjo0CxpTMoen80y2R7tUK27dlTJukf2SmfDIPEY535L0j1MKfa37x6zBIZIe8dL9ZgDgSGB3P0JYEzHp8denA/b5qRjlbC2a3M105um4ZnpoBXyokj0taqJM7vYvEscwNDMiz3BTrhyTtX6hLblnsfcinziEZ1R85c+c5iliIhjczRD6aq1eiSYbyTsCvDTCAXM27r5ygbkHHg4gzdcY7712CDgyZz7USE0i26f/Z9OFQQX2vqziFQboggq4r7UDkRs6xpr+Agq/yk/kezomQm7ybO98DGNhXzQQrKcQ2SPmZwzEh3vjFfixIN1RrpNDf0ceSZKc+xgYIxRW7vgBaabycC8DN3UaDTCqyAs8QEhkYkP7/NZkJAUtJqHZofP7R+TY7zhVRxLJSJhjOxknbPX9zpDrFTdaiAYDNji+XSc04ew76m4BeE2HlKveqs1EeP6kEr2BPoJzNrF+rK+7CxiqEBeuicoFTyK0iVxNP6TjkSdzVCiRCN76koJoj5seQ8bn16WsuvfXpom2KOrTPng+SQgM2TXFJxgE+5iVfHFNjYquHZ0nXHzQOMSh3Tb2GMiRXsBVNdMWUXIRpfLbO5fCN1x3ziQ8q2rjC/9CkU91EnxmY0P/FJc0NSUHwEDT2givAW3KHqBs+CIBKSjndRNPhXvvMzGVzyWmb7CLZwc=
+notifications:
+  slack:
+    secure: YY1IpkLzkZuR0KyGdLJ4xRHu3bsxkTe0dm30nUV2S5H2JekoZsv+NiGXbONCtB1dSW0kITsQgRIvQ57geBc1U+y6CEeGx+N3SPUQrUZmRxQOyZJ/w1rh1PhPSC7eA0b/bxD36yjnjPY92KFa5HIRT12YoiZNDOYnGNGZGahJYrMMgMv0D7aCw71bm2/i4XNizRwHGUSDIK2FFoU3cCzvc4CeIYBqGZ9f1ng8Vog/uEUFNaMu4HZnuhxKDSky7buNAxH2HuVgGTZyS5Y54GfTgKlLi90/DQPSIs5W6CyM4fDoOAf/pK5kh6wGPhY4OyNLiyD9X/VxfE9my3xxYcMaHp4cPHQ2x1/nLDEVAAf+Euo6eJ4oViI03JHJQbtv0hkA1P/O24d/tRrb0f53ubqQ9U/c7NtZujlTRV3pegYVnIBo9oKumTQmwRQHxlPyuzLRiDCbBXPq5e30QTarHsTn+/55BcO2+dCWg8M1yC3FQJBSzNV40m9yAT8DCz2BAhU7UDA+x/cpihRPz7wytPNPEMrTGLRdnkKATl5G3EbKUdaLZ2KtKc+zjDBdAcEVEBPkrJ6wlA5g8pp+LdCQ+YvNYdt5KmbIkp+awMM4bRVtWHY91oTSD7e5vDOEvN9x1vRv/xBsAe3Rkwx413lSydEBZ3T2kRYLEdAjd0uZ7AR19KM=
+addons:
+  postgresql: "9.6"

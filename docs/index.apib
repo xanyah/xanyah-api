@@ -1,0 +1,363 @@
+FORMAT: A1
+
+# Group Authentication
+
+## Authentication [/auth]
+
++ Parameters
+  + email (required) - User&#39;s email
+  + password (required) - User&#39;s password
+  + password_confirmation (required) - User&#39;s password confirmation
+  + confirm_success_url (required) - URL to redirect to on email confirmation
+
+### Delete current user [DELETE]
+
++ Request Delete current user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: 593TYTE8rOmgSBmm_G79rA
+        Token-Type: Bearer
+        Client: 6WzghBm3x9Xv3e06SQfx_A
+        Expiry: 1516179993
+        Uid: nikki_roberts@grimes.org
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "status": "success",
+          "message": "Account with UID 'nikki_roberts@grimes.org' has been destroyed."
+        }
+
+### Sign up user [POST]
+
++ Request Sign up user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "email": "camron@bailey.info",
+          "password": "R9D556AlIcZqX",
+          "password_confirmation": "R9D556AlIcZqX",
+          "confirm_success_url": "http://kovacek.co/audrey"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "status": "success",
+          "data": {
+            "id": "ae0df27c-0527-4921-aa6e-e32073027076",
+            "provider": "email",
+            "uid": "camron@bailey.info",
+            "name": null,
+            "email": "camron@bailey.info",
+            "created_at": "2018-01-03T09:06:33.304Z",
+            "updated_at": "2018-01-03T09:06:33.304Z"
+          }
+        }
+
+### Update current user [PATCH]
+
++ Request Update current user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: EX4Q2F-xg0H111PMeT43sQ
+        Token-Type: Bearer
+        Client: iGGB6LXyGfeGKGugvDAvaA
+        Expiry: 1516179993
+        Uid: hanna@hartmann.name
+
+    + Body
+
+        {
+          "password": "Tf93ViWtY",
+          "password_confirmation": "Tf93ViWtY"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "status": "success",
+          "data": {
+            "id": "b5a5b891-9d4b-408b-a777-3d92a031bb3c",
+            "email": "hanna@hartmann.name",
+            "provider": "email",
+            "uid": "hanna@hartmann.name",
+            "name": "Deon Hettinger V",
+            "created_at": "2018-01-03T09:06:33.929Z",
+            "updated_at": "2018-01-03T09:06:34.001Z"
+          }
+        }
+
+## User session [auth/sign_in]
+
++ Parameters
+  + email (required) - User&#39;s email
+  + password (required) - User&#39;s password
+
+### Sign in user [POST]
+
++ Request Sign in user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "email": "ansley_roberts@wolff.info",
+          "password": "By82W1Mu3sMv89"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: B8fLp-TNME_X0oSSeY0w0w
+        token-type: Bearer
+        client: qFXD181UvUGQyvKrsUiTTg
+        expiry: 1516179994
+        uid: ansley_roberts@wolff.info
+
+    + Body
+
+        {
+          "data": {
+            "id": "cfc7539f-8cf9-4a2d-96d3-4b2427984250",
+            "email": "ansley_roberts@wolff.info",
+            "provider": "email",
+            "uid": "ansley_roberts@wolff.info",
+            "name": "Kareem Weber"
+          }
+        }
+
+## User session [auth/sign_out]
+
+### Sign out user [DELETE]
+
++ Request Sign out user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: PKivITVKwKZk16T3sOIsGw
+        Token-Type: Bearer
+        Client: hX2kvALUNTacilfDsq16wA
+        Expiry: 1516179994
+        Uid: paolo_dicki@sawayn.com
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "success": true
+        }
+
+## User password [auth/password]
+
++ Parameters
+  + password (required) - User&#39;s new password
+  + password_confirmation (required) - User&#39;s new password confirmation
+
+### Update current user&#39;s password [PATCH]
+
++ Request Update current user&#39;s password (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: r2KGvYwvlKmpmAmqcIV3QQ
+        Token-Type: Bearer
+        Client: zJm0J8gUtjPCZqbcKLe7bQ
+        Expiry: 1516179994
+        Uid: maxie@trantowbechtelar.co
+
+    + Body
+
+        {
+          "password": "3l4fUeKwBvO",
+          "password_confirmation": "3l4fUeKwBvO"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "success": true,
+          "data": {
+            "id": "432da05f-6e2c-42de-b18b-b75222f2ac14",
+            "provider": "email",
+            "email": "maxie@trantowbechtelar.co",
+            "uid": "maxie@trantowbechtelar.co",
+            "name": "Soledad Glover",
+            "created_at": "2018-01-03T09:06:34.576Z",
+            "updated_at": "2018-01-03T09:06:34.654Z"
+          },
+          "message": "Your password has been successfully updated."
+        }
+
+## User session [auth/validate_token]
+
+### Validate user session [GET]
+
++ Request Validate user session (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: 5MqsJQ5Du4K-q8deAz8lQw
+        Token-Type: Bearer
+        Client: tvS9Qo5wZihV-YrMrwt0GA
+        Expiry: 1516179994
+        Uid: vita@altenwerth.io
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "success": true,
+          "data": {
+            "id": "2901613f-8c60-430a-a659-25f42db229f9",
+            "provider": "email",
+            "uid": "vita@altenwerth.io",
+            "name": "Joey Grady III",
+            "email": "vita@altenwerth.io"
+          }
+        }
+
+# Group Stores
+
+## Stores collection [/stores]
+
++ Parameters
+  + name (required) - Store&#39;s name
+  + address - Store&#39;s address
+  + country (required) - Store&#39;s country
+  + key (required) - Store&#39;s key
+
+### Create a store [POST]
+
++ Request Create a store (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: ybCk8Fwv_IUddvCbFptBpQ
+        Token-Type: Bearer
+        Client: -0VQJMpOeiYGopd6rq-ZSg
+        Expiry: 1516179994
+        Uid: rowland@framimcdermott.name
+
+    + Body
+
+        {
+          "store": {
+            "name": "Huel, Schaden and Sporer",
+            "address": "17622 Rusty Stream",
+            "country": "HT",
+            "key": "oreilly"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "id": "a1208c1b-9db3-4f51-a396-b12feafc80fa",
+          "key": "oreilly",
+          "name": "Huel, Schaden and Sporer",
+          "address": "17622 Rusty Stream",
+          "country": "HT",
+          "created_at": "2018-01-03T09:06:35.036Z",
+          "updated_at": "2018-01-03T09:06:35.036Z"
+        }
+
+### Returns all stores [GET]
+
++ Request List all stores (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: TAjRbHejf3UV-oPNUcuSSA
+        Token-Type: Bearer
+        Client: q7PfhjAC0-l62pXZT6QL9A
+        Expiry: 1516179994
+        Uid: estrella_padberg@yundt.name
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        [
+          {
+            "id": "070d8065-325b-491a-8308-987393598d18",
+            "key": "okeefemurazik",
+            "name": "Pfannerstill Group",
+            "address": "8144 Jessy Spurs",
+            "country": "DZ",
+            "created_at": "2018-01-03T09:06:34.698Z",
+            "updated_at": "2018-01-03T09:06:34.698Z"
+          }
+        ]

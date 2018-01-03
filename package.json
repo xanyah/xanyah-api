@@ -1,0 +1,25 @@
+{
+  "name": "xanyah-api",
+  "version": "1.0.0",
+  "description": "[![Travis CI](https://img.shields.io/travis/xanyah/xanyah-api.svg)](https://travis-ci.org/xanyah/xanyah-api) [![CodeClimate](https://img.shields.io/codeclimate/github/xanyah/xanyah-api.svg)](https://codeclimate.com/github/xanyah/xanyah-api) [![CodeClimate test coverage](https://img.shields.io/codeclimate/coverage/github/xanyah/xanyah-api.svg)](https://codeclimate.com/github/xanyah/xanyah-api) [![CodeClimate maintenability](https://img.shields.io/codeclimate/maintainability/xanyah/xanyah-api.svg)](https://codeclimate.com/github/xanyah/xanyah-api)",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "scripts": {
+    "docs": "bundle exec rake docs:generate && aglio -i docs/index.apib --theme-template triple -o docs/index.html --theme-variables streak"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xanyah/xanyah-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xanyah/xanyah-api/issues"
+  },
+  "homepage": "https://github.com/xanyah/xanyah-api#readme",
+  "devDependencies": {
+    "aglio": "^2.3.0"
+  }
+}
