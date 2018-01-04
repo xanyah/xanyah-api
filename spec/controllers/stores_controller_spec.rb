@@ -70,7 +70,6 @@ RSpec.describe StoresController, type: :controller do
       end
 
       it "renders a JSON response with the new store" do
-
         request.headers.merge! create(:user).create_new_auth_token
         post :create, params: {store: valid_attributes}
         expect(response).to have_http_status(:created)

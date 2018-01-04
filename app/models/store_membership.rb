@@ -1,5 +1,5 @@
 class StoreMembership < ApplicationRecord
-  enum role: %w(regular admin owner)
+  enum role: [:regular, :admin, :owner]
   validates :store, uniqueness: { scope: :user }
   belongs_to :store
   belongs_to :user
