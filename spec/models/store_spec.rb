@@ -17,6 +17,17 @@ RSpec.describe Store, type: :model do
         expect(build(:store, key: nil)).not_to be_valid
       end
     end
+
+    describe :country do
+      it :presence do
+        expect(build(:store, country: nil)).not_to be_valid
+      end
+
+      it :valid do
+        expect(build(:store, country: ISO3166::Country.all.map(&:alpha2).sample)).to be_valid
+        expect(build(:store, country: 'FE')).not_to be_valid
+      end
+    end
   end
 
   describe :abilities do

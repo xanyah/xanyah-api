@@ -6,7 +6,9 @@ class Store < ApplicationRecord
   has_many :owner_store_memberships, -> { owner }, class_name: 'StoreMembership'
   has_many :owners, source: :user, through: :owner_store_memberships
 
-  validates :country, presence: true
+  validates :country, presence: true, inclusion: { in: ISO3166::Country.all.map(&:alpha2) }
   validates :key, presence: true, uniqueness: true, allow_nil: false
   validates :name, presence: true
+
+  before_validation { self.country = self.country.nil? ? '' : self.country.upcase }
 end
