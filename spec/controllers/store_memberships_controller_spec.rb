@@ -34,19 +34,20 @@ RSpec.describe StoreMembershipsController, type: :controller do
     attributes_for(:store_membership, user_id: user.id, store_id: store.id)
   }
 
-  let(:invalid_attributes) {
-    attributes_for(:store_membership, user: 'user_id', store_id: 'store_id')
-  }
+  let(:invalid_attributes) {{
+    role: :role
+  }}
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # StoreMembershipsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
       store_membership = StoreMembership.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      membership = create(:store_membership, store: store, role: :admin)
+      request.headers.merge! membership.user.create_new_auth_token
+      get :index, params: {}
       expect(response).to be_success
     end
   end
@@ -54,7 +55,9 @@ RSpec.describe StoreMembershipsController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       store_membership = StoreMembership.create! valid_attributes
-      get :show, params: {id: store_membership.to_param}, session: valid_session
+      membership = create(:store_membership, store: store, role: :admin)
+      request.headers.merge! membership.user.create_new_auth_token
+      get :show, params: {id: store_membership.to_param}
       expect(response).to be_success
     end
   end
@@ -62,14 +65,17 @@ RSpec.describe StoreMembershipsController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new StoreMembership" do
+        membership = create(:store_membership, store: store, role: :admin)
+        request.headers.merge! membership.user.create_new_auth_token
         expect {
-          post :create, params: {store_membership: valid_attributes}, session: valid_session
+          post :create, params: {store_membership: valid_attributes}
         }.to change(StoreMembership, :count).by(1)
       end
 
       it "renders a JSON response with the new store_membership" do
-
-        post :create, params: {store_membership: valid_attributes}, session: valid_session
+        membership = create(:store_membership, store: store, role: :admin)
+        request.headers.merge! membership.user.create_new_auth_token
+        post :create, params: {store_membership: valid_attributes}
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
       end
@@ -78,7 +84,9 @@ RSpec.describe StoreMembershipsController, type: :controller do
     context "with invalid params" do
       it "renders a JSON response with errors for the new store_membership" do
 
-        post :create, params: {store_membership: invalid_attributes}, session: valid_session
+        membership = create(:store_membership, store: store, role: :admin)
+        request.headers.merge! membership.user.create_new_auth_token
+        post :create, params: {store_membership: invalid_attributes}
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -93,7 +101,9 @@ RSpec.describe StoreMembershipsController, type: :controller do
 
       it "updates the requested store_membership" do
         store_membership = StoreMembership.create! valid_attributes
-        put :update, params: {id: store_membership.to_param, store_membership: new_attributes}, session: valid_session
+        membership = create(:store_membership, store: store, role: :admin)
+        request.headers.merge! membership.user.create_new_auth_token
+        put :update, params: {id: store_membership.to_param, store_membership: new_attributes}
         store_membership.reload
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
@@ -103,7 +113,9 @@ RSpec.describe StoreMembershipsController, type: :controller do
       it "renders a JSON response with the store_membership" do
         store_membership = StoreMembership.create! valid_attributes
 
-        put :update, params: {id: store_membership.to_param, store_membership: valid_attributes}, session: valid_session
+        membership = create(:store_membership, store: store, role: :admin)
+        request.headers.merge! membership.user.create_new_auth_token
+        put :update, params: {id: store_membership.to_param, store_membership: valid_attributes}
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
@@ -113,7 +125,9 @@ RSpec.describe StoreMembershipsController, type: :controller do
       it "renders a JSON response with errors for the store_membership" do
         store_membership = StoreMembership.create! valid_attributes
 
-        put :update, params: {id: store_membership.to_param, store_membership: invalid_attributes}, session: valid_session
+        membership = create(:store_membership, store: store, role: :admin)
+        request.headers.merge! membership.user.create_new_auth_token
+        put :update, params: {id: store_membership.to_param, store_membership: invalid_attributes}
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -123,8 +137,10 @@ RSpec.describe StoreMembershipsController, type: :controller do
   describe "DELETE #destroy" do
     it "destroys the requested store_membership" do
       store_membership = StoreMembership.create! valid_attributes
+      membership = create(:store_membership, store: store, role: :admin)
+      request.headers.merge! membership.user.create_new_auth_token
       expect {
-        delete :destroy, params: {id: store_membership.to_param}, session: valid_session
+        delete :destroy, params: {id: store_membership.to_param}
       }.to change(StoreMembership, :count).by(-1)
     end
   end
