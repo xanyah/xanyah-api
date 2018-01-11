@@ -43,7 +43,10 @@ module XanyahApi
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: :any
+        resource '*',
+          expose: %w(access-token client expiry token-type uid),
+          headers: :any,
+          methods: :any
       end
     end
   end
