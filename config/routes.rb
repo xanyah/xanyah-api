@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :manufacturers, except: [:destroy]
   
+  resources :providers, except: [:destroy]
+  
   resources :store_memberships
   resources :stores, except: [:destroy]
 end

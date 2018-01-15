@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20180107215401) do
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
 
+
   create_table "manufacturers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "notes"
@@ -23,6 +24,15 @@ ActiveRecord::Schema.define(version: 20180107215401) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_manufacturers_on_store_id"
+  end
+
+  create_table "providers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "notes"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_providers_on_store_id"
   end
 
   create_table "store_memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -75,6 +85,7 @@ ActiveRecord::Schema.define(version: 20180107215401) do
   end
 
   add_foreign_key "manufacturers", "stores"
+  add_foreign_key "providers", "stores"
   add_foreign_key "store_memberships", "stores"
   add_foreign_key "store_memberships", "users"
 end
