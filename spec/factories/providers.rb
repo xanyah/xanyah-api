@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :provider do
-    name {Faker::Company.name}
+    name {Faker::RickAndMorty.character}
     notes {Faker::Address.street_address}
     store
   end
