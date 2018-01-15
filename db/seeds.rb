@@ -1,8 +1,6 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
-exit 0 if ENV['PREVENT_SEEDING']
-
 puts "Creating users"
 
 owner_user = User.create(email: 'owner@xanyah.io', firstname: 'Owner', lastname: 'User', confirmed_at: Time.now, password: '12345678')
