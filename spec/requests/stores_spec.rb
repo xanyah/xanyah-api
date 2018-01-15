@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Stores", type: :request do
-
   describe "GET /stores" do
     it "returns only permitted stores" do
       membership = create(:store_membership)
