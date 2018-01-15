@@ -4,7 +4,7 @@
   "website": "http://xanyah.io",
   "repository": "https://github.com/xanyah/xanyah-api",
   "scripts": {
-    "postdeploy": "bundle exec rake db:migrate"
+    "postdeploy": "bundle exec rake db:migrate && bundle exec rake db:seed"
   },
   "env": {
     "RACK_ENV": {

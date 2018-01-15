@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20180111083839) do
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
 
-
   create_table "manufacturers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "notes"
