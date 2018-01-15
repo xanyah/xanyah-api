@@ -23,28 +23,30 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe StoresController, type: :controller do
+RSpec.describe ManufacturersController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Store. As you add validations to Store, be sure to
+  # Manufacturer. As you add validations to Manufacturer, be sure to
   # adjust the attributes here as well.
+  let(:store_membership) { create(:store_membership) }
+  let(:user) { store_membership.user }
   let(:valid_attributes) {
-    attributes_for(:store)
+    attributes_for(:manufacturer, store_id: store_membership.store_id)
   }
 
-  let(:invalid_attributes) {{
-    name: nil
-  }}
+  let(:invalid_attributes) {
+    attributes_for(:manufacturer, store_id: store_membership.store_id, name: nil)
+  }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # StoresController. Be sure to keep this updated too.
+  # ManufacturersController. Be sure to keep this updated too.
+
 
   describe "GET #index" do
     it "returns a success response" do
-      store = Store.create! valid_attributes
-      membership = create(:store_membership, store: store)
-      request.headers.merge! membership.user.create_new_auth_token
+      manufacturer = Manufacturer.create! valid_attributes
+      request.headers.merge! user.create_new_auth_token
       get :index, params: {}
       expect(response).to be_success
     end
@@ -52,36 +54,34 @@ RSpec.describe StoresController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      store = Store.create! valid_attributes
-      membership = create(:store_membership, store: store)
-      request.headers.merge! membership.user.create_new_auth_token
-      get :show, params: {id: store.to_param}
+      manufacturer = Manufacturer.create! valid_attributes
+      request.headers.merge! user.create_new_auth_token
+      get :show, params: {id: manufacturer.to_param}
       expect(response).to be_success
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Store" do
+      it "creates a new Provider" do
+        request.headers.merge! user.create_new_auth_token
         expect {
-          request.headers.merge! create(:user).create_new_auth_token
-          post :create, params: {store: valid_attributes}
-        }.to change(Store, :count).by(1)
+          post :create, params: {manufacturer: valid_attributes}
+        }.to change(Manufacturer, :count).by(1)
       end
 
-      it "renders a JSON response with the new store" do
-        request.headers.merge! create(:user).create_new_auth_token
-        post :create, params: {store: valid_attributes}
+      it "renders a JSON response with the new manufacturer" do
+        request.headers.merge! user.create_new_auth_token
+        post :create, params: {manufacturer: valid_attributes}
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new store" do
-
-        request.headers.merge! create(:user).create_new_auth_token
-        post :create, params: {store: invalid_attributes}
+      it "renders a JSON response with errors for the new manufacturer" do
+        request.headers.merge! user.create_new_auth_token
+        post :create, params: {manufacturer: invalid_attributes}
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -90,37 +90,32 @@ RSpec.describe StoresController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        attributes_for(:store)
-      }
+      let(:new_attributes) {{
+        name: build(:manufacturer).name
+      }}
 
-      it "updates the requested store" do
-        store = Store.create! valid_attributes
-        membership = create(:store_membership, store: store, role: :admin)
-        request.headers.merge! membership.user.create_new_auth_token
-        put :update, params: {id: store.to_param, store: new_attributes}
-        store.reload
-        expect(store[:name]).to eq(new_attributes[:name])
+      it "updates the requested manufacturer" do
+        manufacturer = Manufacturer.create! valid_attributes
+        request.headers.merge! user.create_new_auth_token
+        put :update, params: {id: manufacturer.to_param, manufacturer: new_attributes}
+        manufacturer.reload
+        expect(manufacturer.name).to eq(new_attributes[:name])
       end
 
-      it "renders a JSON response with the store" do
-        store = Store.create! valid_attributes
-
-        membership = create(:store_membership, store: store, role: :admin)
-        request.headers.merge! membership.user.create_new_auth_token
-        put :update, params: {id: store.to_param, store: valid_attributes}
+      it "renders a JSON response with the manufacturer" do
+        manufacturer = Manufacturer.create! valid_attributes
+        request.headers.merge! user.create_new_auth_token
+        put :update, params: {id: manufacturer.to_param, manufacturer: valid_attributes}
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the store" do
-        store = Store.create! valid_attributes
-
-        membership = create(:store_membership, store: store, role: :admin)
-        request.headers.merge! membership.user.create_new_auth_token
-        put :update, params: {id: store.to_param, store: invalid_attributes}
+      it "renders a JSON response with errors for the manufacturer" do
+        manufacturer = Manufacturer.create! valid_attributes
+        request.headers.merge! user.create_new_auth_token
+        put :update, params: {id: manufacturer.to_param, manufacturer: invalid_attributes}
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end

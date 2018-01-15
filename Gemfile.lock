@@ -218,6 +218,7 @@ DEPENDENCIES
   rails (~> 5.1.4)
   rspec-rails (~> 3.6)
   rspec_api_documentation
+  simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
