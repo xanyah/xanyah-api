@@ -1,4 +1,6 @@
 class Store < ApplicationRecord
+
+  has_many :providers
   has_many :store_memberships
   has_many :users, through: :store_memberships
   has_many :admin_store_memberships, -> { admin }, class_name: 'StoreMembership'
