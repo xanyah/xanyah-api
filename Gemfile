@@ -32,6 +32,7 @@ group :development, :test do
   gem 'faker'
   gem 'rspec_api_documentation'
   gem 'rspec-rails', '~> 3.6'
+  gem 'simplecov'
 end
 
 group :development do
