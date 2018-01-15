@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180105170552) do
+ActiveRecord::Schema.define(version: 20180107215401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
   enable_extension "pgcrypto"
+
+
+  create_table "manufacturers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "notes"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_manufacturers_on_store_id"
+  end
 
   create_table "providers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -75,6 +84,7 @@ ActiveRecord::Schema.define(version: 20180105170552) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "manufacturers", "stores"
   add_foreign_key "providers", "stores"
   add_foreign_key "store_memberships", "stores"
   add_foreign_key "store_memberships", "users"

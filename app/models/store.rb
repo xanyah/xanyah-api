@@ -1,5 +1,6 @@
 class Store < ApplicationRecord
 
+  has_many :manufacturers
   has_many :providers
   has_many :store_memberships
   has_many :users, through: :store_memberships
