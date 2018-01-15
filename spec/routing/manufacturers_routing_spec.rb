@@ -7,11 +7,9 @@ RSpec.describe ManufacturersController, type: :routing do
       expect(:get => "/manufacturers").to route_to("manufacturers#index")
     end
 
-
     it "routes to #show" do
       expect(:get => "/manufacturers/1").to route_to("manufacturers#show", :id => "1")
     end
-
 
     it "routes to #create" do
       expect(:post => "/manufacturers").to route_to("manufacturers#create")
