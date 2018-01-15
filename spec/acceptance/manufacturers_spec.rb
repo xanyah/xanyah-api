@@ -49,7 +49,7 @@ require 'acceptance_helper'
      end
    end
 
-   route '/manufacturer/:id', 'Single manufacturer' do
+   route '/manufacturers/:id', 'Single manufacturer' do
      let!(:manufacturer) { create(:manufacturer, store: membership.store) }
 
      with_options scope: :manufacturer do

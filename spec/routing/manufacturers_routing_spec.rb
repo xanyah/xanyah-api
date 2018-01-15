@@ -24,10 +24,5 @@ RSpec.describe ManufacturersController, type: :routing do
     it "routes to #update via PATCH" do
       expect(:patch => "/manufacturers/1").to route_to("manufacturers#update", :id => "1")
     end
-
-    it "routes to #destroy" do
-      expect(:delete => "/manufacturers/1").to route_to("manufacturers#destroy", :id => "1")
-    end
-
   end
 end
