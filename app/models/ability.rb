@@ -1,7 +1,8 @@
 class Ability
   include CanCan::Ability
 
-  include ManufacturerAbility  
+  include CategoryAbility
+  include ManufacturerAbility
   include ProviderAbility
   include StoreAbility
   include StoreMembershipAbility
@@ -11,6 +12,7 @@ class Ability
 
     alias_action :create, :read, :update, to: :cru
 
+    category_ability user
     manufacturer_ability user
     provider_ability user
     store_ability user

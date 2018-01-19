@@ -23,29 +23,28 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe ManufacturersController, type: :controller do
+RSpec.describe CategoriesController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Manufacturer. As you add validations to Manufacturer, be sure to
+  # Category. As you add validations to Category, be sure to
   # adjust the attributes here as well.
   let(:store_membership) { create(:store_membership) }
   let(:user) { store_membership.user }
   let(:valid_attributes) {
-    attributes_for(:manufacturer, store_id: store_membership.store_id)
+    attributes_for(:category, store_id: store_membership.store_id)
   }
 
   let(:invalid_attributes) {
-    attributes_for(:manufacturer, store_id: store_membership.store_id, name: nil)
+    attributes_for(:category, store_id: store_membership.store_id, label: nil)
   }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # ManufacturersController. Be sure to keep this updated too.
-
+  # CategoriesController. Be sure to keep this updated too.
 
   describe "GET #index" do
     it "returns a success response" do
-      manufacturer = Manufacturer.create! valid_attributes
+      category = Category.create! valid_attributes
       request.headers.merge! user.create_new_auth_token
       get :index, params: {}
       expect(response).to be_success
@@ -54,34 +53,34 @@ RSpec.describe ManufacturersController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      manufacturer = Manufacturer.create! valid_attributes
+      category = Category.create! valid_attributes
       request.headers.merge! user.create_new_auth_token
-      get :show, params: {id: manufacturer.to_param}
+      get :show, params: {id: category.to_param}
       expect(response).to be_success
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Provider" do
+      it "creates a new Category" do
         request.headers.merge! user.create_new_auth_token
         expect {
-          post :create, params: {manufacturer: valid_attributes}
-        }.to change(Manufacturer, :count).by(1)
+          post :create, params: {category: valid_attributes}
+        }.to change(Category, :count).by(1)
       end
 
-      it "renders a JSON response with the new manufacturer" do
+      it "renders a JSON response with the new category" do
         request.headers.merge! user.create_new_auth_token
-        post :create, params: {manufacturer: valid_attributes}
+        post :create, params: {category: valid_attributes}
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new manufacturer" do
+      it "renders a JSON response with errors for the new category" do
         request.headers.merge! user.create_new_auth_token
-        post :create, params: {manufacturer: invalid_attributes}
+        post :create, params: {category: invalid_attributes}
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -91,31 +90,31 @@ RSpec.describe ManufacturersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {{
-        name: build(:manufacturer).name
+        label: build(:category).label
       }}
 
-      it "updates the requested manufacturer" do
-        manufacturer = Manufacturer.create! valid_attributes
+      it "updates the requested category" do
+        category = Category.create! valid_attributes
         request.headers.merge! user.create_new_auth_token
-        put :update, params: {id: manufacturer.to_param, manufacturer: new_attributes}
-        manufacturer.reload
-        expect(manufacturer.name).to eq(new_attributes[:name])
+        put :update, params: {id: category.to_param, category: new_attributes}
+        category.reload
+        expect(category.label).to eq(new_attributes[:label])
       end
 
-      it "renders a JSON response with the manufacturer" do
-        manufacturer = Manufacturer.create! valid_attributes
+      it "renders a JSON response with the category" do
+        category = Category.create! valid_attributes
         request.headers.merge! user.create_new_auth_token
-        put :update, params: {id: manufacturer.to_param, manufacturer: valid_attributes}
+        put :update, params: {id: category.to_param, category: valid_attributes}
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the manufacturer" do
-        manufacturer = Manufacturer.create! valid_attributes
+      it "renders a JSON response with errors for the category" do
+        category = Category.create! valid_attributes
         request.headers.merge! user.create_new_auth_token
-        put :update, params: {id: manufacturer.to_param, manufacturer: invalid_attributes}
+        put :update, params: {id: category.to_param, category: invalid_attributes}
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
