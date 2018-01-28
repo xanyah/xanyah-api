@@ -22,10 +22,17 @@ puts "Creating manufacturers, providers, categories"
 5.times do
   Manufacturer.create(name: Faker::HarryPotter.character, store: demo_store)
   Provider.create(name: Faker::RickAndMorty.character, store: demo_store)
+  Category.create(
+    label: Faker::Space.planet,
+    store: demo_store,
+    tva: %w(standard_rate reduced_rate reduced_rate_alt super_reduced_rate parking_rate).sample,
+    category: [
+      Category.create(
+        label: Faker::Space.planet,
+        store: demo_store,
+        tva: %w(standard_rate reduced_rate reduced_rate_alt super_reduced_rate parking_rate).sample
+      ),
+      nil
+    ].sample
+  )
 end
-
-category = Category.create(label: Faker::Space.planet, store: demo_store, tva: :standard_rate)
-Category.create(label: Faker::Space.planet, store: demo_store, tva: :reduced_rate, category: category)
-Category.create(label: Faker::Space.planet, store: demo_store, tva: :reduced_rate_alt)
-Category.create(label: Faker::Space.planet, store: demo_store, tva: :super_reduced_rate)
-Category.create(label: Faker::Space.planet, store: demo_store, tva: :parking_rate, category: category)
