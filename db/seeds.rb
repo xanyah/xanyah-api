@@ -3,9 +3,9 @@
 
 puts "Creating users"
 
-owner_user = User.create(email: 'owner@xanyah.io', firstname: 'Owner', lastname: 'User', confirmed_at: Time.now, password: '12345678')
+owner_user = User.create(email: 'owner@xanyah.io', firstname: 'Owner', lastname: 'User', confirmed_at: Time.now, password: '12345678', locale: 'en')
 admin_user = User.create(email: 'admin@xanyah.io', firstname: 'Admin', lastname: 'User', confirmed_at: Time.now, password: '12345678', locale: 'fr')
-regular_user = User.create(email: 'regular@xanyah.io', firstname: 'Regular', lastname: 'User', confirmed_at: Time.now, password: '12345678')
+regular_user = User.create(email: 'regular@xanyah.io', firstname: 'Regular', lastname: 'User', confirmed_at: Time.now, password: '12345678', locale: 'en')
 
 puts "Creating store"
 
