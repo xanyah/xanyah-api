@@ -69,7 +69,7 @@ resource 'Store Memberships' do
     end
 
     delete 'Delete a specific store membership' do
-      let(:id) { create(:store_membership, store: membership.store).id }
+      let(:id) { create(:store_membership, role: :regular, store: membership.store).id }
 
       example_request 'Deleting a store membership' do
         expect(status).to eq(204)
