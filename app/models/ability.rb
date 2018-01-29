@@ -3,6 +3,7 @@ class Ability
 
   include CategoryAbility
   include ManufacturerAbility
+  include ProductAbility
   include ProviderAbility
   include StoreAbility
   include StoreMembershipAbility
@@ -14,6 +15,7 @@ class Ability
 
     category_ability user
     manufacturer_ability user
+    product_ability user
     provider_ability user
     store_ability user
     store_membership_ability user
