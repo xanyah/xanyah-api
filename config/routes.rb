@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :categories, except: [:destroy]
 
   resources :manufacturers, except: [:destroy]
+  
+  resources :products, except: [:destroy]
 
   resources :providers, except: [:destroy]
 

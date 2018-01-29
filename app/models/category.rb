@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  belongs_to :store
+  belongs_to :store, optional: false
   belongs_to :category, optional: true
 
   enum tva: [:standard_rate, :reduced_rate, :reduced_rate_alt, :super_reduced_rate, :parking_rate]
