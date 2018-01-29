@@ -31,7 +31,7 @@ RSpec.describe StoreMembershipsController, type: :controller do
   let!(:user) { create(:user) }
   let!(:store) { create(:store) }
   let(:valid_attributes) {
-    attributes_for(:store_membership, user_id: user.id, store_id: store.id)
+    attributes_for(:store_membership, user_id: user.id, store_id: store.id, role: :regular)
   }
 
   let(:invalid_attributes) {{

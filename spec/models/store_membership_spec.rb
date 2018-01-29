@@ -37,56 +37,72 @@ RSpec.describe StoreMembership, type: :model do
 
     describe :regular do
       let(:membership) { create(:store_membership, role: :regular) }
-      it :cannot_create do
-        expect(Ability.new(membership.user)).not_to be_able_to(:create, build(:store_membership, store: membership.store))
+      it :create do
+        expect(Ability.new(membership.user)).not_to be_able_to(:create, build(:store_membership, role: :regular, store: membership.store))
+        expect(Ability.new(membership.user)).not_to be_able_to(:create, build(:store_membership, role: :admin, store: membership.store))
+        expect(Ability.new(membership.user)).not_to be_able_to(:create, build(:store_membership, role: :owner, store: membership.store))
       end
-      it :can_read do
-        expect(Ability.new(membership.user)).to be_able_to(:read, build(:store_membership, store: membership.store))
+      it :read do
+        expect(Ability.new(membership.user)).to be_able_to(:read, build(:store_membership, role: :regular, store: membership.store))
+        expect(Ability.new(membership.user)).to be_able_to(:read, build(:store_membership, role: :admin, store: membership.store))
+        expect(Ability.new(membership.user)).to be_able_to(:read, build(:store_membership, role: :owner, store: membership.store))
       end
-      it :cannot_update do
-        expect(Ability.new(membership.user)).not_to be_able_to(:update, build(:store_membership, store: membership.store))
+      it :update do
+        expect(Ability.new(membership.user)).not_to be_able_to(:update, build(:store_membership, role: :regular, store: membership.store))
+        expect(Ability.new(membership.user)).not_to be_able_to(:update, build(:store_membership, role: :admin, store: membership.store))
+        expect(Ability.new(membership.user)).not_to be_able_to(:update, build(:store_membership, role: :owner, store: membership.store))
       end
       it :cannot_destroy do
-        expect(Ability.new(membership.user)).not_to be_able_to(:destroy, build(:store_membership, store: membership.store))
+        expect(Ability.new(membership.user)).not_to be_able_to(:destroy, build(:store_membership, role: :regular, store: membership.store))
+        expect(Ability.new(membership.user)).not_to be_able_to(:destroy, build(:store_membership, role: :admin, store: membership.store))
+        expect(Ability.new(membership.user)).not_to be_able_to(:destroy, build(:store_membership, role: :owner, store: membership.store))
       end
     end
 
     describe :admin do
       let(:membership) { create(:store_membership, role: :admin) }
-      it :can_create do
-        expect(Ability.new(membership.user)).to be_able_to(:create, build(:store_membership, store: membership.store))
+      it :create do
+        expect(Ability.new(membership.user)).to be_able_to(:create, build(:store_membership, role: :regular, store: membership.store))
+        expect(Ability.new(membership.user)).to be_able_to(:create, build(:store_membership, role: :admin, store: membership.store))
+        expect(Ability.new(membership.user)).not_to be_able_to(:create, build(:store_membership, role: :owner, store: membership.store))
       end
-      it :can_read do
-        expect(Ability.new(membership.user)).to be_able_to(:read, build(:store_membership, store: membership.store))
+      it :read do
+        expect(Ability.new(membership.user)).to be_able_to(:read, build(:store_membership, role: :regular, store: membership.store))
+        expect(Ability.new(membership.user)).to be_able_to(:read, build(:store_membership, role: :admin, store: membership.store))
+        expect(Ability.new(membership.user)).to be_able_to(:read, build(:store_membership, role: :owner, store: membership.store))
       end
-      it :can_update do
-        expect(Ability.new(membership.user)).to be_able_to(:update, build(:store_membership, store: membership.store))
+      it :update do
+        expect(Ability.new(membership.user)).to be_able_to(:update, build(:store_membership, role: :regular, store: membership.store))
+        expect(Ability.new(membership.user)).to be_able_to(:update, build(:store_membership, role: :admin, store: membership.store))
+        expect(Ability.new(membership.user)).not_to be_able_to(:update, build(:store_membership, role: :owner, store: membership.store))
       end
-      it :can_destroy_regular_admin do
+      it :destroy do
         expect(Ability.new(membership.user)).to be_able_to(:destroy, build(:store_membership, store: membership.store, role: :regular))
         expect(Ability.new(membership.user)).to be_able_to(:destroy, build(:store_membership, store: membership.store, role: :admin))
-      end
-      it :cannot_destroy_owner do
         expect(Ability.new(membership.user)).not_to be_able_to(:destroy, build(:store_membership, store: membership.store, role: :owner))
       end
     end
 
     describe :owner do
       let(:membership) { create(:store_membership, role: :owner) }
-      it :can_create do
-        expect(Ability.new(membership.user)).to be_able_to(:create, build(:store_membership, store: membership.store))
+      it :create do
+        expect(Ability.new(membership.user)).to be_able_to(:create, build(:store_membership, role: :regular, store: membership.store))
+        expect(Ability.new(membership.user)).to be_able_to(:create, build(:store_membership, role: :admin, store: membership.store))
+        expect(Ability.new(membership.user)).not_to be_able_to(:create, build(:store_membership, role: :owner, store: membership.store))
       end
-      it :can_read do
-        expect(Ability.new(membership.user)).to be_able_to(:read, build(:store_membership, store: membership.store))
+      it :read do
+        expect(Ability.new(membership.user)).to be_able_to(:read, build(:store_membership, role: :regular, store: membership.store))
+        expect(Ability.new(membership.user)).to be_able_to(:read, build(:store_membership, role: :admin, store: membership.store))
+        expect(Ability.new(membership.user)).to be_able_to(:read, build(:store_membership, role: :owner, store: membership.store))
       end
-      it :can_update do
-        expect(Ability.new(membership.user)).to be_able_to(:update, build(:store_membership, store: membership.store))
+      it :update do
+        expect(Ability.new(membership.user)).to be_able_to(:update, build(:store_membership, role: :regular, store: membership.store))
+        expect(Ability.new(membership.user)).to be_able_to(:update, build(:store_membership, role: :admin, store: membership.store))
+        expect(Ability.new(membership.user)).not_to be_able_to(:update, build(:store_membership, role: :owner, store: membership.store))
       end
-      it :can_destroy_regular_admin do
+      it :destroy do
         expect(Ability.new(membership.user)).to be_able_to(:destroy, build(:store_membership, store: membership.store, role: :regular))
         expect(Ability.new(membership.user)).to be_able_to(:destroy, build(:store_membership, store: membership.store, role: :admin))
-      end
-      it :cannot_destroy_owner do
         expect(Ability.new(membership.user)).not_to be_able_to(:destroy, build(:store_membership, store: membership.store, role: :owner))
       end
     end

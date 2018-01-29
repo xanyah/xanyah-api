@@ -51,20 +51,20 @@ RSpec.describe "Categories", type: :request do
        store_membership.update(role: :admin)
        category = create(:category, store: store)
        new_category = build(:category)
-       patch category_path(category), params: {category: {label: new_category.label} }, headers: user.create_new_auth_token
+       patch category_path(category), params: {category: {name: new_category.name} }, headers: user.create_new_auth_token
        expect(response).to have_http_status(:ok)
-       expect(JSON.parse(response.body)['label']).to eq(new_category.label)
+       expect(JSON.parse(response.body)['name']).to eq(new_category.name)
      end
 
      it "returns 401 if !membership" do
        new_category = build(:category)
-       patch category_path(create(:category)), params: { category: {label: new_category.label} }, headers: create(:user).create_new_auth_token
+       patch category_path(create(:category)), params: { category: {name: new_category.name} }, headers: create(:user).create_new_auth_token
        expect(response).to have_http_status(:unauthorized)
      end
 
      it "returns 401 if !loggedin" do
        new_category = build(:category)
-       patch category_path(create(:category)), params: { category: {label: new_category.label} }
+       patch category_path(create(:category)), params: { category: {name: new_category.name} }
        expect(response).to have_http_status(:unauthorized)
        expect(JSON.parse(response.body)).to have_key('errors')
      end

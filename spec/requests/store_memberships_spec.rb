@@ -45,7 +45,7 @@ RSpec.describe "StoreMemberships", type: :request do
   describe "PATCH /store_memberships/:id" do
     it "updates membership if membership >= admin" do
       membership = create(:store_membership, role: :admin)
-      new_membership = create(:store_membership, store: membership.store)
+      new_membership = create(:store_membership, role: :regular, store: membership.store)
       patch store_membership_path(new_membership), params: { store_membership: {role: :regular} }, headers: membership.user.create_new_auth_token
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)['role']).to eq('regular')
@@ -75,7 +75,7 @@ RSpec.describe "StoreMemberships", type: :request do
   describe "DELETE /store_memberships/:id" do
     it "deletes membership if membership >= admin" do
       membership = create(:store_membership, role: :admin)
-      new_membership = create(:store_membership, store: membership.store)
+      new_membership = create(:store_membership, store: membership.store, role: :regular)
       delete store_membership_path(new_membership), headers: membership.user.create_new_auth_token
       expect(response).to have_http_status(:no_content)
     end

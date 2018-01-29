@@ -35,7 +35,7 @@ RSpec.describe CategoriesController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    attributes_for(:category, store_id: store_membership.store_id, label: nil)
+    attributes_for(:category, store_id: store_membership.store_id, name: nil)
   }
 
   # This should return the minimal set of values that should be in the session
@@ -90,7 +90,7 @@ RSpec.describe CategoriesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {{
-        label: build(:category).label
+        name: build(:category).name
       }}
 
       it "updates the requested category" do
@@ -98,7 +98,7 @@ RSpec.describe CategoriesController, type: :controller do
         request.headers.merge! user.create_new_auth_token
         put :update, params: {id: category.to_param, category: new_attributes}
         category.reload
-        expect(category.label).to eq(new_attributes[:label])
+        expect(category.name).to eq(new_attributes[:name])
       end
 
       it "renders a JSON response with the category" do

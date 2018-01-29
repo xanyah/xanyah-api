@@ -14,9 +14,9 @@ RSpec.describe Category, type: :model do
   end
 
   describe :validations do
-    describe :label do
+    describe :name do
       it :presence do
-        expect(build(:category, label: nil)).not_to be_valid
+        expect(build(:category, name: nil)).not_to be_valid
       end
     end
 

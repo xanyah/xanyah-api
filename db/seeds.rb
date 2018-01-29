@@ -23,12 +23,12 @@ puts "Creating manufacturers, providers, categories"
   Manufacturer.create(name: Faker::HarryPotter.character, store: demo_store)
   Provider.create(name: Faker::RickAndMorty.character, store: demo_store)
   Category.create(
-    label: Faker::Space.planet,
+    name: Faker::Space.planet,
     store: demo_store,
     tva: %w(standard_rate reduced_rate reduced_rate_alt super_reduced_rate parking_rate).sample,
     category: [
       Category.create(
-        label: Faker::Space.planet,
+        name: Faker::Space.planet,
         store: demo_store,
         tva: %w(standard_rate reduced_rate reduced_rate_alt super_reduced_rate parking_rate).sample
       ),

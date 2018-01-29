@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :category do
-    label "Category label"
-    tva :standard_rate
+    name {Faker::Beer.style}
+    tva {%w(standard_rate reduced_rate reduced_rate_alt super_reduced_rate parking_rate).sample}
     store
   end
 end

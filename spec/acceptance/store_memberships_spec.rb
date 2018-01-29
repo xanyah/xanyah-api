@@ -57,7 +57,7 @@ resource 'Store Memberships' do
     end
 
     patch 'Update a specific store membership' do
-      let(:id) { create(:store_membership, store: membership.store).id }
+      let(:id) { create(:store_membership, role: :admin, store: membership.store).id }
       let(:role) { :admin }
 
       example_request 'Updating a store membership' do
