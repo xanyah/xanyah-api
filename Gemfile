@@ -34,6 +34,7 @@ group :development, :test do
   gem 'rspec_api_documentation'
   gem 'rspec-rails', '~> 3.6'
   gem 'simplecov'
+  gem 'simplecov-console'
 end
 
 group :development do
