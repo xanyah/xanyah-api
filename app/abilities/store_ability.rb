@@ -4,9 +4,8 @@ module StoreAbility
     can :read, Store do |store|
       store.users.include?(user)
     end
-    can :manage, Store do |store|
+    can :update, Store do |store|
       store.admins.include?(user)
     end
-    cannot :destroy, Store
   end
 end

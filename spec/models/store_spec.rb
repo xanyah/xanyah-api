@@ -17,13 +17,20 @@ RSpec.describe Store, type: :model do
         expect(build(:store, key: nil)).not_to be_valid
       end
     end
+
+    describe :country do
+      it :presence do
+        expect(build(:store, country: nil)).not_to be_valid
+      end
+
+      it :valid do
+        expect(build(:store, country: ISO3166::Country.all.map(&:alpha2).sample)).to be_valid
+        expect(build(:store, country: 'FE')).not_to be_valid
+      end
+    end
   end
 
   describe :abilities do
-    subject(:ability) {
-      Ability.new(create(:store_membership, role: :regular))
-    }
-
     describe :everyone do
       it :can_create do
         expect(Ability.new(build(:user))).to be_able_to(:create, Store.new)
@@ -40,7 +47,7 @@ RSpec.describe Store, type: :model do
     end
 
     describe :regular do
-      let!(:membership) { create(:store_membership, role: :regular) }
+      let(:membership) { create(:store_membership, role: :regular) }
       it :can_create do
         expect(Ability.new(membership.user)).to be_able_to(:create, Store.new)
       end
@@ -56,7 +63,7 @@ RSpec.describe Store, type: :model do
     end
 
     describe :admin do
-      let!(:membership) { create(:store_membership, role: :admin) }
+      let(:membership) { create(:store_membership, role: :admin) }
       it :can_create do
         expect(Ability.new(membership.user)).to be_able_to(:create, Store.new)
       end
@@ -72,7 +79,7 @@ RSpec.describe Store, type: :model do
     end
 
     describe :owner do
-      let!(:membership) { create(:store_membership, role: :owner) }
+      let(:membership) { create(:store_membership, role: :owner) }
       it :can_create do
         expect(Ability.new(membership.user)).to be_able_to(:create, Store.new)
       end
