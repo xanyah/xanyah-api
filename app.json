@@ -1,9 +1,27 @@
 {
-  "name": "xanyah-api",
+  "name": "Xanyah API",
+  "description": "API for Xanyah.",
+  "website": "http://xanyah.io",
+  "repository": "https://github.com/xanyah/xanyah-api",
   "scripts": {
-    "postdeploy": "bundle exec rake db:migrate"
+    "postdeploy": "bundle exec rake db:migrate && bundle exec rake db:seed"
   },
   "env": {
+    "RACK_ENV": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "RAILS_LOG_TO_STDOUT": {
+      "required": true
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
+    }
   },
   "formation": {
   },
@@ -11,6 +29,8 @@
     "heroku-postgresql"
   ],
   "buildpacks": [
-
+    {
+      "url": "heroku/ruby"
+    }
   ]
 }

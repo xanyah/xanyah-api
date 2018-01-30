@@ -10,12 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180102203716) do
+ActiveRecord::Schema.define(version: 20180130084710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
   enable_extension "pgcrypto"
+
+  create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.integer "tva"
+    t.uuid "store_id"
+    t.uuid "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categories_on_category_id"
+    t.index ["store_id"], name: "index_categories_on_store_id"
+  end
+
+  create_table "custom_attributes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.integer "type"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_custom_attributes_on_store_id"
+  end
+
+  create_table "manufacturers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "notes"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_manufacturers_on_store_id"
+  end
+
+  create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.uuid "category_id"
+    t.uuid "manufacturer_id"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
+    t.index ["store_id"], name: "index_products_on_store_id"
+  end
+
+  create_table "providers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "notes"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_providers_on_store_id"
+  end
 
   create_table "store_memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "store_id"
@@ -55,17 +104,57 @@ ActiveRecord::Schema.define(version: 20180102203716) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.string "name"
+    t.string "firstname"
     t.string "email"
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "lastname"
+    t.string "locale", default: "en"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  create_table "variant_attributes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "value"
+    t.uuid "variant_id"
+    t.uuid "custom_attribute_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["custom_attribute_id"], name: "index_variant_attributes_on_custom_attribute_id"
+    t.index ["variant_id"], name: "index_variant_attributes_on_variant_id"
+  end
+
+  create_table "variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "original_barcode"
+    t.string "barcode"
+    t.float "buying_price", default: 0.0
+    t.float "tax_free_price", default: 0.0
+    t.float "ratio", default: 0.0
+    t.integer "quantity", default: 0
+    t.boolean "default"
+    t.uuid "product_id"
+    t.uuid "provider_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_variants_on_product_id"
+    t.index ["provider_id"], name: "index_variants_on_provider_id"
+  end
+
+  add_foreign_key "categories", "categories"
+  add_foreign_key "categories", "stores"
+  add_foreign_key "custom_attributes", "stores"
+  add_foreign_key "manufacturers", "stores"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "manufacturers"
+  add_foreign_key "products", "stores"
+  add_foreign_key "providers", "stores"
   add_foreign_key "store_memberships", "stores"
   add_foreign_key "store_memberships", "users"
+  add_foreign_key "variant_attributes", "custom_attributes"
+  add_foreign_key "variant_attributes", "variants"
+  add_foreign_key "variants", "products"
+  add_foreign_key "variants", "providers"
 end

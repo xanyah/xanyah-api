@@ -28,10 +28,10 @@ resource 'Stores' do
 
     post 'Create a store' do
       with_options scope: :store do
-        parameter :name, "Store's name", scope: :store, required: true
-        parameter :address, "Store's address", scope: :store
-        parameter :country, "Store's country", scope: :store, required: true
-        parameter :key, "Store's key", scope: :store, required: true
+        parameter :name, "Store's name", required: true
+        parameter :address, "Store's address"
+        parameter :country, "Store's country", required: true
+        parameter :key, "Store's key", required: true
       end
 
       let(:name) { store[:name] }
@@ -43,6 +43,37 @@ resource 'Stores' do
       example_request "Create a store" do
         expect(response_status).to eq(201)
         expect(JSON.parse(response_body)['id']).to be_present
+      end
+    end
+  end
+
+  route '/stores/:id', 'Single store' do
+    with_options scope: :store do
+      parameter :name, "Store's name", required: true
+      parameter :address, "Store's address"
+      parameter :country, "Store's country", required: true
+    end
+
+    get 'Get a specific store' do
+      let(:id) { membership.store.id }
+
+      example_request 'Getting a store' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body['id']).to eq(id)
+        expect(body['name']).to eq(membership.store.name)
+      end
+    end
+
+    patch 'Update a specific store' do
+      let(:id) { membership.store.id }
+      let(:name) { build(:store).name }
+
+      example_request 'Updating a store' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body['id']).to eq(id)
+        expect(body['name']).to eq(name)
       end
     end
   end

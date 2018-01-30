@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :store do
-    key {Faker::Internet.domain_word}
-    name {Faker::Company.name}
+    name {Faker::StarWars.planet}
+    sequence :key {|n| "#{name.to_slug}-#{n}" }
     address {Faker::Address.street_address}
-    country {Faker::Address.country_code}
+    country {ISO3166::Country.all.map(&:alpha2).sample}
   end
 end

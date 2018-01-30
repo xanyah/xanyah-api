@@ -7,4 +7,10 @@ class User < ActiveRecord::Base
 
   has_many :store_memberships, dependent: :destroy
   has_many :stores, through: :store_memberships
+
+  def token_validation_response 
+    self.as_json(except: [ 
+      :tokens, :created_at, :updated_at 
+    ]) 
+  end 
 end

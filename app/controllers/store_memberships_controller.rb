@@ -1,10 +1,10 @@
 class StoreMembershipsController < ApplicationController
-  before_action :set_store_membership, only: [:show, :update, :destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /store_memberships
   def index
-    @store_memberships = StoreMembership.all
-
+    @store_memberships = current_user.stores.map{|s| s.store_memberships}.flatten
     render json: @store_memberships
   end
 
@@ -15,8 +15,6 @@ class StoreMembershipsController < ApplicationController
 
   # POST /store_memberships
   def create
-    @store_membership = StoreMembership.new(store_membership_params)
-
     if @store_membership.save
       render json: @store_membership, status: :created
     else
@@ -26,7 +24,7 @@ class StoreMembershipsController < ApplicationController
 
   # PATCH/PUT /store_memberships/1
   def update
-    if @store_membership.update(store_membership_params)
+    if @store_membership.update(update_params)
       render json: @store_membership
     else
       render json: @store_membership.errors, status: :unprocessable_entity
@@ -39,13 +37,12 @@ class StoreMembershipsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_store_membership
-      @store_membership = StoreMembership.find(params[:id])
+    # Only allow a trusted parameter "white list" through.
+    def create_params
+      params.require(:store_membership).permit(:store_id, :user_id, :role)
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def store_membership_params
-      params.require(:store_membership).permit(:store_id, :user_id, :role)
+    def update_params
+      params.require(:store_membership).permit(:role)
     end
 end

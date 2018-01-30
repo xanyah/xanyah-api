@@ -18,17 +18,22 @@ gem 'puma', '~> 3.7'
 gem 'cancancan', '~> 2.0'
 gem 'devise_token_auth'
 
+# List of countries
+gem 'countries'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
+
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'apitome'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'rspec_api_documentation'
   gem 'rspec-rails', '~> 3.6'
+  gem 'simplecov'
 end
 
 group :development do

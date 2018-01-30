@@ -32,9 +32,9 @@ RSpec.describe StoresController, type: :controller do
     attributes_for(:store)
   }
 
-  let(:invalid_attributes) {
-    attributes_for(:store, name: nil)
-  }
+  let(:invalid_attributes) {{
+    name: nil
+  }}
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -70,7 +70,6 @@ RSpec.describe StoresController, type: :controller do
       end
 
       it "renders a JSON response with the new store" do
-
         request.headers.merge! create(:user).create_new_auth_token
         post :create, params: {store: valid_attributes}
         expect(response).to have_http_status(:created)
