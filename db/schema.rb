@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129142406) do
+ActiveRecord::Schema.define(version: 20180129171313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,22 @@ ActiveRecord::Schema.define(version: 20180129142406) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  create_table "variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "original_barcode"
+    t.string "barcode"
+    t.float "buying_price"
+    t.float "tax_free_price"
+    t.float "ratio"
+    t.integer "quantity"
+    t.boolean "default"
+    t.uuid "product_id"
+    t.uuid "provider_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_variants_on_product_id"
+    t.index ["provider_id"], name: "index_variants_on_provider_id"
+  end
+
   add_foreign_key "categories", "categories"
   add_foreign_key "categories", "stores"
   add_foreign_key "manufacturers", "stores"
@@ -117,4 +133,6 @@ ActiveRecord::Schema.define(version: 20180129142406) do
   add_foreign_key "providers", "stores"
   add_foreign_key "store_memberships", "stores"
   add_foreign_key "store_memberships", "users"
+  add_foreign_key "variants", "products"
+  add_foreign_key "variants", "providers"
 end
