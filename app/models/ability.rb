@@ -7,6 +7,7 @@ class Ability
   include ProviderAbility
   include StoreAbility
   include StoreMembershipAbility
+  include VariantAbility
 
   def initialize(user)
     user ||= User.new
@@ -19,5 +20,6 @@ class Ability
     provider_ability user
     store_ability user
     store_membership_ability user
+    variant_ability user
   end
 end

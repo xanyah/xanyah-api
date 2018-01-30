@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   belongs_to :category, optional: false
   belongs_to :manufacturer, optional: false
   belongs_to :store, optional: false
+  has_many :variants
 
   validates :name, presence: true
   validate :common_store

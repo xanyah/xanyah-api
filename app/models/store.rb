@@ -3,6 +3,7 @@ class Store < ApplicationRecord
   has_many :categories
   has_many :manufacturers
   has_many :products
+  has_many :variants, through: :products
   has_many :providers
   has_many :store_memberships
   has_many :users, through: :store_memberships
