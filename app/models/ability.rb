@@ -3,6 +3,7 @@ class Ability
 
   include CategoryAbility
   include CustomAttributeAbility
+  include InventoryAbility
   include ManufacturerAbility
   include ProductAbility
   include ProviderAbility
@@ -18,6 +19,7 @@ class Ability
 
     category_ability user
     custom_attribute_ability user
+    inventory_ability user
     manufacturer_ability user
     product_ability user
     provider_ability user

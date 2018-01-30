@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130084710) do
+ActiveRecord::Schema.define(version: 20180130124524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20180130084710) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_custom_attributes_on_store_id"
+  end
+
+  create_table "inventories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "locked_at"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_inventories_on_store_id"
   end
 
   create_table "manufacturers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -146,6 +154,7 @@ ActiveRecord::Schema.define(version: 20180130084710) do
   add_foreign_key "categories", "categories"
   add_foreign_key "categories", "stores"
   add_foreign_key "custom_attributes", "stores"
+  add_foreign_key "inventories", "stores"
   add_foreign_key "manufacturers", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "manufacturers"

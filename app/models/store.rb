@@ -4,6 +4,7 @@ class Store < ApplicationRecord
   has_many :admins, source: :user, through: :admin_store_memberships
   has_many :categories
   has_many :custom_attributes
+  has_many :inventories
   has_many :manufacturers
   has_many :owner_store_memberships, -> { owner }, class_name: 'StoreMembership'
   has_many :owners, source: :user, through: :owner_store_memberships
