@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129171313) do
+ActiveRecord::Schema.define(version: 20180130084710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20180129171313) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_categories_on_category_id"
     t.index ["store_id"], name: "index_categories_on_store_id"
+  end
+
+  create_table "custom_attributes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.integer "type"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_custom_attributes_on_store_id"
   end
 
   create_table "manufacturers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -108,13 +117,23 @@ ActiveRecord::Schema.define(version: 20180129171313) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  create_table "variant_attributes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "value"
+    t.uuid "variant_id"
+    t.uuid "custom_attribute_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["custom_attribute_id"], name: "index_variant_attributes_on_custom_attribute_id"
+    t.index ["variant_id"], name: "index_variant_attributes_on_variant_id"
+  end
+
   create_table "variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "original_barcode"
     t.string "barcode"
-    t.float "buying_price"
-    t.float "tax_free_price"
-    t.float "ratio"
-    t.integer "quantity"
+    t.float "buying_price", default: 0.0
+    t.float "tax_free_price", default: 0.0
+    t.float "ratio", default: 0.0
+    t.integer "quantity", default: 0
     t.boolean "default"
     t.uuid "product_id"
     t.uuid "provider_id"
@@ -126,6 +145,7 @@ ActiveRecord::Schema.define(version: 20180129171313) do
 
   add_foreign_key "categories", "categories"
   add_foreign_key "categories", "stores"
+  add_foreign_key "custom_attributes", "stores"
   add_foreign_key "manufacturers", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "manufacturers"
@@ -133,6 +153,8 @@ ActiveRecord::Schema.define(version: 20180129171313) do
   add_foreign_key "providers", "stores"
   add_foreign_key "store_memberships", "stores"
   add_foreign_key "store_memberships", "users"
+  add_foreign_key "variant_attributes", "custom_attributes"
+  add_foreign_key "variant_attributes", "variants"
   add_foreign_key "variants", "products"
   add_foreign_key "variants", "providers"
 end
