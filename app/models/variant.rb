@@ -4,6 +4,7 @@ class Variant < ApplicationRecord
   belongs_to :product, optional: false
   belongs_to :provider, optional: false
   has_one :store, through: :product
+  has_many :variant_attributes
 
   validates :barcode, presence: true
   validates :buying_price, presence: true, numericality: { greater_than_or_equal_to: 0 }

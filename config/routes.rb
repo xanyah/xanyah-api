@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   
   resources :categories, except: [:destroy]
   
+  resources :custom_attributes
+  
   resources :manufacturers, except: [:destroy]
   
   resources :products, except: [:destroy]
@@ -12,5 +14,6 @@ Rails.application.routes.draw do
   resources :store_memberships
   resources :stores, except: [:destroy]
   
+  resources :variant_attributes
   resources :variants, except: [:destroy]
 end
