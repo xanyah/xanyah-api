@@ -2,6 +2,7 @@ class Store < ApplicationRecord
 
   has_many :admin_store_memberships, -> { admin }, class_name: 'StoreMembership'
   has_many :admins, source: :user, through: :admin_store_memberships
+  has_many :backup_variants, through: :stock_backups
   has_many :categories
   has_many :custom_attributes
   has_many :inventories
@@ -12,6 +13,8 @@ class Store < ApplicationRecord
   has_many :products
   has_many :providers
   has_many :store_memberships
+  has_many :stock_backups
+  has_many :stock_backup_variants, through: :stock_backups
   has_many :users, through: :store_memberships
   has_many :variants, through: :products
   has_many :variant_attributes, through: :variants

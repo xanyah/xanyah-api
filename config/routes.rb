@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   
   resources :providers, except: [:destroy]
   
+  resources :stock_backup_variants, only: [:index, :show]
+  resources :stock_backups, only: [:index, :show]
+  
   resources :store_memberships
   resources :stores, except: [:destroy]
   

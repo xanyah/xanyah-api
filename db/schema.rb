@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130134621) do
+ActiveRecord::Schema.define(version: 20180131082035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,23 @@ ActiveRecord::Schema.define(version: 20180130134621) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_providers_on_store_id"
+  end
+
+  create_table "stock_backup_variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "quantity"
+    t.uuid "stock_backup_id"
+    t.uuid "variant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_backup_id"], name: "index_stock_backup_variants_on_stock_backup_id"
+    t.index ["variant_id"], name: "index_stock_backup_variants_on_variant_id"
+  end
+
+  create_table "stock_backups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_stock_backups_on_store_id"
   end
 
   create_table "store_memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -172,6 +189,9 @@ ActiveRecord::Schema.define(version: 20180130134621) do
   add_foreign_key "products", "manufacturers"
   add_foreign_key "products", "stores"
   add_foreign_key "providers", "stores"
+  add_foreign_key "stock_backup_variants", "stock_backups"
+  add_foreign_key "stock_backup_variants", "variants"
+  add_foreign_key "stock_backups", "stores"
   add_foreign_key "store_memberships", "stores"
   add_foreign_key "store_memberships", "users"
   add_foreign_key "variant_attributes", "custom_attributes"

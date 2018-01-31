@@ -1,6 +1,6 @@
 require 'acceptance_helper'
 
-resource 'Inventory variants' do
+resource 'Inventory Variants' do
   header "Accept", "application/json"
   header "Content-Type", "application/json"
   header "Access-Token", :access_token

@@ -26,5 +26,15 @@ RSpec.describe Inventory, type: :model do
       expect(ivariant2.variant.quantity).to eq(ivariant2.quantity)
       expect(ivariant3.variant.quantity).not_to eq(ivariant3.quantity)
     end
+
+    it :creates_backup do
+      ivariant1 = create(:inventory_variant, inventory: inventory)
+      ivariant2 = create(:inventory_variant, inventory: inventory)
+      ivariant3 = create(:inventory_variant)
+      expect {
+        inventory.lock
+      }.to change(StockBackup, :count).by(1)
+        .and change(StockBackupVariant, :count).by(2)
+    end
   end
 end

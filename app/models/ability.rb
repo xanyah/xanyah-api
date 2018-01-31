@@ -8,6 +8,8 @@ class Ability
   include ManufacturerAbility
   include ProductAbility
   include ProviderAbility
+  include StockBackupAbility
+  include StockBackupVariantAbility
   include StoreAbility
   include StoreMembershipAbility
   include VariantAbility
@@ -26,6 +28,8 @@ class Ability
     manufacturer_ability user
     product_ability user
     provider_ability user
+    stock_backup_ability user
+    stock_backup_variant_ability user
     store_ability user
     store_membership_ability user
     variant_ability user

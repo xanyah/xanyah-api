@@ -6,5 +6,8 @@ module InventoryVariantAbility
       !iv.inventory.store_id.nil? &&
       iv.inventory.store.users.include?(user)
     end
+    can :read, InventoryVariant do |iv|
+      !iv.inventory.store_id.nil? && iv.inventory.store.users.include?(user)
+    end
   end
 end

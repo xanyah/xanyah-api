@@ -35,4 +35,31 @@ RSpec.describe InventoryVariant, type: :model do
       end
     end
   end
+
+  describe :abilities do
+    describe :inventory_locked do
+      let(:membership) { create(:store_membership, role: :owner) }
+      let(:inventory_variant) { create(:inventory_variant, inventory: create(:inventory, store: membership.store))}
+      
+      before do
+        inventory_variant.inventory.lock
+      end
+
+      it :can_read do
+        expect(Ability.new(membership.user)).to be_able_to(:read, inventory_variant)
+      end
+
+      it :cannot_create do
+        expect(Ability.new(membership.user)).not_to be_able_to(:create, inventory_variant)
+      end
+
+      it :cannot_update do
+        expect(Ability.new(membership.user)).not_to be_able_to(:update, inventory_variant)
+      end
+
+      it :cannot_destroy do
+        expect(Ability.new(membership.user)).not_to be_able_to(:destroy, inventory_variant)
+      end
+    end
+  end
 end

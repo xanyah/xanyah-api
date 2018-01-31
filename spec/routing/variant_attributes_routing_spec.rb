@@ -26,7 +26,7 @@ RSpec.describe VariantAttributesController, type: :routing do
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/variant_attributes/1").to route_to("variant_attributes#destroy", id: "1")
+      expect(delete: "/variant_attributes/1").to route_to("variant_attributes#destroy", id: "1")
     end
 
   end
