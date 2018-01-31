@@ -4,8 +4,8 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'db/**/*'
-    # - 'config/**/*'
     - 'script/**/*'
+    - 'vendo/**/*'
   TargetRubyVersion: 2.4
 
 Rails:
