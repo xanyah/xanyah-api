@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130124524) do
+ActiveRecord::Schema.define(version: 20180130134621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 20180130124524) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_inventories_on_store_id"
+  end
+
+  create_table "inventory_variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "quantity"
+    t.uuid "inventory_id"
+    t.uuid "variant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_id"], name: "index_inventory_variants_on_inventory_id"
+    t.index ["variant_id"], name: "index_inventory_variants_on_variant_id"
   end
 
   create_table "manufacturers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -155,6 +165,8 @@ ActiveRecord::Schema.define(version: 20180130124524) do
   add_foreign_key "categories", "stores"
   add_foreign_key "custom_attributes", "stores"
   add_foreign_key "inventories", "stores"
+  add_foreign_key "inventory_variants", "inventories"
+  add_foreign_key "inventory_variants", "variants"
   add_foreign_key "manufacturers", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "manufacturers"

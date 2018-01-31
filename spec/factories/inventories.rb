@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :inventory do
-    locked_at {[Time.now, nil].sample}
+    locked_at nil
     store
   end
 end

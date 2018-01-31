@@ -4,6 +4,7 @@ class Ability
   include CategoryAbility
   include CustomAttributeAbility
   include InventoryAbility
+  include InventoryVariantAbility
   include ManufacturerAbility
   include ProductAbility
   include ProviderAbility
@@ -16,10 +17,12 @@ class Ability
     user ||= User.new
 
     alias_action :create, :read, :update, to: :cru
+    alias_action :create, :read, :update, :destroy, to: :crud
 
     category_ability user
     custom_attribute_ability user
     inventory_ability user
+    inventory_variant_ability user
     manufacturer_ability user
     product_ability user
     provider_ability user

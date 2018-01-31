@@ -24,7 +24,7 @@ class InventoriesController < ApplicationController
   end
 
   def lock
-    if @inventory.update(locked_at: Time.now)
+    if @inventory.lock
       render json: @inventory
     else
       render json: @inventory.errors, status: :unprocessable_entity

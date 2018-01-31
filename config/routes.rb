@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   resources :categories, except: [:destroy]
   
   resources :custom_attributes
-
+  
   resources :inventories, except: [:destroy, :update] do
     patch :lock, on: :member
     put :lock, on: :member
   end
+  resources :inventory_variants
   
   resources :manufacturers, except: [:destroy]
   

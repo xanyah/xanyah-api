@@ -9,6 +9,7 @@ class Variant < ApplicationRecord
   validates :barcode, presence: true
   validates :buying_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :original_barcode, presence: true
+  validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :tax_free_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validate :barcode_validation, on: :create
 
