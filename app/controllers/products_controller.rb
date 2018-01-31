@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class ProductsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
   # GET /products
   def index
-    @products = current_user.stores.map {|s| s.products }.flatten
+    @products = current_user.stores.map(&:products).flatten
 
     render json: @products
   end
@@ -33,12 +35,13 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Only allow a trusted parameter "white list" through.
-    def create_params
-      params.require(:product).permit(:name, :category_id, :manufacturer_id, :store_id)
-    end
-    
-    def update_params
-      params.require(:product).permit(:name, :category_id, :manufacturer_id)
-    end
+
+  # Only allow a trusted parameter "white list" through.
+  def create_params
+    params.require(:product).permit(:name, :category_id, :manufacturer_id, :store_id)
+  end
+
+  def update_params
+    params.require(:product).permit(:name, :category_id, :manufacturer_id)
+  end
 end

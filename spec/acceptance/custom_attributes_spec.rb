@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'acceptance_helper'
 
 resource 'Custom Attributes' do
-  header "Accept", "application/json"
-  header "Content-Type", "application/json"
-  header "Access-Token", :access_token
-  header "Token-Type", :token_type
-  header "Client", :client_id
-  header "Expiry", :expiry
-  header "Uid", :uid
+  header 'Accept', 'application/json'
+  header 'Content-Type', 'application/json'
+  header 'Access-Token', :access_token
+  header 'Token-Type', :token_type
+  header 'Client', :client_id
+  header 'Expiry', :expiry
+  header 'Uid', :uid
 
   let(:membership) { create(:store_membership, role: :admin) }
   let(:auth_token) { membership.user.create_new_auth_token }
@@ -24,7 +26,7 @@ resource 'Custom Attributes' do
         create(:custom_attribute, store: membership.store)
       end
 
-      example_request "List all custom attributes" do
+      example_request 'List all custom attributes' do
         expect(response_status).to eq(200)
         expect(JSON.parse(response_body).size).to eq(1)
       end
@@ -42,7 +44,7 @@ resource 'Custom Attributes' do
       let(:store_id) { membership.store_id }
       let(:custom_attribute) { attributes_for(:custom_attribute) }
 
-      example_request "Create a custom attribute" do
+      example_request 'Create a custom attribute' do
         expect(response_status).to eq(201)
         expect(JSON.parse(response_body)['id']).to be_present
       end

@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'acceptance_helper'
 
 resource 'Inventory Variants' do
-  header "Accept", "application/json"
-  header "Content-Type", "application/json"
-  header "Access-Token", :access_token
-  header "Token-Type", :token_type
-  header "Client", :client_id
-  header "Expiry", :expiry
-  header "Uid", :uid
+  header 'Accept', 'application/json'
+  header 'Content-Type', 'application/json'
+  header 'Access-Token', :access_token
+  header 'Token-Type', :token_type
+  header 'Client', :client_id
+  header 'Expiry', :expiry
+  header 'Uid', :uid
 
   let(:membership) { create(:store_membership, role: :admin) }
   let(:auth_token) { membership.user.create_new_auth_token }
@@ -22,12 +24,11 @@ resource 'Inventory Variants' do
       before do
         create(:inventory_variant)
         create(:inventory_variant,
-          variant: create(:variant, product: create(:product, store: membership.store)),
-          inventory: create(:inventory, store: membership.store, locked_at: nil)
-        )
+               variant:   create(:variant, product: create(:product, store: membership.store)),
+               inventory: create(:inventory, store: membership.store, locked_at: nil))
       end
 
-      example_request "List all inventory_variants" do
+      example_request 'List all inventory_variants' do
         expect(response_status).to eq(200)
         expect(JSON.parse(response_body).size).to eq(1)
       end
@@ -44,7 +45,7 @@ resource 'Inventory Variants' do
       let(:inventory_id) { create(:inventory, store: membership.store, locked_at: nil).id }
       let(:quantity) { 5 }
 
-      example_request "Create an inventory variant" do
+      example_request 'Create an inventory variant' do
         expect(response_status).to eq(201)
         expect(JSON.parse(response_body)['id']).to be_present
       end
@@ -52,10 +53,11 @@ resource 'Inventory Variants' do
   end
 
   route '/inventory_variants/:id', 'Single inventory variant' do
-    let!(:inventory_variant) { create(:inventory_variant,
-      variant: create(:variant, product: create(:product, store: membership.store)),
-      inventory: create(:inventory, store: membership.store, locked_at: nil)
-    )}
+    let!(:inventory_variant) {
+      create(:inventory_variant,
+             variant:   create(:variant, product: create(:product, store: membership.store)),
+             inventory: create(:inventory, store: membership.store, locked_at: nil))
+    }
 
     with_options scope: :inventory_variant do
       parameter :quantity, "Inventory variant's quantity", required: true

@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class InventoriesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
   # GET /inventories
   def index
-    @inventories = current_user.stores.map {|s| s.inventories }.flatten
+    @inventories = current_user.stores.map(&:inventories).flatten
 
     render json: @inventories
   end
@@ -32,7 +34,8 @@ class InventoriesController < ApplicationController
   end
 
   private
-    def create_params
-      params.require(:inventory).permit(:store_id)
-    end
+
+  def create_params
+    params.require(:inventory).permit(:store_id)
+  end
 end

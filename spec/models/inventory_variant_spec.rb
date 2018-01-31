@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe InventoryVariant, type: :model do
@@ -5,8 +7,8 @@ RSpec.describe InventoryVariant, type: :model do
     expect(build(:inventory_variant)).to be_valid
   end
 
-  describe :validations do
-    describe :quantity do
+  describe 'validations' do
+    describe 'quantity' do
       it :presence do
         expect(build(:inventory_variant, quantity: nil)).not_to be_valid
       end
@@ -18,7 +20,7 @@ RSpec.describe InventoryVariant, type: :model do
       end
     end
 
-    describe :variant do
+    describe 'variant' do
       it :presence do
         expect(build(:inventory_variant, variant: nil)).not_to be_valid
       end
@@ -29,18 +31,18 @@ RSpec.describe InventoryVariant, type: :model do
       end
     end
 
-    describe :inventory do
+    describe 'inventory' do
       it :presence do
         expect(build(:inventory_variant, inventory: nil)).not_to be_valid
       end
     end
   end
 
-  describe :abilities do
-    describe :inventory_locked do
+  describe 'abilities' do
+    describe 'inventory_locked' do
       let(:membership) { create(:store_membership, role: :owner) }
-      let(:inventory_variant) { create(:inventory_variant, inventory: create(:inventory, store: membership.store))}
-      
+      let(:inventory_variant) { create(:inventory_variant, inventory: create(:inventory, store: membership.store)) }
+
       before do
         inventory_variant.inventory.lock
       end

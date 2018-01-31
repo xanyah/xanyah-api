@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class VariantAttributesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
   # GET /variant_attributes
   def index
-    @variant_attributes = current_user.stores.map {|s| s.variant_attributes }.flatten
+    @variant_attributes = current_user.stores.map(&:variant_attributes).flatten
 
     render json: @variant_attributes
   end
@@ -38,6 +40,7 @@ class VariantAttributesController < ApplicationController
   end
 
   private
+
   def create_params
     params.require(:variant_attribute).permit(:variant_id, :custom_attribute_id, :value)
   end

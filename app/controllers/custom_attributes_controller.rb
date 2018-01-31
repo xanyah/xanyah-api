@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class CustomAttributesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
   # GET /custom_attributes
   def index
-    @custom_attributes = current_user.stores.map {|s| s.custom_attributes }.flatten
+    @custom_attributes = current_user.stores.map(&:custom_attributes).flatten
 
     render json: @custom_attributes
   end
@@ -38,11 +40,12 @@ class CustomAttributesController < ApplicationController
   end
 
   private
-    def create_params
-      params.require(:custom_attribute).permit(:name, :type, :store_id)
-    end
 
-    def update_params
-      params.require(:custom_attribute).permit(:name, :type)
-    end
+  def create_params
+    params.require(:custom_attribute).permit(:name, :type, :store_id)
+  end
+
+  def update_params
+    params.require(:custom_attribute).permit(:name, :type)
+  end
 end

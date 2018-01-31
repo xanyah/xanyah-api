@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InventoryVariantAbility
   def inventory_variant_ability(user)
     can :crud, InventoryVariant do |iv|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StockBackupVariantAbility
   def stock_backup_variant_ability(user)
     can :read, StockBackupVariant do |stock_backup_variant|

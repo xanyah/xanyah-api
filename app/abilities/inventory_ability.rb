@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InventoryAbility
   def inventory_ability(user)
     can :read, Inventory do |inventory|

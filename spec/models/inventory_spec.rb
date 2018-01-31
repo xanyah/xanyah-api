@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Inventory, type: :model do
@@ -5,7 +7,7 @@ RSpec.describe Inventory, type: :model do
     expect(build(:inventory)).to be_valid
   end
 
-  describe :lock do
+  describe 'lock' do
     let(:inventory) { create(:inventory) }
 
     it :locks do
@@ -28,13 +30,13 @@ RSpec.describe Inventory, type: :model do
     end
 
     it :creates_backup do
-      ivariant1 = create(:inventory_variant, inventory: inventory)
-      ivariant2 = create(:inventory_variant, inventory: inventory)
-      ivariant3 = create(:inventory_variant)
+      create(:inventory_variant, inventory: inventory)
+      create(:inventory_variant, inventory: inventory)
+      create(:inventory_variant)
       expect {
         inventory.lock
       }.to change(StockBackup, :count).by(1)
-        .and change(StockBackupVariant, :count).by(2)
+                                      .and change(StockBackupVariant, :count).by(2)
     end
   end
 end

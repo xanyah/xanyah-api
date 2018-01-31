@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StoreMembershipAbility
   def store_membership_ability(user)
     can :cru, StoreMembership do |store_membership|

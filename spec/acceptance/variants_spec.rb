@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'acceptance_helper'
 
 resource 'Variants' do
-  header "Accept", "application/json"
-  header "Content-Type", "application/json"
-  header "Access-Token", :access_token
-  header "Token-Type", :token_type
-  header "Client", :client_id
-  header "Expiry", :expiry
-  header "Uid", :uid
+  header 'Accept', 'application/json'
+  header 'Content-Type', 'application/json'
+  header 'Access-Token', :access_token
+  header 'Token-Type', :token_type
+  header 'Client', :client_id
+  header 'Expiry', :expiry
+  header 'Uid', :uid
 
   let(:membership) { create(:store_membership, role: :admin) }
   let(:auth_token) { membership.user.create_new_auth_token }
@@ -24,7 +26,7 @@ resource 'Variants' do
         create(:variant, product: create(:product, store: membership.store))
       end
 
-      example_request "List all variants" do
+      example_request 'List all variants' do
         expect(response_status).to eq(200)
         expect(JSON.parse(response_body).size).to eq(1)
       end
@@ -38,7 +40,7 @@ resource 'Variants' do
         parameter :ratio, "Variant's ratio", required: true
         parameter :product_id, "Variant's product id", required: true
         parameter :provider_id, "Variant's provider id", required: true
-        parameter :default, "(bool) Is it the product default variant ?", required: true
+        parameter :default, '(bool) Is it the product default variant ?', required: true
       end
 
       let(:original_barcode) { variant[:original_barcode] }
@@ -50,7 +52,7 @@ resource 'Variants' do
       let(:product_id) { variant[:product_id] }
       let(:variant) { attributes_for(:variant, product_id: create(:product, store: membership.store).id) }
 
-      example_request "Create a variant" do
+      example_request 'Create a variant' do
         expect(response_status).to eq(201)
         expect(JSON.parse(response_body)['id']).to be_present
       end
@@ -64,7 +66,7 @@ resource 'Variants' do
       parameter :buying_price, "Variant's buying price", required: true
       parameter :tax_free_price, "Variant's tax free price", required: true
       parameter :ratio, "Variant's ratio", required: true
-      parameter :default, "(bool) Is it the product default variant ?", required: true
+      parameter :default, '(bool) Is it the product default variant ?', required: true
     end
 
     get 'Get a specific variant' do

@@ -1,24 +1,26 @@
+# frozen_string_literal: true
+
 class String
   def to_slug
-    #strip the string
-    ret = self.strip
+    # strip the string
+    ret = strip
 
-    #blow away apostrophes
-    ret.gsub! /['`]/, ''
+    # blow away apostrophes
+    ret.gsub!(/['`]/, '')
 
     # @ --> at, and & --> and
-    ret.gsub! /\s*@\s*/, ' at '
-    ret.gsub! /\s*&\s*/, ' and '
-    ret.gsub! /\s*[.]\s*/, ' '
+    ret.gsub!(/\s*@\s*/, ' at ')
+    ret.gsub!(/\s*&\s*/, ' and ')
+    ret.gsub!(/\s*[.]\s*/, ' ')
 
-    #replace all non alphanumeric, underscore or periods with underscore
-    ret.gsub! /\s*[^A-Za-z0-9\.\-]\s*/, '-'
+    # replace all non alphanumeric, underscore or periods with underscore
+    ret.gsub!(/\s*[^A-Za-z0-9\.\-]\s*/, '-')
 
-    #convert double underscores to single
-    ret.gsub! /-+/, '-'
+    # convert double underscores to single
+    ret.gsub!(/-+/, '-')
 
-    #strip off leading/trailing underscore
-    ret.gsub! /\A[-\.]+|[-\.]+\z/, ''
+    # strip off leading/trailing underscore
+    ret.gsub!(/\A[-\.]+|[-\.]+\z/, '')
 
     ret.downcase!
 
