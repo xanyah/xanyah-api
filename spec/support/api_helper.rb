@@ -1,11 +1,9 @@
-module ApiHelper  
+# frozen_string_literal: true
+
+module ApiHelper
   include Rack::Test::Methods
+end
 
-  def app
-    Rails.application
-  end
-end 
-
-RSpec.configure do |config|  
+RSpec.configure do |config|
   config.include ApiHelper, type: :api
 end

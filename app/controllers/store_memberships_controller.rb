@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class StoreMembershipsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
   # GET /store_memberships
   def index
-    @store_memberships = current_user.stores.map{|s| s.store_memberships}.flatten
+    @store_memberships = current_user.stores.map(&:store_memberships).flatten
     render json: @store_memberships
   end
 
@@ -37,12 +39,13 @@ class StoreMembershipsController < ApplicationController
   end
 
   private
-    # Only allow a trusted parameter "white list" through.
-    def create_params
-      params.require(:store_membership).permit(:store_id, :user_id, :role)
-    end
 
-    def update_params
-      params.require(:store_membership).permit(:role)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def create_params
+    params.require(:store_membership).permit(:store_id, :user_id, :role)
+  end
+
+  def update_params
+    params.require(:store_membership).permit(:role)
+  end
 end

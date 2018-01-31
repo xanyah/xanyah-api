@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130084710) do
-
+ActiveRecord::Schema.define(version: 20_180_131_082_035) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
@@ -34,6 +33,24 @@ ActiveRecord::Schema.define(version: 20180130084710) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_custom_attributes_on_store_id"
+  end
+
+  create_table "inventories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "locked_at"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_inventories_on_store_id"
+  end
+
+  create_table "inventory_variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "quantity"
+    t.uuid "inventory_id"
+    t.uuid "variant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_id"], name: "index_inventory_variants_on_inventory_id"
+    t.index ["variant_id"], name: "index_inventory_variants_on_variant_id"
   end
 
   create_table "manufacturers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -64,6 +81,23 @@ ActiveRecord::Schema.define(version: 20180130084710) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_providers_on_store_id"
+  end
+
+  create_table "stock_backup_variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "quantity"
+    t.uuid "stock_backup_id"
+    t.uuid "variant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_backup_id"], name: "index_stock_backup_variants_on_stock_backup_id"
+    t.index ["variant_id"], name: "index_stock_backup_variants_on_variant_id"
+  end
+
+  create_table "stock_backups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_stock_backups_on_store_id"
   end
 
   create_table "store_memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -114,7 +148,7 @@ ActiveRecord::Schema.define(version: 20180130084710) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+    t.index %w[uid provider], name: "index_users_on_uid_and_provider", unique: true
   end
 
   create_table "variant_attributes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -146,11 +180,17 @@ ActiveRecord::Schema.define(version: 20180130084710) do
   add_foreign_key "categories", "categories"
   add_foreign_key "categories", "stores"
   add_foreign_key "custom_attributes", "stores"
+  add_foreign_key "inventories", "stores"
+  add_foreign_key "inventory_variants", "inventories"
+  add_foreign_key "inventory_variants", "variants"
   add_foreign_key "manufacturers", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "manufacturers"
   add_foreign_key "products", "stores"
   add_foreign_key "providers", "stores"
+  add_foreign_key "stock_backup_variants", "stock_backups"
+  add_foreign_key "stock_backup_variants", "variants"
+  add_foreign_key "stock_backups", "stores"
   add_foreign_key "store_memberships", "stores"
   add_foreign_key "store_memberships", "users"
   add_foreign_key "variant_attributes", "custom_attributes"

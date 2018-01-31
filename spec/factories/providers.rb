@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :provider do
-    name {Faker::RickAndMorty.character}
-    notes {Faker::Address.street_address}
+    name { Faker::RickAndMorty.character }
+    notes { Faker::Address.street_address }
     store
   end
 end

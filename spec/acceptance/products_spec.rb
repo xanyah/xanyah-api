@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'acceptance_helper'
 
 resource 'Products' do
-  header "Accept", "application/json"
-  header "Content-Type", "application/json"
-  header "Access-Token", :access_token
-  header "Token-Type", :token_type
-  header "Client", :client_id
-  header "Expiry", :expiry
-  header "Uid", :uid
+  header 'Accept', 'application/json'
+  header 'Content-Type', 'application/json'
+  header 'Access-Token', :access_token
+  header 'Token-Type', :token_type
+  header 'Client', :client_id
+  header 'Expiry', :expiry
+  header 'Uid', :uid
 
   let(:membership) { create(:store_membership, role: :admin) }
   let(:auth_token) { membership.user.create_new_auth_token }
@@ -24,7 +26,7 @@ resource 'Products' do
         create(:product, store: membership.store)
       end
 
-      example_request "List all products" do
+      example_request 'List all products' do
         expect(response_status).to eq(200)
         expect(JSON.parse(response_body).size).to eq(1)
       end
@@ -44,7 +46,7 @@ resource 'Products' do
       let(:store_id) { membership.store_id }
       let(:product) { attributes_for(:product, store: membership.store) }
 
-      example_request "Create a product" do
+      example_request 'Create a product' do
         expect(response_status).to eq(201)
         expect(JSON.parse(response_body)['id']).to be_present
       end

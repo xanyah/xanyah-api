@@ -1,15 +1,18 @@
+# frozen_string_literal: true
+
 class Product < ApplicationRecord
   belongs_to :category, optional: false
   belongs_to :manufacturer, optional: false
   belongs_to :store, optional: false
-  has_many :variants
+  has_many :variants, dependent: :destroy
 
   validates :name, presence: true
   validate :common_store
 
   protected
+
   def common_store
-    errors.add(:category, 'must belong to store') if self.category.nil? || self.category.store != self.store
-    errors.add(:manufacturer, 'must belong to store') if self.manufacturer.nil? || self.manufacturer.store != self.store
+    errors.add(:category, 'must belong to store') if category.nil? || category.store != store
+    errors.add(:manufacturer, 'must belong to store') if manufacturer.nil? || manufacturer.store != store
   end
 end

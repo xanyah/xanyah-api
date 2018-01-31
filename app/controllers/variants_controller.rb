@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class VariantsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
   # GET /variants
   def index
-    @variants = current_user.stores.map {|s| s.products.map {|p| p.variants} }.flatten
+    @variants = current_user.stores.map {|s| s.products.map(&:variants) }.flatten
 
     render json: @variants
   end
@@ -33,10 +35,19 @@ class VariantsController < ApplicationController
   end
 
   private
+
   def create_params
-    params.require(:variant).permit(:original_barcode, :buying_price, :tax_free_price, :provider_id, :product_id, :default, :ratio)
+    params.require(:variant).permit(
+      :original_barcode,
+      :buying_price,
+      :tax_free_price,
+      :provider_id,
+      :product_id,
+      :default,
+      :ratio
+    )
   end
-  
+
   def update_params
     params.require(:variant).permit(:buying_price, :tax_free_price, :provider_id, :product_id, :default, :ratio)
   end

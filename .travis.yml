@@ -16,6 +16,7 @@ before_script:
   - bundle exec rake db:create db:migrate
 script:
   - bundle exec rspec
+  - bundle exec rubocop
 after_success:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 env:

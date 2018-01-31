@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'acceptance_helper'
 
 resource 'Manufacturers' do
-  header "Accept", "application/json"
-  header "Content-Type", "application/json"
-  header "Access-Token", :access_token
-  header "Token-Type", :token_type
-  header "Client", :client_id
-  header "Expiry", :expiry
-  header "Uid", :uid
+  header 'Accept', 'application/json'
+  header 'Content-Type', 'application/json'
+  header 'Access-Token', :access_token
+  header 'Token-Type', :token_type
+  header 'Client', :client_id
+  header 'Expiry', :expiry
+  header 'Uid', :uid
 
   let(:membership) { create(:store_membership, role: :admin) }
   let(:auth_token) { membership.user.create_new_auth_token }
@@ -24,7 +26,7 @@ resource 'Manufacturers' do
         create(:manufacturer, store: membership.store)
       end
 
-      example_request "List all manufacturers" do
+      example_request 'List all manufacturers' do
         expect(response_status).to eq(200)
         expect(JSON.parse(response_body).size).to eq(1)
       end
@@ -33,7 +35,7 @@ resource 'Manufacturers' do
     post 'Create a manufacturer' do
       with_options scope: :manufacturer do
         parameter :name, "Manufacturer's name", required: true
-        parameter :notes, "Notes about manufacturer"
+        parameter :notes, 'Notes about manufacturer'
         parameter :store_id, "Manufacturer's store id", required: true
       end
 
@@ -42,7 +44,7 @@ resource 'Manufacturers' do
       let(:store_id) { membership.store_id }
       let(:manufacturer) { attributes_for(:manufacturer) }
 
-      example_request "Create a manufacturer" do
+      example_request 'Create a manufacturer' do
         expect(response_status).to eq(201)
         expect(JSON.parse(response_body)['id']).to be_present
       end
@@ -54,7 +56,7 @@ resource 'Manufacturers' do
 
     with_options scope: :manufacturer do
       parameter :name, "Manufacturer's name", required: true
-      parameter :notes, "Notes about manufacturer"
+      parameter :notes, 'Notes about manufacturer'
     end
 
     get 'Get a specific manufacturer' do

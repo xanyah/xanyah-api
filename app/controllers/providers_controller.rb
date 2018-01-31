@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class ProvidersController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
   # GET /providers
   def index
-    @providers = current_user.stores.map {|s| s.providers }.flatten
+    @providers = current_user.stores.map(&:providers).flatten
     render json: @providers
   end
 
@@ -32,12 +34,13 @@ class ProvidersController < ApplicationController
   end
 
   private
-    # Only allow a trusted parameter "white list" through.
-    def create_params
-      params.require(:provider).permit(:name, :notes, :store_id)
-    end
 
-    def update_params
-      params.require(:provider).permit(:name, :notes)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def create_params
+    params.require(:provider).permit(:name, :notes, :store_id)
+  end
+
+  def update_params
+    params.require(:provider).permit(:name, :notes)
+  end
 end

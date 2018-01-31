@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-
   it :has_valid_factory do
     expect(build(:category)).to be_valid
   end
@@ -13,31 +14,31 @@ RSpec.describe Category, type: :model do
     }.to change(Category, :count).by(2)
   end
 
-  describe :validations do
-    describe :name do
+  describe 'validations' do
+    describe 'name' do
       it :presence do
         expect(build(:category, name: nil)).not_to be_valid
       end
     end
 
-    describe :store do
+    describe 'store' do
       it :presence do
         expect(build(:category, store: nil)).not_to be_valid
       end
     end
 
-    describe :tva do
+    describe 'tva' do
       it :presence do
         expect(build(:category, tva: nil)).not_to be_valid
       end
     end
   end
 
-  describe :scopes do
-    let(:category) { create(:category)}
-    let(:subcategory_1) { create(:category, category: category)}
-    let(:subcategory_2) { create(:category, category: category)}
-    let(:subcategory_3) { create(:category, category: category)}
+  describe 'scopes' do
+    let(:category) { create(:category) }
+    let(:subcategory_1) { create(:category, category: category) }
+    let(:subcategory_2) { create(:category, category: category) }
+    let(:subcategory_3) { create(:category, category: category) }
 
     it :without_category do
       expect(Category.without_category).to include(category)

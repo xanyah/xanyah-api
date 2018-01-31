@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StoreAbility
   def store_ability(user)
     can :create, Store
