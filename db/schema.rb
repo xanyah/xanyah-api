@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201101418) do
+ActiveRecord::Schema.define(version: 20180201104601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,16 @@ ActiveRecord::Schema.define(version: 20180201101418) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_providers_on_store_id"
+  end
+
+  create_table "shipping_variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "quantity"
+    t.uuid "shipping_id"
+    t.uuid "variant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipping_id"], name: "index_shipping_variants_on_shipping_id"
+    t.index ["variant_id"], name: "index_shipping_variants_on_variant_id"
   end
 
   create_table "shippings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -197,6 +207,8 @@ ActiveRecord::Schema.define(version: 20180201101418) do
   add_foreign_key "products", "manufacturers"
   add_foreign_key "products", "stores"
   add_foreign_key "providers", "stores"
+  add_foreign_key "shipping_variants", "shippings"
+  add_foreign_key "shipping_variants", "variants"
   add_foreign_key "shippings", "stores"
   add_foreign_key "stock_backup_variants", "stock_backups"
   add_foreign_key "stock_backup_variants", "variants"

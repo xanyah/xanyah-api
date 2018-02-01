@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :shipping_variants
   mount_devise_token_auth_for 'User', at: 'auth'
 
   resources :categories, except: [:destroy]

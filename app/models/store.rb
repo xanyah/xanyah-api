@@ -14,6 +14,7 @@ class Store < ApplicationRecord
   has_many :products, dependent: :destroy
   has_many :providers, dependent: :destroy
   has_many :shippings, dependent: :destroy
+  has_many :shipping_variants, through: :shippings
   has_many :store_memberships, dependent: :destroy
   has_many :stock_backups, dependent: :destroy
   has_many :stock_backup_variants, through: :stock_backups

@@ -16,27 +16,20 @@ RSpec.describe Shipping, type: :model do
       expect(shipping.locked_at).not_to eq(nil)
     end
 
-    # it :updates_variants_quantity do
-    #   ivariant1 = create(:inventory_variant, inventory: inventory)
-    #   ivariant2 = create(:inventory_variant, inventory: inventory)
-    #   ivariant3 = create(:inventory_variant)
-    #   inventory.lock
-    #   ivariant1.reload
-    #   ivariant2.reload
-    #   ivariant3.reload
-    #   expect(ivariant1.variant.quantity).to eq(ivariant1.quantity)
-    #   expect(ivariant2.variant.quantity).to eq(ivariant2.quantity)
-    #   expect(ivariant3.variant.quantity).not_to eq(ivariant3.quantity)
-    # end
-
-    # it :creates_backup do
-    #   create(:inventory_variant, inventory: inventory)
-    #   create(:inventory_variant, inventory: inventory)
-    #   create(:inventory_variant)
-    #   expect {
-    #     inventory.lock
-    #   }.to change(StockBackup, :count).by(1)
-    #                                   .and change(StockBackupVariant, :count).by(2)
-    # end
+    it :updates_variants_quantity do
+      svariant1 = create(:shipping_variant, shipping: shipping)
+      svariant1_qty = svariant1.variant.quantity
+      svariant2 = create(:shipping_variant, shipping: shipping)
+      svariant2_qty = svariant2.variant.quantity
+      svariant3 = create(:shipping_variant)
+      svariant3_qty = svariant3.variant.quantity
+      shipping.lock
+      svariant1.reload
+      svariant2.reload
+      svariant3.reload
+      expect(svariant1.variant.quantity).to eq(svariant1_qty + svariant1.quantity)
+      expect(svariant2.variant.quantity).to eq(svariant2_qty + svariant2.quantity)
+      expect(svariant3.variant.quantity).not_to eq(svariant3_qty + svariant3.quantity)
+    end
   end
 end
