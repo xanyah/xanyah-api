@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
-logger.info "Creating users"
+puts "Creating users"
 
 owner_user = User.create(
   email: "owner@xanyah.io",
@@ -27,18 +27,18 @@ regular_user = User.create(
   locale:       "en"
 )
 
-logger.info "Creating store"
+puts "Creating store"
 
 store_name = Faker::StarWars.planet
 demo_store = Store.create(name: store_name, country: "FR", key: store_name.to_slug)
 
-logger.info "Creating store membership"
+puts "Creating store membership"
 
 StoreMembership.create(store: demo_store, user: owner_user, role: :owner)
 StoreMembership.create(store: demo_store, user: admin_user, role: :admin)
 StoreMembership.create(store: demo_store, user: regular_user, role: :regular)
 
-logger.info "Creating manufacturers, providers, categories"
+puts "Creating manufacturers, providers, categories"
 
 5.times do
   Manufacturer.create(name: Faker::HarryPotter.character, store: demo_store)
