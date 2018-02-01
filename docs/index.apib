@@ -9,6 +9,9 @@ FORMAT: A1
   + password (required) - User&#39;s password
   + password_confirmation (required) - User&#39;s password confirmation
   + confirm_success_url (required) - URL to redirect to on email confirmation
+  + firstname - User&#39;s firstname
+  + lastname - User&#39;s lastname
+  + locale - User&#39;s locale
 
 ### Delete current user [DELETE]
 
@@ -18,11 +21,11 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: BGkIU7pCRlCnaJBspgkZfw
+        Access-Token: V7ep61tDNwrkKYZAMCRt8g
         Token-Type: Bearer
-        Client: znEndFab3yim3Ut0bMDGZw
-        Expiry: 1519907308
-        Uid: corbin_harris@dickens.io
+        Client: JoyIUwfqIGT26hIoZF4s8A
+        Expiry: 1519915683
+        Uid: melisa_pagac@ritchie.org
 
 + Response 200 (application/json)
 
@@ -34,7 +37,7 @@ FORMAT: A1
 
         {
           "status": "success",
-          "message": "Account with UID 'corbin_harris@dickens.io' has been destroyed."
+          "message": "Account with UID 'melisa_pagac@ritchie.org' has been destroyed."
         }
 
 ### Sign up user [POST]
@@ -49,10 +52,13 @@ FORMAT: A1
     + Body
 
         {
-          "email": "price.lockman@grantframi.io",
-          "password": "6lIa4i5pE9PtTl",
-          "password_confirmation": "6lIa4i5pE9PtTl",
-          "confirm_success_url": "http://kreiger.io/cristobal.paucek"
+          "email": "alana.schmidt@lubowitz.biz",
+          "password": "XdZrW69gQ64qGb1",
+          "password_confirmation": "XdZrW69gQ64qGb1",
+          "confirm_success_url": "http://farrell.io/jayda_konopelski",
+          "firstname": "Melyssa",
+          "lastname": "O'Reilly",
+          "locale": "fr"
         }
 
 + Response 200 (application/json)
@@ -66,15 +72,15 @@ FORMAT: A1
         {
           "status": "success",
           "data": {
-            "id": "6b5b5ff2-b507-41ff-9b06-e6fc461959f2",
+            "id": "0fddd798-53f6-4bbf-9f34-131f5fe4bc9b",
             "provider": "email",
-            "uid": "price.lockman@grantframi.io",
-            "firstname": null,
-            "email": "price.lockman@grantframi.io",
-            "created_at": "2018-02-01T12:28:27.617Z",
-            "updated_at": "2018-02-01T12:28:27.617Z",
-            "lastname": null,
-            "locale": "en"
+            "uid": "alana.schmidt@lubowitz.biz",
+            "firstname": "Melyssa",
+            "email": "alana.schmidt@lubowitz.biz",
+            "created_at": "2018-02-01T14:48:03.329Z",
+            "updated_at": "2018-02-01T14:48:03.329Z",
+            "lastname": "O'Reilly",
+            "locale": "fr"
           }
         }
 
@@ -86,17 +92,18 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 8b3FOfejmMiWvJeoW-1Hog
+        Access-Token: AgwBZNSHqS__KUqKxzk6yg
         Token-Type: Bearer
-        Client: Mi3ZjjGzt1vvSOIUq8CxDg
-        Expiry: 1519907308
-        Uid: alia.carroll@hudson.net
+        Client: oUUUeI6QTaivqG58SM2k8A
+        Expiry: 1519915683
+        Uid: macy@hoppe.co
 
     + Body
 
         {
-          "password": "NvX0I0QlC94",
-          "password_confirmation": "NvX0I0QlC94"
+          "firstname": "Madge",
+          "lastname": "Kuhn",
+          "locale": "en"
         }
 
 + Response 200 (application/json)
@@ -104,26 +111,26 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: 8b3FOfejmMiWvJeoW-1Hog
+        access-token: AgwBZNSHqS__KUqKxzk6yg
         token-type: Bearer
-        client: Mi3ZjjGzt1vvSOIUq8CxDg
-        expiry: 1519907308
-        uid: alia.carroll@hudson.net
+        client: oUUUeI6QTaivqG58SM2k8A
+        expiry: 1519915683
+        uid: macy@hoppe.co
 
     + Body
 
         {
           "status": "success",
           "data": {
-            "id": "645d0d8b-74bf-4d6b-98e1-fcf2693ebc41",
-            "email": "alia.carroll@hudson.net",
+            "id": "f83ba4dd-ba7c-4be6-9d88-c8bcebea5bac",
+            "firstname": "Madge",
+            "lastname": "Kuhn",
+            "locale": "en",
+            "email": "macy@hoppe.co",
             "provider": "email",
-            "uid": "alia.carroll@hudson.net",
-            "firstname": "Florian",
-            "created_at": "2018-02-01T12:28:28.324Z",
-            "updated_at": "2018-02-01T12:28:28.403Z",
-            "lastname": "Brown",
-            "locale": "en"
+            "uid": "macy@hoppe.co",
+            "created_at": "2018-02-01T14:48:03.993Z",
+            "updated_at": "2018-02-01T14:48:03.993Z"
           }
         }
 
@@ -145,8 +152,8 @@ FORMAT: A1
     + Body
 
         {
-          "email": "ana@oconnell.name",
-          "password": "HbKuOoOgNwU8Vr8"
+          "email": "reese@weimannwillms.biz",
+          "password": "44S36iWsB"
         }
 
 + Response 200 (application/json)
@@ -154,22 +161,22 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: poaB7mB6qUkm4wTKqZkSuw
+        access-token: GY0Rhu8x8NAzSJhJw86U2w
         token-type: Bearer
-        client: CJqPaw6OnygcjA0ySFfU9Q
-        expiry: 1519907308
-        uid: ana@oconnell.name
+        client: dNuMI5Nom2FJkCOGA83XKQ
+        expiry: 1519915684
+        uid: reese@weimannwillms.biz
 
     + Body
 
         {
           "data": {
-            "id": "e2c512bc-b97a-4d40-8003-6f9365ef627b",
-            "email": "ana@oconnell.name",
+            "id": "98ebe6dc-0654-40b6-a4a5-5a0a1461203b",
+            "email": "reese@weimannwillms.biz",
             "provider": "email",
-            "uid": "ana@oconnell.name",
-            "firstname": "Reina",
-            "lastname": "Dibbert",
+            "uid": "reese@weimannwillms.biz",
+            "firstname": "Jane",
+            "lastname": "Turcotte",
             "locale": "en"
           }
         }
@@ -184,11 +191,11 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 5MeAHvuuf6VPeUV3ph0kmQ
+        Access-Token: JvcMVmfVoy6QMYstGxdzIw
         Token-Type: Bearer
-        Client: SoBQXhHr4wgx3Nq2GmMm6A
-        Expiry: 1519907308
-        Uid: alysa_gorczany@hackett.co
+        Client: TFS3MR1IOUO4LZiyNQUDuw
+        Expiry: 1519915684
+        Uid: lee.champlin@block.org
 
 + Response 200 (application/json)
 
@@ -216,17 +223,17 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 2X3Afoabeiv4q3pqYp2cJQ
+        Access-Token: BVFjzW7gF5oqiBfg3IqmYg
         Token-Type: Bearer
-        Client: G03K0IQ-B0wnIFvHMvjzPw
-        Expiry: 1519907308
-        Uid: roel@strosin.net
+        Client: _CWF8S8XsMTeap0qYHiGfg
+        Expiry: 1519915684
+        Uid: philip@robel.net
 
     + Body
 
         {
-          "password": "61UqUh27KlIfIyQ",
-          "password_confirmation": "61UqUh27KlIfIyQ"
+          "password": "DhCuNbQuCb6z",
+          "password_confirmation": "DhCuNbQuCb6z"
         }
 
 + Response 200 (application/json)
@@ -234,25 +241,25 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: 2X3Afoabeiv4q3pqYp2cJQ
+        access-token: BVFjzW7gF5oqiBfg3IqmYg
         token-type: Bearer
-        client: G03K0IQ-B0wnIFvHMvjzPw
-        expiry: 1519907308
-        uid: roel@strosin.net
+        client: _CWF8S8XsMTeap0qYHiGfg
+        expiry: 1519915684
+        uid: philip@robel.net
 
     + Body
 
         {
           "success": true,
           "data": {
-            "id": "f47590bf-7c36-45af-9581-2ae698c31ed4",
+            "id": "1f9f3bb8-cc99-479a-aa51-dac779d6e5f6",
             "provider": "email",
-            "email": "roel@strosin.net",
-            "uid": "roel@strosin.net",
-            "firstname": "Joesph",
-            "created_at": "2018-02-01T12:28:28.948Z",
-            "updated_at": "2018-02-01T12:28:29.029Z",
-            "lastname": "Kozey",
+            "email": "philip@robel.net",
+            "uid": "philip@robel.net",
+            "firstname": "Estel",
+            "created_at": "2018-02-01T14:48:04.672Z",
+            "updated_at": "2018-02-01T14:48:04.768Z",
+            "lastname": "Cruickshank",
             "locale": "en"
           },
           "message": "Your password has been successfully updated."
@@ -268,35 +275,35 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: Dv5PctVBDjASVaLHX94zlg
+        Access-Token: Z0hv84ux6veW0MjJAgxseQ
         Token-Type: Bearer
-        Client: 2eQKK4SOebF5DMEQ0yZAxw
-        Expiry: 1519907308
-        Uid: andreanne.kertzmann@hackettlittel.info
+        Client: vrSxkhC_Vq6E1QDIUkYtkQ
+        Expiry: 1519915684
+        Uid: virginia@dubuque.io
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: Dv5PctVBDjASVaLHX94zlg
+        access-token: Z0hv84ux6veW0MjJAgxseQ
         token-type: Bearer
-        client: 2eQKK4SOebF5DMEQ0yZAxw
-        expiry: 1519907308
-        uid: andreanne.kertzmann@hackettlittel.info
+        client: vrSxkhC_Vq6E1QDIUkYtkQ
+        expiry: 1519915684
+        uid: virginia@dubuque.io
 
     + Body
 
         {
           "success": true,
           "data": {
-            "id": "c144d8be-77a2-4039-a01d-a7934c780845",
+            "id": "df243627-411d-4dc8-9d67-e8928470b773",
             "provider": "email",
-            "uid": "andreanne.kertzmann@hackettlittel.info",
-            "firstname": "Helena",
-            "email": "andreanne.kertzmann@hackettlittel.info",
-            "lastname": "Champlin",
-            "locale": "en"
+            "uid": "virginia@dubuque.io",
+            "firstname": "Quinn",
+            "email": "virginia@dubuque.io",
+            "lastname": "Smith",
+            "locale": "fr"
           }
         }
 
@@ -317,19 +324,19 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: WbMA3bZOSAxei3Mi14UIRA
+        Access-Token: WghRH0SVZ3ctsdaLcv8ppg
         Token-Type: Bearer
-        Client: p_Mhzd3JFtfHAe4jzf9caA
-        Expiry: 1519907309
-        Uid: zoe@dickens.io
+        Client: qXUEJWywm9BD-lTkt2v58g
+        Expiry: 1519915685
+        Uid: kristin@satterfield.co
 
     + Body
 
         {
           "category": {
-            "name": "Smoke-flavored",
-            "tva": "parking_rate",
-            "store_id": "13eb51a4-5c40-4fbb-ae91-51e9f979e894"
+            "name": "Strong Ale",
+            "tva": "reduced_rate_alt",
+            "store_id": "a0020e44-f867-4755-a51d-28101016b48b"
           }
         }
 
@@ -338,22 +345,22 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: WbMA3bZOSAxei3Mi14UIRA
+        access-token: WghRH0SVZ3ctsdaLcv8ppg
         token-type: Bearer
-        client: p_Mhzd3JFtfHAe4jzf9caA
-        expiry: 1519907309
-        uid: zoe@dickens.io
+        client: qXUEJWywm9BD-lTkt2v58g
+        expiry: 1519915685
+        uid: kristin@satterfield.co
 
     + Body
 
         {
-          "id": "17a79866-3166-44c1-9a70-cba0605e4167",
-          "name": "Smoke-flavored",
-          "tva": "parking_rate",
-          "store_id": "13eb51a4-5c40-4fbb-ae91-51e9f979e894",
+          "id": "698f727f-c279-4eec-9f0e-4cca5d915fc7",
+          "name": "Strong Ale",
+          "tva": "reduced_rate_alt",
+          "store_id": "a0020e44-f867-4755-a51d-28101016b48b",
           "category_id": null,
-          "created_at": "2018-02-01T12:28:29.604Z",
-          "updated_at": "2018-02-01T12:28:29.604Z"
+          "created_at": "2018-02-01T14:48:05.339Z",
+          "updated_at": "2018-02-01T14:48:05.339Z"
         }
 
 ### Returns all categories [GET]
@@ -364,34 +371,34 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 0V90Yo7pcRKFhFgj3WQZmQ
+        Access-Token: IpEC1XsWcAlypN6hfKEUrw
         Token-Type: Bearer
-        Client: b0SeHPB0Vf3HPhGecjywhg
-        Expiry: 1519907309
-        Uid: leilani_hilpert@mcdermott.biz
+        Client: e9k5d10UXIr85vZJQwxFsw
+        Expiry: 1519915685
+        Uid: suzanne@walshlang.name
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: 0V90Yo7pcRKFhFgj3WQZmQ
+        access-token: IpEC1XsWcAlypN6hfKEUrw
         token-type: Bearer
-        client: b0SeHPB0Vf3HPhGecjywhg
-        expiry: 1519907309
-        uid: leilani_hilpert@mcdermott.biz
+        client: e9k5d10UXIr85vZJQwxFsw
+        expiry: 1519915685
+        uid: suzanne@walshlang.name
 
     + Body
 
         [
           {
-            "id": "7e36a5f8-a362-4fa5-b7c9-6a2cfe937965",
-            "name": "Wood-aged Beer",
-            "tva": "standard_rate",
-            "store_id": "d7a2833d-6c82-4fa0-85ec-0d2c9175a40c",
+            "id": "9609ffe3-6e31-4089-aca0-eac1126341f6",
+            "name": "Porter",
+            "tva": "reduced_rate",
+            "store_id": "dbb1c43c-825b-4af6-bc71-127a2193fde4",
             "category_id": null,
-            "created_at": "2018-02-01T12:28:29.187Z",
-            "updated_at": "2018-02-01T12:28:29.187Z"
+            "created_at": "2018-02-01T14:48:04.933Z",
+            "updated_at": "2018-02-01T14:48:04.933Z"
           }
         ]
 
@@ -409,33 +416,33 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 4cr1B3ZWTxHAnr34lRvMbA
+        Access-Token: OVWXNkOKfX8UBd7GAKRelg
         Token-Type: Bearer
-        Client: qX6Sv2-JI8okufuwxTuttQ
-        Expiry: 1519907309
-        Uid: talon@farrellwaelchi.com
+        Client: 5n4g1R822qR13e_olpSesQ
+        Expiry: 1519915685
+        Uid: aliyah_powlowski@watsicakulas.co
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: 4cr1B3ZWTxHAnr34lRvMbA
+        access-token: OVWXNkOKfX8UBd7GAKRelg
         token-type: Bearer
-        client: qX6Sv2-JI8okufuwxTuttQ
-        expiry: 1519907309
-        uid: talon@farrellwaelchi.com
+        client: 5n4g1R822qR13e_olpSesQ
+        expiry: 1519915685
+        uid: aliyah_powlowski@watsicakulas.co
 
     + Body
 
         {
-          "id": "ce216c57-4b7e-4c11-8f1a-6519ecc11c83",
-          "name": "European Amber Lager",
-          "tva": "super_reduced_rate",
-          "store_id": "fd1bc794-4f84-4023-a51e-59ddcae7ca76",
+          "id": "61d080f4-b894-4ccd-8409-e99b20db19ba",
+          "name": "Bock",
+          "tva": "reduced_rate_alt",
+          "store_id": "407e4a5d-36ea-4f6d-bcfb-b8c68cc4031c",
           "category_id": null,
-          "created_at": "2018-02-01T12:28:29.643Z",
-          "updated_at": "2018-02-01T12:28:29.643Z"
+          "created_at": "2018-02-01T14:48:05.384Z",
+          "updated_at": "2018-02-01T14:48:05.384Z"
         }
 
 ### Update a specific category [PATCH]
@@ -446,11 +453,11 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: xC_47s0s4opgbbG7r16TLA
+        Access-Token: jotui7YJqxPyCWfSu7q4kQ
         Token-Type: Bearer
-        Client: AwGV_k6EjkKYRivFcHUeFA
-        Expiry: 1519907309
-        Uid: caie_swift@kirlin.name
+        Client: 99Ucoz-Z5qk5NZMzp5LtSA
+        Expiry: 1519915685
+        Uid: paolo_spinka@gleichner.biz
 
     + Body
 
@@ -465,22 +472,22 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: xC_47s0s4opgbbG7r16TLA
+        access-token: jotui7YJqxPyCWfSu7q4kQ
         token-type: Bearer
-        client: AwGV_k6EjkKYRivFcHUeFA
-        expiry: 1519907309
-        uid: caie_swift@kirlin.name
+        client: 99Ucoz-Z5qk5NZMzp5LtSA
+        expiry: 1519915685
+        uid: paolo_spinka@gleichner.biz
 
     + Body
 
         {
-          "id": "96c5d270-e8a8-4f8c-a828-d0e2631f2846",
-          "store_id": "b781f418-9419-40a2-bf69-50e2e3595f03",
+          "id": "6f6b4bef-a025-4687-a77a-4c22038fa976",
+          "store_id": "ec8f170c-24c6-49a5-b067-fd02e3a58526",
           "name": "Dark Lager",
-          "tva": "parking_rate",
+          "tva": "super_reduced_rate",
           "category_id": null,
-          "created_at": "2018-02-01T12:28:29.847Z",
-          "updated_at": "2018-02-01T12:28:30.018Z"
+          "created_at": "2018-02-01T14:48:05.608Z",
+          "updated_at": "2018-02-01T14:48:05.791Z"
         }
 
 # Group Custom Attributes
@@ -500,19 +507,19 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: _a47XdsZttjzJEf1McfqMw
+        Access-Token: U3fh97U9xAPueLrSJCLTtw
         Token-Type: Bearer
-        Client: eZV6iQ-e07nBrkAqNNvTTA
-        Expiry: 1519907310
-        Uid: josh_marvin@bashirianledner.co
+        Client: CqOpnq1H4ePK025TLIrj2A
+        Expiry: 1519915686
+        Uid: orion.bruen@kautzer.name
 
     + Body
 
         {
           "custom_attribute": {
-            "name": "Citra",
+            "name": "Saaz",
             "type": "number",
-            "store_id": "a7d40a70-1bdf-4d17-883b-a39744e3770f"
+            "store_id": "db8f3143-746e-4da4-aea2-f0b89831be05"
           }
         }
 
@@ -521,21 +528,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: _a47XdsZttjzJEf1McfqMw
+        access-token: U3fh97U9xAPueLrSJCLTtw
         token-type: Bearer
-        client: eZV6iQ-e07nBrkAqNNvTTA
-        expiry: 1519907310
-        uid: josh_marvin@bashirianledner.co
+        client: CqOpnq1H4ePK025TLIrj2A
+        expiry: 1519915686
+        uid: orion.bruen@kautzer.name
 
     + Body
 
         {
-          "id": "ab7936e2-a341-4d3f-b906-1893d4a19635",
-          "name": "Citra",
+          "id": "e4f85ea6-d0a4-4fe0-8b15-8f23afe89184",
+          "name": "Saaz",
           "type": "number",
-          "store_id": "a7d40a70-1bdf-4d17-883b-a39744e3770f",
-          "created_at": "2018-02-01T12:28:30.434Z",
-          "updated_at": "2018-02-01T12:28:30.434Z"
+          "store_id": "db8f3143-746e-4da4-aea2-f0b89831be05",
+          "created_at": "2018-02-01T14:48:06.224Z",
+          "updated_at": "2018-02-01T14:48:06.224Z"
         }
 
 ### Returns all custom_attributes [GET]
@@ -546,33 +553,33 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 7SHc0Xe02YCEXrpPImMoeQ
+        Access-Token: IUL5-HEPD5FfG_UVWj987w
         Token-Type: Bearer
-        Client: i2SczsOiKCa2VKZ4ZLGIKA
-        Expiry: 1519907310
-        Uid: hadley_ritchie@kub.biz
+        Client: uiAjtNZt3aNiRTXKXMQC4A
+        Expiry: 1519915685
+        Uid: jada_ko@abbott.org
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: 7SHc0Xe02YCEXrpPImMoeQ
+        access-token: IUL5-HEPD5FfG_UVWj987w
         token-type: Bearer
-        client: i2SczsOiKCa2VKZ4ZLGIKA
-        expiry: 1519907310
-        uid: hadley_ritchie@kub.biz
+        client: uiAjtNZt3aNiRTXKXMQC4A
+        expiry: 1519915685
+        uid: jada_ko@abbott.org
 
     + Body
 
         [
           {
-            "id": "a6b355fc-c80f-468b-a094-30702d24a618",
-            "name": "Horizon",
+            "id": "0e800a05-7c0d-4348-8720-003171a4a624",
+            "name": "Brewer’s Gold",
             "type": "number",
-            "store_id": "cc9e6f71-2e9b-42e8-bb99-f836c297c30e",
-            "created_at": "2018-02-01T12:28:30.087Z",
-            "updated_at": "2018-02-01T12:28:30.087Z"
+            "store_id": "25f2b3ab-30ac-4821-8d47-5133f27f31d1",
+            "created_at": "2018-02-01T14:48:05.860Z",
+            "updated_at": "2018-02-01T14:48:05.860Z"
           }
         ]
 
@@ -590,21 +597,21 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: NbqWWJeB50ARa5w8Jce3Zg
+        Access-Token: ebsY0dPTt0fB1eT4ZCn6IQ
         Token-Type: Bearer
-        Client: pwhzbg1FmT0GmPs2SnNoaA
-        Expiry: 1519907310
-        Uid: milo.kovacek@olsonreichel.com
+        Client: kqTykKn1zSp-vbv3wrkFhQ
+        Expiry: 1519915686
+        Uid: brice.pacocha@sporer.biz
 
 + Response 204 ()
 
     + Headers
 
-        access-token: NbqWWJeB50ARa5w8Jce3Zg
+        access-token: ebsY0dPTt0fB1eT4ZCn6IQ
         token-type: Bearer
-        client: pwhzbg1FmT0GmPs2SnNoaA
-        expiry: 1519907310
-        uid: milo.kovacek@olsonreichel.com
+        client: kqTykKn1zSp-vbv3wrkFhQ
+        expiry: 1519915686
+        uid: brice.pacocha@sporer.biz
 
 ### Get a specific custom attribute [GET]
 
@@ -614,32 +621,32 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: sU9811ZsJ9onnZfTAMkMZg
+        Access-Token: 36GwBkacKpFHgsSU2_aw5w
         Token-Type: Bearer
-        Client: DXYxOrN2qP1w6WNn6deOTQ
-        Expiry: 1519907310
-        Uid: elouise.bashirian@macgyver.name
+        Client: BT-NpUQGUcgd8GJmBKWwiQ
+        Expiry: 1519915686
+        Uid: allene@quigley.co
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: sU9811ZsJ9onnZfTAMkMZg
+        access-token: 36GwBkacKpFHgsSU2_aw5w
         token-type: Bearer
-        client: DXYxOrN2qP1w6WNn6deOTQ
-        expiry: 1519907310
-        uid: elouise.bashirian@macgyver.name
+        client: BT-NpUQGUcgd8GJmBKWwiQ
+        expiry: 1519915686
+        uid: allene@quigley.co
 
     + Body
 
         {
-          "id": "44962693-9bb1-4db4-803b-fb340464a598",
-          "name": "Amarillo",
+          "id": "255c9dd5-df62-4791-bdfd-bfd7a56371a4",
+          "name": "Perle",
           "type": "text",
-          "store_id": "087b9d41-eeba-4880-a375-b60cf4c9e42c",
-          "created_at": "2018-02-01T12:28:30.470Z",
-          "updated_at": "2018-02-01T12:28:30.470Z"
+          "store_id": "66edaae4-8e48-4440-b4ea-18e6bbf24b1f",
+          "created_at": "2018-02-01T14:48:06.266Z",
+          "updated_at": "2018-02-01T14:48:06.266Z"
         }
 
 ### Update a specific custom attribute [PATCH]
@@ -650,17 +657,17 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: ldLK7YwDzfHfxdX-mFTb7w
+        Access-Token: -yuW2HcSK5wLfJBgHbOkTw
         Token-Type: Bearer
-        Client: MV8Gxrlk5hbkD_WDqeL0vQ
-        Expiry: 1519907310
-        Uid: moie@kautzerjacobson.io
+        Client: AetWr16UZYyx8DjQnOPTGA
+        Expiry: 1519915686
+        Uid: jany@miller.com
 
     + Body
 
         {
           "custom_attribute": {
-            "name": "Perle"
+            "name": "Cashmere"
           }
         }
 
@@ -669,21 +676,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: ldLK7YwDzfHfxdX-mFTb7w
+        access-token: -yuW2HcSK5wLfJBgHbOkTw
         token-type: Bearer
-        client: MV8Gxrlk5hbkD_WDqeL0vQ
-        expiry: 1519907310
-        uid: moie@kautzerjacobson.io
+        client: AetWr16UZYyx8DjQnOPTGA
+        expiry: 1519915686
+        uid: jany@miller.com
 
     + Body
 
         {
-          "id": "af628547-15f7-4980-8ab4-15e8bf00d664",
-          "store_id": "ceb6631f-6397-4a71-b05c-2ea8a313c012",
-          "name": "Perle",
+          "id": "2f3dddc3-415b-48df-8aa8-61c34c4b3f50",
+          "store_id": "2bd3a661-5b37-4b91-b506-9a0307511135",
+          "name": "Cashmere",
           "type": "text",
-          "created_at": "2018-02-01T12:28:30.662Z",
-          "updated_at": "2018-02-01T12:28:30.826Z"
+          "created_at": "2018-02-01T14:48:06.454Z",
+          "updated_at": "2018-02-01T14:48:06.612Z"
         }
 
 # Group Inventories
@@ -701,17 +708,17 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: KMdyxrKHlK4-PEvds-4IMA
+        Access-Token: fQrMQ5ARn9sN8rBJHoSLKA
         Token-Type: Bearer
-        Client: sdp1EKvTNbumRXslVgo7Wg
-        Expiry: 1519907311
-        Uid: bart@fadel.name
+        Client: DX28cJ7A8-JbH1DJakxhQA
+        Expiry: 1519915687
+        Uid: kali@pagac.name
 
     + Body
 
         {
           "inventory": {
-            "store_id": "dd138423-c52d-49a2-9db9-e5d717b2634a"
+            "store_id": "e44f0320-8393-4f08-97a1-a82705613eef"
           }
         }
 
@@ -720,20 +727,20 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: KMdyxrKHlK4-PEvds-4IMA
+        access-token: fQrMQ5ARn9sN8rBJHoSLKA
         token-type: Bearer
-        client: sdp1EKvTNbumRXslVgo7Wg
-        expiry: 1519907311
-        uid: bart@fadel.name
+        client: DX28cJ7A8-JbH1DJakxhQA
+        expiry: 1519915687
+        uid: kali@pagac.name
 
     + Body
 
         {
-          "id": "0f78117a-c525-43ff-be90-a9328934ea76",
+          "id": "cc150e82-5e2c-457a-96fe-0d4bdf2cbb8e",
           "locked_at": null,
-          "store_id": "dd138423-c52d-49a2-9db9-e5d717b2634a",
-          "created_at": "2018-02-01T12:28:31.475Z",
-          "updated_at": "2018-02-01T12:28:31.475Z"
+          "store_id": "e44f0320-8393-4f08-97a1-a82705613eef",
+          "created_at": "2018-02-01T14:48:07.192Z",
+          "updated_at": "2018-02-01T14:48:07.192Z"
         }
 
 ### Returns all inventories [GET]
@@ -744,32 +751,32 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: -t9CE9rxpMaSKPwm4iGQSg
+        Access-Token: dmmuJ2jFgyvDJFSQvYCXMg
         Token-Type: Bearer
-        Client: WxNKYL0Uqo7cdEjFP7i7BA
-        Expiry: 1519907311
-        Uid: joannie_kohler@marquardtschoen.io
+        Client: viuMdKs51qJDLrSkrqnrdw
+        Expiry: 1519915686
+        Uid: axel@lehner.info
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: -t9CE9rxpMaSKPwm4iGQSg
+        access-token: dmmuJ2jFgyvDJFSQvYCXMg
         token-type: Bearer
-        client: WxNKYL0Uqo7cdEjFP7i7BA
-        expiry: 1519907311
-        uid: joannie_kohler@marquardtschoen.io
+        client: viuMdKs51qJDLrSkrqnrdw
+        expiry: 1519915686
+        uid: axel@lehner.info
 
     + Body
 
         [
           {
-            "id": "65d89ef9-7d1f-4d0f-8046-b5ff8109a0eb",
+            "id": "ae806b6f-7b90-459f-9d01-787d7d506b1c",
             "locked_at": null,
-            "store_id": "0cf9d8f4-e1f4-4c3d-8035-990c6253457c",
-            "created_at": "2018-02-01T12:28:31.084Z",
-            "updated_at": "2018-02-01T12:28:31.084Z"
+            "store_id": "39e815b3-3327-4542-86ae-01d9c7143e8c",
+            "created_at": "2018-02-01T14:48:06.858Z",
+            "updated_at": "2018-02-01T14:48:06.858Z"
           }
         ]
 
@@ -783,21 +790,21 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: SFnb4mabijs4i-HoHtbAcg
+        Access-Token: y578I4SMCepVMxZVJtM_HQ
         Token-Type: Bearer
-        Client: 6HbQMPMzLF7kbfzCIrZ5kw
-        Expiry: 1519907311
-        Uid: ludie.wuckert@kunzefahey.co
+        Client: -xKtL8JBaIWCe0Ltgxf9ww
+        Expiry: 1519915687
+        Uid: shyann@mueller.info
 
 + Response 204 ()
 
     + Headers
 
-        access-token: SFnb4mabijs4i-HoHtbAcg
+        access-token: y578I4SMCepVMxZVJtM_HQ
         token-type: Bearer
-        client: 6HbQMPMzLF7kbfzCIrZ5kw
-        expiry: 1519907311
-        uid: ludie.wuckert@kunzefahey.co
+        client: -xKtL8JBaIWCe0Ltgxf9ww
+        expiry: 1519915687
+        uid: shyann@mueller.info
 
 ### Get a specific inventory [GET]
 
@@ -807,31 +814,31 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: i4gyTYCa4Rkxu-fVHNRMDg
+        Access-Token: JMJWTuVZCesjNyN01jwbFg
         Token-Type: Bearer
-        Client: O6pz4Jlh8-zitmvfPfZv8Q
-        Expiry: 1519907311
-        Uid: libbie@haley.info
+        Client: wy3Zct2Z4UnOh8Szv1Lzvg
+        Expiry: 1519915687
+        Uid: dorothy@hillsdamore.io
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: i4gyTYCa4Rkxu-fVHNRMDg
+        access-token: JMJWTuVZCesjNyN01jwbFg
         token-type: Bearer
-        client: O6pz4Jlh8-zitmvfPfZv8Q
-        expiry: 1519907311
-        uid: libbie@haley.info
+        client: wy3Zct2Z4UnOh8Szv1Lzvg
+        expiry: 1519915687
+        uid: dorothy@hillsdamore.io
 
     + Body
 
         {
-          "id": "82f5b253-4636-4589-b3f6-a365baa4e82d",
+          "id": "c6401a90-0c2d-4aec-802a-f950cbb2c42b",
           "locked_at": null,
-          "store_id": "79c9d84c-d837-41d4-8577-fe4e360791ea",
-          "created_at": "2018-02-01T12:28:31.535Z",
-          "updated_at": "2018-02-01T12:28:31.535Z"
+          "store_id": "a5e3833b-09f9-4abd-a374-9164cea16932",
+          "created_at": "2018-02-01T14:48:07.226Z",
+          "updated_at": "2018-02-01T14:48:07.226Z"
         }
 
 ## Single inventory [/inventories/:id/lock]
@@ -844,31 +851,31 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: ja5eGs1kCjsLl0CNDDO4hA
+        Access-Token: -OW9Pacsnm_9lYPf5s78SA
         Token-Type: Bearer
-        Client: hZbtyol05atSHWePIGPUTQ
-        Expiry: 1519907312
-        Uid: edd@weber.io
+        Client: Is9kIsEGPxXPx9WWGdSEYA
+        Expiry: 1519915687
+        Uid: kelsi_will@kreiger.net
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: ja5eGs1kCjsLl0CNDDO4hA
+        access-token: -OW9Pacsnm_9lYPf5s78SA
         token-type: Bearer
-        client: hZbtyol05atSHWePIGPUTQ
-        expiry: 1519907312
-        uid: edd@weber.io
+        client: Is9kIsEGPxXPx9WWGdSEYA
+        expiry: 1519915687
+        uid: kelsi_will@kreiger.net
 
     + Body
 
         {
-          "id": "24eaab45-94c2-4d0c-8409-f7a9531a15a9",
-          "store_id": "b7af47e5-c90e-4a58-9c82-a712585bac5e",
-          "locked_at": "2018-02-01T12:28:32.188Z",
-          "created_at": "2018-02-01T12:28:31.990Z",
-          "updated_at": "2018-02-01T12:28:32.189Z"
+          "id": "6e849879-3172-4c90-813c-0de552f4a2bb",
+          "store_id": "aba1b6db-4041-4ca7-a186-5fa3f9a0e18b",
+          "locked_at": "2018-02-01T14:48:07.766Z",
+          "created_at": "2018-02-01T14:48:07.603Z",
+          "updated_at": "2018-02-01T14:48:07.767Z"
         }
 
 # Group Inventory Variants
@@ -888,18 +895,18 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 3m0FkIH54uSU9QYZXeQarQ
+        Access-Token: OuLO6vA6cLESS_F4tLxpTg
         Token-Type: Bearer
-        Client: dDkkc7mPZKGrDzzX_s_8vw
-        Expiry: 1519907312
-        Uid: addison@parisianlockman.io
+        Client: er7wMkpDRkKt2Z6Xha8NXA
+        Expiry: 1519915688
+        Uid: abbey_doyle@collinsjones.net
 
     + Body
 
         {
           "inventory_variant": {
-            "inventory_id": "aabf2a0e-af62-4c44-8171-1dc79d68889c",
-            "variant_id": "af9e58af-d0a2-4adf-acae-565ab6d96236",
+            "inventory_id": "b242f36c-871c-4abb-8d74-f34adc312383",
+            "variant_id": "99b7be5e-362e-4f97-ab00-956cb80a16dc",
             "quantity": 5
           }
         }
@@ -909,21 +916,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: 3m0FkIH54uSU9QYZXeQarQ
+        access-token: OuLO6vA6cLESS_F4tLxpTg
         token-type: Bearer
-        client: dDkkc7mPZKGrDzzX_s_8vw
-        expiry: 1519907312
-        uid: addison@parisianlockman.io
+        client: er7wMkpDRkKt2Z6Xha8NXA
+        expiry: 1519915688
+        uid: abbey_doyle@collinsjones.net
 
     + Body
 
         {
-          "id": "31334140-44c7-4b76-9849-7e42620429ee",
+          "id": "56abc707-bd52-4266-baae-ae1e86c8fc37",
           "quantity": 5,
-          "inventory_id": "aabf2a0e-af62-4c44-8171-1dc79d68889c",
-          "variant_id": "af9e58af-d0a2-4adf-acae-565ab6d96236",
-          "created_at": "2018-02-01T12:28:32.845Z",
-          "updated_at": "2018-02-01T12:28:32.845Z"
+          "inventory_id": "b242f36c-871c-4abb-8d74-f34adc312383",
+          "variant_id": "99b7be5e-362e-4f97-ab00-956cb80a16dc",
+          "created_at": "2018-02-01T14:48:08.337Z",
+          "updated_at": "2018-02-01T14:48:08.337Z"
         }
 
 ### Returns all inventory_variants [GET]
@@ -934,33 +941,33 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: xd5S9L-10PH6gUEZ3-1IFg
+        Access-Token: xCNvxYhcpXSN3juJbVA_tg
         Token-Type: Bearer
-        Client: -ltNy3VYmCuZR4cXEuDb3A
-        Expiry: 1519907312
-        Uid: blaze_wisoky@steubermayert.co
+        Client: SD-_IpE_w-HgnSRF5pfLkw
+        Expiry: 1519915688
+        Uid: henriette@abshire.com
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: xd5S9L-10PH6gUEZ3-1IFg
+        access-token: xCNvxYhcpXSN3juJbVA_tg
         token-type: Bearer
-        client: -ltNy3VYmCuZR4cXEuDb3A
-        expiry: 1519907312
-        uid: blaze_wisoky@steubermayert.co
+        client: SD-_IpE_w-HgnSRF5pfLkw
+        expiry: 1519915688
+        uid: henriette@abshire.com
 
     + Body
 
         [
           {
-            "id": "019c06f6-3a06-4761-b979-aa35abe46f9c",
-            "quantity": 880,
-            "inventory_id": "78662aae-b4cc-41d9-b058-8d147057b3a5",
-            "variant_id": "d2ab0b91-fb1c-414c-babf-8b40663c9998",
-            "created_at": "2018-02-01T12:28:32.419Z",
-            "updated_at": "2018-02-01T12:28:32.419Z"
+            "id": "42777cc1-21c5-4ca7-969a-f8554df18db4",
+            "quantity": 639,
+            "inventory_id": "9e9affe4-7914-43c2-8eb8-49248f73c283",
+            "variant_id": "0e38d09a-b6f3-4f2a-8257-69a202937700",
+            "created_at": "2018-02-01T14:48:07.963Z",
+            "updated_at": "2018-02-01T14:48:07.963Z"
           }
         ]
 
@@ -977,21 +984,21 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: t9IeIFyFFzfmuuOpS-SN8Q
+        Access-Token: zDKgTIcaxulqBseL5O70VA
         Token-Type: Bearer
-        Client: Zsu-SZMb_wGBpu_P9TYk0g
-        Expiry: 1519907313
-        Uid: lola@kohilpert.name
+        Client: jl4J9NVHJoLXq7lfTcSStg
+        Expiry: 1519915688
+        Uid: madyson_carter@kshlerin.io
 
 + Response 204 ()
 
     + Headers
 
-        access-token: t9IeIFyFFzfmuuOpS-SN8Q
+        access-token: zDKgTIcaxulqBseL5O70VA
         token-type: Bearer
-        client: Zsu-SZMb_wGBpu_P9TYk0g
-        expiry: 1519907313
-        uid: lola@kohilpert.name
+        client: jl4J9NVHJoLXq7lfTcSStg
+        expiry: 1519915688
+        uid: madyson_carter@kshlerin.io
 
 ### Get a specific inventory variant [GET]
 
@@ -1001,32 +1008,32 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: niVpLklQxHKsXyzID4jNJA
+        Access-Token: Rm_Ed_rHPgfo4T_71hA7UA
         Token-Type: Bearer
-        Client: sSs1xpTKacIqaPOzQTjBoQ
-        Expiry: 1519907313
-        Uid: telly@bailey.net
+        Client: j7JpjAHGfKFXmJpqZDAvJg
+        Expiry: 1519915688
+        Uid: brycen_cronin@shanahantorphy.net
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: niVpLklQxHKsXyzID4jNJA
+        access-token: Rm_Ed_rHPgfo4T_71hA7UA
         token-type: Bearer
-        client: sSs1xpTKacIqaPOzQTjBoQ
-        expiry: 1519907313
-        uid: telly@bailey.net
+        client: j7JpjAHGfKFXmJpqZDAvJg
+        expiry: 1519915688
+        uid: brycen_cronin@shanahantorphy.net
 
     + Body
 
         {
-          "id": "91717313-5693-424c-a6a5-61c607d01810",
-          "quantity": 732,
-          "inventory_id": "0b750823-e5d3-4710-b6ef-fe44c4abe82c",
-          "variant_id": "88ccb9c8-6659-41e1-8e23-d689f6be03aa",
-          "created_at": "2018-02-01T12:28:32.970Z",
-          "updated_at": "2018-02-01T12:28:32.970Z"
+          "id": "98adca12-b3cb-497d-8b05-e711d9791c54",
+          "quantity": 335,
+          "inventory_id": "09e55e3a-cc03-4803-ac54-bf60688cb180",
+          "variant_id": "c167d2d4-04d3-4e4c-b776-ab782c5018e7",
+          "created_at": "2018-02-01T14:48:08.407Z",
+          "updated_at": "2018-02-01T14:48:08.407Z"
         }
 
 ### Update an specific inventory variant [PATCH]
@@ -1037,11 +1044,11 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: _EIMaacAtGnGd2NNIWQj2A
+        Access-Token: aoOFLSlNOmlLJGbb0a9Xsg
         Token-Type: Bearer
-        Client: fdH2iLGVgaZ_hJ99sJh_9w
-        Expiry: 1519907313
-        Uid: alf@thielschmitt.org
+        Client: 1-FS0pgjYbAjoFI33MDN3Q
+        Expiry: 1519915688
+        Uid: reyna_predovic@mertz.info
 
     + Body
 
@@ -1056,21 +1063,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: _EIMaacAtGnGd2NNIWQj2A
+        access-token: aoOFLSlNOmlLJGbb0a9Xsg
         token-type: Bearer
-        client: fdH2iLGVgaZ_hJ99sJh_9w
-        expiry: 1519907313
-        uid: alf@thielschmitt.org
+        client: 1-FS0pgjYbAjoFI33MDN3Q
+        expiry: 1519915688
+        uid: reyna_predovic@mertz.info
 
     + Body
 
         {
-          "id": "fa664b77-d721-423d-bd66-be700be9ffdb",
-          "inventory_id": "1ecca7aa-fe17-4fc8-91e1-19620697b1f9",
+          "id": "6c339d83-429f-4973-8b1a-83c5c78eb30f",
+          "inventory_id": "8287d7b2-1c10-44d8-b967-30bef5482ee1",
           "quantity": 12,
-          "variant_id": "a1761c51-d44b-4791-b37c-32427685964f",
-          "created_at": "2018-02-01T12:28:33.204Z",
-          "updated_at": "2018-02-01T12:28:33.364Z"
+          "variant_id": "b0911377-8904-446f-87df-a8a4828f80cb",
+          "created_at": "2018-02-01T14:48:08.632Z",
+          "updated_at": "2018-02-01T14:48:08.786Z"
         }
 
 # Group Manufacturers
@@ -1090,19 +1097,19 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: padIhJEXKutSpfpoT3OhOg
+        Access-Token: TRMl1w5diY3t-U-BKG6FVA
         Token-Type: Bearer
-        Client: 2emLnxxpe7jSXPENsAoNPg
-        Expiry: 1519907313
-        Uid: crawford@fadelolson.org
+        Client: v7HmCwyQaXarmKQ4EI-mvw
+        Expiry: 1519915689
+        Uid: joyce_turner@mcglynndurgan.name
 
     + Body
 
         {
           "manufacturer": {
-            "name": "Poppy Pomfrey",
-            "notes": "81944 Matteo Station",
-            "store_id": "7b4c16aa-d96d-490b-8470-babd3331bbab"
+            "name": "John Dawlish",
+            "notes": "1140 Gislason Ports",
+            "store_id": "dcdaf2d7-838e-4bb8-9aa5-97b6a2a25be3"
           }
         }
 
@@ -1111,21 +1118,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: padIhJEXKutSpfpoT3OhOg
+        access-token: TRMl1w5diY3t-U-BKG6FVA
         token-type: Bearer
-        client: 2emLnxxpe7jSXPENsAoNPg
-        expiry: 1519907313
-        uid: crawford@fadelolson.org
+        client: v7HmCwyQaXarmKQ4EI-mvw
+        expiry: 1519915689
+        uid: joyce_turner@mcglynndurgan.name
 
     + Body
 
         {
-          "id": "29137c60-f922-4d03-9a8f-2e73655f8e9b",
-          "name": "Poppy Pomfrey",
-          "notes": "81944 Matteo Station",
-          "store_id": "7b4c16aa-d96d-490b-8470-babd3331bbab",
-          "created_at": "2018-02-01T12:28:34.011Z",
-          "updated_at": "2018-02-01T12:28:34.011Z"
+          "id": "50aebaf9-5d6f-4304-baf5-1efb4f9a1e53",
+          "name": "John Dawlish",
+          "notes": "1140 Gislason Ports",
+          "store_id": "dcdaf2d7-838e-4bb8-9aa5-97b6a2a25be3",
+          "created_at": "2018-02-01T14:48:09.383Z",
+          "updated_at": "2018-02-01T14:48:09.383Z"
         }
 
 ### Returns all manufacturers [GET]
@@ -1136,33 +1143,33 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 3DYfUUp9kbZ8wc2ZR75DFg
+        Access-Token: ktgigIF4uDX4RKVTJwtMLg
         Token-Type: Bearer
-        Client: 4_GQPHuyj2DE7kdqAgJnNw
-        Expiry: 1519907313
-        Uid: magnus_flatley@mills.com
+        Client: t51x61xXaBM6mBNNzkIX6w
+        Expiry: 1519915689
+        Uid: kattie.stiedemann@jastgrimes.net
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: 3DYfUUp9kbZ8wc2ZR75DFg
+        access-token: ktgigIF4uDX4RKVTJwtMLg
         token-type: Bearer
-        client: 4_GQPHuyj2DE7kdqAgJnNw
-        expiry: 1519907313
-        uid: magnus_flatley@mills.com
+        client: t51x61xXaBM6mBNNzkIX6w
+        expiry: 1519915689
+        uid: kattie.stiedemann@jastgrimes.net
 
     + Body
 
         [
           {
-            "id": "8198dbc7-ba4e-4a79-95d6-9cd4c4fd4076",
-            "name": "Marvolo Gaunt",
-            "notes": "40292 Ratke Prairie",
-            "store_id": "49d2cd59-c5e9-4b36-8e26-79b687034e73",
-            "created_at": "2018-02-01T12:28:33.667Z",
-            "updated_at": "2018-02-01T12:28:33.667Z"
+            "id": "53db52a5-3d97-482d-8fcc-f3bd2057985a",
+            "name": "Ginny Weasley",
+            "notes": "614 Kautzer Rapid",
+            "store_id": "256d8ba4-6ef8-4d01-883f-027a668b2452",
+            "created_at": "2018-02-01T14:48:09.053Z",
+            "updated_at": "2018-02-01T14:48:09.053Z"
           }
         ]
 
@@ -1180,32 +1187,32 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 2HUgon-Vx_zl1P7QSPUWbA
+        Access-Token: atsy-08y2AJucM401rAlDA
         Token-Type: Bearer
-        Client: wcgxZ64sh5pOFgtc83NWXA
-        Expiry: 1519907314
-        Uid: jada@ratkestanton.com
+        Client: JIHQase017H6IJgfTZtxmg
+        Expiry: 1519915689
+        Uid: patience.tremblay@collins.name
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: 2HUgon-Vx_zl1P7QSPUWbA
+        access-token: atsy-08y2AJucM401rAlDA
         token-type: Bearer
-        client: wcgxZ64sh5pOFgtc83NWXA
-        expiry: 1519907314
-        uid: jada@ratkestanton.com
+        client: JIHQase017H6IJgfTZtxmg
+        expiry: 1519915689
+        uid: patience.tremblay@collins.name
 
     + Body
 
         {
-          "id": "4cdbdb21-3e99-443d-97cf-c17a84c1f247",
-          "name": "Antioch Peverell",
-          "notes": "4420 Tyreek Spurs",
-          "store_id": "8a84ba91-7d83-4a26-8a19-d7ecf4774ca1",
-          "created_at": "2018-02-01T12:28:34.043Z",
-          "updated_at": "2018-02-01T12:28:34.043Z"
+          "id": "1377e14f-94a4-43c7-862b-f7edb6a34a95",
+          "name": "Justin Finch-Fletchley",
+          "notes": "557 Aida Expressway",
+          "store_id": "82a397bd-95ad-4fb7-b872-6033017d8a00",
+          "created_at": "2018-02-01T14:48:09.419Z",
+          "updated_at": "2018-02-01T14:48:09.419Z"
         }
 
 ### Update a specific manufacturer [PATCH]
@@ -1216,17 +1223,17 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: eD2cRF8a0LfmexfBfnyB3Q
+        Access-Token: g9xRywCNl-ahGQ1FxGjWzg
         Token-Type: Bearer
-        Client: Uy0G1tnEj_YZnBcgOZ_mFQ
-        Expiry: 1519907314
-        Uid: will.trantow@quigley.org
+        Client: yHstx-Y10wsElxaD_iTZ8Q
+        Expiry: 1519915689
+        Uid: frederique@huels.net
 
     + Body
 
         {
           "manufacturer": {
-            "name": "Arthur Weasley"
+            "name": "Kingsley Shacklebolt"
           }
         }
 
@@ -1235,21 +1242,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: eD2cRF8a0LfmexfBfnyB3Q
+        access-token: g9xRywCNl-ahGQ1FxGjWzg
         token-type: Bearer
-        client: Uy0G1tnEj_YZnBcgOZ_mFQ
-        expiry: 1519907314
-        uid: will.trantow@quigley.org
+        client: yHstx-Y10wsElxaD_iTZ8Q
+        expiry: 1519915689
+        uid: frederique@huels.net
 
     + Body
 
         {
-          "id": "c3939397-f50d-4640-936d-b2b68241d4a0",
-          "store_id": "6f4b9dfc-f2e0-4e0b-a65a-15c16bf059aa",
-          "name": "Arthur Weasley",
-          "notes": "7837 Mckenzie Viaduct",
-          "created_at": "2018-02-01T12:28:34.233Z",
-          "updated_at": "2018-02-01T12:28:34.399Z"
+          "id": "583b6ccd-9cff-4ba9-a146-fe8e903991c7",
+          "store_id": "2ddef5bc-a683-4148-b4bd-e6d811beb85c",
+          "name": "Kingsley Shacklebolt",
+          "notes": "57728 Rice Green",
+          "created_at": "2018-02-01T14:48:09.611Z",
+          "updated_at": "2018-02-01T14:48:09.772Z"
         }
 
 # Group Products
@@ -1270,20 +1277,20 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: Hd0rhjupdkgN0Kq1LxBNnw
+        Access-Token: mjqNNyw04Nz5GuumYhJuFA
         Token-Type: Bearer
-        Client: 0fcmOHcuImlmIQYcnOcjRg
-        Expiry: 1519907314
-        Uid: melyna@stammpurdy.biz
+        Client: GAh3Vnf3uSpMIwk_aU6hdw
+        Expiry: 1519915690
+        Uid: ruby@rueckerwaelchi.info
 
     + Body
 
         {
           "product": {
-            "name": "Storm King Stout",
-            "category_id": "204f8530-535e-4656-9396-5ec6c2bf23c9",
-            "manufacturer_id": "537b9191-3b32-4be4-bb7f-276449b3a4b1",
-            "store_id": "ba974e09-0ee3-40fc-a4c2-d036ad29bc6b"
+            "name": "Trois Pistoles",
+            "category_id": "f5f06139-4312-4d5b-b7c5-7e1f0c61919a",
+            "manufacturer_id": "2586c7de-e069-424f-b781-c180f8d7b18c",
+            "store_id": "74c8f495-aa78-4dc1-867e-d1203d4bb553"
           }
         }
 
@@ -1292,22 +1299,22 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: Hd0rhjupdkgN0Kq1LxBNnw
+        access-token: mjqNNyw04Nz5GuumYhJuFA
         token-type: Bearer
-        client: 0fcmOHcuImlmIQYcnOcjRg
-        expiry: 1519907314
-        uid: melyna@stammpurdy.biz
+        client: GAh3Vnf3uSpMIwk_aU6hdw
+        expiry: 1519915690
+        uid: ruby@rueckerwaelchi.info
 
     + Body
 
         {
-          "id": "556ff9a7-d571-46de-a95d-f058862b7a61",
-          "name": "Storm King Stout",
-          "category_id": "204f8530-535e-4656-9396-5ec6c2bf23c9",
-          "manufacturer_id": "537b9191-3b32-4be4-bb7f-276449b3a4b1",
-          "store_id": "ba974e09-0ee3-40fc-a4c2-d036ad29bc6b",
-          "created_at": "2018-02-01T12:28:34.946Z",
-          "updated_at": "2018-02-01T12:28:34.946Z"
+          "id": "903cfcb1-e5ce-4a2c-bfd1-e87362e9b974",
+          "name": "Trois Pistoles",
+          "category_id": "f5f06139-4312-4d5b-b7c5-7e1f0c61919a",
+          "manufacturer_id": "2586c7de-e069-424f-b781-c180f8d7b18c",
+          "store_id": "74c8f495-aa78-4dc1-867e-d1203d4bb553",
+          "created_at": "2018-02-01T14:48:10.178Z",
+          "updated_at": "2018-02-01T14:48:10.178Z"
         }
 
 ### Returns all products [GET]
@@ -1318,34 +1325,34 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: u8o3jc9hP49GFi2I4f5P2A
+        Access-Token: NALXdm1l44uaRQ4Mmtnf5Q
         Token-Type: Bearer
-        Client: vG4oitYwDqhEqJPSqdq3gg
-        Expiry: 1519907314
-        Uid: luther_bartoletti@littel.name
+        Client: Fwx6qgtdAe45YzNxYpfoyg
+        Expiry: 1519915689
+        Uid: dallin.trantow@hahnhudson.co
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: u8o3jc9hP49GFi2I4f5P2A
+        access-token: NALXdm1l44uaRQ4Mmtnf5Q
         token-type: Bearer
-        client: vG4oitYwDqhEqJPSqdq3gg
-        expiry: 1519907314
-        uid: luther_bartoletti@littel.name
+        client: Fwx6qgtdAe45YzNxYpfoyg
+        expiry: 1519915689
+        uid: dallin.trantow@hahnhudson.co
 
     + Body
 
         [
           {
-            "id": "c47e27dc-2edc-4e05-8f41-16fb14d7f407",
-            "name": "Schneider Aventinus",
-            "category_id": "a613d61d-66d0-4c0e-8f72-a91272c96d3b",
-            "manufacturer_id": "12e7613e-e824-4b6b-96ba-5a784ecf3a52",
-            "store_id": "deaa8c95-4607-402a-ac22-c10c66ba198d",
-            "created_at": "2018-02-01T12:28:34.481Z",
-            "updated_at": "2018-02-01T12:28:34.481Z"
+            "id": "35b95907-ac43-4001-b320-89fb55b7d9db",
+            "name": "Double Bastard Ale",
+            "category_id": "524e5dd6-ac33-46b7-a980-aaf7d5df0e6e",
+            "manufacturer_id": "ba612d09-76fa-4ec4-9206-39d4389dad89",
+            "store_id": "df56d7a4-9d3d-4b80-bfe9-5dae657f9bcd",
+            "created_at": "2018-02-01T14:48:09.826Z",
+            "updated_at": "2018-02-01T14:48:09.826Z"
           }
         ]
 
@@ -1364,33 +1371,33 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: las9nKtcZ3AxLMpkJfbbwA
+        Access-Token: DgIbMrpbeWOJEW49EEqGww
         Token-Type: Bearer
-        Client: f0ymes0ETrHQnkJXBVQFzw
-        Expiry: 1519907315
-        Uid: gail@abshirecartwright.net
+        Client: PQXkQggzecb4GKZ3OJ_X1w
+        Expiry: 1519915690
+        Uid: reyes@parker.name
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: las9nKtcZ3AxLMpkJfbbwA
+        access-token: DgIbMrpbeWOJEW49EEqGww
         token-type: Bearer
-        client: f0ymes0ETrHQnkJXBVQFzw
-        expiry: 1519907315
-        uid: gail@abshirecartwright.net
+        client: PQXkQggzecb4GKZ3OJ_X1w
+        expiry: 1519915690
+        uid: reyes@parker.name
 
     + Body
 
         {
-          "id": "5b6f7fcc-112f-4107-8a8d-43ec13232e43",
-          "name": "Stone IPA",
-          "category_id": "1dc878c7-f6c7-493b-beef-ad8ef1fa9ae5",
-          "manufacturer_id": "d7b58ffb-1e73-46e8-842f-c99569d6b0e3",
-          "store_id": "1777a58f-330a-40fc-83f2-ea0dbc01bd1f",
-          "created_at": "2018-02-01T12:28:34.988Z",
-          "updated_at": "2018-02-01T12:28:34.988Z"
+          "id": "159eabcc-1444-4cdb-bda7-2bcd4952684c",
+          "name": "Chimay Grande Réserve",
+          "category_id": "4295a6a5-cd4f-4114-acae-d17708cdce69",
+          "manufacturer_id": "70f9a247-807e-4935-ac27-0bfdb82e00c4",
+          "store_id": "114a2182-39db-49d4-ae68-33f43b485a2d",
+          "created_at": "2018-02-01T14:48:10.219Z",
+          "updated_at": "2018-02-01T14:48:10.219Z"
         }
 
 ### Update a specific product [PATCH]
@@ -1401,17 +1408,17 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 0UHqI5w1QGYIUgUc0fmcHQ
+        Access-Token: tgJWfaVjTFAmcQehVC8KZw
         Token-Type: Bearer
-        Client: H_ugWt-8pbeL106C3_PKcw
-        Expiry: 1519907315
-        Uid: ocie.nader@waelchi.biz
+        Client: pTuhlXcRT6HmgcF2wMQiYQ
+        Expiry: 1519915690
+        Uid: maegan@lesch.com
 
     + Body
 
         {
           "product": {
-            "name": "La Fin Du Monde"
+            "name": "Bourbon County Stout"
           }
         }
 
@@ -1420,22 +1427,22 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: 0UHqI5w1QGYIUgUc0fmcHQ
+        access-token: tgJWfaVjTFAmcQehVC8KZw
         token-type: Bearer
-        client: H_ugWt-8pbeL106C3_PKcw
-        expiry: 1519907315
-        uid: ocie.nader@waelchi.biz
+        client: pTuhlXcRT6HmgcF2wMQiYQ
+        expiry: 1519915690
+        uid: maegan@lesch.com
 
     + Body
 
         {
-          "id": "e3013732-ddb1-4458-9787-75502df37d9d",
-          "store_id": "959f2359-6ff4-4bd9-a38a-38507c0b211b",
-          "name": "La Fin Du Monde",
-          "category_id": "e8909710-5227-469a-90c5-d5f902f144d3",
-          "manufacturer_id": "a11b37b2-476a-4c71-a31e-cf74d761b7bb",
-          "created_at": "2018-02-01T12:28:35.232Z",
-          "updated_at": "2018-02-01T12:28:35.405Z"
+          "id": "34163425-e331-4c84-88a6-6a38cfe9abc8",
+          "store_id": "9c181a02-dff7-423f-a314-923811b32c8c",
+          "name": "Bourbon County Stout",
+          "category_id": "c979a200-66ed-44ed-9a1e-1bdbe4b3f52d",
+          "manufacturer_id": "2a1861b5-b494-4b38-ac1b-8f7662f68f5a",
+          "created_at": "2018-02-01T14:48:10.413Z",
+          "updated_at": "2018-02-01T14:48:10.573Z"
         }
 
 # Group Providers
@@ -1455,19 +1462,19 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: czOuU379bHX7zs_2fcl7GQ
+        Access-Token: dLU8sPeT7xHvSR7PnUt3vg
         Token-Type: Bearer
-        Client: kHdPzS6fZOjAhVSEh7up5Q
-        Expiry: 1519907315
-        Uid: marlene.streich@nitzsche.info
+        Client: __0q0KHc0WZf6cXawSTQvQ
+        Expiry: 1519915690
+        Uid: wellington@feil.com
 
     + Body
 
         {
           "provider": {
-            "name": "Stealy",
-            "notes": "2258 Joey Turnpike",
-            "store_id": "8875211c-9e26-4002-afbc-22322dfcebd8"
+            "name": "Snowball",
+            "notes": "57050 Syble Village",
+            "store_id": "8a1690fd-0669-406c-b260-50ae445c0b5d"
           }
         }
 
@@ -1476,21 +1483,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: czOuU379bHX7zs_2fcl7GQ
+        access-token: dLU8sPeT7xHvSR7PnUt3vg
         token-type: Bearer
-        client: kHdPzS6fZOjAhVSEh7up5Q
-        expiry: 1519907315
-        uid: marlene.streich@nitzsche.info
+        client: __0q0KHc0WZf6cXawSTQvQ
+        expiry: 1519915690
+        uid: wellington@feil.com
 
     + Body
 
         {
-          "id": "db1c749a-59d1-492b-bc64-1740f7f6f955",
-          "name": "Stealy",
-          "notes": "2258 Joey Turnpike",
-          "store_id": "8875211c-9e26-4002-afbc-22322dfcebd8",
-          "created_at": "2018-02-01T12:28:35.797Z",
-          "updated_at": "2018-02-01T12:28:35.797Z"
+          "id": "4bb52594-fd53-42ee-a963-cc77cc8cd7d9",
+          "name": "Snowball",
+          "notes": "57050 Syble Village",
+          "store_id": "8a1690fd-0669-406c-b260-50ae445c0b5d",
+          "created_at": "2018-02-01T14:48:10.943Z",
+          "updated_at": "2018-02-01T14:48:10.943Z"
         }
 
 ### Returns all providers [GET]
@@ -1501,33 +1508,33 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: o5-gWCzBlwWXdmKmeYwBBA
+        Access-Token: 9JJGOGgX7Ka0Xewa-1jYIw
         Token-Type: Bearer
-        Client: OtGte-DNyE8JDdoWhfzoLQ
-        Expiry: 1519907315
-        Uid: mohammad@little.biz
+        Client: xqg4znZX9PrZUD7wspj2og
+        Expiry: 1519915690
+        Uid: karson@ratke.co
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: o5-gWCzBlwWXdmKmeYwBBA
+        access-token: 9JJGOGgX7Ka0Xewa-1jYIw
         token-type: Bearer
-        client: OtGte-DNyE8JDdoWhfzoLQ
-        expiry: 1519907315
-        uid: mohammad@little.biz
+        client: xqg4znZX9PrZUD7wspj2og
+        expiry: 1519915690
+        uid: karson@ratke.co
 
     + Body
 
         [
           {
-            "id": "3c304165-3826-4966-9dd1-55402ed5d6e2",
-            "name": "Morty Jr.",
-            "notes": "312 Joanny Mount",
-            "store_id": "4b0c0a98-a713-436a-9464-4c64ec37865f",
-            "created_at": "2018-02-01T12:28:35.453Z",
-            "updated_at": "2018-02-01T12:28:35.453Z"
+            "id": "aff5a394-a10e-41bf-a4b7-e836009f1acf",
+            "name": "Dr. Glip-Glop",
+            "notes": "585 Sunny Tunnel",
+            "store_id": "610e96e9-9b2c-4b6f-88a9-ea013ca685d0",
+            "created_at": "2018-02-01T14:48:10.618Z",
+            "updated_at": "2018-02-01T14:48:10.618Z"
           }
         ]
 
@@ -1545,32 +1552,32 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: CfqthGUcP8ru-zHD0wPkyQ
+        Access-Token: Tdnf9n93N6BQsDadtTC2Hw
         Token-Type: Bearer
-        Client: 0Rassz04iUwVMw1Ft7olzQ
-        Expiry: 1519907315
-        Uid: walter@kshlerin.io
+        Client: iDdYwXU9IUU38vQYIVXlWw
+        Expiry: 1519915691
+        Uid: rowan@turcotte.biz
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: CfqthGUcP8ru-zHD0wPkyQ
+        access-token: Tdnf9n93N6BQsDadtTC2Hw
         token-type: Bearer
-        client: 0Rassz04iUwVMw1Ft7olzQ
-        expiry: 1519907315
-        uid: walter@kshlerin.io
+        client: iDdYwXU9IUU38vQYIVXlWw
+        expiry: 1519915691
+        uid: rowan@turcotte.biz
 
     + Body
 
         {
-          "id": "c6f9c491-38bb-4606-ac39-e60af2803685",
-          "name": "Krombopulos Michael",
-          "notes": "894 Melany Mount",
-          "store_id": "8b4e7550-7997-4993-92d1-26a6af9bad34",
-          "created_at": "2018-02-01T12:28:35.836Z",
-          "updated_at": "2018-02-01T12:28:35.836Z"
+          "id": "828b2d09-f83d-44ac-bef8-c1d3fb95c30c",
+          "name": "Lighthouse Chief",
+          "notes": "921 Gloria Route",
+          "store_id": "0b710603-ca78-4f40-8b28-05e5c1f6fbbd",
+          "created_at": "2018-02-01T14:48:10.979Z",
+          "updated_at": "2018-02-01T14:48:10.979Z"
         }
 
 ### Update a specific provider [PATCH]
@@ -1581,17 +1588,17 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: sg6jXCGmQ9vlRQSqkC4Dyw
+        Access-Token: Jn0bf87Z1pRN4AICds5LJA
         Token-Type: Bearer
-        Client: rYTDsizZH_ztCA5Sg8lt8w
-        Expiry: 1519907316
-        Uid: deion@johnson.biz
+        Client: sshlqnVOvS_5go5OxAw42Q
+        Expiry: 1519915691
+        Uid: caria.murray@marvin.co
 
     + Body
 
         {
           "provider": {
-            "name": "Mr. Needful"
+            "name": "Evil Morty"
           }
         }
 
@@ -1600,21 +1607,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: sg6jXCGmQ9vlRQSqkC4Dyw
+        access-token: Jn0bf87Z1pRN4AICds5LJA
         token-type: Bearer
-        client: rYTDsizZH_ztCA5Sg8lt8w
-        expiry: 1519907316
-        uid: deion@johnson.biz
+        client: sshlqnVOvS_5go5OxAw42Q
+        expiry: 1519915691
+        uid: caria.murray@marvin.co
 
     + Body
 
         {
-          "id": "369f8d79-aa77-4498-b0d3-b1d05c059dcc",
-          "store_id": "303ddf27-ef9c-4f61-8154-a7237db81022",
-          "name": "Mr. Needful",
-          "notes": "5855 Dorian Key",
-          "created_at": "2018-02-01T12:28:36.023Z",
-          "updated_at": "2018-02-01T12:28:36.184Z"
+          "id": "59fc98b5-c46e-4c0f-bc25-0c4da4f58952",
+          "store_id": "53bbc5a8-e865-47cb-a6e7-2037dfcffe70",
+          "name": "Evil Morty",
+          "notes": "919 Mae Crescent",
+          "created_at": "2018-02-01T14:48:11.159Z",
+          "updated_at": "2018-02-01T14:48:11.315Z"
         }
 
 # Group Shipping Variants
@@ -1634,18 +1641,18 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: LcgoiogJGXVUL2rYhw7afg
+        Access-Token: tZS1uTRNrLX3_6IgUV9Hyg
         Token-Type: Bearer
-        Client: LzH3naw0HIuNGR9iHF8GHg
-        Expiry: 1519907316
-        Uid: jena@barrows.info
+        Client: x_tmH4QWXr55-fgUAvTVow
+        Expiry: 1519915691
+        Uid: zander@krajcik.info
 
     + Body
 
         {
           "shipping_variant": {
-            "shipping_id": "0ab8d388-e43b-48c7-a06b-f924d040b5c9",
-            "variant_id": "ce488710-741a-430e-b67a-a7d10a217a7c",
+            "shipping_id": "24096476-cbdb-4702-b8e1-638b2b005f9c",
+            "variant_id": "35fc9a95-16b7-45eb-a19a-ed79db047b64",
             "quantity": 5
           }
         }
@@ -1655,21 +1662,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: LcgoiogJGXVUL2rYhw7afg
+        access-token: tZS1uTRNrLX3_6IgUV9Hyg
         token-type: Bearer
-        client: LzH3naw0HIuNGR9iHF8GHg
-        expiry: 1519907316
-        uid: jena@barrows.info
+        client: x_tmH4QWXr55-fgUAvTVow
+        expiry: 1519915691
+        uid: zander@krajcik.info
 
     + Body
 
         {
-          "id": "494d4913-cde3-45ff-bb90-188682880d36",
+          "id": "ad2f629b-0e7a-43a6-bf76-a42228b3b155",
           "quantity": 5,
-          "shipping_id": "0ab8d388-e43b-48c7-a06b-f924d040b5c9",
-          "variant_id": "ce488710-741a-430e-b67a-a7d10a217a7c",
-          "created_at": "2018-02-01T12:28:36.719Z",
-          "updated_at": "2018-02-01T12:28:36.719Z"
+          "shipping_id": "24096476-cbdb-4702-b8e1-638b2b005f9c",
+          "variant_id": "35fc9a95-16b7-45eb-a19a-ed79db047b64",
+          "created_at": "2018-02-01T14:48:11.839Z",
+          "updated_at": "2018-02-01T14:48:11.839Z"
         }
 
 ### Returns all shipping_variants [GET]
@@ -1680,33 +1687,33 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: TbGuPs3IdbSEPhF9utYeFg
+        Access-Token: vyW7OBRCoiNAJUKHAolqMg
         Token-Type: Bearer
-        Client: 4sl4jno84Br_7SD5UhJxlQ
-        Expiry: 1519907316
-        Uid: liam@littel.name
+        Client: 0-EZNibikSnH7pl6NdTTRg
+        Expiry: 1519915691
+        Uid: abdiel@schaefertorp.com
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: TbGuPs3IdbSEPhF9utYeFg
+        access-token: vyW7OBRCoiNAJUKHAolqMg
         token-type: Bearer
-        client: 4sl4jno84Br_7SD5UhJxlQ
-        expiry: 1519907316
-        uid: liam@littel.name
+        client: 0-EZNibikSnH7pl6NdTTRg
+        expiry: 1519915691
+        uid: abdiel@schaefertorp.com
 
     + Body
 
         [
           {
-            "id": "07d5b0d0-4b48-44e6-ac13-1c4c02a7ddfd",
-            "quantity": 126,
-            "shipping_id": "74f5efce-cc01-4414-b708-6a0422ec0abe",
-            "variant_id": "5879cbba-34f7-4c7d-a418-99b3cf0159e2",
-            "created_at": "2018-02-01T12:28:36.331Z",
-            "updated_at": "2018-02-01T12:28:36.331Z"
+            "id": "203f03fe-fbf2-40a0-a780-43eaea242abb",
+            "quantity": 453,
+            "shipping_id": "5763500e-c47b-4b83-a00d-f3c0b9d0c4c8",
+            "variant_id": "9f6f7ef9-16b0-4195-9d0a-0bff88206b16",
+            "created_at": "2018-02-01T14:48:11.461Z",
+            "updated_at": "2018-02-01T14:48:11.461Z"
           }
         ]
 
@@ -1723,21 +1730,21 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: c36cAgYjp1epqV-1A6Ei1g
+        Access-Token: 9l3eeCysAVVI_Xmpd-EGmA
         Token-Type: Bearer
-        Client: yskFrMe_X8G-vpIdvHFxyg
-        Expiry: 1519907317
-        Uid: ashley@mcclure.name
+        Client: Vqgrov8oweK_Zm5fiOal7w
+        Expiry: 1519915692
+        Uid: carmelo@oberbrunner.co
 
 + Response 204 ()
 
     + Headers
 
-        access-token: c36cAgYjp1epqV-1A6Ei1g
+        access-token: 9l3eeCysAVVI_Xmpd-EGmA
         token-type: Bearer
-        client: yskFrMe_X8G-vpIdvHFxyg
-        expiry: 1519907317
-        uid: ashley@mcclure.name
+        client: Vqgrov8oweK_Zm5fiOal7w
+        expiry: 1519915692
+        uid: carmelo@oberbrunner.co
 
 ### Get a specific shipping variant [GET]
 
@@ -1747,32 +1754,32 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: yJyabdn2iDkTXr4pJRnt2Q
+        Access-Token: tyTg3JHSzqZ4pgrMqbqdYg
         Token-Type: Bearer
-        Client: e9EKvCD7bdFXd3YV2uo1-A
-        Expiry: 1519907316
-        Uid: coleman.walter@hartmann.name
+        Client: Yza2-JNU2CivmBMCcahupg
+        Expiry: 1519915691
+        Uid: amaya.lind@heidenreich.net
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: yJyabdn2iDkTXr4pJRnt2Q
+        access-token: tyTg3JHSzqZ4pgrMqbqdYg
         token-type: Bearer
-        client: e9EKvCD7bdFXd3YV2uo1-A
-        expiry: 1519907316
-        uid: coleman.walter@hartmann.name
+        client: Yza2-JNU2CivmBMCcahupg
+        expiry: 1519915691
+        uid: amaya.lind@heidenreich.net
 
     + Body
 
         {
-          "id": "1fabb540-8290-40c5-87dc-96036022b9bc",
-          "quantity": 845,
-          "shipping_id": "26b672cf-291c-4c27-88a4-c30ba197690b",
-          "variant_id": "187f3cb8-ceee-4f2d-b699-7fc31e395e85",
-          "created_at": "2018-02-01T12:28:36.803Z",
-          "updated_at": "2018-02-01T12:28:36.803Z"
+          "id": "86cf456c-0cfd-4f9d-82d8-a96722419198",
+          "quantity": 834,
+          "shipping_id": "667651a8-c766-41e1-9264-0acb9b09ad83",
+          "variant_id": "15851200-2cec-47e1-ac36-cafc89d10f4a",
+          "created_at": "2018-02-01T14:48:11.913Z",
+          "updated_at": "2018-02-01T14:48:11.913Z"
         }
 
 ### Update an specific shipping variant [PATCH]
@@ -1783,11 +1790,11 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 7Qnij8jQoVify8g9Bx__Kg
+        Access-Token: HDabAokVc9uO44hI2QKUbA
         Token-Type: Bearer
-        Client: OZKgKyDQNOfIVfMpRz5sOg
-        Expiry: 1519907317
-        Uid: jimmie.koelpin@gottlieb.com
+        Client: PJUaogzyfBhQRChtrFQ0hw
+        Expiry: 1519915692
+        Uid: ashleigh.feeney@reynolds.info
 
     + Body
 
@@ -1802,21 +1809,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: 7Qnij8jQoVify8g9Bx__Kg
+        access-token: HDabAokVc9uO44hI2QKUbA
         token-type: Bearer
-        client: OZKgKyDQNOfIVfMpRz5sOg
-        expiry: 1519907317
-        uid: jimmie.koelpin@gottlieb.com
+        client: PJUaogzyfBhQRChtrFQ0hw
+        expiry: 1519915692
+        uid: ashleigh.feeney@reynolds.info
 
     + Body
 
         {
-          "id": "1cbf013a-15e9-4720-9aea-1dced2802db2",
-          "shipping_id": "275d6306-8228-4508-ade5-62828e5d2fb9",
+          "id": "ea7d021d-8b5c-467d-bf4f-f3678c90d5ec",
+          "shipping_id": "71202f5a-079b-41dd-8bbc-e5367e540153",
           "quantity": 12,
-          "variant_id": "6e469354-8e88-41ff-97a6-4fc74b6324e6",
-          "created_at": "2018-02-01T12:28:37.038Z",
-          "updated_at": "2018-02-01T12:28:37.195Z"
+          "variant_id": "d904007f-14fd-48dc-91db-9372d45c3e3f",
+          "created_at": "2018-02-01T14:48:12.138Z",
+          "updated_at": "2018-02-01T14:48:12.294Z"
         }
 
 # Group Shippings
@@ -1834,17 +1841,17 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: npxdlVFz9rQMSaQ4T0NS9g
+        Access-Token: wDHPdADiVKRXQsNcK5djsA
         Token-Type: Bearer
-        Client: PFLS7c4Or_8vUkzrKMWcaQ
-        Expiry: 1519907317
-        Uid: willis_treutel@schumm.name
+        Client: ElhD0WqmaRF7CIbIj1EqaA
+        Expiry: 1519915692
+        Uid: reba@abshirekemmer.io
 
     + Body
 
         {
           "shipping": {
-            "store_id": "bf8d68e8-a7ff-4c82-9b8e-c4075badecde"
+            "store_id": "0505ce1e-2deb-45e0-83f4-b01f7dc555f2"
           }
         }
 
@@ -1853,20 +1860,20 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: npxdlVFz9rQMSaQ4T0NS9g
+        access-token: wDHPdADiVKRXQsNcK5djsA
         token-type: Bearer
-        client: PFLS7c4Or_8vUkzrKMWcaQ
-        expiry: 1519907317
-        uid: willis_treutel@schumm.name
+        client: ElhD0WqmaRF7CIbIj1EqaA
+        expiry: 1519915692
+        uid: reba@abshirekemmer.io
 
     + Body
 
         {
-          "id": "339d55d0-4bb2-462a-a2a4-539861054437",
+          "id": "7f550a90-3ed1-417a-9df5-cf6ae6794f12",
           "locked_at": null,
-          "store_id": "bf8d68e8-a7ff-4c82-9b8e-c4075badecde",
-          "created_at": "2018-02-01T12:28:37.818Z",
-          "updated_at": "2018-02-01T12:28:37.818Z"
+          "store_id": "0505ce1e-2deb-45e0-83f4-b01f7dc555f2",
+          "created_at": "2018-02-01T14:48:12.879Z",
+          "updated_at": "2018-02-01T14:48:12.879Z"
         }
 
 ### Returns all shippings [GET]
@@ -1877,32 +1884,32 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: sQ513J_qP9c_C7-uQkQZPA
+        Access-Token: ILtSGyAFsdzmQ4-7pPQoRg
         Token-Type: Bearer
-        Client: hX73b8OExlMDpT2gJ2P7dA
-        Expiry: 1519907317
-        Uid: ruell.jacobi@kiehn.io
+        Client: x-i4RTAiG2jrCA6gsrE5bA
+        Expiry: 1519915692
+        Uid: rubie.hartmann@hettingerfunk.co
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: sQ513J_qP9c_C7-uQkQZPA
+        access-token: ILtSGyAFsdzmQ4-7pPQoRg
         token-type: Bearer
-        client: hX73b8OExlMDpT2gJ2P7dA
-        expiry: 1519907317
-        uid: ruell.jacobi@kiehn.io
+        client: x-i4RTAiG2jrCA6gsrE5bA
+        expiry: 1519915692
+        uid: rubie.hartmann@hettingerfunk.co
 
     + Body
 
         [
           {
-            "id": "dc44841c-9b57-4a20-8dc9-330a74fcd717",
+            "id": "c6408d55-e6df-4171-8b4c-d85afaca1bd7",
             "locked_at": null,
-            "store_id": "132c5f72-8cb6-43b0-b04b-4924456d6b27",
-            "created_at": "2018-02-01T12:28:37.476Z",
-            "updated_at": "2018-02-01T12:28:37.476Z"
+            "store_id": "c4b147b9-d0f3-4fa3-ab9b-11f96fb65805",
+            "created_at": "2018-02-01T14:48:12.554Z",
+            "updated_at": "2018-02-01T14:48:12.554Z"
           }
         ]
 
@@ -1916,21 +1923,21 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: VadyNTac-AVvGDz8LKcg8g
+        Access-Token: cTLfv6u_5Svavk8Jq_woMg
         Token-Type: Bearer
-        Client: q41fRhhnSgiarePh-heepg
-        Expiry: 1519907318
-        Uid: roger.connelly@huels.com
+        Client: rFlTxOS94yD5Z0LjibcAaA
+        Expiry: 1519915693
+        Uid: lela_littel@heidenreich.org
 
 + Response 204 ()
 
     + Headers
 
-        access-token: VadyNTac-AVvGDz8LKcg8g
+        access-token: cTLfv6u_5Svavk8Jq_woMg
         token-type: Bearer
-        client: q41fRhhnSgiarePh-heepg
-        expiry: 1519907318
-        uid: roger.connelly@huels.com
+        client: rFlTxOS94yD5Z0LjibcAaA
+        expiry: 1519915693
+        uid: lela_littel@heidenreich.org
 
 ### Get a specific shipping [GET]
 
@@ -1940,31 +1947,31 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: lNclzlWCx_8Z5xFVKyRtyg
+        Access-Token: d7y_15F9OHpaFNOiRDwl7g
         Token-Type: Bearer
-        Client: 3YBAr139pxFz_zMBah0DJw
-        Expiry: 1519907317
-        Uid: elsa_lynch@rolfsonschmidt.info
+        Client: TpK74vOFwfv_nnsEh13A6g
+        Expiry: 1519915692
+        Uid: tony_lynch@keeling.net
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: lNclzlWCx_8Z5xFVKyRtyg
+        access-token: d7y_15F9OHpaFNOiRDwl7g
         token-type: Bearer
-        client: 3YBAr139pxFz_zMBah0DJw
-        expiry: 1519907317
-        uid: elsa_lynch@rolfsonschmidt.info
+        client: TpK74vOFwfv_nnsEh13A6g
+        expiry: 1519915692
+        uid: tony_lynch@keeling.net
 
     + Body
 
         {
-          "id": "e6e91f3a-4bdc-4de3-9a98-1826df3e7dc0",
+          "id": "fbf82eab-b4c9-457a-b8de-514508335fc0",
           "locked_at": null,
-          "store_id": "b03e3fa1-6074-4682-abf2-1a347d5288a4",
-          "created_at": "2018-02-01T12:28:37.854Z",
-          "updated_at": "2018-02-01T12:28:37.854Z"
+          "store_id": "f71ae6f9-6266-4cfc-825f-3a9f8e81296b",
+          "created_at": "2018-02-01T14:48:12.913Z",
+          "updated_at": "2018-02-01T14:48:12.913Z"
         }
 
 ## Single shipping [/shippings/:id/lock]
@@ -1977,31 +1984,31 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: DZMP9JbVOBtjfs-T8jorRw
+        Access-Token: uhMm9FRL2EfzHz6DfIEDlA
         Token-Type: Bearer
-        Client: k4PObnKBVA3S6tjB6m923Q
-        Expiry: 1519907318
-        Uid: ruth@torphy.info
+        Client: wkA5KG8fn0Qnr49BdIFEnw
+        Expiry: 1519915693
+        Uid: coralie@bahringer.org
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: DZMP9JbVOBtjfs-T8jorRw
+        access-token: uhMm9FRL2EfzHz6DfIEDlA
         token-type: Bearer
-        client: k4PObnKBVA3S6tjB6m923Q
-        expiry: 1519907318
-        uid: ruth@torphy.info
+        client: wkA5KG8fn0Qnr49BdIFEnw
+        expiry: 1519915693
+        uid: coralie@bahringer.org
 
     + Body
 
         {
-          "id": "8a3ba1bb-46dc-4d2a-a8cd-bcb9abe6e95a",
-          "store_id": "c7535ce4-f4d6-4ef7-84de-b2d1a3dbda68",
-          "locked_at": "2018-02-01T12:28:38.390Z",
-          "created_at": "2018-02-01T12:28:38.235Z",
-          "updated_at": "2018-02-01T12:28:38.391Z"
+          "id": "dd3e55fe-49dd-497e-852a-c338ca6c3f11",
+          "store_id": "0db7b965-ea71-4684-acb7-b11d44af702a",
+          "locked_at": "2018-02-01T14:48:13.432Z",
+          "created_at": "2018-02-01T14:48:13.283Z",
+          "updated_at": "2018-02-01T14:48:13.433Z"
         }
 
 # Group Stock Backup Variants
@@ -2016,32 +2023,32 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: cUdwX1wAp_VmCWsFkROmGg
+        Access-Token: Vo-CeRab6eg8OvP9pxsD7Q
         Token-Type: Bearer
-        Client: 2rMBTowC8kDQkjPE6hy8AA
-        Expiry: 1519907318
-        Uid: verdie@kirlinlueilwitz.org
+        Client: us6VKfcbRkPRh_cousGAIw
+        Expiry: 1519915693
+        Uid: deangelo@white.net
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: cUdwX1wAp_VmCWsFkROmGg
+        access-token: Vo-CeRab6eg8OvP9pxsD7Q
         token-type: Bearer
-        client: 2rMBTowC8kDQkjPE6hy8AA
-        expiry: 1519907318
-        uid: verdie@kirlinlueilwitz.org
+        client: us6VKfcbRkPRh_cousGAIw
+        expiry: 1519915693
+        uid: deangelo@white.net
 
     + Body
 
         {
-          "id": "095b4ff0-cf33-4304-b19b-cca00883dfb4",
+          "id": "28235ed0-0c5a-4fef-b791-ad0641645184",
           "quantity": 0,
-          "stock_backup_id": "4854ed19-db37-43fd-aca7-bdb821706c6f",
-          "variant_id": "5029e4d6-3801-41cd-a4fe-1723d616812d",
-          "created_at": "2018-02-01T12:28:38.767Z",
-          "updated_at": "2018-02-01T12:28:38.767Z"
+          "stock_backup_id": "47fe9346-3d73-4fa1-8ea0-451bb5e402c3",
+          "variant_id": "57eeca44-7cb9-45b2-b7f1-4545534c9f5c",
+          "created_at": "2018-02-01T14:48:13.793Z",
+          "updated_at": "2018-02-01T14:48:13.793Z"
         }
 
 ## Stock backup variants collection [/stock_backup_variants]
@@ -2054,33 +2061,33 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: VcfN3B6mvLuwOqK30C7CIA
+        Access-Token: Mr157xzscaecZBK50Vmu-g
         Token-Type: Bearer
-        Client: ZYuJ0FSoy7119Gkh2ZyZpQ
-        Expiry: 1519907318
-        Uid: luciano_crona@harber.biz
+        Client: OrcQYk3tmONHY-24x8st6A
+        Expiry: 1519915693
+        Uid: haylee_champlin@heaney.net
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: VcfN3B6mvLuwOqK30C7CIA
+        access-token: Mr157xzscaecZBK50Vmu-g
         token-type: Bearer
-        client: ZYuJ0FSoy7119Gkh2ZyZpQ
-        expiry: 1519907318
-        uid: luciano_crona@harber.biz
+        client: OrcQYk3tmONHY-24x8st6A
+        expiry: 1519915693
+        uid: haylee_champlin@heaney.net
 
     + Body
 
         [
           {
-            "id": "e3ef4425-9c02-4efd-9651-22405080b29f",
+            "id": "15d18735-0496-47c7-aeb7-e18cc9aa2485",
             "quantity": 0,
-            "stock_backup_id": "7fc3b6d1-afd1-423e-a4a3-8dc761f999c6",
-            "variant_id": "075c0484-eea8-4668-8ad2-bab42c6cd8ca",
-            "created_at": "2018-02-01T12:28:38.531Z",
-            "updated_at": "2018-02-01T12:28:38.531Z"
+            "stock_backup_id": "1b166b76-f650-4a7e-94cd-97c555c71947",
+            "variant_id": "2b684741-dc47-45af-9738-2aa46216f755",
+            "created_at": "2018-02-01T14:48:13.567Z",
+            "updated_at": "2018-02-01T14:48:13.567Z"
           }
         ]
 
@@ -2096,30 +2103,30 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: YpG92n48XpOahZ9vf9Fqsg
+        Access-Token: 1KPaUihuhLW9o0iDEVevEA
         Token-Type: Bearer
-        Client: FUl9k_zB9HVN27Y7v_hM8Q
-        Expiry: 1519907319
-        Uid: eino.barrows@colebashirian.info
+        Client: VxRF3UqYvH1G0piV_q5S8g
+        Expiry: 1519915694
+        Uid: emely_lueilwitz@hintz.biz
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: YpG92n48XpOahZ9vf9Fqsg
+        access-token: 1KPaUihuhLW9o0iDEVevEA
         token-type: Bearer
-        client: FUl9k_zB9HVN27Y7v_hM8Q
-        expiry: 1519907319
-        uid: eino.barrows@colebashirian.info
+        client: VxRF3UqYvH1G0piV_q5S8g
+        expiry: 1519915694
+        uid: emely_lueilwitz@hintz.biz
 
     + Body
 
         {
-          "id": "9da6175b-0e85-41f6-a95a-8ad575e6f327",
-          "store_id": "133d2057-4b36-43d9-8275-f400c179e614",
-          "created_at": "2018-02-01T12:28:39.167Z",
-          "updated_at": "2018-02-01T12:28:39.167Z"
+          "id": "70858f23-aae4-4a71-b772-79a91d6698b4",
+          "store_id": "7a31b5c7-368b-4221-9cac-6fb37a471dbf",
+          "created_at": "2018-02-01T14:48:14.192Z",
+          "updated_at": "2018-02-01T14:48:14.192Z"
         }
 
 ## Stock backups collection [/stock_backups]
@@ -2132,31 +2139,31 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: IvbeMEVafpHRToHRyQVllA
+        Access-Token: LEdBAsSLlCjvm4mARU9jDQ
         Token-Type: Bearer
-        Client: Jirm9PmpxRC30d5nOtShjg
-        Expiry: 1519907319
-        Uid: alvis_strosin@oreillyjohns.net
+        Client: rYE1cByUZrWGmqic7oHGtA
+        Expiry: 1519915694
+        Uid: randall.balistreri@feest.com
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: IvbeMEVafpHRToHRyQVllA
+        access-token: LEdBAsSLlCjvm4mARU9jDQ
         token-type: Bearer
-        client: Jirm9PmpxRC30d5nOtShjg
-        expiry: 1519907319
-        uid: alvis_strosin@oreillyjohns.net
+        client: rYE1cByUZrWGmqic7oHGtA
+        expiry: 1519915694
+        uid: randall.balistreri@feest.com
 
     + Body
 
         [
           {
-            "id": "119d59c4-4f26-48e3-baa6-6d475b2feb45",
-            "store_id": "cd04e56a-483b-4e3a-9e26-88b6d775dfdf",
-            "created_at": "2018-02-01T12:28:38.973Z",
-            "updated_at": "2018-02-01T12:28:38.973Z"
+            "id": "e7084d2c-dbc4-4413-9c7b-28d8ff4e81b3",
+            "store_id": "c058d046-d49f-430b-bfa2-2825befdfd42",
+            "created_at": "2018-02-01T14:48:13.990Z",
+            "updated_at": "2018-02-01T14:48:13.990Z"
           }
         ]
 
@@ -2177,18 +2184,18 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: FiKkWs-eY8gr0Wm78izFWw
+        Access-Token: xApqkwduvY_ZMaoPBMikSg
         Token-Type: Bearer
-        Client: xgbfBfXiu9apxn6l_cy7gQ
-        Expiry: 1519907319
-        Uid: christ_weber@cristswift.info
+        Client: k9ePEYGiQ6R2aH1Dgsyiag
+        Expiry: 1519915694
+        Uid: flavio@schiller.org
 
     + Body
 
         {
           "store_membership": {
-            "user_id": "277ebc75-bf96-4773-985b-e9bf49a84e4a",
-            "store_id": "13c278da-eadd-474e-a116-1a28d08a5d3a",
+            "user_id": "4ed0148b-3169-4002-946b-6199d700a60b",
+            "store_id": "c40f580c-ccf7-4a3c-a211-aaef94e05eb7",
             "role": "regular"
           }
         }
@@ -2198,21 +2205,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: FiKkWs-eY8gr0Wm78izFWw
+        access-token: xApqkwduvY_ZMaoPBMikSg
         token-type: Bearer
-        client: xgbfBfXiu9apxn6l_cy7gQ
-        expiry: 1519907319
-        uid: christ_weber@cristswift.info
+        client: k9ePEYGiQ6R2aH1Dgsyiag
+        expiry: 1519915694
+        uid: flavio@schiller.org
 
     + Body
 
         {
-          "id": "0d01f137-c14d-471f-aaf6-2a9fce1dd0ae",
-          "store_id": "13c278da-eadd-474e-a116-1a28d08a5d3a",
-          "user_id": "277ebc75-bf96-4773-985b-e9bf49a84e4a",
+          "id": "30273945-b0c3-4b7d-b8c7-8d0acd40500f",
+          "store_id": "c40f580c-ccf7-4a3c-a211-aaef94e05eb7",
+          "user_id": "4ed0148b-3169-4002-946b-6199d700a60b",
           "role": "regular",
-          "created_at": "2018-02-01T12:28:39.711Z",
-          "updated_at": "2018-02-01T12:28:39.711Z"
+          "created_at": "2018-02-01T14:48:14.703Z",
+          "updated_at": "2018-02-01T14:48:14.703Z"
         }
 
 ### Returns all store memberships [GET]
@@ -2223,33 +2230,33 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: hB5KKuPFdl4FICxSq11swA
+        Access-Token: 7GKshkj7gSC-HjBnKC77ww
         Token-Type: Bearer
-        Client: Xt759Y4nEE5fwlCD0QljYg
-        Expiry: 1519907319
-        Uid: rey@oconnellfay.name
+        Client: ZNeRq-BwET6XC7cT5vqOoA
+        Expiry: 1519915694
+        Uid: eula@rippinhowell.co
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: hB5KKuPFdl4FICxSq11swA
+        access-token: 7GKshkj7gSC-HjBnKC77ww
         token-type: Bearer
-        client: Xt759Y4nEE5fwlCD0QljYg
-        expiry: 1519907319
-        uid: rey@oconnellfay.name
+        client: ZNeRq-BwET6XC7cT5vqOoA
+        expiry: 1519915694
+        uid: eula@rippinhowell.co
 
     + Body
 
         [
           {
-            "id": "ccd40a96-d858-4451-8f44-b2ee0e3464fa",
-            "store_id": "8ead6429-ca35-467d-9736-2fcb6595793f",
-            "user_id": "a36600c8-2fda-410f-af47-61bc930a6b22",
+            "id": "64b67a4b-f93d-4c0c-a39c-2450e78e988d",
+            "store_id": "a9ce75c2-a7a0-49c9-90e5-ca576cbba9e9",
+            "user_id": "f7640d60-70cc-48a9-be4d-0cd1aa98e272",
             "role": "admin",
-            "created_at": "2018-02-01T12:28:39.356Z",
-            "updated_at": "2018-02-01T12:28:39.356Z"
+            "created_at": "2018-02-01T14:48:14.367Z",
+            "updated_at": "2018-02-01T14:48:14.367Z"
           }
         ]
 
@@ -2266,21 +2273,21 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 0u6_PJznQ15lUdTDMNFgSA
+        Access-Token: kbVyQ5X-Z0L0DZzdyOTGhA
         Token-Type: Bearer
-        Client: g5aIr1Jf4mVUtVRGCLvG_A
-        Expiry: 1519907320
-        Uid: chadd.heller@wildermanpfannerstill.info
+        Client: kg0g7pyTFGOfyy02NZPxTQ
+        Expiry: 1519915695
+        Uid: era@sanford.co
 
 + Response 204 ()
 
     + Headers
 
-        access-token: 0u6_PJznQ15lUdTDMNFgSA
+        access-token: kbVyQ5X-Z0L0DZzdyOTGhA
         token-type: Bearer
-        client: g5aIr1Jf4mVUtVRGCLvG_A
-        expiry: 1519907320
-        uid: chadd.heller@wildermanpfannerstill.info
+        client: kg0g7pyTFGOfyy02NZPxTQ
+        expiry: 1519915695
+        uid: era@sanford.co
 
 ### Get a specific store membership [GET]
 
@@ -2290,32 +2297,32 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: AWZwlyK4MqX2GTaptHK0Gg
+        Access-Token: F30y5j_-9yDa9reFyYO0hw
         Token-Type: Bearer
-        Client: 7UpyIvtX1I5A151yKIzkZg
-        Expiry: 1519907319
-        Uid: lora@padberg.com
+        Client: Lh3-ObWriOubarjJalNcwg
+        Expiry: 1519915694
+        Uid: virgil@hane.io
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: AWZwlyK4MqX2GTaptHK0Gg
+        access-token: F30y5j_-9yDa9reFyYO0hw
         token-type: Bearer
-        client: 7UpyIvtX1I5A151yKIzkZg
-        expiry: 1519907319
-        uid: lora@padberg.com
+        client: Lh3-ObWriOubarjJalNcwg
+        expiry: 1519915694
+        uid: virgil@hane.io
 
     + Body
 
         {
-          "id": "032199b3-ae64-4a1e-ac16-27389b9b12bd",
-          "store_id": "3a5e08c7-4c18-4c8a-8efb-ce9c10d638a1",
-          "user_id": "d651224e-be5a-42c0-aa7b-5d67e78ca6e6",
-          "role": "regular",
-          "created_at": "2018-02-01T12:28:39.755Z",
-          "updated_at": "2018-02-01T12:28:39.755Z"
+          "id": "2c0396a6-1fc6-4c9b-9af3-6f3bd31a5f6c",
+          "store_id": "2e2ea434-d136-49ab-9d6c-bf4781387ee7",
+          "user_id": "924e3960-436f-47c8-89f6-30c4630c468e",
+          "role": "admin",
+          "created_at": "2018-02-01T14:48:14.749Z",
+          "updated_at": "2018-02-01T14:48:14.749Z"
         }
 
 ### Update a specific store membership [PATCH]
@@ -2326,11 +2333,11 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: Ee3hkzsSxr_K4G1Bw1r6yQ
+        Access-Token: YuUPsONQkg9GRB4uebMpTQ
         Token-Type: Bearer
-        Client: dZArxieA3Qw2BIRDs2AwwA
-        Expiry: 1519907320
-        Uid: woodrow@bartoletti.co
+        Client: Dg53h15Rn_cQ_s08GiOzlA
+        Expiry: 1519915695
+        Uid: raphaelle@binskrajcik.io
 
     + Body
 
@@ -2345,21 +2352,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: Ee3hkzsSxr_K4G1Bw1r6yQ
+        access-token: YuUPsONQkg9GRB4uebMpTQ
         token-type: Bearer
-        client: dZArxieA3Qw2BIRDs2AwwA
-        expiry: 1519907320
-        uid: woodrow@bartoletti.co
+        client: Dg53h15Rn_cQ_s08GiOzlA
+        expiry: 1519915695
+        uid: raphaelle@binskrajcik.io
 
     + Body
 
         {
-          "id": "7cdeac29-ee79-42aa-9945-27bd615174c5",
-          "store_id": "d04b1e5f-40b5-4569-b757-7139a8c8b786",
+          "id": "762f07e3-2e13-4dc8-966e-317277350ee7",
+          "store_id": "498bfcf7-1d9f-4422-9675-0e10c4a284f9",
           "role": "admin",
-          "user_id": "db8b664e-ff88-48fa-8989-9818a0c47928",
-          "created_at": "2018-02-01T12:28:39.962Z",
-          "updated_at": "2018-02-01T12:28:39.962Z"
+          "user_id": "c191a66c-709e-440a-9f5f-75294780127b",
+          "created_at": "2018-02-01T14:48:14.940Z",
+          "updated_at": "2018-02-01T14:48:14.940Z"
         }
 
 # Group Stores
@@ -2380,20 +2387,20 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: dZr45z1bN1zEr8c9JFm-4g
+        Access-Token: ugTkc8665JLo80C3qKqD-w
         Token-Type: Bearer
-        Client: EmMCe5aStnPSAxfZvZi3tQ
-        Expiry: 1519907320
-        Uid: elna_fritsch@moenfisher.com
+        Client: 48EJpiTWtQUENqEEnCdTgQ
+        Expiry: 1519915695
+        Uid: ottis@huelsbauch.net
 
     + Body
 
         {
           "store": {
-            "name": "Coruscant",
-            "address": "49174 Kaela Views",
-            "country": "KR",
-            "key": "coruscant-89"
+            "name": "Yavin",
+            "address": "1535 Stone Island",
+            "country": "CW",
+            "key": "yavin-89"
           }
         }
 
@@ -2402,22 +2409,22 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: dZr45z1bN1zEr8c9JFm-4g
+        access-token: ugTkc8665JLo80C3qKqD-w
         token-type: Bearer
-        client: EmMCe5aStnPSAxfZvZi3tQ
-        expiry: 1519907320
-        uid: elna_fritsch@moenfisher.com
+        client: 48EJpiTWtQUENqEEnCdTgQ
+        expiry: 1519915695
+        uid: ottis@huelsbauch.net
 
     + Body
 
         {
-          "id": "ba1893e6-1373-4972-90b3-eb44d9107043",
-          "key": "coruscant-89",
-          "name": "Coruscant",
-          "address": "49174 Kaela Views",
-          "country": "KR",
-          "created_at": "2018-02-01T12:28:40.718Z",
-          "updated_at": "2018-02-01T12:28:40.718Z"
+          "id": "4d8e78a9-e714-40a8-80c1-7143b2ea107e",
+          "key": "yavin-89",
+          "name": "Yavin",
+          "address": "1535 Stone Island",
+          "country": "CW",
+          "created_at": "2018-02-01T14:48:15.673Z",
+          "updated_at": "2018-02-01T14:48:15.673Z"
         }
 
 ### Returns all stores [GET]
@@ -2428,34 +2435,34 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 6hyIdJ4fl2EY3bH8hz0PJQ
+        Access-Token: uIc7XzFW5V8EoGBYsWVpBA
         Token-Type: Bearer
-        Client: LidbTQMf-0teELREyUJZ-Q
-        Expiry: 1519907320
-        Uid: dejah@dicki.net
+        Client: FbOK0Uq85q4iji-DzotxXw
+        Expiry: 1519915695
+        Uid: raven_haag@gusikowski.net
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: 6hyIdJ4fl2EY3bH8hz0PJQ
+        access-token: uIc7XzFW5V8EoGBYsWVpBA
         token-type: Bearer
-        client: LidbTQMf-0teELREyUJZ-Q
-        expiry: 1519907320
-        uid: dejah@dicki.net
+        client: FbOK0Uq85q4iji-DzotxXw
+        expiry: 1519915695
+        uid: raven_haag@gusikowski.net
 
     + Body
 
         [
           {
-            "id": "0d0aefa4-bbcd-4bc0-a148-726f6063ce00",
-            "key": "naboo-88",
-            "name": "Naboo",
-            "address": "16715 Georgianna Land",
-            "country": "FR",
-            "created_at": "2018-02-01T12:28:40.353Z",
-            "updated_at": "2018-02-01T12:28:40.353Z"
+            "id": "18090d11-5d6e-4108-8311-252675364542",
+            "key": "coruscant-88",
+            "name": "Coruscant",
+            "address": "267 Moen Hollow",
+            "country": "UG",
+            "created_at": "2018-02-01T14:48:15.310Z",
+            "updated_at": "2018-02-01T14:48:15.310Z"
           }
         ]
 
@@ -2474,33 +2481,33 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: x7FnXZULotKMuXdRfFOQ7A
+        Access-Token: ZmuO3D4mku7zt5o5K405ig
         Token-Type: Bearer
-        Client: 1lXrrGBZlsnsthhQ7h9E_g
-        Expiry: 1519907320
-        Uid: jacques@breitenberg.co
+        Client: lUEN87vyIxCanulKxfomFA
+        Expiry: 1519915695
+        Uid: virgil_lindgren@bodeweber.co
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: x7FnXZULotKMuXdRfFOQ7A
+        access-token: ZmuO3D4mku7zt5o5K405ig
         token-type: Bearer
-        client: 1lXrrGBZlsnsthhQ7h9E_g
-        expiry: 1519907320
-        uid: jacques@breitenberg.co
+        client: lUEN87vyIxCanulKxfomFA
+        expiry: 1519915695
+        uid: virgil_lindgren@bodeweber.co
 
     + Body
 
         {
-          "id": "4e8f9c61-8b6b-4d0a-9929-bb2289cc0d70",
-          "key": "takodana-91",
-          "name": "Takodana",
-          "address": "3633 Stracke Manor",
-          "country": "AE",
-          "created_at": "2018-02-01T12:28:40.738Z",
-          "updated_at": "2018-02-01T12:28:40.738Z"
+          "id": "ae7e26b7-9b40-4dac-8da9-67c8d8b33a1c",
+          "key": "kamino-91",
+          "name": "Kamino",
+          "address": "313 Raynor Forest",
+          "country": "BJ",
+          "created_at": "2018-02-01T14:48:15.700Z",
+          "updated_at": "2018-02-01T14:48:15.700Z"
         }
 
 ### Update a specific store [PATCH]
@@ -2511,17 +2518,17 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: WvSMJZ0WW3e-lhoSrYMqCg
+        Access-Token: pIzg5UqDkOzkDLltnBCRIg
         Token-Type: Bearer
-        Client: 9kgJ_H-q_Adp8VvIJ_Z7eg
-        Expiry: 1519907321
-        Uid: monique_tremblay@rosenbaum.org
+        Client: 3_xAC3ug4bP80MQiRNjGGA
+        Expiry: 1519915695
+        Uid: maddison@cummeratafay.net
 
     + Body
 
         {
           "store": {
-            "name": "Coruscant"
+            "name": "Sullust"
           }
         }
 
@@ -2530,22 +2537,22 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: WvSMJZ0WW3e-lhoSrYMqCg
+        access-token: pIzg5UqDkOzkDLltnBCRIg
         token-type: Bearer
-        client: 9kgJ_H-q_Adp8VvIJ_Z7eg
-        expiry: 1519907321
-        uid: monique_tremblay@rosenbaum.org
+        client: 3_xAC3ug4bP80MQiRNjGGA
+        expiry: 1519915695
+        uid: maddison@cummeratafay.net
 
     + Body
 
         {
-          "id": "d901de0f-77de-41ac-94dd-3fb28a66d99a",
-          "name": "Coruscant",
-          "country": "AI",
-          "key": "hosnian-prime-92",
-          "address": "55577 Emiliano Ramp",
-          "created_at": "2018-02-01T12:28:40.921Z",
-          "updated_at": "2018-02-01T12:28:41.092Z"
+          "id": "3249257f-c94d-47d7-aeb7-445ff44195e5",
+          "name": "Sullust",
+          "country": "IO",
+          "key": "dqar-92",
+          "address": "4234 Baumbach Summit",
+          "created_at": "2018-02-01T14:48:15.885Z",
+          "updated_at": "2018-02-01T14:48:16.054Z"
         }
 
 # Group Variant Attributes
@@ -2565,19 +2572,19 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: B_dyp2CfR1XUL02tkWRFTA
+        Access-Token: m8hj09TMXPHTspuVri6hrA
         Token-Type: Bearer
-        Client: a6O5SlE2yfGwdfXjbn3X-Q
-        Expiry: 1519907321
-        Uid: kareem.macgyver@pouroskohler.com
+        Client: NZkceQ4O-0efP2cEYueyfA
+        Expiry: 1519915696
+        Uid: martine@pollich.co
 
     + Body
 
         {
           "variant_attribute": {
-            "value": "Caramel",
-            "custom_attribute_id": "f9e4454b-39ad-419e-88ab-e5bfd0ddb4d1",
-            "variant_id": "e3acae6b-6792-4d6d-a93e-3b1ac36ff332"
+            "value": "Carapils",
+            "custom_attribute_id": "b2d7f4a9-fe5a-48d8-9d8d-0b989797223d",
+            "variant_id": "e6861b86-98e4-470e-9964-3de91da9d5b8"
           }
         }
 
@@ -2586,21 +2593,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: B_dyp2CfR1XUL02tkWRFTA
+        access-token: m8hj09TMXPHTspuVri6hrA
         token-type: Bearer
-        client: a6O5SlE2yfGwdfXjbn3X-Q
-        expiry: 1519907321
-        uid: kareem.macgyver@pouroskohler.com
+        client: NZkceQ4O-0efP2cEYueyfA
+        expiry: 1519915696
+        uid: martine@pollich.co
 
     + Body
 
         {
-          "id": "e948a5d0-db89-435c-a412-a834a0c8497f",
-          "value": "Caramel",
-          "variant_id": "e3acae6b-6792-4d6d-a93e-3b1ac36ff332",
-          "custom_attribute_id": "f9e4454b-39ad-419e-88ab-e5bfd0ddb4d1",
-          "created_at": "2018-02-01T12:28:41.618Z",
-          "updated_at": "2018-02-01T12:28:41.618Z"
+          "id": "ced06b54-69ef-4530-a8fb-3dac56267ce8",
+          "value": "Carapils",
+          "variant_id": "e6861b86-98e4-470e-9964-3de91da9d5b8",
+          "custom_attribute_id": "b2d7f4a9-fe5a-48d8-9d8d-0b989797223d",
+          "created_at": "2018-02-01T14:48:16.709Z",
+          "updated_at": "2018-02-01T14:48:16.709Z"
         }
 
 ### Returns all variant_attributes [GET]
@@ -2611,33 +2618,33 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: SCryHuzkVdkJO945kAbFUg
+        Access-Token: Tk05qh9g-mnead6JSacbGQ
         Token-Type: Bearer
-        Client: TOpVxtHitFtrhYsDtwDfYQ
-        Expiry: 1519907321
-        Uid: ladarius@bogan.com
+        Client: y31HekTaOzjFJxKOq3JSAw
+        Expiry: 1519915696
+        Uid: stacey.quitzon@rogahnhaley.co
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: SCryHuzkVdkJO945kAbFUg
+        access-token: Tk05qh9g-mnead6JSacbGQ
         token-type: Bearer
-        client: TOpVxtHitFtrhYsDtwDfYQ
-        expiry: 1519907321
-        uid: ladarius@bogan.com
+        client: y31HekTaOzjFJxKOq3JSAw
+        expiry: 1519915696
+        uid: stacey.quitzon@rogahnhaley.co
 
     + Body
 
         [
           {
-            "id": "5b4c9a76-ed5f-4172-9efb-e64907bc471b",
-            "value": "Caramel",
-            "variant_id": "b55efafa-103f-497a-8e33-9645d0d44da7",
-            "custom_attribute_id": "621ef7b5-d79c-4440-b301-04dcf6e6fa21",
-            "created_at": "2018-02-01T12:28:41.231Z",
-            "updated_at": "2018-02-01T12:28:41.231Z"
+            "id": "2b167a7b-e16a-485e-851c-e5aab3bd8903",
+            "value": "Wheat mal",
+            "variant_id": "ee984c7b-ee00-4a95-9e52-7ee90a96e91c",
+            "custom_attribute_id": "f17139e3-b37e-4b35-ac9d-c14cc36ea3bc",
+            "created_at": "2018-02-01T14:48:16.240Z",
+            "updated_at": "2018-02-01T14:48:16.240Z"
           }
         ]
 
@@ -2654,21 +2661,21 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: nVyjJJ4N5agmPeCiLGEP_g
+        Access-Token: _FJreO7Y3tjsY8tg065Sdw
         Token-Type: Bearer
-        Client: OU8kzafNcDxszNt4f8TXcg
-        Expiry: 1519907322
-        Uid: teresa@blickhills.biz
+        Client: H9p4QbgFMOvTuoPnocerZg
+        Expiry: 1519915697
+        Uid: beulah_windler@hegmann.info
 
 + Response 204 ()
 
     + Headers
 
-        access-token: nVyjJJ4N5agmPeCiLGEP_g
+        access-token: _FJreO7Y3tjsY8tg065Sdw
         token-type: Bearer
-        client: OU8kzafNcDxszNt4f8TXcg
-        expiry: 1519907322
-        uid: teresa@blickhills.biz
+        client: H9p4QbgFMOvTuoPnocerZg
+        expiry: 1519915697
+        uid: beulah_windler@hegmann.info
 
 ### Get a specific variant attribute [GET]
 
@@ -2678,32 +2685,32 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: Y-QsgRygebDPGAE_-ifybw
+        Access-Token: agBIqikQNPhPaVDdhswUkA
         Token-Type: Bearer
-        Client: a-87rUJ42KMO2kSPspSuKA
-        Expiry: 1519907321
-        Uid: deon.lakin@king.co
+        Client: uLnTuIWK_5n8dHsPK5sfqQ
+        Expiry: 1519915697
+        Uid: andy@flatley.com
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: Y-QsgRygebDPGAE_-ifybw
+        access-token: agBIqikQNPhPaVDdhswUkA
         token-type: Bearer
-        client: a-87rUJ42KMO2kSPspSuKA
-        expiry: 1519907321
-        uid: deon.lakin@king.co
+        client: uLnTuIWK_5n8dHsPK5sfqQ
+        expiry: 1519915697
+        uid: andy@flatley.com
 
     + Body
 
         {
-          "id": "4ab8731e-4019-44a5-b4ca-55a07cde92f4",
-          "value": "Victory",
-          "variant_id": "2af03f0c-7886-4034-83b8-3ecab4c56165",
-          "custom_attribute_id": "8669dae2-9598-4924-b3c8-5162c970f895",
-          "created_at": "2018-02-01T12:28:41.707Z",
-          "updated_at": "2018-02-01T12:28:41.707Z"
+          "id": "9618823c-52d4-4cde-9611-724c40eab7d4",
+          "value": "Munich",
+          "variant_id": "f0c28109-e50e-4c04-b3d4-b7f24f4a645b",
+          "custom_attribute_id": "3e20f52a-7482-471f-ab8e-fbc60214de33",
+          "created_at": "2018-02-01T14:48:16.871Z",
+          "updated_at": "2018-02-01T14:48:16.871Z"
         }
 
 ### Update a specific variant attribute [PATCH]
@@ -2714,17 +2721,17 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: Rwqimc2VTxRRBLex7_4Bog
+        Access-Token: Ls-fVRIjYoDxdsZOlwb3Qw
         Token-Type: Bearer
-        Client: Gq3RgsoDc_9fncL95-tFeA
-        Expiry: 1519907322
-        Uid: oren@kuphalschmitt.io
+        Client: MqcSnISE1TZfOZsiWbMdjQ
+        Expiry: 1519915697
+        Uid: jimmie_hyatt@hilll.name
 
     + Body
 
         {
           "variant_attribute": {
-            "value": "Munich"
+            "value": "Rye malt"
           }
         }
 
@@ -2733,21 +2740,21 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: Rwqimc2VTxRRBLex7_4Bog
+        access-token: Ls-fVRIjYoDxdsZOlwb3Qw
         token-type: Bearer
-        client: Gq3RgsoDc_9fncL95-tFeA
-        expiry: 1519907322
-        uid: oren@kuphalschmitt.io
+        client: MqcSnISE1TZfOZsiWbMdjQ
+        expiry: 1519915697
+        uid: jimmie_hyatt@hilll.name
 
     + Body
 
         {
-          "id": "e972cccf-6c2f-4dbc-8b2d-02c7e75f1eed",
-          "variant_id": "c99c0469-74e0-4d97-b602-d49062e9f3a6",
-          "value": "Munich",
-          "custom_attribute_id": "9da6d8dd-bbfe-4f19-8ede-eae2317421ba",
-          "created_at": "2018-02-01T12:28:41.949Z",
-          "updated_at": "2018-02-01T12:28:42.152Z"
+          "id": "12da48b8-37e5-4b47-8b17-f7a6ea8b4a0b",
+          "variant_id": "6f847bc1-5787-44ef-a314-736fd5f82eaf",
+          "value": "Rye malt",
+          "custom_attribute_id": "ad82e606-6bdd-40b2-a4a7-fbe31623116d",
+          "created_at": "2018-02-01T14:48:17.275Z",
+          "updated_at": "2018-02-01T14:48:17.500Z"
         }
 
 # Group Variants
@@ -2771,22 +2778,22 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: EtRebHD8WqLjB6uUbKoSYw
+        Access-Token: AE6GnpfPVoPbCzSHMa_Vhg
         Token-Type: Bearer
-        Client: kc7aSLL0uz-EwH_IefmyOg
-        Expiry: 1519907322
-        Uid: reagan@king.info
+        Client: 7hEP2dJa1vPV4l2kHnFiwA
+        Expiry: 1519915698
+        Uid: pietro_yundt@balistreri.name
 
     + Body
 
         {
           "variant": {
-            "original_barcode": "5531891586",
-            "buying_price": "20.12",
-            "tax_free_price": 36.216,
-            "ratio": "13.49",
-            "product_id": "38750f3a-f0fd-433f-9a9d-9fdc75ce60e5",
-            "provider_id": "37d0f396-0061-4c6f-878b-625fc0408817",
+            "original_barcode": "4721961171",
+            "buying_price": "28.59",
+            "tax_free_price": 51.462,
+            "ratio": "49.31",
+            "product_id": "1c3251ad-95d9-47c2-ba9c-74402e8824bd",
+            "provider_id": "4f109525-115d-4c5c-a0a8-b8a674099ca0",
             "default": false
           }
         }
@@ -2796,27 +2803,27 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: EtRebHD8WqLjB6uUbKoSYw
+        access-token: AE6GnpfPVoPbCzSHMa_Vhg
         token-type: Bearer
-        client: kc7aSLL0uz-EwH_IefmyOg
-        expiry: 1519907322
-        uid: reagan@king.info
+        client: 7hEP2dJa1vPV4l2kHnFiwA
+        expiry: 1519915698
+        uid: pietro_yundt@balistreri.name
 
     + Body
 
         {
-          "id": "956ca5af-5a04-456e-a186-7a6a2148748b",
-          "original_barcode": "5531891586",
-          "barcode": "000005531891586",
-          "buying_price": 20.12,
-          "tax_free_price": 36.216,
-          "ratio": 13.49,
+          "id": "ad4e1055-9dcb-4d6f-a48a-f0b0b3327ba8",
+          "original_barcode": "4721961171",
+          "barcode": "000004721961171",
+          "buying_price": 28.59,
+          "tax_free_price": 51.462,
+          "ratio": 49.31,
           "quantity": 0,
           "default": false,
-          "product_id": "38750f3a-f0fd-433f-9a9d-9fdc75ce60e5",
-          "provider_id": "37d0f396-0061-4c6f-878b-625fc0408817",
-          "created_at": "2018-02-01T12:28:42.844Z",
-          "updated_at": "2018-02-01T12:28:42.844Z"
+          "product_id": "1c3251ad-95d9-47c2-ba9c-74402e8824bd",
+          "provider_id": "4f109525-115d-4c5c-a0a8-b8a674099ca0",
+          "created_at": "2018-02-01T14:48:18.209Z",
+          "updated_at": "2018-02-01T14:48:18.209Z"
         }
 
 ### Returns all variants [GET]
@@ -2827,39 +2834,39 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: 7XBRUVDfyx83M-rvnyJcKA
+        Access-Token: Jr2zNyG_wN6kTbp7cLvrKA
         Token-Type: Bearer
-        Client: VwhEUrKrE3_q_viV0KKFIw
-        Expiry: 1519907322
-        Uid: rigoberto@mcdermott.io
+        Client: UtiFH_DH3gtpvvb4-F5Efw
+        Expiry: 1519915697
+        Uid: mathew@hartmannkrajcik.com
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: 7XBRUVDfyx83M-rvnyJcKA
+        access-token: Jr2zNyG_wN6kTbp7cLvrKA
         token-type: Bearer
-        client: VwhEUrKrE3_q_viV0KKFIw
-        expiry: 1519907322
-        uid: rigoberto@mcdermott.io
+        client: UtiFH_DH3gtpvvb4-F5Efw
+        expiry: 1519915697
+        uid: mathew@hartmannkrajcik.com
 
     + Body
 
         [
           {
-            "id": "76036494-1145-4a2c-a214-d5322c7a8d4e",
-            "original_barcode": "6839161872",
-            "barcode": "000006839161872",
-            "buying_price": 24.91,
-            "tax_free_price": 44.838,
-            "ratio": 76.46,
+            "id": "eb0bca52-62a6-4c09-b7fa-691c6fb60c74",
+            "original_barcode": "7112143798",
+            "barcode": "000007112143798",
+            "buying_price": 27.79,
+            "tax_free_price": 50.022,
+            "ratio": 66.82,
             "quantity": 0,
             "default": false,
-            "product_id": "d643900a-fbc7-4411-bb17-7e685c4573cd",
-            "provider_id": "184dbc40-4921-4ed6-bb40-92548d09c6b3",
-            "created_at": "2018-02-01T12:28:42.483Z",
-            "updated_at": "2018-02-01T12:28:42.483Z"
+            "product_id": "08ef02be-8050-4270-86e4-8e42ba900468",
+            "provider_id": "f91399c8-f9f1-402b-8782-8eb1d44cd61f",
+            "created_at": "2018-02-01T14:48:17.842Z",
+            "updated_at": "2018-02-01T14:48:17.842Z"
           }
         ]
 
@@ -2879,38 +2886,38 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: T-h1LgN4hCIuGETrm-dZ_Q
+        Access-Token: 0ANCdullhU7W9w5N6Hqv4Q
         Token-Type: Bearer
-        Client: xiLuExNlCu8T4PL1cNDNFg
-        Expiry: 1519907322
-        Uid: rebecca@bins.io
+        Client: 4Z9YY3sawAYYjp8p7xpfaw
+        Expiry: 1519915698
+        Uid: jake@gleason.com
 
 + Response 200 (application/json)
 
     + Headers
 
         Content-Type: application/json
-        access-token: T-h1LgN4hCIuGETrm-dZ_Q
+        access-token: 0ANCdullhU7W9w5N6Hqv4Q
         token-type: Bearer
-        client: xiLuExNlCu8T4PL1cNDNFg
-        expiry: 1519907322
-        uid: rebecca@bins.io
+        client: 4Z9YY3sawAYYjp8p7xpfaw
+        expiry: 1519915698
+        uid: jake@gleason.com
 
     + Body
 
         {
-          "id": "c9a5e733-8754-4e06-a2fd-092d6ad53c68",
-          "original_barcode": "5678534742",
-          "barcode": "000005678534742",
-          "buying_price": 20.31,
-          "tax_free_price": 36.558,
-          "ratio": 14.05,
+          "id": "8df382e2-78e8-4834-bafc-36263b2a668d",
+          "original_barcode": "8008484014",
+          "barcode": "000008008484014",
+          "buying_price": 63.95,
+          "tax_free_price": 115.11,
+          "ratio": 47.73,
           "quantity": 0,
           "default": false,
-          "product_id": "59e0d1f9-81a5-4a38-8f4a-0ef2019c92c8",
-          "provider_id": "93c36d71-59f5-4809-b467-b1bdf9149084",
-          "created_at": "2018-02-01T12:28:42.904Z",
-          "updated_at": "2018-02-01T12:28:42.904Z"
+          "product_id": "e38677fb-07ea-493a-b911-1e91963c2b88",
+          "provider_id": "3939cc19-9b5f-4a41-ab58-844ecab3a4f0",
+          "created_at": "2018-02-01T14:48:18.271Z",
+          "updated_at": "2018-02-01T14:48:18.271Z"
         }
 
 ### Update a specific variant [PATCH]
@@ -2921,17 +2928,17 @@ FORMAT: A1
 
         Accept: application/json
         Content-Type: application/json
-        Access-Token: otKcFkRqsZZ_giYeZrbCaA
+        Access-Token: u2wVwmcnCijSn25ZBm49Xg
         Token-Type: Bearer
-        Client: MQTGl1znwTIFekJS5O_UXw
-        Expiry: 1519907323
-        Uid: leonor@moen.org
+        Client: hidASOZ7P0xWCyXLcB9PAA
+        Expiry: 1519915698
+        Uid: akeem_hintz@lesch.info
 
     + Body
 
         {
           "variant": {
-            "ratio": 41.63
+            "ratio": 42.68
           }
         }
 
@@ -2940,25 +2947,25 @@ FORMAT: A1
     + Headers
 
         Content-Type: application/json
-        access-token: otKcFkRqsZZ_giYeZrbCaA
+        access-token: u2wVwmcnCijSn25ZBm49Xg
         token-type: Bearer
-        client: MQTGl1znwTIFekJS5O_UXw
-        expiry: 1519907323
-        uid: leonor@moen.org
+        client: hidASOZ7P0xWCyXLcB9PAA
+        expiry: 1519915698
+        uid: akeem_hintz@lesch.info
 
     + Body
 
         {
-          "id": "ab65a2c0-cc1a-4ca7-adde-86c25d65d22b",
-          "product_id": "49a2e012-8503-4955-844a-c81d84d0d8ab",
-          "ratio": 41.63,
-          "provider_id": "f978041a-32cb-403f-b11c-90ad6196558d",
-          "barcode": "000002260037683",
-          "buying_price": 18.48,
-          "original_barcode": "2260037683",
+          "id": "3b641c82-4953-407c-9c92-c8a81ff945d3",
+          "product_id": "5b940e21-34a2-49cb-b67d-5c0122fcbc4a",
+          "ratio": 42.68,
+          "provider_id": "2f21b503-f1b3-4ab3-bd3e-bc3f6a5f035d",
+          "barcode": "000001451602408",
+          "buying_price": 71.22,
+          "original_barcode": "1451602408",
           "quantity": 0,
-          "tax_free_price": 33.264,
+          "tax_free_price": 128.196,
           "default": false,
-          "created_at": "2018-02-01T12:28:43.134Z",
-          "updated_at": "2018-02-01T12:28:43.315Z"
+          "created_at": "2018-02-01T14:48:18.486Z",
+          "updated_at": "2018-02-01T14:48:18.668Z"
         }
