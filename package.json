@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "docs": "mkdir temp_docs && cp docs/*.md temp_docs &&RAILS_ENV=test bundle exec rake docs:generate && aglio -i docs/index.apib --theme-template triple -o docs/index.html --theme-variables streak && cp temp_docs/* docs && rm -rf temp_docs"
+    "docs": "mkdir temp_docs && cp docs/*.md temp_docs && RAILS_ENV=test bundle exec rake docs:generate && aglio -i docs/index.apib --theme-template triple -o docs/index.html --theme-variables streak && cp temp_docs/* docs && rm -rf temp_docs"
   },
   "repository": {
     "type": "git",
