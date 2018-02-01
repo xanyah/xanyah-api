@@ -33,6 +33,10 @@ class InventoriesController < ApplicationController
     end
   end
 
+  def destroy
+    @inventory.destroy
+  end
+
   private
 
   def create_params

@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_180_131_082_035) do
+ActiveRecord::Schema.define(version: 20180201101418) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
@@ -83,6 +84,14 @@ ActiveRecord::Schema.define(version: 20_180_131_082_035) do
     t.index ["store_id"], name: "index_providers_on_store_id"
   end
 
+  create_table "shippings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "locked_at"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_shippings_on_store_id"
+  end
+
   create_table "stock_backup_variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "quantity"
     t.uuid "stock_backup_id"
@@ -148,7 +157,7 @@ ActiveRecord::Schema.define(version: 20_180_131_082_035) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index %w[uid provider], name: "index_users_on_uid_and_provider", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   create_table "variant_attributes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -188,6 +197,7 @@ ActiveRecord::Schema.define(version: 20_180_131_082_035) do
   add_foreign_key "products", "manufacturers"
   add_foreign_key "products", "stores"
   add_foreign_key "providers", "stores"
+  add_foreign_key "shippings", "stores"
   add_foreign_key "stock_backup_variants", "stock_backups"
   add_foreign_key "stock_backup_variants", "variants"
   add_foreign_key "stock_backups", "stores"
