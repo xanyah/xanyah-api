@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -5,8 +7,8 @@ RSpec.describe User, type: :model do
     expect(build(:user)).to be_valid
   end
 
-  describe :validations do
-    describe :email do
+  describe 'validations' do
+    describe 'email' do
       it :uniqueness do
         user = create(:user)
         expect(user).to be_valid

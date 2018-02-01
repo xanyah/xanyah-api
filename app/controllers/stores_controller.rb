@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StoresController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
@@ -33,12 +35,13 @@ class StoresController < ApplicationController
   end
 
   private
-    # Only allow a trusted parameter "white list" through.
-    def create_params
-      params.require(:store).permit(:name, :address, :country, :key)
-    end
 
-    def update_params
-      params.require(:store).permit(:name, :address, :country)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def create_params
+    params.require(:store).permit(:name, :address, :country, :key)
+  end
+
+  def update_params
+    params.require(:store).permit(:name, :address, :country)
+  end
 end

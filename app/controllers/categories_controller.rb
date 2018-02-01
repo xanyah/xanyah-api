@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
   # GET /categories
   def index
-    @categories = current_user.stores.map {|s| s.categories }.flatten
+    @categories = current_user.stores.map(&:categories).flatten
     render json: @categories
   end
 
@@ -32,12 +34,13 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Only allow a trusted parameter "white list" through.
-    def create_params
-      params.require(:category).permit(:name, :tva, :store_id, :category_id)
-    end
 
-    def update_params
-      params.require(:category).permit(:name, :category_id)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def create_params
+    params.require(:category).permit(:name, :tva, :store_id, :category_id)
+  end
+
+  def update_params
+    params.require(:category).permit(:name, :category_id)
+  end
 end

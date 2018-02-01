@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ProviderAbility
   def provider_ability(user)
     can :cru, Provider do |provider|

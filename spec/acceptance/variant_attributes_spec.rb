@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'acceptance_helper'
 
 resource 'Variant Attributes' do
-  header "Accept", "application/json"
-  header "Content-Type", "application/json"
-  header "Access-Token", :access_token
-  header "Token-Type", :token_type
-  header "Client", :client_id
-  header "Expiry", :expiry
-  header "Uid", :uid
+  header 'Accept', 'application/json'
+  header 'Content-Type', 'application/json'
+  header 'Access-Token', :access_token
+  header 'Token-Type', :token_type
+  header 'Client', :client_id
+  header 'Expiry', :expiry
+  header 'Uid', :uid
 
   let(:membership) { create(:store_membership, role: :admin) }
   let(:auth_token) { membership.user.create_new_auth_token }
@@ -24,7 +26,7 @@ resource 'Variant Attributes' do
         create(:variant_attribute, variant: create(:variant, product: create(:product, store: membership.store)))
       end
 
-      example_request "List all variant attributes" do
+      example_request 'List all variant attributes' do
         expect(response_status).to eq(200)
         expect(JSON.parse(response_body).size).to eq(1)
       end
@@ -42,12 +44,11 @@ resource 'Variant Attributes' do
       let(:variant_id) { variant_attribute[:variant_id] }
       let(:variant_attribute) {
         attributes_for(:variant_attribute,
-          custom_attribute_id: create(:custom_attribute, store: membership.store).id,
-          variant_id: create(:variant, product: create(:product, store: membership.store)).id
-        )
+                       custom_attribute_id: create(:custom_attribute, store: membership.store).id,
+                       variant_id:          create(:variant, product: create(:product, store: membership.store)).id)
       }
 
-      example_request "Create a variant attribute" do
+      example_request 'Create a variant attribute' do
         expect(response_status).to eq(201)
         expect(JSON.parse(response_body)['id']).to be_present
       end

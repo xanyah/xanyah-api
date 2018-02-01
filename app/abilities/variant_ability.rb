@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module VariantAbility
   def variant_ability(user)
     can :cru, Variant do |variant|

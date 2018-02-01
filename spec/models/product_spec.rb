@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
@@ -5,26 +7,26 @@ RSpec.describe Product, type: :model do
     expect(build(:product)).to be_valid
   end
 
-  describe :validations do
-    describe :name do
+  describe 'validations' do
+    describe 'name' do
       it :presence do
         expect(build(:product, name: nil)).not_to be_valid
       end
     end
 
-    describe :category do
+    describe 'category' do
       it :presence do
         expect(build(:product, category: nil)).not_to be_valid
       end
     end
 
-    describe :manufacturer do
+    describe 'manufacturer' do
       it :presence do
         expect(build(:product, manufacturer: nil)).not_to be_valid
       end
     end
 
-    describe :store do
+    describe 'store' do
       it :presence do
         expect(build(:product, store: nil)).not_to be_valid
       end

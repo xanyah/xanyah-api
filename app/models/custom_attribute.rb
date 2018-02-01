@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CustomAttribute < ApplicationRecord
-  enum type: [:text, :number]
+  enum type: %i[text number]
   belongs_to :store, optional: false
 
   has_many :variant_attributes, dependent: :destroy

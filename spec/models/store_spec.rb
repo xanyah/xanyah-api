@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Store, type: :model do
@@ -5,8 +7,8 @@ RSpec.describe Store, type: :model do
     expect(build(:store)).to be_valid
   end
 
-  describe :validations do
-    describe :key do
+  describe 'validations' do
+    describe 'key' do
       it :uniqueness do
         store = create(:store)
         expect(store).to be_valid
@@ -18,7 +20,7 @@ RSpec.describe Store, type: :model do
       end
     end
 
-    describe :country do
+    describe 'country' do
       it :presence do
         expect(build(:store, country: nil)).not_to be_valid
       end
@@ -30,8 +32,8 @@ RSpec.describe Store, type: :model do
     end
   end
 
-  describe :abilities do
-    describe :everyone do
+  describe 'abilities' do
+    describe 'everyone' do
       it :can_create do
         expect(Ability.new(build(:user))).to be_able_to(:create, Store.new)
       end
@@ -46,8 +48,9 @@ RSpec.describe Store, type: :model do
       end
     end
 
-    describe :regular do
+    describe 'regular' do
       let(:membership) { create(:store_membership, role: :regular) }
+
       it :can_create do
         expect(Ability.new(membership.user)).to be_able_to(:create, Store.new)
       end
@@ -62,8 +65,9 @@ RSpec.describe Store, type: :model do
       end
     end
 
-    describe :admin do
+    describe 'admin' do
       let(:membership) { create(:store_membership, role: :admin) }
+
       it :can_create do
         expect(Ability.new(membership.user)).to be_able_to(:create, Store.new)
       end
@@ -78,8 +82,9 @@ RSpec.describe Store, type: :model do
       end
     end
 
-    describe :owner do
+    describe 'owner' do
       let(:membership) { create(:store_membership, role: :owner) }
+
       it :can_create do
         expect(Ability.new(membership.user)).to be_able_to(:create, Store.new)
       end
@@ -95,11 +100,14 @@ RSpec.describe Store, type: :model do
     end
   end
 
-  describe :scopes do
+  describe 'scopes' do
     let(:store) { create(:store) }
-    let!(:regular) { create(:store_membership, store: store, role: :regular) }
-    let!(:admin) { create(:store_membership, store: store, role: :admin) }
-    let!(:owner) { create(:store_membership, store: store, role: :owner) }
+
+    before do
+      create(:store_membership, store: store, role: :regular)
+      create(:store_membership, store: store, role: :admin)
+      create(:store_membership, store: store, role: :owner)
+    end
 
     it :has_regular_scope do
       expect(store.users.size).to eq(3)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -13,7 +15,7 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  if Rails.root.join('tmp', 'caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
@@ -30,16 +32,15 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: ENV['DEFAULT_URL'] }
+  config.action_mailer.default_url_options = {host: ENV['DEFAULT_URL']}
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { address: ENV['SMTP_ADDRESS'], port: ENV['SMTP_PORT'] }
+  config.action_mailer.smtp_settings = {address: ENV['SMTP_ADDRESS'], port: ENV['SMTP_PORT']}
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
-
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
