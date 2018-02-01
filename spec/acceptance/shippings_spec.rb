@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'Inventories' do
+resource 'Shippings' do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Access-Token', :access_token
@@ -19,62 +19,62 @@ resource 'Inventories' do
   let(:expiry) { auth_token['expiry'] }
   let(:uid) { auth_token['uid'] }
 
-  route '/inventories', 'Inventories collection' do
-    get 'Returns all inventories' do
+  route '/shippings', 'Shippings collection' do
+    get 'Returns all shippings' do
       before do
-        create(:inventory)
-        create(:inventory, store: membership.store)
+        create(:shipping)
+        create(:shipping, store: membership.store)
       end
 
-      example_request 'List all inventories' do
+      example_request 'List all shippings' do
         expect(response_status).to eq(200)
         expect(JSON.parse(response_body).size).to eq(1)
       end
     end
 
-    post 'Create a inventory' do
-      with_options scope: :inventory do
-        parameter :store_id, "Inventory's store id", required: true
+    post 'Create a shipping' do
+      with_options scope: :shipping do
+        parameter :store_id, "Shipping's store id", required: true
       end
 
       let(:store_id) { membership.store_id }
 
-      example_request 'Create a inventory' do
+      example_request 'Create a shipping' do
         expect(response_status).to eq(201)
         expect(JSON.parse(response_body)['id']).to be_present
       end
     end
   end
 
-  route '/inventories/:id', 'Single inventory' do
-    let!(:inventory) { create(:inventory, store: membership.store) }
+  route '/shippings/:id', 'Single shipping' do
+    let!(:shipping) { create(:shipping, store: membership.store) }
 
-    get 'Get a specific inventory' do
-      let(:id) { inventory.id }
+    get 'Get a specific shipping' do
+      let(:id) { shipping.id }
 
-      example_request 'Getting a inventory' do
+      example_request 'Getting a shipping' do
         expect(status).to eq(200)
         body = JSON.parse(response_body)
         expect(body['id']).to eq(id)
       end
     end
 
-    delete 'Delete a specific inventory' do
-      let(:id) { inventory.id }
+    delete 'Delete a specific shipping' do
+      let(:id) { shipping.id }
 
-      example_request 'Deleting a inventory' do
+      example_request 'Deleting a shipping' do
         expect(status).to eq(204)
       end
     end
   end
 
-  route '/inventories/:id/lock', 'Single inventory' do
-    let!(:inventory) { create(:inventory, store: membership.store, locked_at: nil) }
+  route '/shippings/:id/lock', 'Single shipping' do
+    let!(:shipping) { create(:shipping, store: membership.store, locked_at: nil) }
 
-    patch 'Lock a specific inventory' do
-      let(:id) { inventory.id }
+    patch 'Lock a specific shipping' do
+      let(:id) { shipping.id }
 
-      example_request 'Locking a inventory' do
+      example_request 'Locking a shipping' do
         expect(status).to eq(200)
         body = JSON.parse(response_body)
         expect(body['id']).to eq(id)

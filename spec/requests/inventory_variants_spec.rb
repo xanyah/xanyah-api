@@ -76,5 +76,27 @@ RSpec.describe 'InventoryVariants', type: :request do
       expect(response).to have_http_status(:unauthorized)
       expect(JSON.parse(response.body)).to have_key('errors')
     end
+
+    describe 'DELETE /inventory_variants/:id' do
+      it 'deletes inventory variant if membership' do
+        inventory_variant = create(:inventory_variant,
+                                   variant:   create(:variant, product: create(:product, store: store)),
+                                   inventory: create(:inventory, store: store, locked_at: nil))
+        delete inventory_variant_path(inventory_variant), headers: store_membership.user.create_new_auth_token
+        expect(response).to have_http_status(:no_content)
+      end
+
+      it 'returns 401 if !membership' do
+        delete inventory_variant_path(create(:inventory_variant)), headers: create(:user).create_new_auth_token
+        expect(response).to have_http_status(:unauthorized)
+        expect(JSON.parse(response.body)).to have_key('errors')
+      end
+
+      it 'returns 401 if !loggedin' do
+        delete inventory_variant_path(create(:inventory_variant))
+        expect(response).to have_http_status(:unauthorized)
+        expect(JSON.parse(response.body)).to have_key('errors')
+      end
+    end
   end
 end

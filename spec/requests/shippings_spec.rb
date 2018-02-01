@@ -2,104 +2,104 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Inventories', type: :request do
+RSpec.describe 'Shippings', type: :request do
   let(:store_membership) { create(:store_membership) }
   let(:store) { store_membership.store }
   let(:user) { store_membership.user }
 
-  describe 'GET /inventories' do
-    it 'returns only permitted inventories' do
-      create(:inventory)
-      create(:inventory, store: store)
-      get inventories_path, headers: user.create_new_auth_token
+  describe 'GET /shippings' do
+    it 'returns only permitted shippings' do
+      create(:shipping)
+      create(:shipping, store: store)
+      get shippings_path, headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body).size).to eq(1)
     end
 
     it 'return empty if !membership' do
-      get inventories_path, headers: create(:user).create_new_auth_token
+      get shippings_path, headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body).size).to eq(0)
     end
 
     it 'returns 401 if !loggedin' do
-      get inventories_path
+      get shippings_path
       expect(response).to have_http_status(:unauthorized)
     end
   end
 
-  describe 'GET /inventories/:id' do
-    it 'returns inventory if membership' do
-      inventory = create(:inventory, store: store)
-      get inventory_path(inventory), headers: user.create_new_auth_token
+  describe 'GET /shippings/:id' do
+    it 'returns shipping if membership' do
+      shipping = create(:shipping, store: store)
+      get shipping_path(shipping), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)['id']).to be_present
     end
 
     it 'returns 401 if !membership' do
-      get inventory_path(create(:inventory)), headers: create(:user).create_new_auth_token
+      get shipping_path(create(:shipping)), headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 
     it 'returns 401 if !loggedin' do
-      get inventory_path(create(:inventory))
+      get shipping_path(create(:shipping))
       expect(response).to have_http_status(:unauthorized)
       expect(JSON.parse(response.body)).to have_key('errors')
     end
   end
 
-  describe 'PATCH /inventories/:id/lock' do
-    it 'updates inventory if membership' do
+  describe 'PATCH /shippings/:id/lock' do
+    it 'updates shipping if membership' do
       store_membership.update(role: :admin)
-      inventory = create(:inventory, store: store, locked_at: nil)
-      patch lock_inventory_path(inventory), headers: user.create_new_auth_token
+      shipping = create(:shipping, store: store, locked_at: nil)
+      patch lock_shipping_path(shipping), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)['locked_at']).not_to eq(nil)
     end
 
     it 'returns 401 if !membership' do
-      patch lock_inventory_path(create(:inventory)), headers: create(:user).create_new_auth_token
+      patch lock_shipping_path(create(:shipping)), headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 
     it 'returns 401 if !loggedin' do
-      patch lock_inventory_path(create(:inventory))
+      patch lock_shipping_path(create(:shipping))
       expect(response).to have_http_status(:unauthorized)
       expect(JSON.parse(response.body)).to have_key('errors')
     end
   end
 
-  describe 'DELETE /inventories/:id' do
-    it 'deletes inventory variant if membership >= admin' do
+  describe 'DELETE /shippings/:id' do
+    it 'deletes shipping variant if membership >= admin' do
       store_membership.update(role: :admin)
-      inventory = create(:inventory, store: store, locked_at: nil)
-      delete inventory_path(inventory), headers: store_membership.user.create_new_auth_token
+      shipping = create(:shipping, store: store, locked_at: nil)
+      delete shipping_path(shipping), headers: store_membership.user.create_new_auth_token
       expect(response).to have_http_status(:no_content)
     end
 
     it 'returns 401 if membership < admin' do
       store_membership.update(role: :regular)
-      inventory = create(:inventory, store: store, locked_at: nil)
-      delete inventory_path(inventory), headers: store_membership.user.create_new_auth_token
+      shipping = create(:shipping, store: store, locked_at: nil)
+      delete shipping_path(shipping), headers: store_membership.user.create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 
     it 'returns 401 if locked' do
       store_membership.update(role: :admin)
-      inventory = create(:inventory, store: store, locked_at: nil)
-      inventory.lock
-      delete inventory_path(inventory), headers: store_membership.user.create_new_auth_token
+      shipping = create(:shipping, store: store, locked_at: nil)
+      shipping.lock
+      delete shipping_path(shipping), headers: store_membership.user.create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 
     it 'returns 401 if !membership' do
-      delete inventory_path(create(:inventory)), headers: create(:user).create_new_auth_token
+      delete shipping_path(create(:shipping)), headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
       expect(JSON.parse(response.body)).to have_key('errors')
     end
 
     it 'returns 401 if !loggedin' do
-      delete inventory_path(create(:inventory))
+      delete shipping_path(create(:shipping))
       expect(response).to have_http_status(:unauthorized)
       expect(JSON.parse(response.body)).to have_key('errors')
     end

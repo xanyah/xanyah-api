@@ -25,14 +25,14 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe InventoriesController, type: :controller do
+RSpec.describe ShippingsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
-  # Inventory. As you add validations to Inventory, be sure to
+  # Shipping. As you add validations to Shipping, be sure to
   # adjust the attributes here as well.
   let(:store_membership) { create(:store_membership, role: :admin) }
   let(:user) { store_membership.user }
   let(:valid_attributes) {
-    attributes_for(:inventory, store_id: store_membership.store_id, locked_at: nil)
+    attributes_for(:shipping, store_id: store_membership.store_id, locked_at: nil)
   }
 
   let(:invalid_attributes) {
@@ -42,7 +42,7 @@ RSpec.describe InventoriesController, type: :controller do
 
   describe 'GET #index' do
     it 'returns a success response' do
-      Inventory.create! valid_attributes
+      Shipping.create! valid_attributes
       request.headers.merge! user.create_new_auth_token
       get :index, params: {}
       expect(response).to be_success
@@ -51,35 +51,35 @@ RSpec.describe InventoriesController, type: :controller do
 
   describe 'GET #show' do
     it 'returns a success response' do
-      inventory = Inventory.create! valid_attributes
+      shipping = Shipping.create! valid_attributes
       request.headers.merge! user.create_new_auth_token
-      get :show, params: {id: inventory.to_param}
+      get :show, params: {id: shipping.to_param}
       expect(response).to be_success
     end
   end
 
   describe 'POST #create' do
     context 'with valid params' do
-      it 'creates a new Inventory' do
+      it 'creates a new Shipping' do
         request.headers.merge! user.create_new_auth_token
         expect {
-          post :create, params: {inventory: valid_attributes}
-        }.to change(Inventory, :count).by(1)
+          post :create, params: {shipping: valid_attributes}
+        }.to change(Shipping, :count).by(1)
       end
 
-      it 'renders a JSON response with the new inventory' do
+      it 'renders a JSON response with the new shipping' do
         request.headers.merge! user.create_new_auth_token
-        post :create, params: {inventory: valid_attributes}
+        post :create, params: {shipping: valid_attributes}
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(inventory_url(Inventory.last))
+        expect(response.location).to eq(shipping_url(Shipping.last))
       end
     end
 
     context 'with invalid params' do
-      it 'renders a JSON response with errors for the new inventory' do
+      it 'renders a JSON response with errors for the new shipping' do
         request.headers.merge! user.create_new_auth_token
-        post :create, params: {inventory: invalid_attributes}
+        post :create, params: {shipping: invalid_attributes}
         expect(response).not_to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
@@ -88,19 +88,19 @@ RSpec.describe InventoriesController, type: :controller do
 
   describe 'PUT #lock' do
     context 'with valid params' do
-      it 'updates the requested inventory' do
-        inventory = Inventory.create! valid_attributes
+      it 'updates the requested shipping' do
+        shipping = Shipping.create! valid_attributes
         request.headers.merge! user.create_new_auth_token
-        put :lock, params: {id: inventory.to_param}
-        inventory.reload
-        expect(inventory.locked_at).not_to eq(nil)
+        put :lock, params: {id: shipping.to_param}
+        shipping.reload
+        expect(shipping.locked_at).not_to eq(nil)
       end
 
-      it 'renders a JSON response with the inventory' do
-        inventory = Inventory.create! valid_attributes
+      it 'renders a JSON response with the shipping' do
+        shipping = Shipping.create! valid_attributes
 
         request.headers.merge! user.create_new_auth_token
-        put :lock, params: {id: inventory.to_param}
+        put :lock, params: {id: shipping.to_param}
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
@@ -108,12 +108,12 @@ RSpec.describe InventoriesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested inventory' do
-      inventory = Inventory.create! valid_attributes
+    it 'destroys the requested shipping' do
+      shipping = Shipping.create! valid_attributes
       request.headers.merge! user.create_new_auth_token
       expect {
-        delete :destroy, params: {id: inventory.to_param}
-      }.to change(Inventory, :count).by(-1)
+        delete :destroy, params: {id: shipping.to_param}
+      }.to change(Shipping, :count).by(-1)
     end
   end
 end

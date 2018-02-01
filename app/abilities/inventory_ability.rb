@@ -8,5 +8,8 @@ module InventoryAbility
     can [:create, :lock], Inventory do |inventory|
       !inventory.store_id.nil? && inventory.store.admins.include?(user)
     end
+    can :destroy, Inventory do |inventory|
+      inventory.locked_at.nil? && inventory.store.admins.include?(user)
+    end
   end
 end
