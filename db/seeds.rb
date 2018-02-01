@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
-logger.info "Creating users"
+puts "Creating users"
 
 owner_user = User.create(
   email: "owner@xanyah.io",
