@@ -20,17 +20,24 @@ resource 'Authentication' do
       parameter :password, "User's password", required: true
       parameter :password_confirmation, "User's password confirmation", required: true
       parameter :confirm_success_url, 'URL to redirect to on email confirmation', required: true
+      parameter :firstname, "User's firstname"
+      parameter :lastname, "User's lastname"
+      parameter :locale, "User's locale"
 
       let(:user) { build(:user) }
       let(:email) { user.email }
       let(:password) { user.password }
       let(:password_confirmation) { user.password }
       let(:confirm_success_url) { Faker::Internet.url }
+      let(:firstname) { user.firstname }
+      let(:lastname) { user.lastname }
+      let(:locale) { user.locale }
 
       example_request 'Sign up user' do
         expect(response_status).to eq(200)
         response = JSON.parse(response_body)
         expect(response['status']).to eq('success')
+        expect(response['data']['firstname']).to eq(firstname)
       end
     end
 
@@ -53,15 +60,19 @@ resource 'Authentication' do
       header 'Expiry', :expiry
       header 'Uid', :uid
 
-      parameter :password, "User's new password", required: true
-      parameter :password_confirmation, "User's new password confirmation", required: true
+      parameter :firstname, "User's firstname"
+      parameter :lastname, "User's lastname"
+      parameter :locale, "User's locale"
 
       let(:user) { build(:user) }
-      let(:password) { user.password }
-      let(:password_confirmation) { user.password }
+      let(:firstname) { user.firstname }
+      let(:lastname) { user.lastname }
+      let(:locale) { user.locale }
 
       example_request 'Update current user' do
         expect(response_status).to eq(200)
+        response = JSON.parse(response_body)
+        expect(response['data']['firstname']).to eq(firstname)
       end
     end
   end
