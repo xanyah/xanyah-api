@@ -6,5 +6,6 @@ FactoryBot.define do
     lastname { Faker::Name.last_name }
     email { Faker::Internet.email }
     password { Faker::Internet.password }
+    locale { %w[fr en].sample }
   end
 end
