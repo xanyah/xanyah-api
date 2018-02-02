@@ -7,6 +7,8 @@ class ManufacturersController < ApplicationController
   # GET /providers
   def index
     @manufacturers = current_user.stores.map(&:manufacturers).flatten
+    @manufacturers = @manufacturers.select {|c| c.store_id == params[:store_id] } if params[:store_id].present?
+
     render json: @manufacturers
   end
 

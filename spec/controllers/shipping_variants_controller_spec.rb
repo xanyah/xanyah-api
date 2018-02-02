@@ -45,6 +45,21 @@ RSpec.describe ShippingVariantsController, type: :controller do
                                                                    store: store_membership.store
                                                                  ))).id)
   }
+  let(:duplicate_valid_attributes) {
+    store_membership = create(:store_membership, user: user)
+    attributes_for(:shipping_variant,
+                   shipping_id: create(:shipping, store_id: store_membership.store_id, locked_at: nil).id,
+                   variant_id:  create(:variant, product: create(:product,
+                                                                 store_id:     store_membership.store_id,
+                                                                 category:     create(
+                                                                   :category,
+                                                                   store: store_membership.store
+                                                                 ),
+                                                                 manufacturer: create(
+                                                                   :manufacturer,
+                                                                   store: store_membership.store
+                                                                 ))).id)
+  }
 
   let(:invalid_attributes) {
     {
@@ -57,6 +72,18 @@ RSpec.describe ShippingVariantsController, type: :controller do
       request.headers.merge! user.create_new_auth_token
       get :index, params: {}
       expect(response).to be_success
+    end
+
+    it 'filters by shipping' do
+      ShippingVariant.create! valid_attributes
+      ShippingVariant.create! duplicate_valid_attributes
+      request.headers.merge! user.create_new_auth_token
+      get :index, params: {shipping_id: valid_attributes[:shipping_id]}
+      expect(response).to be_success
+      expect(JSON.parse(response.body).size).to eq(1)
+      get :index, params: {}
+      expect(response).to be_success
+      expect(JSON.parse(response.body).size).to eq(2)
     end
   end
 

@@ -7,6 +7,8 @@ class StoreMembershipsController < ApplicationController
   # GET /store_memberships
   def index
     @store_memberships = current_user.stores.map(&:store_memberships).flatten
+    @store_memberships = @store_memberships.select {|c| c.store_id == params[:store_id] } if params[:store_id].present?
+
     render json: @store_memberships
   end
 

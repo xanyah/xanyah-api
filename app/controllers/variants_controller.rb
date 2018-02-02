@@ -7,6 +7,7 @@ class VariantsController < ApplicationController
   # GET /variants
   def index
     @variants = current_user.stores.map {|s| s.products.map(&:variants) }.flatten
+    @variants = @variants.select {|c| c.product_id == params[:product_id] } if params[:product_id].present?
 
     render json: @variants
   end

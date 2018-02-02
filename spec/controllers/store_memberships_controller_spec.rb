@@ -34,6 +34,9 @@ RSpec.describe StoreMembershipsController, type: :controller do
   let(:valid_attributes) {
     attributes_for(:store_membership, user_id: user.id, store_id: store.id, role: :regular)
   }
+  let(:duplicate_valid_attributes) {
+    attributes_for(:store_membership, user_id: user.id, store_id: create(:store).id, role: :regular)
+  }
 
   let(:invalid_attributes) {
     {
@@ -51,6 +54,18 @@ RSpec.describe StoreMembershipsController, type: :controller do
       request.headers.merge! membership.user.create_new_auth_token
       get :index, params: {}
       expect(response).to be_success
+    end
+
+    it 'filters by store' do
+      StoreMembership.create! valid_attributes
+      StoreMembership.create! duplicate_valid_attributes
+      request.headers.merge! user.create_new_auth_token
+      get :index, params: {store_id: valid_attributes[:store_id]}
+      expect(response).to be_success
+      expect(JSON.parse(response.body).size).to eq(1)
+      get :index, params: {}
+      expect(response).to be_success
+      expect(JSON.parse(response.body).size).to eq(2)
     end
   end
 

@@ -41,6 +41,17 @@ RSpec.describe VariantsController, type: :controller do
                      category:     create(:category, store: store_membership.store)
                    ).id)
   }
+  
+  let(:duplicate_valid_attributes) {
+    attributes_for(:variant,
+                   provider_id: create(:provider, store: store_membership.store).id,
+                   product_id:  create(
+                     :product,
+                     store:        store_membership.store,
+                     manufacturer: create(:manufacturer, store: store_membership.store),
+                     category:     create(:category, store: store_membership.store)
+                   ).id)
+  }
 
   let(:invalid_attributes) {
     attributes_for(:variant, product_id: nil)
@@ -52,6 +63,18 @@ RSpec.describe VariantsController, type: :controller do
       request.headers.merge! user.create_new_auth_token
       get :index, params: {}
       expect(response).to be_success
+    end
+
+    it 'filters by product' do
+      Variant.create! valid_attributes
+      Variant.create! duplicate_valid_attributes
+      request.headers.merge! user.create_new_auth_token
+      get :index, params: {product_id: valid_attributes[:product_id]}
+      expect(response).to be_success
+      expect(JSON.parse(response.body).size).to eq(1)
+      get :index, params: {}
+      expect(response).to be_success
+      expect(JSON.parse(response.body).size).to eq(2)
     end
   end
 

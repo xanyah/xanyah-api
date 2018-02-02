@@ -21,6 +21,8 @@ resource 'Categories' do
 
   route '/categories', 'Categories collection' do
     get 'Returns all categories' do
+      parameter :store_id, 'Filter by store'
+
       before do
         create(:category)
         create(:category, store: membership.store)

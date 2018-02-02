@@ -21,6 +21,8 @@ resource 'Store Memberships' do
 
   route '/store_memberships', 'Store memberships collection' do
     get 'Returns all store memberships' do
+      parameter :store_id, 'Filter by store'
+
       example_request 'List all store memberships' do
         expect(response_status).to eq(200)
         expect(JSON.parse(response_body).size).to eq(1)
