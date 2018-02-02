@@ -41,7 +41,7 @@ RSpec.describe VariantsController, type: :controller do
                      category:     create(:category, store: store_membership.store)
                    ).id)
   }
-  
+
   let(:duplicate_valid_attributes) {
     attributes_for(:variant,
                    provider_id: create(:provider, store: store_membership.store).id,
