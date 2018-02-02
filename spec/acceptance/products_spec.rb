@@ -21,6 +21,8 @@ resource 'Products' do
 
   route '/products', 'Products collection' do
     get 'Returns all products' do
+      parameter :store_id, 'Filter by store'
+
       before do
         create(:product)
         create(:product, store: membership.store)

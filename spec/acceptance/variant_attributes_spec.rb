@@ -21,6 +21,8 @@ resource 'Variant Attributes' do
 
   route '/variant_attributes', 'Variant Attributes collection' do
     get 'Returns all variant_attributes' do
+      parameter :variant_id, 'Filter by variant'
+
       before do
         create(:variant_attribute)
         create(:variant_attribute, variant: create(:variant, product: create(:product, store: membership.store)))

@@ -50,6 +50,19 @@ RSpec.describe CustomAttributesController, type: :controller do
       get :index, params: {}
       expect(response).to be_success
     end
+
+    it 'filters by store' do
+      CustomAttribute.create! valid_attributes
+      item = CustomAttribute.create! valid_attributes
+      item.update(store: create(:store_membership, user: user).store)
+      request.headers.merge! user.create_new_auth_token
+      get :index, params: {store_id: valid_attributes[:store_id]}
+      expect(response).to be_success
+      expect(JSON.parse(response.body).size).to eq(1)
+      get :index, params: {}
+      expect(response).to be_success
+      expect(JSON.parse(response.body).size).to eq(2)
+    end
   end
 
   describe 'GET #show' do

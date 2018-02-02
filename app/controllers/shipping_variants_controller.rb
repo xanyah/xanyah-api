@@ -7,6 +7,9 @@ class ShippingVariantsController < ApplicationController
   # GET /shipping_variants
   def index
     @shipping_variants = current_user.stores.map(&:shipping_variants).flatten
+    if params[:shipping_id].present?
+      @shipping_variants = @shipping_variants.select {|c| c.shipping_id == params[:shipping_id] }
+    end
 
     render json: @shipping_variants
   end

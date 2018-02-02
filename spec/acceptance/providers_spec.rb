@@ -21,6 +21,8 @@ resource 'Providers' do
 
   route '/providers', 'Providers collection' do
     get 'Returns all providers' do
+      parameter :store_id, 'Filter by store'
+
       before do
         create(:provider)
         create(:provider, store: membership.store)

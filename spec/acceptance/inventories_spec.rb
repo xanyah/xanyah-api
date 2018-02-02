@@ -21,6 +21,8 @@ resource 'Inventories' do
 
   route '/inventories', 'Inventories collection' do
     get 'Returns all inventories' do
+      parameter :store_id, 'Filter by store'
+
       before do
         create(:inventory)
         create(:inventory, store: membership.store)

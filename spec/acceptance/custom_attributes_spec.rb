@@ -21,6 +21,8 @@ resource 'Custom Attributes' do
 
   route '/custom_attributes', 'Custom Attributes collection' do
     get 'Returns all custom_attributes' do
+      parameter :store_id, 'Filter by store'
+
       before do
         create(:custom_attribute)
         create(:custom_attribute, store: membership.store)

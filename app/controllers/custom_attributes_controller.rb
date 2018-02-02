@@ -7,6 +7,7 @@ class CustomAttributesController < ApplicationController
   # GET /custom_attributes
   def index
     @custom_attributes = current_user.stores.map(&:custom_attributes).flatten
+    @custom_attributes = @custom_attributes.select {|c| c.store_id == params[:store_id] } if params[:store_id].present?
 
     render json: @custom_attributes
   end

@@ -21,6 +21,8 @@ resource 'Inventory Variants' do
 
   route '/inventory_variants', 'Inventory variants collection' do
     get 'Returns all inventory_variants' do
+      parameter :inventory_id, 'Filter by inventory'
+
       before do
         create(:inventory_variant)
         create(:inventory_variant,

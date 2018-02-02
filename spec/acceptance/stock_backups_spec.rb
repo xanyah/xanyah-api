@@ -21,6 +21,8 @@ resource 'Stock Backups' do
 
   route '/stock_backups', 'Stock backups collection' do
     get 'Returns all stock backups' do
+      parameter :store_id, 'Filter by store'
+
       before do
         create(:stock_backup)
         create(:stock_backup, store: membership.store)

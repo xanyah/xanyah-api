@@ -43,6 +43,18 @@ RSpec.describe StockBackupVariantsController, type: :controller do
                               )).id,
       stock_backup_id: create(:stock_backup, store: store_membership.store).id
     }}
+  let(:duplicate_valid_attributes) {
+    {
+      variant_id:      create(:variant,
+                              provider: create(:provider, store: store_membership.store),
+                              product:  create(
+                                :product,
+                                store:        store_membership.store,
+                                manufacturer: create(:manufacturer, store: store_membership.store),
+                                category:     create(:category, store: store_membership.store)
+                              )).id,
+      stock_backup_id: create(:stock_backup, store: store_membership.store).id
+    }}
 
   describe 'GET #index' do
     it 'returns a success response' do
@@ -50,6 +62,18 @@ RSpec.describe StockBackupVariantsController, type: :controller do
       request.headers.merge! user.create_new_auth_token
       get :index, params: {}
       expect(response).to be_success
+    end
+
+    it 'filters by stock backup' do
+      StockBackupVariant.create! valid_attributes
+      StockBackupVariant.create! duplicate_valid_attributes
+      request.headers.merge! user.create_new_auth_token
+      get :index, params: {stock_backup_id: valid_attributes[:stock_backup_id]}
+      expect(response).to be_success
+      expect(JSON.parse(response.body).size).to eq(1)
+      get :index, params: {}
+      expect(response).to be_success
+      expect(JSON.parse(response.body).size).to eq(2)
     end
   end
 

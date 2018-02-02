@@ -7,6 +7,9 @@ class VariantAttributesController < ApplicationController
   # GET /variant_attributes
   def index
     @variant_attributes = current_user.stores.map(&:variant_attributes).flatten
+    if params[:variant_id].present?
+      @variant_attributes = @variant_attributes.select {|c| c.variant_id == params[:variant_id] }
+    end
 
     render json: @variant_attributes
   end

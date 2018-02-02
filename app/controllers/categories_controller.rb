@@ -7,6 +7,8 @@ class CategoriesController < ApplicationController
   # GET /categories
   def index
     @categories = current_user.stores.map(&:categories).flatten
+    @categories = @categories.select {|c| c.store_id == params[:store_id] } if params[:store_id].present?
+
     render json: @categories
   end
 

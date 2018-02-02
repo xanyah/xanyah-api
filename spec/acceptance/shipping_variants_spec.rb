@@ -21,6 +21,8 @@ resource 'Shipping Variants' do
 
   route '/shipping_variants', 'Shipping variants collection' do
     get 'Returns all shipping_variants' do
+      parameter :shipping_id, 'Filter by shipping'
+
       before do
         create(:shipping_variant)
         create(:shipping_variant,

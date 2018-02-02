@@ -21,6 +21,8 @@ resource 'Variants' do
 
   route '/variants', 'Variants collection' do
     get 'Returns all variants' do
+      parameter :product_id, 'Filter by product'
+
       before do
         create(:variant)
         create(:variant, product: create(:product, store: membership.store))

@@ -21,6 +21,8 @@ resource 'Stock Backup Variants' do
 
   route '/stock_backup_variants', 'Stock backup variants collection' do
     get 'Returns all stock backup_variants' do
+      parameter :stock_backup_id, 'Filter by stock backup'
+
       before do
         create(:stock_backup_variant)
         create(:stock_backup_variant, stock_backup: create(:stock_backup, store: membership.store))

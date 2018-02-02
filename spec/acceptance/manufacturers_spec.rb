@@ -21,6 +21,8 @@ resource 'Manufacturers' do
 
   route '/manufacturers', 'Manufacturers collection' do
     get 'Returns all manufacturers' do
+      parameter :store_id, 'Filter by store'
+
       before do
         create(:manufacturer)
         create(:manufacturer, store: membership.store)
