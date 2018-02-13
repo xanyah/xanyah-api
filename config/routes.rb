@@ -32,5 +32,7 @@ Rails.application.routes.draw do
   resources :stores, except: [:destroy]
 
   resources :variant_attributes
-  resources :variants, except: [:destroy]
+  resources :variants, except: [:destroy] do
+    get :by_barcode, on: :member
+  end
 end

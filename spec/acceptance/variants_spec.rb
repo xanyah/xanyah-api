@@ -94,4 +94,19 @@ resource 'Variants' do
       end
     end
   end
+
+  route '/variants/:id/by_barcode', 'Single variant' do
+    let!(:variant) { create(:variant, product: create(:product, store: membership.store)) }
+
+    get 'Get a specific variant' do
+      let(:id) { variant.barcode }
+
+      example_request 'Getting a variant by barcode' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body['id']).to eq(variant.id)
+        expect(body['ratio']).to eq(variant.ratio)
+      end
+    end
+  end
 end

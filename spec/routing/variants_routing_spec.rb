@@ -23,5 +23,9 @@ RSpec.describe VariantsController, type: :routing do
     it 'routes to #update via PATCH' do
       expect(patch: '/variants/1').to route_to('variants#update', id: '1')
     end
+
+    it 'routes to #by_barcode via GET' do
+      expect(get: '/variants/1/by_barcode').to route_to('variants#by_barcode', id: '1')
+    end
   end
 end

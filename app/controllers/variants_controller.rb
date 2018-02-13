@@ -2,12 +2,12 @@
 
 class VariantsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource except: :by_barcode
 
   # GET /variants
   def index
-    @variants = current_user.stores.map {|s| s.products.map(&:variants) }.flatten
-    @variants = @variants.select {|c| c.product_id == params[:product_id] } if params[:product_id].present?
+    @variants = current_user.variants
+    @variants = @variants.where(product_id: params[:product_id]) if params[:product_id].present?
 
     render json: @variants
   end
@@ -33,6 +33,11 @@ class VariantsController < ApplicationController
     else
       render json: @variant.errors, status: :unprocessable_entity
     end
+  end
+
+  def by_barcode
+    @variant = current_user.variants.find_by!(barcode: params[:id])
+    render json: @variant
   end
 
   private
