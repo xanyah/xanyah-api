@@ -25,7 +25,7 @@ RSpec.describe VariantSerializer do
   it :default_attributes do
     default_attributes.each do |attribute|
       if variant.send(attribute).class == ActiveSupport::TimeWithZone
-        expect(Time.parse(json[attribute]).to_s).to eq(variant.send(attribute).to_s)
+        expect(Time.zone.parse(json[attribute]).to_s).to eq(variant.send(attribute).to_s)
       else
         expect(json[attribute]).to eq(variant.send(attribute))
       end
@@ -37,9 +37,7 @@ RSpec.describe VariantSerializer do
       expect(json['product']['id']).to eq(variant.product.id)
       expect(json['product']['name']).to eq(variant.product.name)
     end
-  end
 
-  describe 'belongs_to' do
     it :provider do
       expect(json['provider']['id']).to eq(variant.provider.id)
       expect(json['provider']['name']).to eq(variant.provider.name)

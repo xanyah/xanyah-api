@@ -64,6 +64,8 @@ resource 'Stores' do
         body = JSON.parse(response_body)
         expect(body['id']).to eq(id)
         expect(body['name']).to eq(membership.store.name)
+        expect(body['store_membership']['id']).to eq(membership.id)
+        expect(body['store_membership']['role']).to eq(membership.role)
       end
     end
 
