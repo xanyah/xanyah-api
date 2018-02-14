@@ -23,6 +23,7 @@ class Variant < ApplicationRecord
 
   def set_barcode
     return nil if product.nil? || original_barcode.nil?
+    return self.barcode = original_barcode if store.variants.find_by(barcode: original_barcode).nil?
     value = 0
     loop do
       self.barcode = "#{product.variants.size.to_s.rjust(5, value.to_s)}#{original_barcode.gsub(/^0+/, '')}"

@@ -74,6 +74,11 @@ RSpec.describe Variant, type: :model do
         expect(variant2.barcode).not_to include(' ')
         expect(variant3.barcode).not_to include(' ')
       end
+
+      it :gets_original_with_leading_zeros do
+        variant = create(:variant, original_barcode: '0000000001')
+        expect(variant.barcode).to eq(variant.original_barcode)
+      end
     end
   end
 
