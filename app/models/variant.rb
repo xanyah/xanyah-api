@@ -2,6 +2,7 @@
 
 class Variant < ApplicationRecord
   before_validation :set_barcode, on: :create
+  before_validation :set_default, on: :create
 
   belongs_to :product, optional: false
   belongs_to :provider, optional: false
@@ -30,5 +31,9 @@ class Variant < ApplicationRecord
       value += 1
       break if store.variants.find_by(barcode: barcode).nil?
     end
+  end
+
+  def set_default
+    self.default = product.variants.size <= 0 unless product.nil?
   end
 end
