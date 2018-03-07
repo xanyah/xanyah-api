@@ -36,6 +36,7 @@ RSpec.describe VariantSerializer do
     it :product do
       expect(json['product']['id']).to eq(variant.product.id)
       expect(json['product']['name']).to eq(variant.product.name)
+      expect(json['product']['manufacturer']['name']).to eq(variant.product.manufacturer.name)
     end
 
     it :provider do

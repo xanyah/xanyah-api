@@ -12,6 +12,6 @@ class VariantSerializer < ActiveModel::Serializer
              :created_at,
              :updated_at
 
-  has_one :product, serializer: ProductSerializer
-  has_one :provider
+  belongs_to :product, serializer: ProductSerializer
+  belongs_to :provider
 end
