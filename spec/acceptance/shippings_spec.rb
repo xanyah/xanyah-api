@@ -37,9 +37,11 @@ resource 'Shippings' do
     post 'Create a shipping' do
       with_options scope: :shipping do
         parameter :store_id, "Shipping's store id", required: true
+        parameter :provider_id, "Shipping's provider id", required: true
       end
 
       let(:store_id) { membership.store_id }
+      let(:provider_id) { create(:provider, store: membership.store).id }
 
       example_request 'Create a shipping' do
         expect(response_status).to eq(201)
