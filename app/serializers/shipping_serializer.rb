@@ -2,7 +2,6 @@
 
 class ShippingSerializer < ActiveModel::Serializer
   attributes :id,
-             :address,
              :locked_at,
              :created_at,
              :updated_at
