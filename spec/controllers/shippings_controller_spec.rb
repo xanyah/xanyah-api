@@ -33,9 +33,9 @@ RSpec.describe ShippingsController, type: :controller do
   let(:user) { store_membership.user }
   let(:valid_attributes) {
     attributes_for(:shipping,
-      provider_id: create(:provider, store: store_membership.store).id,
-      store_id: store_membership.store_id,
-      locked_at: nil)
+                   provider_id: create(:provider, store: store_membership.store).id,
+                   store_id:    store_membership.store_id,
+                   locked_at:   nil)
   }
 
   let(:invalid_attributes) {
