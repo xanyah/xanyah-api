@@ -20,7 +20,14 @@ class ProductsController < ApplicationController
   # POST /products
   def create
     if @product.save
-      render json: @product, status: :created, location: @product
+      @variant = Variant.create(variant_params)
+      @variant.product_id = @product.id
+      @variant.default = true
+      if @variant.save
+        render json: @variant, status: :created, location: @variant
+      else
+        render json: @variant.errors, status: :unprocessable_entity
+      end
     else
       render json: @product.errors, status: :unprocessable_entity
     end
@@ -40,6 +47,10 @@ class ProductsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def create_params
     params.require(:product).permit(:name, :category_id, :manufacturer_id, :store_id)
+  end
+
+  def variant_params
+    params.require(:variant).permit(:buying_price, :tax_free_price, :provider_id, :ratio)
   end
 
   def update_params

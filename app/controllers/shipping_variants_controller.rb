@@ -2,14 +2,12 @@
 
 class ShippingVariantsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource except: :by_variant
 
   # GET /shipping_variants
   def index
-    @shipping_variants = current_user.stores.map(&:shipping_variants).flatten
-    if params[:shipping_id].present?
-      @shipping_variants = @shipping_variants.select {|c| c.shipping_id == params[:shipping_id] }
-    end
+    @shipping_variants = current_user.shipping_variants
+    @shipping_variants = @shipping_variants.where(shipping_id: params[:shipping_id]) if params[:shipping_id].present?
 
     render json: @shipping_variants
   end
@@ -17,6 +15,19 @@ class ShippingVariantsController < ApplicationController
   # GET /shipping_variants/1
   def show
     render json: @shipping_variant
+  end
+
+  def by_variant
+    @shipping_variant = ShippingVariant.where(
+      shipping_id: params[:shipping_id],
+      variant_id:  params[:variant_id]
+    ).first_or_create
+    authorize! :create, @shipping_variant
+    if @shipping_variant.save
+      render json: @shipping_variant
+    else
+      render json: @shipping_variant.errors, status: :unprocessable_entity
+    end
   end
 
   # POST /shipping_variants

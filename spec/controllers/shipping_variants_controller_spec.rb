@@ -96,6 +96,26 @@ RSpec.describe ShippingVariantsController, type: :controller do
     end
   end
 
+  describe 'GET #by_variant' do
+    it 'returns a success response' do
+      shipping_variant = ShippingVariant.create! valid_attributes
+      request.headers.merge! user.create_new_auth_token
+      get :by_variant, params: {shipping_id: shipping_variant.shipping_id, variant_id: shipping_variant.variant_id}
+      expect(response).to be_success
+    end
+
+    it 'creates shipping variant if doesn\'t exist' do
+      shipping_variant = ShippingVariant.new valid_attributes
+      request.headers.merge! user.create_new_auth_token
+      get :by_variant, params: {shipping_id: shipping_variant.shipping_id, variant_id: shipping_variant.variant_id}
+      expect(response).to be_success
+      expect(ShippingVariant.where(
+        shipping_id: shipping_variant.shipping_id,
+        variant_id:  shipping_variant.variant_id
+      ).size).to eq(1)
+    end
+  end
+
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new ShippingVariant' do

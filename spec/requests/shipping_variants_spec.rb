@@ -52,6 +52,32 @@ RSpec.describe 'ShippingVariants', type: :request do
     end
   end
 
+  describe 'GET /shipping_variants/:shipping_id/:variant_id' do
+    it 'returns shipping_variant if membership' do
+      shipping_variant = create(:shipping_variant,
+                                variant:  create(:variant, product: create(:product, store: store)),
+                                shipping: create(:shipping, store: store, locked_at: nil))
+      get "/shipping_variants/#{shipping_variant.shipping_id}/#{shipping_variant.variant_id}",
+          headers: user.create_new_auth_token
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body)['id']).to be_present
+    end
+
+    it 'returns 401 if !membership' do
+      shipping_variant = create(:shipping_variant)
+      get "/shipping_variants/#{shipping_variant.shipping_id}/#{shipping_variant.variant_id}",
+          headers: create(:user).create_new_auth_token
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'returns 401 if !loggedin' do
+      shipping_variant = create(:shipping_variant)
+      get "/shipping_variants/#{shipping_variant.shipping_id}/#{shipping_variant.variant_id}"
+      expect(response).to have_http_status(:unauthorized)
+      expect(JSON.parse(response.body)).to have_key('errors')
+    end
+  end
+
   describe 'PATCH /shipping_variants/:id' do
     it 'updates shipping_variant if membership' do
       store_membership.update(role: :admin)
