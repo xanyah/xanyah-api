@@ -21,10 +21,9 @@ class ProductsController < ApplicationController
   def create
     if @product.save
       @variant = Variant.create(variant_params)
-      @variant.product_id = @product.id
-      @variant.default = true
+      @variant.product = @product
       if @variant.save
-        render json: @variant, status: :created, location: @variant
+        render json: @variant, status: :created, location: @product
       else
         render json: @variant.errors, status: :unprocessable_entity
       end
@@ -50,7 +49,7 @@ class ProductsController < ApplicationController
   end
 
   def variant_params
-    params.require(:variant).permit(:buying_price, :tax_free_price, :provider_id, :ratio)
+    params.require(:variant).permit(:buying_price, :original_barcode, :tax_free_price, :provider_id, :ratio)
   end
 
   def update_params

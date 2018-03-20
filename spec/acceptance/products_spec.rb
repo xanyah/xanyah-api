@@ -41,12 +41,25 @@ resource 'Products' do
         parameter :manufacturer_id, "Product's manufacturer id", required: true
         parameter :store_id, "Product's store id", required: true
       end
+      with_options scope: :variant do
+        parameter :original_barcode, "Variant's original barcode", required: true
+        parameter :buying_price, "Variant's buying price", required: true
+        parameter :tax_free_price, "Variant's tax-free price", required: true
+        parameter :provider_id, "Variant's provider id", required: true
+        parameter :ratio, "Variant's ratio", required: true
+      end
 
       let(:name) { product[:name] }
       let(:category_id) { create(:category, store: membership.store).id }
       let(:manufacturer_id) { create(:manufacturer, store: membership.store).id }
       let(:store_id) { membership.store_id }
       let(:product) { attributes_for(:product, store: membership.store) }
+      let(:variant) { attributes_for(:variant) }
+      let(:buying_price) { variant[:buying_price] }
+      let(:tax_free_price) { variant[:tax_free_price] }
+      let(:provider_id) { create(:provider, store: membership.store).id }
+      let(:ratio) { variant[:ratio] }
+      let(:original_barcode) { variant[:original_barcode] }
 
       example_request 'Create a product' do
         expect(response_status).to eq(201)
