@@ -55,8 +55,8 @@ RSpec.describe 'InventoryVariants', type: :request do
   describe 'GET /inventory_variants/:inventory_id/:variant_id' do
     it 'returns inventory_variant if membership' do
       inventory_variant = create(:inventory_variant,
-                                variant:  create(:variant, product: create(:product, store: store)),
-                                inventory: create(:inventory, store: store, locked_at: nil))
+                                 variant:   create(:variant, product: create(:product, store: store)),
+                                 inventory: create(:inventory, store: store, locked_at: nil))
       get "/inventory_variants/#{inventory_variant.inventory_id}/#{inventory_variant.variant_id}",
           headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)

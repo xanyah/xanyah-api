@@ -112,7 +112,7 @@ RSpec.describe InventoryVariantsController, type: :controller do
       expect(response).to be_success
       expect(InventoryVariant.where(
         inventory_id: inventory_variant.inventory_id,
-        variant_id:  inventory_variant.variant_id
+        variant_id:   inventory_variant.variant_id
       ).size).to eq(1)
     end
   end

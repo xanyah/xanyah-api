@@ -14,8 +14,8 @@ RSpec.describe InventoryVariantsController, type: :routing do
 
     it 'routes to #by_variant' do
       expect(get: '/inventory_variants/1/2').to route_to('inventory_variants#by_variant',
-                                                        inventory_id: '1',
-                                                        variant_id:  '2')
+                                                         inventory_id: '1',
+                                                         variant_id:   '2')
     end
 
     it 'routes to #create' do

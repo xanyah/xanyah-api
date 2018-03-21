@@ -7,7 +7,9 @@ class InventoryVariantsController < ApplicationController
   # GET /inventory_variants
   def index
     @inventory_variants = current_user.inventory_variants
-    @inventory_variants = @inventory_variants.where(inventory_id: params[:inventory_id]) if params[:inventory_id].present?
+    if params[:inventory_id].present?
+      @inventory_variants = @inventory_variants.where(inventory_id: params[:inventory_id])
+    end
 
     render json: @inventory_variants
   end

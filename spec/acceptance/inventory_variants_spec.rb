@@ -100,7 +100,7 @@ resource 'Inventory Variants' do
   route '/inventory_variants/:inventory_id/:variant_id', 'Single inventory variant by inventory/variant id' do
     let!(:inventory_variant) {
       create(:inventory_variant,
-             variant:  create(:variant, product: create(:product, store: membership.store)),
+             variant:   create(:variant, product: create(:product, store: membership.store)),
              inventory: create(:inventory, store: membership.store, locked_at: nil))
     }
 
