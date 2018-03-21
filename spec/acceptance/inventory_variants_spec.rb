@@ -96,4 +96,27 @@ resource 'Inventory Variants' do
       end
     end
   end
+
+  route '/inventory_variants/:inventory_id/:variant_id', 'Single inventory variant by inventory/variant id' do
+    let!(:inventory_variant) {
+      create(:inventory_variant,
+             variant:  create(:variant, product: create(:product, store: membership.store)),
+             inventory: create(:inventory, store: membership.store, locked_at: nil))
+    }
+
+    with_options scope: :inventory_variant do
+      parameter :quantity, "Inventory variant's quantity", required: true
+    end
+
+    get 'Get a specific inventory variant by inventory and variant id' do
+      let(:inventory_id) { inventory_variant.inventory_id }
+      let(:variant_id) { inventory_variant.variant_id }
+
+      example_request 'Getting an inventory variant' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body['id']).to eq(inventory_variant.id)
+      end
+    end
+  end
 end

@@ -10,7 +10,7 @@ RSpec.describe InventoryVariant, type: :model do
   describe 'validations' do
     describe 'quantity' do
       it :presence do
-        expect(build(:inventory_variant, quantity: nil)).not_to be_valid
+        expect(create(:shipping_variant, quantity: nil).quantity).to eq(0)
       end
 
       it :greater_or_equal_to_0 do

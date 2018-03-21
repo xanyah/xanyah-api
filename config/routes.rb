@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     patch :lock, on: :member
     put :lock, on: :member
   end
+  get 'inventory_variants/:inventory_id/:variant_id', to: 'inventory_variants#by_variant'
   resources :inventory_variants
 
   resources :manufacturers, except: [:destroy]

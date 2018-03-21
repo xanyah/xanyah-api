@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :products, through: :stores
   has_many :providers, through: :stores
   has_many :shipping_variants, through: :stores
+  has_many :inventory_variants, through: :stores
   has_many :variants, through: :products
 
   def token_validation_response
