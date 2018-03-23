@@ -42,6 +42,6 @@ class ShippingsController < ApplicationController
   private
 
   def create_params
-    params.require(:shipping).permit(:store_id)
+    params.require(:shipping).permit(:store_id, :provider_id)
   end
 end

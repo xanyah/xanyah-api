@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Shipping < ApplicationRecord
+  belongs_to :provider, optional: false
   belongs_to :store, optional: false
   has_many :shipping_variants, dependent: :destroy
 

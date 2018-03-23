@@ -2,6 +2,7 @@
 
 class Variant < ApplicationRecord
   before_validation :set_barcode, on: :create
+  before_validation :set_default, on: :create
 
   belongs_to :product, optional: false
   belongs_to :provider, optional: false
@@ -23,11 +24,16 @@ class Variant < ApplicationRecord
 
   def set_barcode
     return nil if product.nil? || original_barcode.nil?
+    return self.barcode = original_barcode if store.variants.find_by(barcode: original_barcode).nil?
     value = 0
     loop do
       self.barcode = "#{product.variants.size.to_s.rjust(5, value.to_s)}#{original_barcode.gsub(/^0+/, '')}"
       value += 1
       break if store.variants.find_by(barcode: barcode).nil?
     end
+  end
+
+  def set_default
+    self.default = product.variants.size <= 0 unless product.nil?
   end
 end

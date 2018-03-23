@@ -52,6 +52,32 @@ RSpec.describe 'InventoryVariants', type: :request do
     end
   end
 
+  describe 'GET /inventory_variants/:inventory_id/:variant_id' do
+    it 'returns inventory_variant if membership' do
+      inventory_variant = create(:inventory_variant,
+                                 variant:   create(:variant, product: create(:product, store: store)),
+                                 inventory: create(:inventory, store: store, locked_at: nil))
+      get "/inventory_variants/#{inventory_variant.inventory_id}/#{inventory_variant.variant_id}",
+          headers: user.create_new_auth_token
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body)['id']).to be_present
+    end
+
+    it 'returns 401 if !membership' do
+      inventory_variant = create(:inventory_variant)
+      get "/inventory_variants/#{inventory_variant.inventory_id}/#{inventory_variant.variant_id}",
+          headers: create(:user).create_new_auth_token
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'returns 401 if !loggedin' do
+      inventory_variant = create(:inventory_variant)
+      get "/inventory_variants/#{inventory_variant.inventory_id}/#{inventory_variant.variant_id}"
+      expect(response).to have_http_status(:unauthorized)
+      expect(JSON.parse(response.body)).to have_key('errors')
+    end
+  end
+
   describe 'PATCH /inventory_variants/:id' do
     it 'updates inventory_variant if membership' do
       store_membership.update(role: :admin)

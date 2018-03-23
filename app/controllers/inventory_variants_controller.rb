@@ -2,13 +2,13 @@
 
 class InventoryVariantsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource except: :by_variant
 
   # GET /inventory_variants
   def index
-    @inventory_variants = current_user.stores.map(&:inventory_variants).flatten
+    @inventory_variants = current_user.inventory_variants
     if params[:inventory_id].present?
-      @inventory_variants = @inventory_variants.select {|c| c.inventory_id == params[:inventory_id] }
+      @inventory_variants = @inventory_variants.where(inventory_id: params[:inventory_id])
     end
 
     render json: @inventory_variants
@@ -17,6 +17,19 @@ class InventoryVariantsController < ApplicationController
   # GET /inventory_variants/1
   def show
     render json: @inventory_variant
+  end
+
+  def by_variant
+    @inventory_variant = InventoryVariant.where(
+      inventory_id: params[:inventory_id],
+      variant_id:   params[:variant_id]
+    ).first_or_create
+    authorize! :create, @inventory_variant
+    if @inventory_variant.save
+      render json: @inventory_variant
+    else
+      render json: @inventory_variant.errors, status: :unprocessable_entity
+    end
   end
 
   # POST /inventory_variants

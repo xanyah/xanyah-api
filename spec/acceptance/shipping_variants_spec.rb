@@ -96,4 +96,27 @@ resource 'Shipping Variants' do
       end
     end
   end
+
+  route '/shipping_variants/:shipping_id/:variant_id', 'Single shipping variant by shipping/variant id' do
+    let!(:shipping_variant) {
+      create(:shipping_variant,
+             variant:  create(:variant, product: create(:product, store: membership.store)),
+             shipping: create(:shipping, store: membership.store, locked_at: nil))
+    }
+
+    with_options scope: :shipping_variant do
+      parameter :quantity, "Shipping variant's quantity", required: true
+    end
+
+    get 'Get a specific shipping variant by shipping and variant id' do
+      let(:shipping_id) { shipping_variant.shipping_id }
+      let(:variant_id) { shipping_variant.variant_id }
+
+      example_request 'Getting an shipping variant' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body['id']).to eq(shipping_variant.id)
+      end
+    end
+  end
 end

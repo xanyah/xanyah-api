@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :shipping_variants
   mount_devise_token_auth_for 'User', at: 'auth'
 
   resources :categories, except: [:destroy]
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
     patch :lock, on: :member
     put :lock, on: :member
   end
+  get 'inventory_variants/:inventory_id/:variant_id', to: 'inventory_variants#by_variant'
   resources :inventory_variants
 
   resources :manufacturers, except: [:destroy]
@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     patch :lock, on: :member
     put :lock, on: :member
   end
+  get 'shipping_variants/:shipping_id/:variant_id', to: 'shipping_variants#by_variant'
+  resources :shipping_variants
 
   resources :stock_backup_variants, only: %i[index show]
   resources :stock_backups, only: %i[index show]
@@ -32,5 +34,7 @@ Rails.application.routes.draw do
   resources :stores, except: [:destroy]
 
   resources :variant_attributes
-  resources :variants, except: [:destroy]
+  resources :variants, except: [:destroy] do
+    get :by_barcode, on: :member
+  end
 end

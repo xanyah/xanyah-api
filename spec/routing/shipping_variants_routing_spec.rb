@@ -12,6 +12,12 @@ RSpec.describe ShippingVariantsController, type: :routing do
       expect(get: '/shipping_variants/1').to route_to('shipping_variants#show', id: '1')
     end
 
+    it 'routes to #by_variant' do
+      expect(get: '/shipping_variants/1/2').to route_to('shipping_variants#by_variant',
+                                                        shipping_id: '1',
+                                                        variant_id:  '2')
+    end
+
     it 'routes to #create' do
       expect(post: '/shipping_variants').to route_to('shipping_variants#create')
     end

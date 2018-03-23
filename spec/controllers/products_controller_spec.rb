@@ -39,6 +39,9 @@ RSpec.describe ProductsController, type: :controller do
       category_id:     create(:category, store: store_membership.store).id
     )
   }
+  let(:valid_variant_attributes) {
+    attributes_for(:variant, provider_id: create(:provider, store: store_membership.store).id)
+  }
 
   let(:duplicate_valid_attributes) {
     store_membership = create(:store_membership, user: user)
@@ -93,13 +96,13 @@ RSpec.describe ProductsController, type: :controller do
       it 'creates a new Product' do
         request.headers.merge! user.create_new_auth_token
         expect {
-          post :create, params: {product: valid_attributes}
+          post :create, params: {product: valid_attributes, variant: valid_variant_attributes}
         }.to change(Product, :count).by(1)
       end
 
       it 'renders a JSON response with the new product' do
         request.headers.merge! user.create_new_auth_token
-        post :create, params: {product: valid_attributes}
+        post :create, params: {product: valid_attributes, variant: valid_variant_attributes}
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
         expect(response.location).to eq(product_url(Product.last))
