@@ -5,6 +5,7 @@ class Store < ApplicationRecord
   has_many :admins, source: :user, through: :admin_store_memberships
   has_many :backup_variants, through: :stock_backups
   has_many :categories, dependent: :destroy
+  has_many :clients, dependent: :destroy
   has_many :custom_attributes, dependent: :destroy
   has_many :inventories, dependent: :destroy
   has_many :inventory_variants, through: :inventories

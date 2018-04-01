@@ -35,9 +35,18 @@ StoreMembership.create!(store: demo_store, user: owner_user, role: :owner)
 StoreMembership.create!(store: demo_store, user: admin_user, role: :admin)
 StoreMembership.create!(store: demo_store, user: regular_user, role: :regular)
 
-puts "Creating manufacturers, providers, categories"
+puts "Creating clients, manufacturers, providers, categories"
 
 5.times do
+  Client.create!(
+    firstname: Faker::Name.first_name,
+    lastname: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    phone: Faker::PhoneNumber.phone_number,
+    address: Faker::Address.street_address,
+    notes: Faker::Lorem.paragraph,
+    store:    demo_store
+  )
   Manufacturer.create!(name: Faker::HarryPotter.character, store: demo_store)
   Provider.create!(name: Faker::RickAndMorty.character, store: demo_store)
   Category.create!(

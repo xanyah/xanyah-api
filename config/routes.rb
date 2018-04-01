@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :categories, except: [:destroy]
 
+  resources :clients, except: [:destroy]
+
   resources :custom_attributes
 
   resources :inventories, except: [:update] do

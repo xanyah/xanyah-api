@@ -4,6 +4,7 @@ class Ability
   include CanCan::Ability
 
   include CategoryAbility
+  include ClientAbility
   include CustomAttributeAbility
   include InventoryAbility
   include InventoryVariantAbility
@@ -26,6 +27,7 @@ class Ability
     alias_action :create, :read, :update, :destroy, to: :crud
 
     category_ability user
+    client_ability user
     custom_attribute_ability user
     inventory_ability user
     inventory_variant_ability user
