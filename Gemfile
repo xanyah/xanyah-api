@@ -7,30 +7,20 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# dotenv first to load environment variables everywhere
 gem 'dotenv-rails', groups: %i[development test]
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
-# Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
-# Use Puma as the app server
 gem 'puma', '~> 3.7'
+gem 'rails', '~> 5.1.4'
 
-# Permissions management
-gem 'cancancan', '~> 2.0'
-gem 'devise_token_auth'
-
-# List of countries
-gem 'countries'
-
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors'
-
-# Serialization
 gem 'active_model_serializers', '~> 0.10.7'
-
-# Fake data
+gem 'cancancan', '~> 2.0'
+gem 'countries'
+gem 'devise_token_auth'
 gem 'faker'
+gem 'json_vat', '~> 1.0'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
