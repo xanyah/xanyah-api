@@ -108,7 +108,6 @@ RSpec.describe InventoryVariantsController, type: :controller do
       inventory_variant = InventoryVariant.new valid_attributes
       request.headers.merge! user.create_new_auth_token
       get :by_variant, params: {inventory_id: inventory_variant.inventory_id, variant_id: inventory_variant.variant_id}
-      puts response.body
       expect(response).to be_success
       expect(InventoryVariant.where(
         inventory_id: inventory_variant.inventory_id,
