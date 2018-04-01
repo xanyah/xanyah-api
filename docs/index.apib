@@ -1,0 +1,4802 @@
+FORMAT: A1
+
+# Group Authentication
+
+## Authentication [/auth]
+
++ Parameters
+  + email (required) - User&#39;s email
+  + password (required) - User&#39;s password
+  + password_confirmation (required) - User&#39;s password confirmation
+  + confirm_success_url (required) - URL to redirect to on email confirmation
+  + firstname - User&#39;s firstname
+  + lastname - User&#39;s lastname
+  + locale - User&#39;s locale
+
+### Delete current user [DELETE]
+
++ Request Delete current user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: J7TdYjwE47MT1HDja06ckg
+        Token-Type: Bearer
+        Client: 7MQYlpcOkntKmO_Mljy-TQ
+        Expiry: 1525205728
+        Uid: vicenta.larson@koelpin.io
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "status": "success",
+          "message": "Account with UID 'vicenta.larson@koelpin.io' has been destroyed."
+        }
+
+### Sign up user [POST]
+
++ Request Sign up user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "email": "eugene_rolfson@robelleffler.biz",
+          "password": "KwCiT2GmMaCf",
+          "password_confirmation": "KwCiT2GmMaCf",
+          "confirm_success_url": "http://zulauf.co/juana",
+          "firstname": "Mohammad",
+          "lastname": "Rempel",
+          "locale": "fr"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "status": "success",
+          "data": {
+            "id": "c525e844-a090-4eda-8f93-8b60f13a2779",
+            "provider": "email",
+            "uid": "eugene_rolfson@robelleffler.biz",
+            "firstname": "Mohammad",
+            "email": "eugene_rolfson@robelleffler.biz",
+            "created_at": "2018-04-01T20:15:28.148Z",
+            "updated_at": "2018-04-01T20:15:28.148Z",
+            "lastname": "Rempel",
+            "locale": "fr"
+          }
+        }
+
+### Update current user [PATCH]
+
++ Request Update current user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: FL-AKVWRU5Mq92MvPlbiBQ
+        Token-Type: Bearer
+        Client: eYsU8HkPN_txowFaHWuzzg
+        Expiry: 1525205728
+        Uid: tate@strosin.info
+
+    + Body
+
+        {
+          "firstname": "Rowena",
+          "lastname": "Herman",
+          "locale": "fr"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: FL-AKVWRU5Mq92MvPlbiBQ
+        token-type: Bearer
+        client: eYsU8HkPN_txowFaHWuzzg
+        expiry: 1525205728
+        uid: tate@strosin.info
+
+    + Body
+
+        {
+          "status": "success",
+          "data": {
+            "id": "95ee41c5-3d41-423f-91e6-63178c669e4b",
+            "firstname": "Rowena",
+            "lastname": "Herman",
+            "locale": "fr",
+            "email": "tate@strosin.info",
+            "provider": "email",
+            "uid": "tate@strosin.info",
+            "created_at": "2018-04-01T20:15:28.999Z",
+            "updated_at": "2018-04-01T20:15:28.999Z"
+          }
+        }
+
+## User session [auth/sign_in]
+
++ Parameters
+  + email (required) - User&#39;s email
+  + password (required) - User&#39;s password
+
+### Sign in user [POST]
+
++ Request Sign in user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "email": "nellie.ratke@willferry.biz",
+          "password": "V17zQb87"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: 24lbeYk2zYOAA8tx5WM3lg
+        token-type: Bearer
+        client: 6M_SzzEz6Ac8jzh7vFVHwg
+        expiry: 1525205729
+        uid: nellie.ratke@willferry.biz
+
+    + Body
+
+        {
+          "data": {
+            "id": "3778437b-287e-4b1a-8e58-fe3bef3a508a",
+            "email": "nellie.ratke@willferry.biz",
+            "provider": "email",
+            "uid": "nellie.ratke@willferry.biz",
+            "firstname": "Alize",
+            "lastname": "Rice",
+            "locale": "en"
+          }
+        }
+
+## User session [auth/sign_out]
+
+### Sign out user [DELETE]
+
++ Request Sign out user (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: AcKv4klHCaDaV9qAuPqOYA
+        Token-Type: Bearer
+        Client: odLDGoAkocuF3f2feugF0Q
+        Expiry: 1525205729
+        Uid: noemi@kuhnbeier.biz
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "success": true
+        }
+
+## User password [auth/password]
+
++ Parameters
+  + password (required) - User&#39;s new password
+  + password_confirmation (required) - User&#39;s new password confirmation
+
+### Update current user&#39;s password [PATCH]
+
++ Request Update current user&#39;s password (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: pQZ52fd8L811KA3yebZzkQ
+        Token-Type: Bearer
+        Client: KoaiHl7L6dBZ4nMUVmDWaA
+        Expiry: 1525205729
+        Uid: pablo@maggio.net
+
+    + Body
+
+        {
+          "password": "RdBgE5TiPx87F",
+          "password_confirmation": "RdBgE5TiPx87F"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: pQZ52fd8L811KA3yebZzkQ
+        token-type: Bearer
+        client: KoaiHl7L6dBZ4nMUVmDWaA
+        expiry: 1525205729
+        uid: pablo@maggio.net
+
+    + Body
+
+        {
+          "success": true,
+          "data": {
+            "id": "579b7327-330a-41e6-8eb3-17658191aa43",
+            "provider": "email",
+            "email": "pablo@maggio.net",
+            "uid": "pablo@maggio.net",
+            "firstname": "Candace",
+            "created_at": "2018-04-01T20:15:29.605Z",
+            "updated_at": "2018-04-01T20:15:29.685Z",
+            "lastname": "Gleichner",
+            "locale": "fr"
+          },
+          "message": "Your password has been successfully updated."
+        }
+
+## User session [auth/validate_token]
+
+### Validate user session [GET]
+
++ Request Validate user session (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: 82Qqh0LQj4JfhF0MbSZdEw
+        Token-Type: Bearer
+        Client: GCubv5wjuRB9xCIxctXA1Q
+        Expiry: 1525205729
+        Uid: yolanda@wisokykaulke.biz
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: 82Qqh0LQj4JfhF0MbSZdEw
+        token-type: Bearer
+        client: GCubv5wjuRB9xCIxctXA1Q
+        expiry: 1525205729
+        uid: yolanda@wisokykaulke.biz
+
+    + Body
+
+        {
+          "success": true,
+          "data": {
+            "id": "123225f9-27fa-4270-93bd-3ff64b545402",
+            "provider": "email",
+            "uid": "yolanda@wisokykaulke.biz",
+            "firstname": "Amani",
+            "email": "yolanda@wisokykaulke.biz",
+            "lastname": "Hessel",
+            "locale": "en"
+          }
+        }
+
+# Group Categories
+
+## Categories collection [/categories]
+
++ Parameters
+  + name (required) - Category&#39;s name
+  + tva (required) - Category&#39;s TVA rate
+  + store_id (required) - Category&#39;s store id
+
+### Create a category [POST]
+
++ Request Create a category (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: I_DG6hl5MtrMp4oVdlHtaw
+        Token-Type: Bearer
+        Client: GzGBbfsSMeM2e8OU0BDtnw
+        Expiry: 1525205730
+        Uid: coralie@nolan.org
+
+    + Body
+
+        {
+          "category": {
+            "name": "Belgian Strong Ale",
+            "tva": "reduced_rate_alt",
+            "store_id": "03e3ca17-df4b-4045-9db9-912c63cd1f6a"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: I_DG6hl5MtrMp4oVdlHtaw
+        token-type: Bearer
+        client: GzGBbfsSMeM2e8OU0BDtnw
+        expiry: 1525205730
+        uid: coralie@nolan.org
+
+    + Body
+
+        {
+          "id": "0e6d92bb-a407-4a9f-9d48-da82aa127402",
+          "name": "Belgian Strong Ale",
+          "tva": "reduced_rate_alt",
+          "store_id": "03e3ca17-df4b-4045-9db9-912c63cd1f6a",
+          "category_id": null,
+          "created_at": "2018-04-01T20:15:30.292Z",
+          "updated_at": "2018-04-01T20:15:30.292Z"
+        }
+
+### Returns all categories [GET]
+
++ Request List all categories (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: 9xN_N8AgJtrOSvASErbPHw
+        Token-Type: Bearer
+        Client: fSpYDdl2ynXeMmOzsBrANg
+        Expiry: 1525205729
+        Uid: forest_padberg@oreilly.io
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: 9xN_N8AgJtrOSvASErbPHw
+        token-type: Bearer
+        client: fSpYDdl2ynXeMmOzsBrANg
+        expiry: 1525205729
+        uid: forest_padberg@oreilly.io
+
+    + Body
+
+        [
+          {
+            "id": "2737c913-4497-46e0-8221-3259c27035d7",
+            "name": "European Amber Lager",
+            "tva": "parking_rate",
+            "store_id": "670a33dc-5c86-4d2e-add3-580f1111ef58",
+            "category_id": null,
+            "created_at": "2018-04-01T20:15:29.840Z",
+            "updated_at": "2018-04-01T20:15:29.840Z"
+          }
+        ]
+
+## Single category [/categories/:id]
+
++ Parameters
+  + name (required) - Category&#39;s name
+  + tva (required) - Category&#39;s TVA rate
+
+### Get a specific category [GET]
+
++ Request Getting a category (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: vSRdGF_tpcol484KqEmaSQ
+        Token-Type: Bearer
+        Client: hXLHpWAGLkve_Y-EHqzGhQ
+        Expiry: 1525205730
+        Uid: selina_balistreri@hyattmills.biz
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: vSRdGF_tpcol484KqEmaSQ
+        token-type: Bearer
+        client: hXLHpWAGLkve_Y-EHqzGhQ
+        expiry: 1525205730
+        uid: selina_balistreri@hyattmills.biz
+
+    + Body
+
+        {
+          "id": "627ae485-baca-4720-b8a2-87781c0a27c1",
+          "name": "Wood-aged Beer",
+          "tva": "reduced_rate_alt",
+          "store_id": "d06a0902-7670-4ec5-9c15-c02962d3e9f2",
+          "category_id": null,
+          "created_at": "2018-04-01T20:15:30.329Z",
+          "updated_at": "2018-04-01T20:15:30.329Z"
+        }
+
+### Update a specific category [PATCH]
+
++ Request Updating a category (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: SROFm5mopPQOp8GK5pFAlA
+        Token-Type: Bearer
+        Client: STh88OXvj111AfyewA7hBw
+        Expiry: 1525205730
+        Uid: isobel_smith@littelthompson.com
+
+    + Body
+
+        {
+          "category": {
+            "name": "Stout"
+          }
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: SROFm5mopPQOp8GK5pFAlA
+        token-type: Bearer
+        client: STh88OXvj111AfyewA7hBw
+        expiry: 1525205730
+        uid: isobel_smith@littelthompson.com
+
+    + Body
+
+        {
+          "id": "f7e9bc49-adec-49b8-a02a-af04c51fa473",
+          "store_id": "72f3b6c2-3765-4ae0-88bc-319a6a0659e6",
+          "name": "Stout",
+          "tva": "reduced_rate",
+          "category_id": null,
+          "created_at": "2018-04-01T20:15:30.532Z",
+          "updated_at": "2018-04-01T20:15:30.690Z"
+        }
+
+# Group Clients
+
+## Clients collection [/clients]
+
++ Parameters
+  + firstname - Client&#39;s firstname
+  + lastname - Client&#39;s lastname
+  + email - Client&#39;s email
+  + phone - Client&#39;s phone
+  + address - Client&#39;s address
+  + notes - Client&#39;s notes
+  + store_id (required) - Client&#39;s store id
+
+### Create a client [POST]
+
++ Request Create a client (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: X-tAxNS6BNE4hMgwBF8H8Q
+        Token-Type: Bearer
+        Client: XmLI5EMLrmVKuNjIfk8N5A
+        Expiry: 1525205731
+        Uid: mayra.kovacek@pfefferrolfson.info
+
+    + Body
+
+        {
+          "client": {
+            "firstname": "Savion",
+            "lastname": "Bauch",
+            "email": "merle@kihn.org",
+            "phone": "791-121-8527",
+            "address": "324 Vilma Parkway",
+            "notes": "Provident voluptatem sapiente cumque. Molestiae quasi accusamus quis doloribus esse quia. Deserunt eos ab velit voluptatem dolore maiores. Ut amet quia dolorem nulla explicabo.",
+            "store_id": "d601d883-a417-466d-8f8f-c5bf728f8d3f"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: X-tAxNS6BNE4hMgwBF8H8Q
+        token-type: Bearer
+        client: XmLI5EMLrmVKuNjIfk8N5A
+        expiry: 1525205731
+        uid: mayra.kovacek@pfefferrolfson.info
+
+    + Body
+
+        {
+          "id": "036ae789-4c48-4960-92b9-a52b01dfc7b5",
+          "firstname": "Savion",
+          "lastname": "Bauch",
+          "email": "merle@kihn.org",
+          "phone": "791-121-8527",
+          "address": "324 Vilma Parkway",
+          "notes": "Provident voluptatem sapiente cumque. Molestiae quasi accusamus quis doloribus esse quia. Deserunt eos ab velit voluptatem dolore maiores. Ut amet quia dolorem nulla explicabo.",
+          "store": {
+            "id": "d601d883-a417-466d-8f8f-c5bf728f8d3f",
+            "name": "Hosnian Prime",
+            "key": "hosnian-prime-9",
+            "address": "597 Okuneva Walk",
+            "country": "FI",
+            "created_at": "2018-04-01T20:15:30.965Z",
+            "updated_at": "2018-04-01T20:15:30.965Z",
+            "store_membership": {
+              "id": "849f55dd-5bc6-4892-b2f4-4e444ba512c5",
+              "store_id": "d601d883-a417-466d-8f8f-c5bf728f8d3f",
+              "user_id": "b58a4e46-e605-442a-8a20-630f75bed398",
+              "role": "admin",
+              "created_at": "2018-04-01T20:15:30.981Z",
+              "updated_at": "2018-04-01T20:15:30.981Z"
+            }
+          }
+        }
+
+### Returns all clients [GET]
+
++ Request List all clients (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: eDYzyDh3XpGH3Z-v24gMLw
+        Token-Type: Bearer
+        Client: oBMAxuINLFv7_RwRhjdRPw
+        Expiry: 1525205730
+        Uid: freda_bradtke@rodriguezhand.org
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: eDYzyDh3XpGH3Z-v24gMLw
+        token-type: Bearer
+        client: oBMAxuINLFv7_RwRhjdRPw
+        expiry: 1525205730
+        uid: freda_bradtke@rodriguezhand.org
+
+    + Body
+
+        [
+          {
+            "id": "b7c26a4c-c58a-4eb1-978a-dcfb505d0d83",
+            "firstname": "Nedra",
+            "lastname": "Jakubowski",
+            "email": "leopold@ziemewiegand.co",
+            "phone": "1-760-774-8844 x719",
+            "address": "53943 Waters Drive",
+            "notes": "Aut quia dolores ut qui. Inventore et velit. Porro officiis quasi est ut ut quas ipsum. Ut pariatur eos quos rerum. Et sit occaecati.",
+            "store": {
+              "id": "526b80be-2505-4901-9d94-cad2740b8265",
+              "name": "Kashyyyk",
+              "key": "kashyyyk-8",
+              "address": "899 Schultz Forest",
+              "country": "KE",
+              "created_at": "2018-04-01T20:15:30.731Z",
+              "updated_at": "2018-04-01T20:15:30.731Z",
+              "store_membership": {
+                "id": "8246c675-9ec3-4f3c-86cf-52c7ae9f4bfd",
+                "store_id": "526b80be-2505-4901-9d94-cad2740b8265",
+                "user_id": "1263150f-1cc1-47bb-8e49-5962d4dc5306",
+                "role": "admin",
+                "created_at": "2018-04-01T20:15:30.745Z",
+                "updated_at": "2018-04-01T20:15:30.745Z"
+              }
+            }
+          }
+        ]
+
+## Single client [/clients/:id]
+
++ Parameters
+  + firstname - Client&#39;s firstname
+  + lastname - Client&#39;s lastname
+  + email - Client&#39;s email
+  + phone - Client&#39;s phone
+  + address - Client&#39;s address
+  + notes - Client&#39;s notes
+
+### Get a specific client [GET]
+
++ Request Getting a client (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: 5MMRGZS9LMWvHG1rAIVjWg
+        Token-Type: Bearer
+        Client: nDwpH_rGuAKVt-cYZzGHNg
+        Expiry: 1525205731
+        Uid: brandy@dickenimonis.net
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: 5MMRGZS9LMWvHG1rAIVjWg
+        token-type: Bearer
+        client: nDwpH_rGuAKVt-cYZzGHNg
+        expiry: 1525205731
+        uid: brandy@dickenimonis.net
+
+    + Body
+
+        {
+          "id": "70a7710c-7411-46bc-a5f7-7a780b0c6f21",
+          "firstname": "Herbert",
+          "lastname": "Fisher",
+          "email": "dedric_mohr@berge.co",
+          "phone": "1-661-668-3567",
+          "address": "976 Runte Path",
+          "notes": "Et vero aut. Nobis tempora ea doloribus. Nam pariatur voluptates totam sed. Aut quas rerum qui.",
+          "store": {
+            "id": "bf209a0e-a2b2-4190-a941-fa5c9967a8c1",
+            "name": "Kashyyyk",
+            "key": "kashyyyk-10",
+            "address": "36937 Hickle Crossing",
+            "country": "CI",
+            "created_at": "2018-04-01T20:15:31.149Z",
+            "updated_at": "2018-04-01T20:15:31.149Z",
+            "store_membership": {
+              "id": "c6fae0c8-29e4-462e-a88f-6665f3fb69dd",
+              "store_id": "bf209a0e-a2b2-4190-a941-fa5c9967a8c1",
+              "user_id": "eb7b7f67-0bd3-4b08-b7f7-e1159d3b1741",
+              "role": "admin",
+              "created_at": "2018-04-01T20:15:31.163Z",
+              "updated_at": "2018-04-01T20:15:31.163Z"
+            }
+          }
+        }
+
+### Update a specific client [PATCH]
+
++ Request Updating a client (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: KpUtxiQBFdH5JxocAR9xZA
+        Token-Type: Bearer
+        Client: dmr-tUzGJOlrSCvjmS0dyw
+        Expiry: 1525205731
+        Uid: zita.reynolds@haagokon.name
+
+    + Body
+
+        {
+          "client": {
+            "firstname": "Myrl"
+          }
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: KpUtxiQBFdH5JxocAR9xZA
+        token-type: Bearer
+        client: dmr-tUzGJOlrSCvjmS0dyw
+        expiry: 1525205731
+        uid: zita.reynolds@haagokon.name
+
+    + Body
+
+        {
+          "id": "45dc6312-4e53-4ac2-8dc7-b3eff407d6a4",
+          "firstname": "Myrl",
+          "lastname": "DuBuque",
+          "email": "cade_lebsack@lebsack.net",
+          "phone": "639-264-0121",
+          "address": "1164 Otto Gardens",
+          "notes": "Aut ea qui aut ut laudantium. Unde aliquam voluptate totam eum ratione deserunt. Qui facere eos totam esse aspernatur cupiditate blanditiis. Nulla quae doloremque ex dicta aspernatur occaecati. Id a distinctio saepe laborum ut dignissimos.",
+          "store": {
+            "id": "59cc5833-b462-41f1-807c-498b7ac74774",
+            "name": "Endor",
+            "key": "endor-11",
+            "address": "2980 Konopelski Center",
+            "country": "BS",
+            "created_at": "2018-04-01T20:15:31.347Z",
+            "updated_at": "2018-04-01T20:15:31.347Z",
+            "store_membership": {
+              "id": "9c02d24c-ecbd-4271-98ff-1311bd523ea5",
+              "store_id": "59cc5833-b462-41f1-807c-498b7ac74774",
+              "user_id": "3ef43b8a-6ede-4194-aa12-907041dd952e",
+              "role": "admin",
+              "created_at": "2018-04-01T20:15:31.367Z",
+              "updated_at": "2018-04-01T20:15:31.367Z"
+            }
+          }
+        }
+
+# Group Custom Attributes
+
+## Custom Attributes collection [/custom_attributes]
+
++ Parameters
+  + name (required) - Custom Attribute&#39;s name
+  + type (required) - Custom Attribute&#39;s type (text, number)
+  + store_id (required) - Custom Attribute&#39;s store id
+
+### Create a custom attribute [POST]
+
++ Request Create a custom attribute (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: a-Gl6Uu-GiSn9Y_rhJPdLw
+        Token-Type: Bearer
+        Client: uk80KY2IlrONI5aYB5OeSQ
+        Expiry: 1525205731
+        Uid: marisol_emmerich@bayerleannon.net
+
+    + Body
+
+        {
+          "custom_attribute": {
+            "name": "Mt. Rainier",
+            "type": "number",
+            "store_id": "2118dbbe-2462-4fb1-b5d0-1569699e12fa"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: a-Gl6Uu-GiSn9Y_rhJPdLw
+        token-type: Bearer
+        client: uk80KY2IlrONI5aYB5OeSQ
+        expiry: 1525205731
+        uid: marisol_emmerich@bayerleannon.net
+
+    + Body
+
+        {
+          "id": "834d5dd4-7777-4e1e-a6d5-5d0dfc0d0051",
+          "name": "Mt. Rainier",
+          "type": "number",
+          "store_id": "2118dbbe-2462-4fb1-b5d0-1569699e12fa",
+          "created_at": "2018-04-01T20:15:31.969Z",
+          "updated_at": "2018-04-01T20:15:31.969Z"
+        }
+
+### Returns all custom_attributes [GET]
+
++ Request List all custom attributes (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: u5JuKZ1BG4QXtk8m7rZeHw
+        Token-Type: Bearer
+        Client: 9srOcHqAAIJSMMT7HKFPtw
+        Expiry: 1525205731
+        Uid: norberto@king.info
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: u5JuKZ1BG4QXtk8m7rZeHw
+        token-type: Bearer
+        client: 9srOcHqAAIJSMMT7HKFPtw
+        expiry: 1525205731
+        uid: norberto@king.info
+
+    + Body
+
+        [
+          {
+            "id": "da6975dc-2a19-4b0e-acb3-33e1eefa17eb",
+            "name": "Sorachi Ace",
+            "type": "number",
+            "store_id": "8d19846e-9b7c-4aeb-b1f0-2575e2ae7a57",
+            "created_at": "2018-04-01T20:15:31.625Z",
+            "updated_at": "2018-04-01T20:15:31.625Z"
+          }
+        ]
+
+## Single custom attribute [/custom_attributes/:id]
+
++ Parameters
+  + name (required) - Custom Attribute&#39;s name
+  + type (required) - Custom Attribute&#39;s type
+
+### Delete a specific custom attribute [DELETE]
+
++ Request Deleting a custom attribute (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: rqOH4pO2l96ky1ZDRyBSYw
+        Token-Type: Bearer
+        Client: doiEy-DZAxuqVq5WF3TigQ
+        Expiry: 1525205732
+        Uid: pete@murphymoen.io
+
++ Response 204 ()
+
+    + Headers
+
+        access-token: rqOH4pO2l96ky1ZDRyBSYw
+        token-type: Bearer
+        client: doiEy-DZAxuqVq5WF3TigQ
+        expiry: 1525205732
+        uid: pete@murphymoen.io
+
+### Get a specific custom attribute [GET]
+
++ Request Getting a custom attribute (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: 3qYVDhYFRAHTJIcYyP9Y6Q
+        Token-Type: Bearer
+        Client: UBSWqrxhT31ZlqoJZXy7qA
+        Expiry: 1525205732
+        Uid: sophia_mayert@leuschke.info
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: 3qYVDhYFRAHTJIcYyP9Y6Q
+        token-type: Bearer
+        client: UBSWqrxhT31ZlqoJZXy7qA
+        expiry: 1525205732
+        uid: sophia_mayert@leuschke.info
+
+    + Body
+
+        {
+          "id": "99d62c24-78f9-4182-ba64-a2c33299b7b8",
+          "name": "Cluster",
+          "type": "text",
+          "store_id": "68b4e2a2-2e4a-426b-912f-e5a6bd996b9b",
+          "created_at": "2018-04-01T20:15:32.012Z",
+          "updated_at": "2018-04-01T20:15:32.012Z"
+        }
+
+### Update a specific custom attribute [PATCH]
+
++ Request Updating a custom_attribute (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: 5LasNKuVDNSc_9VYKRYRvA
+        Token-Type: Bearer
+        Client: GY1uuCZLK00XzbejA22IPw
+        Expiry: 1525205732
+        Uid: thalia@wolff.com
+
+    + Body
+
+        {
+          "custom_attribute": {
+            "name": "Perle"
+          }
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: 5LasNKuVDNSc_9VYKRYRvA
+        token-type: Bearer
+        client: GY1uuCZLK00XzbejA22IPw
+        expiry: 1525205732
+        uid: thalia@wolff.com
+
+    + Body
+
+        {
+          "id": "8f4dd581-0a4a-4cd6-bc38-5996fc2ae033",
+          "store_id": "8fe97f3e-be89-4006-8171-450a91591128",
+          "name": "Perle",
+          "type": "text",
+          "created_at": "2018-04-01T20:15:32.208Z",
+          "updated_at": "2018-04-01T20:15:32.377Z"
+        }
+
+# Group Inventories
+
+## Inventories collection [/inventories]
+
++ Parameters
+  + store_id (required) - Inventory&#39;s store id
+
+### Create a inventory [POST]
+
++ Request Create a inventory (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: EZL2L0NB5J1XZDgMoggc9A
+        Token-Type: Bearer
+        Client: gA_hoShaIIUxQKdTOcFy-Q
+        Expiry: 1525205732
+        Uid: krystal_berge@schmidt.name
+
+    + Body
+
+        {
+          "inventory": {
+            "store_id": "12ebbce4-172c-48e0-b453-160e34254b6b"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: EZL2L0NB5J1XZDgMoggc9A
+        token-type: Bearer
+        client: gA_hoShaIIUxQKdTOcFy-Q
+        expiry: 1525205732
+        uid: krystal_berge@schmidt.name
+
+    + Body
+
+        {
+          "id": "75608de9-9d56-4697-bc8c-131f0a6e1b6e",
+          "inventory_variants_count": 0,
+          "locked_at": null,
+          "created_at": "2018-04-01T20:15:32.964Z",
+          "updated_at": "2018-04-01T20:15:32.964Z"
+        }
+
+### Returns all inventories [GET]
+
++ Request List all inventories (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: pd01yK3dHhevOXtKqvdhDQ
+        Token-Type: Bearer
+        Client: enNqCZnRHpT_hvHgKXV_Lg
+        Expiry: 1525205732
+        Uid: meaghan_hauck@terry.org
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: pd01yK3dHhevOXtKqvdhDQ
+        token-type: Bearer
+        client: enNqCZnRHpT_hvHgKXV_Lg
+        expiry: 1525205732
+        uid: meaghan_hauck@terry.org
+
+    + Body
+
+        [
+          {
+            "id": "fea944bc-675b-455b-95e5-170a12d84813",
+            "inventory_variants_count": 0,
+            "locked_at": null,
+            "created_at": "2018-04-01T20:15:32.623Z",
+            "updated_at": "2018-04-01T20:15:32.623Z"
+          }
+        ]
+
+## Single inventory [/inventories/:id]
+
+### Delete a specific inventory [DELETE]
+
++ Request Deleting a inventory (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: pJfKuco_QOiy_ezECpqK8A
+        Token-Type: Bearer
+        Client: aj59iKCqyADwcEkOKdeBag
+        Expiry: 1525205733
+        Uid: quinten@johnston.net
+
++ Response 204 ()
+
+    + Headers
+
+        access-token: pJfKuco_QOiy_ezECpqK8A
+        token-type: Bearer
+        client: aj59iKCqyADwcEkOKdeBag
+        expiry: 1525205733
+        uid: quinten@johnston.net
+
+### Get a specific inventory [GET]
+
++ Request Getting a inventory (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: OEXKty9JVBIxSciS_Q3tVg
+        Token-Type: Bearer
+        Client: uvaJ9Yr_ranA-pMVaBDKFg
+        Expiry: 1525205733
+        Uid: mckenna_oberbrunner@stiedemann.com
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: OEXKty9JVBIxSciS_Q3tVg
+        token-type: Bearer
+        client: uvaJ9Yr_ranA-pMVaBDKFg
+        expiry: 1525205733
+        uid: mckenna_oberbrunner@stiedemann.com
+
+    + Body
+
+        {
+          "id": "23202b6d-416f-4b9e-8ae5-472f37a01f61",
+          "inventory_variants_count": 0,
+          "locked_at": null,
+          "created_at": "2018-04-01T20:15:33.006Z",
+          "updated_at": "2018-04-01T20:15:33.006Z"
+        }
+
+## Single inventory [/inventories/:id/lock]
+
+### Lock a specific inventory [PATCH]
+
++ Request Locking a inventory (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: XVYrL7fozcuFV3XOqqWvDw
+        Token-Type: Bearer
+        Client: 8oi8eRnqgqdvKXvXTSeLtw
+        Expiry: 1525205733
+        Uid: susana@strosin.io
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: XVYrL7fozcuFV3XOqqWvDw
+        token-type: Bearer
+        client: 8oi8eRnqgqdvKXvXTSeLtw
+        expiry: 1525205733
+        uid: susana@strosin.io
+
+    + Body
+
+        {
+          "id": "59ab3cc3-f5c4-4b09-96b9-7e40cd3f2c44",
+          "inventory_variants_count": 0,
+          "locked_at": "2018-04-01T20:15:33.528Z",
+          "created_at": "2018-04-01T20:15:33.367Z",
+          "updated_at": "2018-04-01T20:15:33.529Z"
+        }
+
+# Group Inventory Variants
+
+## Inventory variants collection [/inventory_variants]
+
++ Parameters
+  + inventory_id (required) - Inventory variant&#39;s inventory id
+  + variant_id (required) - Inventory variant&#39;s variant id
+  + quantity (required) - Inventory variant&#39;s quantity
+
+### Create an inventory variant [POST]
+
++ Request Create an inventory variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: _7eJ67s5IcShNgaErH8HAw
+        Token-Type: Bearer
+        Client: pq3jdkAXEURzSqGeWCFCMQ
+        Expiry: 1525205734
+        Uid: julius@heaneytorp.name
+
+    + Body
+
+        {
+          "inventory_variant": {
+            "inventory_id": "8d7995b4-1855-45db-bed1-25c41d76909e",
+            "variant_id": "cbe85623-b473-4256-88cf-2abb5b594518",
+            "quantity": 5
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: _7eJ67s5IcShNgaErH8HAw
+        token-type: Bearer
+        client: pq3jdkAXEURzSqGeWCFCMQ
+        expiry: 1525205734
+        uid: julius@heaneytorp.name
+
+    + Body
+
+        {
+          "id": "becd87ec-b8e9-4b08-a61c-ea049865fdfc",
+          "quantity": 5,
+          "created_at": "2018-04-01T20:15:34.132Z",
+          "updated_at": "2018-04-01T20:15:34.132Z",
+          "variant": {
+            "id": "cbe85623-b473-4256-88cf-2abb5b594518",
+            "original_barcode": "3184874970",
+            "barcode": "3184874970",
+            "buying_price": 21.62,
+            "tax_free_price": 38.916,
+            "ratio": 69.93,
+            "quantity": 0,
+            "default": true,
+            "created_at": "2018-04-01T20:15:33.968Z",
+            "updated_at": "2018-04-01T20:15:33.968Z",
+            "product": {
+              "id": "47784bbc-8b6d-4077-8e51-b70b6be5979b",
+              "name": "Samuel Smith’s Oatmeal Stout",
+              "created_at": "2018-04-01T20:15:33.944Z",
+              "updated_at": "2018-04-01T20:15:33.944Z",
+              "category": {
+                "id": "f169f5d6-138f-4e0c-87fa-8f381c9c1806",
+                "name": "Wood-aged Beer",
+                "tva": "reduced_rate",
+                "store_id": "f87e1afe-af6e-4324-89fc-63ef1db7a64e",
+                "category_id": null,
+                "created_at": "2018-04-01T20:15:33.941Z",
+                "updated_at": "2018-04-01T20:15:33.941Z"
+              },
+              "manufacturer": {
+                "id": "0ef0eb42-5f05-49c1-8812-49c2b6d96120",
+                "name": "Cedric Diggory",
+                "notes": "42603 Mitchell Ramp",
+                "store_id": "f87e1afe-af6e-4324-89fc-63ef1db7a64e",
+                "created_at": "2018-04-01T20:15:33.942Z",
+                "updated_at": "2018-04-01T20:15:33.942Z"
+              }
+            },
+            "provider": {
+              "id": "74b035fa-1b37-4a19-a4b4-9edc22fda07a",
+              "name": "Tiny Rick",
+              "notes": "6605 Jamal Ports",
+              "store_id": "463ffdbc-b63b-4ed1-9f02-3fddf36a3c9a",
+              "created_at": "2018-04-01T20:15:33.957Z",
+              "updated_at": "2018-04-01T20:15:33.957Z"
+            }
+          },
+          "inventory": {
+            "id": "8d7995b4-1855-45db-bed1-25c41d76909e",
+            "inventory_variants_count": 1,
+            "locked_at": null,
+            "created_at": "2018-04-01T20:15:33.935Z",
+            "updated_at": "2018-04-01T20:15:33.935Z"
+          }
+        }
+
+### Returns all inventory_variants [GET]
+
++ Request List all inventory_variants (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: NtdAdFHdfYEKLG8ySUrCpw
+        Token-Type: Bearer
+        Client: vWzC2SLbcSBJN6p72NcgpQ
+        Expiry: 1525205733
+        Uid: abby.schumm@langosh.com
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: NtdAdFHdfYEKLG8ySUrCpw
+        token-type: Bearer
+        client: vWzC2SLbcSBJN6p72NcgpQ
+        expiry: 1525205733
+        uid: abby.schumm@langosh.com
+
+    + Body
+
+        [
+          {
+            "id": "4aadd30b-aeb3-43aa-b289-f4afc4b60afd",
+            "quantity": 875,
+            "created_at": "2018-04-01T20:15:33.690Z",
+            "updated_at": "2018-04-01T20:15:33.690Z",
+            "variant": {
+              "id": "392cf1bf-5eef-43d4-9a24-3384ba5c3e8a",
+              "original_barcode": "7482441900",
+              "barcode": "7482441900",
+              "buying_price": 41.27,
+              "tax_free_price": 74.286,
+              "ratio": 56.57,
+              "quantity": 0,
+              "default": true,
+              "created_at": "2018-04-01T20:15:33.682Z",
+              "updated_at": "2018-04-01T20:15:33.682Z",
+              "product": {
+                "id": "943805c7-e783-4ec6-af4e-8b429e78d529",
+                "name": "Storm King Stout",
+                "created_at": "2018-04-01T20:15:33.664Z",
+                "updated_at": "2018-04-01T20:15:33.664Z",
+                "category": {
+                  "id": "68efd55c-417f-47f0-b916-12bac81a32fc",
+                  "name": "Strong Ale",
+                  "tva": "reduced_rate",
+                  "store_id": "376864b8-cfb9-4e56-9ef4-b46a747beb17",
+                  "category_id": null,
+                  "created_at": "2018-04-01T20:15:33.662Z",
+                  "updated_at": "2018-04-01T20:15:33.662Z"
+                },
+                "manufacturer": {
+                  "id": "24c21e42-2d07-43dd-aad8-f2c646f0a6f4",
+                  "name": "The Bloody Baron",
+                  "notes": "7837 Ferry Hollow",
+                  "store_id": "376864b8-cfb9-4e56-9ef4-b46a747beb17",
+                  "created_at": "2018-04-01T20:15:33.663Z",
+                  "updated_at": "2018-04-01T20:15:33.663Z"
+                }
+              },
+              "provider": {
+                "id": "cff87982-7cd4-4940-9fd6-e804c7b162f9",
+                "name": "Tammy Gueterman",
+                "notes": "73417 Murazik Trail",
+                "store_id": "e5290d25-f5c7-4c72-adc1-41502e2372f0",
+                "created_at": "2018-04-01T20:15:33.673Z",
+                "updated_at": "2018-04-01T20:15:33.673Z"
+              }
+            },
+            "inventory": {
+              "id": "950209e2-b079-43e3-b7ba-6a5193bb6f95",
+              "inventory_variants_count": 1,
+              "locked_at": null,
+              "created_at": "2018-04-01T20:15:33.685Z",
+              "updated_at": "2018-04-01T20:15:33.685Z"
+            }
+          }
+        ]
+
+## Single inventory variant [/inventory_variants/:id]
+
++ Parameters
+  + quantity (required) - Inventory variant&#39;s quantity
+
+### Delete a specific inventory variant [DELETE]
+
++ Request Deleting an inventory variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: Fyrt2ordgMlNvAMnbQN_KA
+        Token-Type: Bearer
+        Client: xIRIYYH1IHC1mBUZNAs3gA
+        Expiry: 1525205734
+        Uid: barrett@okuneva.info
+
++ Response 204 ()
+
+    + Headers
+
+        access-token: Fyrt2ordgMlNvAMnbQN_KA
+        token-type: Bearer
+        client: xIRIYYH1IHC1mBUZNAs3gA
+        expiry: 1525205734
+        uid: barrett@okuneva.info
+
+### Get a specific inventory variant [GET]
+
++ Request Getting an inventory variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: bKREmM1xoNBzbL4nhuptUA
+        Token-Type: Bearer
+        Client: 8Kg8q_jnFY_fmtMUriZOEQ
+        Expiry: 1525205734
+        Uid: shany.bartell@schulist.com
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: bKREmM1xoNBzbL4nhuptUA
+        token-type: Bearer
+        client: 8Kg8q_jnFY_fmtMUriZOEQ
+        expiry: 1525205734
+        uid: shany.bartell@schulist.com
+
+    + Body
+
+        {
+          "id": "d3c085b3-83d5-4713-af3f-3a889468ccfc",
+          "quantity": 517,
+          "created_at": "2018-04-01T20:15:34.206Z",
+          "updated_at": "2018-04-01T20:15:34.206Z",
+          "variant": {
+            "id": "0f1fdd19-d8c5-45ce-8e52-fad883890005",
+            "original_barcode": "1047246237",
+            "barcode": "1047246237",
+            "buying_price": 92.11,
+            "tax_free_price": 165.798,
+            "ratio": 76.64,
+            "quantity": 0,
+            "default": true,
+            "created_at": "2018-04-01T20:15:34.198Z",
+            "updated_at": "2018-04-01T20:15:34.198Z",
+            "product": {
+              "id": "77667fe8-c6b1-4c3f-82b9-b990f1a822a3",
+              "name": "Trappistes Rochefort 8",
+              "created_at": "2018-04-01T20:15:34.179Z",
+              "updated_at": "2018-04-01T20:15:34.179Z",
+              "category": {
+                "id": "4834017e-6b01-4b2b-899c-26774bb8350c",
+                "name": "Fruit Beer",
+                "tva": "reduced_rate",
+                "store_id": "2cfda32e-8888-436e-86e3-15c8fe484511",
+                "category_id": null,
+                "created_at": "2018-04-01T20:15:34.176Z",
+                "updated_at": "2018-04-01T20:15:34.176Z"
+              },
+              "manufacturer": {
+                "id": "a82759f0-c2b2-4607-820a-fa25c216e01d",
+                "name": "Dobby",
+                "notes": "794 Granville Haven",
+                "store_id": "2cfda32e-8888-436e-86e3-15c8fe484511",
+                "created_at": "2018-04-01T20:15:34.178Z",
+                "updated_at": "2018-04-01T20:15:34.178Z"
+              }
+            },
+            "provider": {
+              "id": "625aca10-92fe-4298-ba2e-35960a30dcc1",
+              "name": "King Jellybean",
+              "notes": "160 Gibson Streets",
+              "store_id": "a98608dc-f023-49c7-b7fe-0108471ffa06",
+              "created_at": "2018-04-01T20:15:34.189Z",
+              "updated_at": "2018-04-01T20:15:34.189Z"
+            }
+          },
+          "inventory": {
+            "id": "6454aded-06bf-458f-8291-0926ff3c9254",
+            "inventory_variants_count": 1,
+            "locked_at": null,
+            "created_at": "2018-04-01T20:15:34.201Z",
+            "updated_at": "2018-04-01T20:15:34.201Z"
+          }
+        }
+
+### Update an specific inventory variant [PATCH]
+
++ Request Updating an inventory variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: K3c9lPosF-Wp29r1qMogGg
+        Token-Type: Bearer
+        Client: NUjpvzjgOM7LPN495ehWmQ
+        Expiry: 1525205734
+        Uid: lon@walter.name
+
+    + Body
+
+        {
+          "inventory_variant": {
+            "quantity": 12
+          }
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: K3c9lPosF-Wp29r1qMogGg
+        token-type: Bearer
+        client: NUjpvzjgOM7LPN495ehWmQ
+        expiry: 1525205734
+        uid: lon@walter.name
+
+    + Body
+
+        {
+          "id": "c38d24e4-e731-480d-806c-134a1bf923e3",
+          "quantity": 12,
+          "created_at": "2018-04-01T20:15:34.431Z",
+          "updated_at": "2018-04-01T20:15:34.589Z",
+          "variant": {
+            "id": "1362ecbe-594e-49b3-9645-7fe157f74774",
+            "original_barcode": "6841113421",
+            "barcode": "6841113421",
+            "buying_price": 28.97,
+            "tax_free_price": 52.146,
+            "ratio": 43.27,
+            "quantity": 0,
+            "default": true,
+            "created_at": "2018-04-01T20:15:34.424Z",
+            "updated_at": "2018-04-01T20:15:34.424Z",
+            "product": {
+              "id": "f7d1e837-144e-4568-b130-bc1173ea398b",
+              "name": "Founders Kentucky Breakfast",
+              "created_at": "2018-04-01T20:15:34.405Z",
+              "updated_at": "2018-04-01T20:15:34.405Z",
+              "category": {
+                "id": "f7110973-f9ce-4414-8dbd-49284d17b45d",
+                "name": "Light Lager",
+                "tva": "standard_rate",
+                "store_id": "7bd400f7-b9f8-45df-935e-9acf8acba85b",
+                "category_id": null,
+                "created_at": "2018-04-01T20:15:34.402Z",
+                "updated_at": "2018-04-01T20:15:34.402Z"
+              },
+              "manufacturer": {
+                "id": "612d1617-0be3-415a-a4b6-4038ed7e1b94",
+                "name": "Florean Fortescue",
+                "notes": "75673 Kelsie Throughway",
+                "store_id": "7bd400f7-b9f8-45df-935e-9acf8acba85b",
+                "created_at": "2018-04-01T20:15:34.404Z",
+                "updated_at": "2018-04-01T20:15:34.404Z"
+              }
+            },
+            "provider": {
+              "id": "205fec80-b930-4375-b692-a4b6bb95e7fa",
+              "name": "Mr. Needful",
+              "notes": "6647 Haag Skyway",
+              "store_id": "bf59da0a-f11e-43db-85ee-5d49c9a65b24",
+              "created_at": "2018-04-01T20:15:34.414Z",
+              "updated_at": "2018-04-01T20:15:34.414Z"
+            }
+          },
+          "inventory": {
+            "id": "f76d9baa-0260-4185-87f9-3487e8771bf8",
+            "inventory_variants_count": 1,
+            "locked_at": null,
+            "created_at": "2018-04-01T20:15:34.427Z",
+            "updated_at": "2018-04-01T20:15:34.427Z"
+          }
+        }
+
+## Single inventory variant by inventory/variant id [/inventory_variants/:inventory_id/:variant_id]
+
++ Parameters
+  + quantity (required) - Inventory variant&#39;s quantity
+
+### Get a specific inventory variant by inventory and variant id [GET]
+
++ Request Getting an inventory variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: R-NPYWwfnCpazUhRDh6eKw
+        Token-Type: Bearer
+        Client: kDawRqavKkEX6p2I2C1KVw
+        Expiry: 1525205734
+        Uid: rhea.streich@gibson.co
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: R-NPYWwfnCpazUhRDh6eKw
+        token-type: Bearer
+        client: kDawRqavKkEX6p2I2C1KVw
+        expiry: 1525205734
+        uid: rhea.streich@gibson.co
+
+    + Body
+
+        {
+          "id": "9810698c-cc8a-4b1c-bb56-edac5a373ee6",
+          "quantity": 935,
+          "created_at": "2018-04-01T20:15:34.879Z",
+          "updated_at": "2018-04-01T20:15:34.879Z",
+          "variant": {
+            "id": "c9463b16-392d-4587-afad-65500d287a55",
+            "original_barcode": "8069461164",
+            "barcode": "8069461164",
+            "buying_price": 70.96,
+            "tax_free_price": 127.728,
+            "ratio": 82.34,
+            "quantity": 0,
+            "default": true,
+            "created_at": "2018-04-01T20:15:34.871Z",
+            "updated_at": "2018-04-01T20:15:34.871Z",
+            "product": {
+              "id": "490c7b08-ee3d-4709-b174-2d3e831438c7",
+              "name": "Pliny The Elder",
+              "created_at": "2018-04-01T20:15:34.851Z",
+              "updated_at": "2018-04-01T20:15:34.851Z",
+              "category": {
+                "id": "bdb2ab88-30d4-4e48-b650-04bc664a0c19",
+                "name": "English Brown Ale",
+                "tva": "reduced_rate_alt",
+                "store_id": "81b4937f-70f1-4b2d-9032-cb411b6c9d4b",
+                "category_id": null,
+                "created_at": "2018-04-01T20:15:34.848Z",
+                "updated_at": "2018-04-01T20:15:34.848Z"
+              },
+              "manufacturer": {
+                "id": "b2566d4a-2c95-4e09-a6fd-2d39f758e242",
+                "name": "Cedric Diggory",
+                "notes": "247 Geoffrey Tunnel",
+                "store_id": "81b4937f-70f1-4b2d-9032-cb411b6c9d4b",
+                "created_at": "2018-04-01T20:15:34.849Z",
+                "updated_at": "2018-04-01T20:15:34.849Z"
+              }
+            },
+            "provider": {
+              "id": "29e5b61c-d8e6-40db-b7a9-b9ddee538996",
+              "name": "Jerry Smith",
+              "notes": "8052 Towne Lakes",
+              "store_id": "efc392ce-384c-4171-9d0c-9732b4a2c30e",
+              "created_at": "2018-04-01T20:15:34.861Z",
+              "updated_at": "2018-04-01T20:15:34.861Z"
+            }
+          },
+          "inventory": {
+            "id": "45e70ecb-cae4-435b-881c-bc42a0fec8fd",
+            "inventory_variants_count": 1,
+            "locked_at": null,
+            "created_at": "2018-04-01T20:15:34.874Z",
+            "updated_at": "2018-04-01T20:15:34.874Z"
+          }
+        }
+
+# Group Manufacturers
+
+## Manufacturers collection [/manufacturers]
+
++ Parameters
+  + name (required) - Manufacturer&#39;s name
+  + notes - Notes about manufacturer
+  + store_id (required) - Manufacturer&#39;s store id
+
+### Create a manufacturer [POST]
+
++ Request Create a manufacturer (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: NBHpno5A3fsgP_DnJffdVw
+        Token-Type: Bearer
+        Client: u7GtSVpKPbj0IaPKhvjpXA
+        Expiry: 1525205735
+        Uid: thelma_hamill@wisoky.co
+
+    + Body
+
+        {
+          "manufacturer": {
+            "name": "Hokey",
+            "notes": "692 Schmeler Key",
+            "store_id": "4bc75553-52ad-4438-8cc8-d56bae891e17"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: NBHpno5A3fsgP_DnJffdVw
+        token-type: Bearer
+        client: u7GtSVpKPbj0IaPKhvjpXA
+        expiry: 1525205735
+        uid: thelma_hamill@wisoky.co
+
+    + Body
+
+        {
+          "id": "1b32ced8-7beb-4d61-bc5e-16133be76945",
+          "name": "Hokey",
+          "notes": "692 Schmeler Key",
+          "store_id": "4bc75553-52ad-4438-8cc8-d56bae891e17",
+          "created_at": "2018-04-01T20:15:35.426Z",
+          "updated_at": "2018-04-01T20:15:35.426Z"
+        }
+
+### Returns all manufacturers [GET]
+
++ Request List all manufacturers (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: dY7whzEh1r7dQ35hgSsu0Q
+        Token-Type: Bearer
+        Client: fA-VbcnM1AzUzz4_nygqSg
+        Expiry: 1525205735
+        Uid: rene_simonis@ebertkirlin.name
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: dY7whzEh1r7dQ35hgSsu0Q
+        token-type: Bearer
+        client: fA-VbcnM1AzUzz4_nygqSg
+        expiry: 1525205735
+        uid: rene_simonis@ebertkirlin.name
+
+    + Body
+
+        [
+          {
+            "id": "54537d48-e0a9-4a64-b64c-ec79d555217d",
+            "name": "Zacharias Smith",
+            "notes": "8519 Crystel Creek",
+            "store_id": "b8011cfd-d738-469d-b071-f380c35a77bd",
+            "created_at": "2018-04-01T20:15:35.092Z",
+            "updated_at": "2018-04-01T20:15:35.092Z"
+          }
+        ]
+
+## Single manufacturer [/manufacturers/:id]
+
++ Parameters
+  + name (required) - Manufacturer&#39;s name
+  + notes - Notes about manufacturer
+
+### Get a specific manufacturer [GET]
+
++ Request Getting a manufacturer (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: O7eFFt3V6uNvtT8sU5MTyQ
+        Token-Type: Bearer
+        Client: rWDbt9h6epSOkVG1RTAQLw
+        Expiry: 1525205735
+        Uid: maverick@schiller.biz
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: O7eFFt3V6uNvtT8sU5MTyQ
+        token-type: Bearer
+        client: rWDbt9h6epSOkVG1RTAQLw
+        expiry: 1525205735
+        uid: maverick@schiller.biz
+
+    + Body
+
+        {
+          "id": "62f1115e-9e26-4859-955c-7512b7971204",
+          "name": "Amos Diggory",
+          "notes": "23454 Gorczany Roads",
+          "store_id": "65724cd1-f567-46d9-8011-185616a1e33b",
+          "created_at": "2018-04-01T20:15:35.459Z",
+          "updated_at": "2018-04-01T20:15:35.459Z"
+        }
+
+### Update a specific manufacturer [PATCH]
+
++ Request Updating a manufacturer (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: -4h-az95BwAStfBnW5J0QA
+        Token-Type: Bearer
+        Client: bAui3pfbkc9dvzqaY4ND7A
+        Expiry: 1525205735
+        Uid: lisa@hand.info
+
+    + Body
+
+        {
+          "manufacturer": {
+            "name": "Fabian Prewett"
+          }
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: -4h-az95BwAStfBnW5J0QA
+        token-type: Bearer
+        client: bAui3pfbkc9dvzqaY4ND7A
+        expiry: 1525205735
+        uid: lisa@hand.info
+
+    + Body
+
+        {
+          "id": "d2925ed4-dd76-484b-8aba-137a2fde33a4",
+          "store_id": "593b64ab-d77b-4d91-90db-464daefd1053",
+          "name": "Fabian Prewett",
+          "notes": "393 Koepp Parkways",
+          "created_at": "2018-04-01T20:15:35.638Z",
+          "updated_at": "2018-04-01T20:15:35.794Z"
+        }
+
+# Group Products
+
+## Products collection [/products]
+
++ Parameters
+  + name (required) - Product&#39;s name
+  + category_id (required) - Product&#39;s category id
+  + manufacturer_id (required) - Product&#39;s manufacturer id
+  + store_id (required) - Product&#39;s store id
+  + original_barcode (required) - Variant&#39;s original barcode
+  + buying_price (required) - Variant&#39;s buying price
+  + tax_free_price (required) - Variant&#39;s tax-free price
+  + provider_id (required) - Variant&#39;s provider id
+  + ratio (required) - Variant&#39;s ratio
+
+### Create a product [POST]
+
++ Request Create a product (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: Qu8L8-Yba0bMT-3KuK6Wxw
+        Token-Type: Bearer
+        Client: oyHF-znQFfENNFaq4y63wg
+        Expiry: 1525205736
+        Uid: lois.stracke@bernhard.name
+
+    + Body
+
+        {
+          "product": {
+            "name": "Ruination IPA",
+            "category_id": "d828682b-8ed4-446f-9e6c-f3f89a628826",
+            "manufacturer_id": "95a855d3-ffc8-4d91-8958-1ef030bd2c79",
+            "store_id": "2df8b392-1134-40d5-9b5e-d2a762e75cfa"
+          },
+          "variant": {
+            "original_barcode": "3848586515",
+            "buying_price": "31.88",
+            "tax_free_price": 57.384,
+            "provider_id": "cb97ebb2-946d-4122-9b24-9c2ce23ff4f7",
+            "ratio": "81.63"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: Qu8L8-Yba0bMT-3KuK6Wxw
+        token-type: Bearer
+        client: oyHF-znQFfENNFaq4y63wg
+        expiry: 1525205736
+        uid: lois.stracke@bernhard.name
+
+    + Body
+
+        {
+          "id": "5ae67658-f30f-44fa-a5c3-d7d3eb0bb19c",
+          "original_barcode": "3848586515",
+          "barcode": "3848586515",
+          "buying_price": 31.88,
+          "tax_free_price": 57.384,
+          "ratio": 81.63,
+          "quantity": 0,
+          "default": true,
+          "created_at": "2018-04-01T20:15:36.223Z",
+          "updated_at": "2018-04-01T20:15:36.223Z",
+          "product": {
+            "id": "464f9523-7909-4c36-ae00-3c43e7a8c332",
+            "name": "Ruination IPA",
+            "created_at": "2018-04-01T20:15:36.209Z",
+            "updated_at": "2018-04-01T20:15:36.209Z",
+            "category": {
+              "id": "d828682b-8ed4-446f-9e6c-f3f89a628826",
+              "name": "Light Lager",
+              "tva": "reduced_rate_alt",
+              "store_id": "2df8b392-1134-40d5-9b5e-d2a762e75cfa",
+              "category_id": null,
+              "created_at": "2018-04-01T20:15:36.045Z",
+              "updated_at": "2018-04-01T20:15:36.045Z"
+            },
+            "manufacturer": {
+              "id": "95a855d3-ffc8-4d91-8958-1ef030bd2c79",
+              "name": "Roger Davies",
+              "notes": "89904 McKenzie Pass",
+              "store_id": "2df8b392-1134-40d5-9b5e-d2a762e75cfa",
+              "created_at": "2018-04-01T20:15:36.049Z",
+              "updated_at": "2018-04-01T20:15:36.049Z"
+            }
+          },
+          "provider": {
+            "id": "cb97ebb2-946d-4122-9b24-9c2ce23ff4f7",
+            "name": "Birdperson",
+            "notes": "788 Frances Spur",
+            "store_id": "2df8b392-1134-40d5-9b5e-d2a762e75cfa",
+            "created_at": "2018-04-01T20:15:36.053Z",
+            "updated_at": "2018-04-01T20:15:36.053Z"
+          }
+        }
+
+### Returns all products [GET]
+
++ Request List all products (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: oo6i3tECew8b0A0LGbsnPw
+        Token-Type: Bearer
+        Client: V0zcUSiMQlAICW1_GWZmQA
+        Expiry: 1525205735
+        Uid: barton@howegleason.com
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: oo6i3tECew8b0A0LGbsnPw
+        token-type: Bearer
+        client: V0zcUSiMQlAICW1_GWZmQA
+        expiry: 1525205735
+        uid: barton@howegleason.com
+
+    + Body
+
+        [
+          {
+            "id": "cc9fd43a-c8a9-4fe8-8361-01bcca492d89",
+            "name": "Westmalle Trappist Tripel",
+            "created_at": "2018-04-01T20:15:35.849Z",
+            "updated_at": "2018-04-01T20:15:35.849Z",
+            "category": {
+              "id": "813a25fc-7895-4ce1-bce8-337f36210f41",
+              "name": "Belgian And French Ale",
+              "tva": "super_reduced_rate",
+              "store_id": "f72cb9d6-bad5-4d88-b7bb-ab3e91264fba",
+              "category_id": null,
+              "created_at": "2018-04-01T20:15:35.846Z",
+              "updated_at": "2018-04-01T20:15:35.846Z"
+            },
+            "manufacturer": {
+              "id": "3fe2077e-67ff-4028-a22b-c7768654ac17",
+              "name": "Fawkes",
+              "notes": "8665 Mills Mountains",
+              "store_id": "f72cb9d6-bad5-4d88-b7bb-ab3e91264fba",
+              "created_at": "2018-04-01T20:15:35.847Z",
+              "updated_at": "2018-04-01T20:15:35.847Z"
+            }
+          }
+        ]
+
+## Single product [/products/:id]
+
++ Parameters
+  + name (required) - Product&#39;s name
+  + category_id (required) - Product&#39;s category id
+  + manufacturer_id (required) - Product&#39;s manufacturer id
+
+### Get a specific product [GET]
+
++ Request Getting a product (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: SEeV5r0GL2sJ0boOclpEjg
+        Token-Type: Bearer
+        Client: Lmg9AhdL3Q97sQguXk_f_g
+        Expiry: 1525205736
+        Uid: leonora@schoenborer.co
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: SEeV5r0GL2sJ0boOclpEjg
+        token-type: Bearer
+        client: Lmg9AhdL3Q97sQguXk_f_g
+        expiry: 1525205736
+        uid: leonora@schoenborer.co
+
+    + Body
+
+        {
+          "id": "f788560a-55d5-4353-a2b1-7340bd7c5bb7",
+          "name": "Arrogant Bastard Ale",
+          "created_at": "2018-04-01T20:15:36.262Z",
+          "updated_at": "2018-04-01T20:15:36.262Z",
+          "category": {
+            "id": "7d43580a-8398-4332-be21-2fbc9a3684c9",
+            "name": "Porter",
+            "tva": "parking_rate",
+            "store_id": "d04c0e4f-98f9-4fe0-b274-2a974aa552a3",
+            "category_id": null,
+            "created_at": "2018-04-01T20:15:36.259Z",
+            "updated_at": "2018-04-01T20:15:36.259Z"
+          },
+          "manufacturer": {
+            "id": "408f9149-ac2f-4d57-8b2f-ba3c4a7246df",
+            "name": "The Fat Lady",
+            "notes": "5433 Kamille Isle",
+            "store_id": "d04c0e4f-98f9-4fe0-b274-2a974aa552a3",
+            "created_at": "2018-04-01T20:15:36.261Z",
+            "updated_at": "2018-04-01T20:15:36.261Z"
+          }
+        }
+
+### Update a specific product [PATCH]
+
++ Request Updating a product (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: Eyre_FLksncom0mE_dKZaQ
+        Token-Type: Bearer
+        Client: B_lOxWQZjm89TDiT6zsLJA
+        Expiry: 1525205736
+        Uid: elmira@emard.org
+
+    + Body
+
+        {
+          "product": {
+            "name": "Edmund Fitzgerald Porter"
+          }
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: Eyre_FLksncom0mE_dKZaQ
+        token-type: Bearer
+        client: B_lOxWQZjm89TDiT6zsLJA
+        expiry: 1525205736
+        uid: elmira@emard.org
+
+    + Body
+
+        {
+          "id": "1add275c-e94e-48ea-8619-8363b427a586",
+          "name": "Edmund Fitzgerald Porter",
+          "created_at": "2018-04-01T20:15:36.452Z",
+          "updated_at": "2018-04-01T20:15:36.615Z",
+          "category": {
+            "id": "cefa35a1-7e03-46a4-a174-862da27a6351",
+            "name": "Belgian And French Ale",
+            "tva": "reduced_rate",
+            "store_id": "c272fc2e-3c66-4a8b-9258-318238e1a366",
+            "category_id": null,
+            "created_at": "2018-04-01T20:15:36.449Z",
+            "updated_at": "2018-04-01T20:15:36.449Z"
+          },
+          "manufacturer": {
+            "id": "b6d7ef26-4e07-4c33-a618-0fb4055262b4",
+            "name": "Neville Longbottom",
+            "notes": "77058 Fahey Burgs",
+            "store_id": "c272fc2e-3c66-4a8b-9258-318238e1a366",
+            "created_at": "2018-04-01T20:15:36.450Z",
+            "updated_at": "2018-04-01T20:15:36.450Z"
+          }
+        }
+
+# Group Providers
+
+## Providers collection [/providers]
+
++ Parameters
+  + name (required) - Provider&#39;s name
+  + notes - Notes about provider
+  + store_id (required) - Provider&#39;s store id
+
+### Create a provider [POST]
+
++ Request Create a provider (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: fC9shqcMTYz0bInAT1pblA
+        Token-Type: Bearer
+        Client: PvN5KKdu8dIP3iVBYrQYaQ
+        Expiry: 1525205736
+        Uid: giovanna_gerhold@harrichmitt.biz
+
+    + Body
+
+        {
+          "provider": {
+            "name": "Loggins",
+            "notes": "2546 Lesch Underpass",
+            "store_id": "eb3b836c-f983-4c3b-b799-60a741377007"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: fC9shqcMTYz0bInAT1pblA
+        token-type: Bearer
+        client: PvN5KKdu8dIP3iVBYrQYaQ
+        expiry: 1525205736
+        uid: giovanna_gerhold@harrichmitt.biz
+
+    + Body
+
+        {
+          "id": "7ec25751-4282-4e85-80c2-c0f63accaa60",
+          "name": "Loggins",
+          "notes": "2546 Lesch Underpass",
+          "store_id": "eb3b836c-f983-4c3b-b799-60a741377007",
+          "created_at": "2018-04-01T20:15:37.023Z",
+          "updated_at": "2018-04-01T20:15:37.023Z"
+        }
+
+### Returns all providers [GET]
+
++ Request List all providers (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: rXYWzx8vw3qBWjpIV9rYeg
+        Token-Type: Bearer
+        Client: HT5n_WZpWk6HT0qh4YJeHQ
+        Expiry: 1525205736
+        Uid: braden@krajcikdibbert.io
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: rXYWzx8vw3qBWjpIV9rYeg
+        token-type: Bearer
+        client: HT5n_WZpWk6HT0qh4YJeHQ
+        expiry: 1525205736
+        uid: braden@krajcikdibbert.io
+
+    + Body
+
+        [
+          {
+            "id": "16d73470-dbaf-46bb-b529-860a89535397",
+            "name": "Beth's Mytholog",
+            "notes": "433 Bechtelar Isle",
+            "store_id": "11187f98-9e70-41f7-8e75-4fbf39bbecaf",
+            "created_at": "2018-04-01T20:15:36.657Z",
+            "updated_at": "2018-04-01T20:15:36.657Z"
+          }
+        ]
+
+## Single provider [/providers/:id]
+
++ Parameters
+  + name (required) - Provider&#39;s name
+  + notes - Notes about provider
+
+### Get a specific provider [GET]
+
++ Request Getting a provider (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: PF703wnU1dXKg1GFrm0kAQ
+        Token-Type: Bearer
+        Client: nGv95mQrGIV45hnaNCJe2A
+        Expiry: 1525205737
+        Uid: itzel@pfannerstill.name
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: PF703wnU1dXKg1GFrm0kAQ
+        token-type: Bearer
+        client: nGv95mQrGIV45hnaNCJe2A
+        expiry: 1525205737
+        uid: itzel@pfannerstill.name
+
+    + Body
+
+        {
+          "id": "862899bc-9f82-46e2-a65a-bb9850b3ce35",
+          "name": "Morty Smith",
+          "notes": "846 Aurore Rapid",
+          "store_id": "0dd251d2-e9cd-4722-8154-be4afbb940ce",
+          "created_at": "2018-04-01T20:15:37.056Z",
+          "updated_at": "2018-04-01T20:15:37.056Z"
+        }
+
+### Update a specific provider [PATCH]
+
++ Request Updating a provider (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: JPmT7FBegsdNba8UZMT3aw
+        Token-Type: Bearer
+        Client: tJtH3pyqpf9t8MSnSxORUQ
+        Expiry: 1525205737
+        Uid: connor@mosciski.info
+
+    + Body
+
+        {
+          "provider": {
+            "name": "Jan Michael Vincent"
+          }
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: JPmT7FBegsdNba8UZMT3aw
+        token-type: Bearer
+        client: tJtH3pyqpf9t8MSnSxORUQ
+        expiry: 1525205737
+        uid: connor@mosciski.info
+
+    + Body
+
+        {
+          "id": "a1c982d6-0d05-4e6e-a23c-e43d822eeb8c",
+          "store_id": "755b231c-e6e0-4e67-be37-4e016e5dec74",
+          "name": "Jan Michael Vincent",
+          "notes": "150 Georgette Mills",
+          "created_at": "2018-04-01T20:15:37.234Z",
+          "updated_at": "2018-04-01T20:15:37.390Z"
+        }
+
+# Group Shipping Variants
+
+## Shipping variants collection [/shipping_variants]
+
++ Parameters
+  + shipping_id (required) - Shipping variant&#39;s shipping id
+  + variant_id (required) - Shipping variant&#39;s variant id
+  + quantity (required) - Shipping variant&#39;s quantity
+
+### Create an shipping variant [POST]
+
++ Request Create an shipping variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: qtGb0lMexXI-DINqm_kWqA
+        Token-Type: Bearer
+        Client: BRLh_WKchMqUBMvy9WIe0g
+        Expiry: 1525205737
+        Uid: patricia.reichel@simonismoriette.com
+
+    + Body
+
+        {
+          "shipping_variant": {
+            "shipping_id": "cecddd78-8d14-41fe-9bc6-71bcc1a20a2a",
+            "variant_id": "6a23dc6b-3b47-42a8-8338-e9da580881dc",
+            "quantity": 5
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: qtGb0lMexXI-DINqm_kWqA
+        token-type: Bearer
+        client: BRLh_WKchMqUBMvy9WIe0g
+        expiry: 1525205737
+        uid: patricia.reichel@simonismoriette.com
+
+    + Body
+
+        {
+          "id": "95892fb7-a630-494b-b307-41380bf1ef4a",
+          "quantity": 5,
+          "created_at": "2018-04-01T20:15:37.939Z",
+          "updated_at": "2018-04-01T20:15:37.939Z",
+          "variant": {
+            "id": "6a23dc6b-3b47-42a8-8338-e9da580881dc",
+            "original_barcode": "9659180295",
+            "barcode": "9659180295",
+            "buying_price": 86.44,
+            "tax_free_price": 155.592,
+            "ratio": 23.71,
+            "quantity": 0,
+            "default": true,
+            "created_at": "2018-04-01T20:15:37.784Z",
+            "updated_at": "2018-04-01T20:15:37.784Z",
+            "product": {
+              "id": "f6f79845-404a-4982-a314-16bdf9970eba",
+              "name": "Hercules Double IPA",
+              "created_at": "2018-04-01T20:15:37.766Z",
+              "updated_at": "2018-04-01T20:15:37.766Z",
+              "category": {
+                "id": "25cd1930-ddf9-4c6a-9e0a-d6582be1c236",
+                "name": "Light Lager",
+                "tva": "super_reduced_rate",
+                "store_id": "5263c04d-2e74-4c87-b383-ff6a7bb33302",
+                "category_id": null,
+                "created_at": "2018-04-01T20:15:37.763Z",
+                "updated_at": "2018-04-01T20:15:37.763Z"
+              },
+              "manufacturer": {
+                "id": "ff280187-546d-4aee-b9d6-d7bfe8b1b1bc",
+                "name": "Winky",
+                "notes": "41157 Terry Inlet",
+                "store_id": "5263c04d-2e74-4c87-b383-ff6a7bb33302",
+                "created_at": "2018-04-01T20:15:37.765Z",
+                "updated_at": "2018-04-01T20:15:37.765Z"
+              }
+            },
+            "provider": {
+              "id": "ad56b2c9-7ec6-495e-9fbe-a4683f12975b",
+              "name": "Shrimply Pibbles",
+              "notes": "42593 Mosciski Fords",
+              "store_id": "0321edff-cfb9-43a7-a9a8-4bf772499880",
+              "created_at": "2018-04-01T20:15:37.775Z",
+              "updated_at": "2018-04-01T20:15:37.775Z"
+            }
+          },
+          "shipping": {
+            "id": "cecddd78-8d14-41fe-9bc6-71bcc1a20a2a",
+            "shipping_variants_count": 1,
+            "locked_at": null,
+            "created_at": "2018-04-01T20:15:37.759Z",
+            "updated_at": "2018-04-01T20:15:37.759Z",
+            "provider": {
+              "id": "971af358-1944-4fe3-8d07-100ef6d80e19",
+              "name": "Unity",
+              "notes": "99487 Gay Dale",
+              "store_id": "bb2b6a13-5d87-4343-aa55-f5ac3f4aa076",
+              "created_at": "2018-04-01T20:15:37.756Z",
+              "updated_at": "2018-04-01T20:15:37.756Z"
+            }
+          }
+        }
+
+### Returns all shipping_variants [GET]
+
++ Request List all shipping_variants (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: jpIsB4VIL4MhqVloAcOLzQ
+        Token-Type: Bearer
+        Client: NGTbgnEnNqX_Ef8fX4lFAQ
+        Expiry: 1525205737
+        Uid: terrance@kuvalis.info
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: jpIsB4VIL4MhqVloAcOLzQ
+        token-type: Bearer
+        client: NGTbgnEnNqX_Ef8fX4lFAQ
+        expiry: 1525205737
+        uid: terrance@kuvalis.info
+
+    + Body
+
+        [
+          {
+            "id": "4678c28e-393d-4c47-b964-4ed84d14e07f",
+            "quantity": 129,
+            "created_at": "2018-04-01T20:15:37.535Z",
+            "updated_at": "2018-04-01T20:15:37.535Z",
+            "variant": {
+              "id": "affc330d-82ae-4387-a485-5eecda20ffe6",
+              "original_barcode": "1744717214",
+              "barcode": "1744717214",
+              "buying_price": 56.04,
+              "tax_free_price": 100.872,
+              "ratio": 20.26,
+              "quantity": 0,
+              "default": true,
+              "created_at": "2018-04-01T20:15:37.518Z",
+              "updated_at": "2018-04-01T20:15:37.518Z",
+              "product": {
+                "id": "cd81c272-fd90-4cfe-8c7d-f2f273d1c366",
+                "name": "Pliny The Elder",
+                "created_at": "2018-04-01T20:15:37.499Z",
+                "updated_at": "2018-04-01T20:15:37.499Z",
+                "category": {
+                  "id": "903b5b1a-fe53-4dcc-b298-d97b7d502e71",
+                  "name": "Amber Hybrid Beer",
+                  "tva": "parking_rate",
+                  "store_id": "08fb4683-277f-4e8e-800e-440f098f1439",
+                  "category_id": null,
+                  "created_at": "2018-04-01T20:15:37.496Z",
+                  "updated_at": "2018-04-01T20:15:37.496Z"
+                },
+                "manufacturer": {
+                  "id": "cd3cf1c9-e3f5-41c0-983f-a842cd6169da",
+                  "name": "Alice Longbottom",
+                  "notes": "643 Cleta Flat",
+                  "store_id": "08fb4683-277f-4e8e-800e-440f098f1439",
+                  "created_at": "2018-04-01T20:15:37.498Z",
+                  "updated_at": "2018-04-01T20:15:37.498Z"
+                }
+              },
+              "provider": {
+                "id": "c43767f6-eb49-476a-b35d-7ae8ccaccf6d",
+                "name": "Jerry's Mytholog",
+                "notes": "446 Lauryn Way",
+                "store_id": "d9687f34-64c3-4cb8-b103-e7caed9eecc1",
+                "created_at": "2018-04-01T20:15:37.509Z",
+                "updated_at": "2018-04-01T20:15:37.509Z"
+              }
+            },
+            "shipping": {
+              "id": "c770b8bd-27ef-44e9-b7e3-fa7ca5997ae1",
+              "shipping_variants_count": 1,
+              "locked_at": null,
+              "created_at": "2018-04-01T20:15:37.530Z",
+              "updated_at": "2018-04-01T20:15:37.530Z",
+              "provider": {
+                "id": "04c8d34d-b7f1-4546-b5ea-892247f0286b",
+                "name": "Loggins",
+                "notes": "378 Quigley Street",
+                "store_id": "4cca1e64-94fc-473f-924e-bf9d3652749f",
+                "created_at": "2018-04-01T20:15:37.528Z",
+                "updated_at": "2018-04-01T20:15:37.528Z"
+              }
+            }
+          }
+        ]
+
+## Single shipping variant [/shipping_variants/:id]
+
++ Parameters
+  + quantity (required) - Shipping variant&#39;s quantity
+
+### Delete a specific shipping variant [DELETE]
+
++ Request Deleting an shipping variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: yk8fCCLlTf8h8noV7AVczQ
+        Token-Type: Bearer
+        Client: NiLc520rTQaESddJS2AAug
+        Expiry: 1525205738
+        Uid: dorris_stoltenberg@turnerreilly.com
+
++ Response 204 ()
+
+    + Headers
+
+        access-token: yk8fCCLlTf8h8noV7AVczQ
+        token-type: Bearer
+        client: NiLc520rTQaESddJS2AAug
+        expiry: 1525205738
+        uid: dorris_stoltenberg@turnerreilly.com
+
+### Get a specific shipping variant [GET]
+
++ Request Getting an shipping variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: bCP7WMTl2MXU6kk1sW8atQ
+        Token-Type: Bearer
+        Client: r9yOrf7tacaNgjVipHPY6g
+        Expiry: 1525205738
+        Uid: carmela@keebler.org
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: bCP7WMTl2MXU6kk1sW8atQ
+        token-type: Bearer
+        client: r9yOrf7tacaNgjVipHPY6g
+        expiry: 1525205738
+        uid: carmela@keebler.org
+
+    + Body
+
+        {
+          "id": "9d092919-337f-4f5e-b050-cfd1ab277a30",
+          "quantity": 580,
+          "created_at": "2018-04-01T20:15:38.024Z",
+          "updated_at": "2018-04-01T20:15:38.024Z",
+          "variant": {
+            "id": "05fe289d-6296-4f8c-ab98-168186ea04d3",
+            "original_barcode": "3173877101",
+            "barcode": "3173877101",
+            "buying_price": 88.35,
+            "tax_free_price": 159.03,
+            "ratio": 17.67,
+            "quantity": 0,
+            "default": true,
+            "created_at": "2018-04-01T20:15:38.007Z",
+            "updated_at": "2018-04-01T20:15:38.007Z",
+            "product": {
+              "id": "e1b90492-c863-4822-afe5-be46612a9f55",
+              "name": "Péché Mortel",
+              "created_at": "2018-04-01T20:15:37.989Z",
+              "updated_at": "2018-04-01T20:15:37.989Z",
+              "category": {
+                "id": "02c421ec-6fc6-4a54-b548-8df5bad24c52",
+                "name": "Bock",
+                "tva": "parking_rate",
+                "store_id": "46c6a63f-b787-4ba3-a382-b950972a6fc7",
+                "category_id": null,
+                "created_at": "2018-04-01T20:15:37.985Z",
+                "updated_at": "2018-04-01T20:15:37.985Z"
+              },
+              "manufacturer": {
+                "id": "c91558e5-cd5e-4ab1-9d45-2079de3a44cc",
+                "name": "Penelope Clearwater",
+                "notes": "1088 Omari Manor",
+                "store_id": "46c6a63f-b787-4ba3-a382-b950972a6fc7",
+                "created_at": "2018-04-01T20:15:37.986Z",
+                "updated_at": "2018-04-01T20:15:37.986Z"
+              }
+            },
+            "provider": {
+              "id": "6f15b4fb-4da5-4960-8b2d-4f721e3cda83",
+              "name": "Jerry's Mytholog",
+              "notes": "129 Jaden Fords",
+              "store_id": "59880820-8e48-4e92-8740-884b72088c1b",
+              "created_at": "2018-04-01T20:15:37.998Z",
+              "updated_at": "2018-04-01T20:15:37.998Z"
+            }
+          },
+          "shipping": {
+            "id": "d9966128-2422-43a0-9b60-6da2f7683a01",
+            "shipping_variants_count": 1,
+            "locked_at": null,
+            "created_at": "2018-04-01T20:15:38.019Z",
+            "updated_at": "2018-04-01T20:15:38.019Z",
+            "provider": {
+              "id": "b777ab08-a526-488a-84d8-2a487410d78a",
+              "name": "Beth's Mytholog",
+              "notes": "536 Champlin Corner",
+              "store_id": "1a1cdddd-339e-4f9a-8e81-7f9cc2574a56",
+              "created_at": "2018-04-01T20:15:38.016Z",
+              "updated_at": "2018-04-01T20:15:38.016Z"
+            }
+          }
+        }
+
+### Update an specific shipping variant [PATCH]
+
++ Request Updating an shipping variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: dcSiBPkXnldxnANejVTdtw
+        Token-Type: Bearer
+        Client: mlOlFaX2wHVe78dGFhZRSA
+        Expiry: 1525205738
+        Uid: renee_keeling@kovaceksawayn.net
+
+    + Body
+
+        {
+          "shipping_variant": {
+            "quantity": 12
+          }
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: dcSiBPkXnldxnANejVTdtw
+        token-type: Bearer
+        client: mlOlFaX2wHVe78dGFhZRSA
+        expiry: 1525205738
+        uid: renee_keeling@kovaceksawayn.net
+
+    + Body
+
+        {
+          "id": "d135c400-0e96-4565-ae7d-717c4666f09b",
+          "quantity": 12,
+          "created_at": "2018-04-01T20:15:38.255Z",
+          "updated_at": "2018-04-01T20:15:38.411Z",
+          "variant": {
+            "id": "1dc23d4f-6671-4e99-9164-ab68e0250d18",
+            "original_barcode": "6744529107",
+            "barcode": "6744529107",
+            "buying_price": 23.11,
+            "tax_free_price": 41.598,
+            "ratio": 86.37,
+            "quantity": 0,
+            "default": true,
+            "created_at": "2018-04-01T20:15:38.239Z",
+            "updated_at": "2018-04-01T20:15:38.239Z",
+            "product": {
+              "id": "272062d4-360d-46d1-ae48-32d182515952",
+              "name": "Trappistes Rochefort 10",
+              "created_at": "2018-04-01T20:15:38.221Z",
+              "updated_at": "2018-04-01T20:15:38.221Z",
+              "category": {
+                "id": "68a2837b-5e79-4f9c-80a3-877fa9ea9c7b",
+                "name": "Light Hybrid Beer",
+                "tva": "standard_rate",
+                "store_id": "cdd3ac99-ad1a-42cf-8204-d62036256989",
+                "category_id": null,
+                "created_at": "2018-04-01T20:15:38.218Z",
+                "updated_at": "2018-04-01T20:15:38.218Z"
+              },
+              "manufacturer": {
+                "id": "cc54dfdf-70dd-427b-83cc-e46dfa9fb461",
+                "name": "Sybill Trelawney",
+                "notes": "8619 Hoppe Parkway",
+                "store_id": "cdd3ac99-ad1a-42cf-8204-d62036256989",
+                "created_at": "2018-04-01T20:15:38.219Z",
+                "updated_at": "2018-04-01T20:15:38.219Z"
+              }
+            },
+            "provider": {
+              "id": "e1047dd7-b2c5-4b3a-a857-c430e9fd6543",
+              "name": "Mr. Poopybutthole",
+              "notes": "60880 Beaulah Court",
+              "store_id": "d84254c1-ce76-449b-ba07-a6a475eb0cbb",
+              "created_at": "2018-04-01T20:15:38.229Z",
+              "updated_at": "2018-04-01T20:15:38.229Z"
+            }
+          },
+          "shipping": {
+            "id": "f3096680-f384-4a41-a61f-4469f7b18f85",
+            "shipping_variants_count": 1,
+            "locked_at": null,
+            "created_at": "2018-04-01T20:15:38.251Z",
+            "updated_at": "2018-04-01T20:15:38.251Z",
+            "provider": {
+              "id": "2075bf3a-b5b6-4ed6-80e4-61bb057d0674",
+              "name": "Fart",
+              "notes": "2690 Miller Square",
+              "store_id": "6b3f4b5d-a147-435c-a4f7-b87cd88882a0",
+              "created_at": "2018-04-01T20:15:38.248Z",
+              "updated_at": "2018-04-01T20:15:38.248Z"
+            }
+          }
+        }
+
+## Single shipping variant by shipping/variant id [/shipping_variants/:shipping_id/:variant_id]
+
++ Parameters
+  + quantity (required) - Shipping variant&#39;s quantity
+
+### Get a specific shipping variant by shipping and variant id [GET]
+
++ Request Getting an shipping variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: aA4cenHh3c4q1mW56Ev94w
+        Token-Type: Bearer
+        Client: NA42TLixiKK4CmHR3aJwOQ
+        Expiry: 1525205738
+        Uid: alyon_metz@rippinwuckert.com
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: aA4cenHh3c4q1mW56Ev94w
+        token-type: Bearer
+        client: NA42TLixiKK4CmHR3aJwOQ
+        expiry: 1525205738
+        uid: alyon_metz@rippinwuckert.com
+
+    + Body
+
+        {
+          "id": "aec4fe4f-6f23-406b-984e-63679d22f5e5",
+          "quantity": 243,
+          "created_at": "2018-04-01T20:15:38.717Z",
+          "updated_at": "2018-04-01T20:15:38.717Z",
+          "variant": {
+            "id": "e64470c9-8737-4037-9aa7-a7d83523a576",
+            "original_barcode": "5967682779",
+            "barcode": "5967682779",
+            "buying_price": 96.44,
+            "tax_free_price": 173.592,
+            "ratio": 91.46,
+            "quantity": 0,
+            "default": true,
+            "created_at": "2018-04-01T20:15:38.700Z",
+            "updated_at": "2018-04-01T20:15:38.700Z",
+            "product": {
+              "id": "ca31ffe5-aa88-42fe-ab44-71faffb3f8c9",
+              "name": "Stone IPA",
+              "created_at": "2018-04-01T20:15:38.682Z",
+              "updated_at": "2018-04-01T20:15:38.682Z",
+              "category": {
+                "id": "703e07b1-4256-407b-8ea6-0899d27c9eaf",
+                "name": "Pilsner",
+                "tva": "reduced_rate",
+                "store_id": "187659d6-3cb8-4709-a1a3-f7b4d87b817f",
+                "category_id": null,
+                "created_at": "2018-04-01T20:15:38.680Z",
+                "updated_at": "2018-04-01T20:15:38.680Z"
+              },
+              "manufacturer": {
+                "id": "b0c2d718-b6f6-4774-a35c-24754f20ed89",
+                "name": "Ariana Dumbledore",
+                "notes": "11985 Gottlieb Rapids",
+                "store_id": "187659d6-3cb8-4709-a1a3-f7b4d87b817f",
+                "created_at": "2018-04-01T20:15:38.681Z",
+                "updated_at": "2018-04-01T20:15:38.681Z"
+              }
+            },
+            "provider": {
+              "id": "436ed479-f2f6-497e-83af-7ed4844b417a",
+              "name": "Fart",
+              "notes": "400 Aliya Lock",
+              "store_id": "3293f185-2682-42af-ab4c-094da5e29eec",
+              "created_at": "2018-04-01T20:15:38.691Z",
+              "updated_at": "2018-04-01T20:15:38.691Z"
+            }
+          },
+          "shipping": {
+            "id": "33b69661-a974-4631-8ac4-e5bcaacdc9d9",
+            "shipping_variants_count": 1,
+            "locked_at": null,
+            "created_at": "2018-04-01T20:15:38.713Z",
+            "updated_at": "2018-04-01T20:15:38.713Z",
+            "provider": {
+              "id": "1df2ac78-7f99-4bd2-adf3-3c7be329ac7a",
+              "name": "Krombopulos Michael",
+              "notes": "7176 Hauck Turnpike",
+              "store_id": "62f24a6b-cd7a-4b29-83f2-92596db35e44",
+              "created_at": "2018-04-01T20:15:38.711Z",
+              "updated_at": "2018-04-01T20:15:38.711Z"
+            }
+          }
+        }
+
+# Group Shippings
+
+## Shippings collection [/shippings]
+
++ Parameters
+  + store_id (required) - Shipping&#39;s store id
+  + provider_id (required) - Shipping&#39;s provider id
+
+### Create a shipping [POST]
+
++ Request Create a shipping (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: BuKjISH9Nv60bohDHt_w5w
+        Token-Type: Bearer
+        Client: 0lPMJDX6Z5BiSH5qfaBRgA
+        Expiry: 1525205739
+        Uid: mallie@dicki.info
+
+    + Body
+
+        {
+          "shipping": {
+            "store_id": "22b7bbe2-e425-4a18-aa15-3a77f52be77b",
+            "provider_id": "9c5c6111-3882-44e6-8670-44064877f07a"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: BuKjISH9Nv60bohDHt_w5w
+        token-type: Bearer
+        client: 0lPMJDX6Z5BiSH5qfaBRgA
+        expiry: 1525205739
+        uid: mallie@dicki.info
+
+    + Body
+
+        {
+          "id": "8f5c9928-d628-4532-b19a-7b94656b0f57",
+          "shipping_variants_count": 0,
+          "locked_at": null,
+          "created_at": "2018-04-01T20:15:39.281Z",
+          "updated_at": "2018-04-01T20:15:39.281Z",
+          "provider": {
+            "id": "9c5c6111-3882-44e6-8670-44064877f07a",
+            "name": "Snuffles",
+            "notes": "69639 Luettgen Spurs",
+            "store_id": "22b7bbe2-e425-4a18-aa15-3a77f52be77b",
+            "created_at": "2018-04-01T20:15:39.131Z",
+            "updated_at": "2018-04-01T20:15:39.131Z"
+          }
+        }
+
+### Returns all shippings [GET]
+
++ Request List all shippings (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: kn2yBtufz9K4FO1LZIiSkw
+        Token-Type: Bearer
+        Client: ttSPumcsI1h6O3CftuJa2g
+        Expiry: 1525205739
+        Uid: eryn@huels.name
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: kn2yBtufz9K4FO1LZIiSkw
+        token-type: Bearer
+        client: ttSPumcsI1h6O3CftuJa2g
+        expiry: 1525205739
+        uid: eryn@huels.name
+
+    + Body
+
+        [
+          {
+            "id": "db1cbc86-b5c8-46d4-8345-98d58c95ce3a",
+            "shipping_variants_count": 0,
+            "locked_at": null,
+            "created_at": "2018-04-01T20:15:38.943Z",
+            "updated_at": "2018-04-01T20:15:38.943Z",
+            "provider": {
+              "id": "d3483e15-de6d-4763-9d03-653edae91914",
+              "name": "Fart",
+              "notes": "77344 Abshire Union",
+              "store_id": "f9862ffd-9b7c-41af-886c-5a10b413188d",
+              "created_at": "2018-04-01T20:15:38.940Z",
+              "updated_at": "2018-04-01T20:15:38.940Z"
+            }
+          }
+        ]
+
+## Single shipping [/shippings/:id]
+
+### Delete a specific shipping [DELETE]
+
++ Request Deleting a shipping (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: nQ2c2nY97jlUoK1_wZ2vgg
+        Token-Type: Bearer
+        Client: F2SBUkY-JPXEwZYRzm_G7Q
+        Expiry: 1525205739
+        Uid: christiana_ko@schneiderbuckridge.org
+
++ Response 204 ()
+
+    + Headers
+
+        access-token: nQ2c2nY97jlUoK1_wZ2vgg
+        token-type: Bearer
+        client: F2SBUkY-JPXEwZYRzm_G7Q
+        expiry: 1525205739
+        uid: christiana_ko@schneiderbuckridge.org
+
+### Get a specific shipping [GET]
+
++ Request Getting a shipping (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: HI3rARSi8f7zUg0Li62N-Q
+        Token-Type: Bearer
+        Client: yoT45wiWvu21hqUkYK5sqQ
+        Expiry: 1525205739
+        Uid: loy_daugherty@bernier.name
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: HI3rARSi8f7zUg0Li62N-Q
+        token-type: Bearer
+        client: yoT45wiWvu21hqUkYK5sqQ
+        expiry: 1525205739
+        uid: loy_daugherty@bernier.name
+
+    + Body
+
+        {
+          "id": "ef4db1bf-dd82-48de-a10c-414fb9b2192a",
+          "shipping_variants_count": 0,
+          "locked_at": null,
+          "created_at": "2018-04-01T20:15:39.325Z",
+          "updated_at": "2018-04-01T20:15:39.325Z",
+          "provider": {
+            "id": "500e8e05-4c4a-4181-8ebe-e2dfe9233bdc",
+            "name": "King Jellybean",
+            "notes": "3518 Schmidt Ramp",
+            "store_id": "8fc2fc9d-acf0-4430-b1b5-46ab879b134f",
+            "created_at": "2018-04-01T20:15:39.322Z",
+            "updated_at": "2018-04-01T20:15:39.322Z"
+          }
+        }
+
+## Single shipping [/shippings/:id/lock]
+
+### Lock a specific shipping [PATCH]
+
++ Request Locking a shipping (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: fDe4V9Noi8EFmWkTCd6Yiw
+        Token-Type: Bearer
+        Client: Io1Qt5oJ2rkEVUSQnAqvJw
+        Expiry: 1525205739
+        Uid: charles.koepp@reynolds.io
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: fDe4V9Noi8EFmWkTCd6Yiw
+        token-type: Bearer
+        client: Io1Qt5oJ2rkEVUSQnAqvJw
+        expiry: 1525205739
+        uid: charles.koepp@reynolds.io
+
+    + Body
+
+        {
+          "id": "986a4cb3-2cef-4a0e-91f8-61aa0bc4626f",
+          "shipping_variants_count": 0,
+          "locked_at": "2018-04-01T20:15:39.893Z",
+          "created_at": "2018-04-01T20:15:39.733Z",
+          "updated_at": "2018-04-01T20:15:39.896Z",
+          "provider": {
+            "id": "b9bf9827-17e8-47cc-aacf-b9aaaadd9e7c",
+            "name": "Tammy Gueterman",
+            "notes": "784 Wuckert Shoals",
+            "store_id": "a8e7ead0-b4fa-40e3-b922-39600c054b43",
+            "created_at": "2018-04-01T20:15:39.729Z",
+            "updated_at": "2018-04-01T20:15:39.729Z"
+          }
+        }
+
+# Group Stock Backup Variants
+
+## Single stock backup variant [/stock_backup_variants/:id]
+
+### Get a specific stock backup variant [GET]
+
++ Request Getting a stock backup variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: zSp8afNSf5qZHsku1tQEoQ
+        Token-Type: Bearer
+        Client: sI_1KHXdTKZ3-K-zYUE2Lw
+        Expiry: 1525205740
+        Uid: viva@emard.org
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: zSp8afNSf5qZHsku1tQEoQ
+        token-type: Bearer
+        client: sI_1KHXdTKZ3-K-zYUE2Lw
+        expiry: 1525205740
+        uid: viva@emard.org
+
+    + Body
+
+        {
+          "id": "76e6f98a-164f-4f31-bc73-0a4c790295d3",
+          "quantity": 0,
+          "stock_backup_id": "b0ddec76-5b05-401f-b031-d869f5a01042",
+          "variant_id": "7c3a5d67-f191-408f-a6ae-98a34254da46",
+          "created_at": "2018-04-01T20:15:40.302Z",
+          "updated_at": "2018-04-01T20:15:40.302Z"
+        }
+
+## Stock backup variants collection [/stock_backup_variants]
+
++ Parameters
+  + stock_backup_id - Filter by stock backup
+
+### Returns all stock backup_variants [GET]
+
++ Request List all stock backup_variants (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: QmNtYfyXCSAgfUFAcTXMKA
+        Token-Type: Bearer
+        Client: dgZLsXlGKEKuZrcy8ZwqdQ
+        Expiry: 1525205740
+        Uid: dante_miller@grady.com
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: QmNtYfyXCSAgfUFAcTXMKA
+        token-type: Bearer
+        client: dgZLsXlGKEKuZrcy8ZwqdQ
+        expiry: 1525205740
+        uid: dante_miller@grady.com
+
+    + Body
+
+        [
+          {
+            "id": "4856a211-94ff-4542-98dd-82a9650697ed",
+            "quantity": 0,
+            "stock_backup_id": "7efef64c-26f7-468b-b5c1-fb55a0cac264",
+            "variant_id": "e3e91a1f-c918-4abd-ada1-9477d1ebcd81",
+            "created_at": "2018-04-01T20:15:40.064Z",
+            "updated_at": "2018-04-01T20:15:40.064Z"
+          }
+        ]
+
+# Group Stock Backups
+
+## Single stock_backup [/stock_backups/:id]
+
+### Get a specific stock backup [GET]
+
++ Request Getting a stock_backup (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: b17n2sgime9-Y55MG9ZpQA
+        Token-Type: Bearer
+        Client: 3CD67SkwZAlaWTbITPF6Yw
+        Expiry: 1525205740
+        Uid: alanis.graham@corwin.org
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: b17n2sgime9-Y55MG9ZpQA
+        token-type: Bearer
+        client: 3CD67SkwZAlaWTbITPF6Yw
+        expiry: 1525205740
+        uid: alanis.graham@corwin.org
+
+    + Body
+
+        {
+          "id": "6905312e-b9c9-46a0-af88-b8c860e1f296",
+          "store_id": "4de67f69-7e2d-4bda-94e3-5e23cbaaf672",
+          "created_at": "2018-04-01T20:15:40.717Z",
+          "updated_at": "2018-04-01T20:15:40.717Z"
+        }
+
+## Stock backups collection [/stock_backups]
+
++ Parameters
+  + store_id - Filter by store
+
+### Returns all stock backups [GET]
+
++ Request List all stock backups (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: klp_2gjJad1VTh3t2JaIAQ
+        Token-Type: Bearer
+        Client: 1hYxYf0RjkS_PMjWsXC7kA
+        Expiry: 1525205740
+        Uid: marquis.ward@weinat.co
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: klp_2gjJad1VTh3t2JaIAQ
+        token-type: Bearer
+        client: 1hYxYf0RjkS_PMjWsXC7kA
+        expiry: 1525205740
+        uid: marquis.ward@weinat.co
+
+    + Body
+
+        [
+          {
+            "id": "3e820e32-9a27-4c28-a912-f42845be31f1",
+            "store_id": "e14f163e-8fdc-4dc2-9894-d6b120fe26cc",
+            "created_at": "2018-04-01T20:15:40.517Z",
+            "updated_at": "2018-04-01T20:15:40.517Z"
+          }
+        ]
+
+# Group Store Memberships
+
+## Store memberships collection [/store_memberships]
+
++ Parameters
+  + user_id (required) - Membership&#39;s user
+  + store_id (required) - Membership&#39;s store
+  + role (required) - Membership&#39;s role (regular, admin, owner)
+
+### Create a store membership [POST]
+
++ Request Create a store membership (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: QkDuIZAXN7t-Wvmd7_zuAQ
+        Token-Type: Bearer
+        Client: bBvrNyKAVSEjxdho3EwJ-Q
+        Expiry: 1525205741
+        Uid: nola@nitzsche.co
+
+    + Body
+
+        {
+          "store_membership": {
+            "user_id": "9ebf48a4-ea17-4929-9ba6-2666f412f504",
+            "store_id": "f5b89b63-54a5-4c2c-90ca-6029d6ba6ba6",
+            "role": "regular"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: QkDuIZAXN7t-Wvmd7_zuAQ
+        token-type: Bearer
+        client: bBvrNyKAVSEjxdho3EwJ-Q
+        expiry: 1525205741
+        uid: nola@nitzsche.co
+
+    + Body
+
+        {
+          "id": "c51719aa-3a3f-45e2-8463-0653eec50bb5",
+          "store_id": "f5b89b63-54a5-4c2c-90ca-6029d6ba6ba6",
+          "user_id": "9ebf48a4-ea17-4929-9ba6-2666f412f504",
+          "role": "regular",
+          "created_at": "2018-04-01T20:15:41.295Z",
+          "updated_at": "2018-04-01T20:15:41.295Z"
+        }
+
+### Returns all store memberships [GET]
+
++ Request List all store memberships (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: NzegNGlQFNOoJh5ruUv59Q
+        Token-Type: Bearer
+        Client: TR3EZK4NIX69UEHewhVfPw
+        Expiry: 1525205740
+        Uid: madie.corwin@reynoldsdooley.biz
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: NzegNGlQFNOoJh5ruUv59Q
+        token-type: Bearer
+        client: TR3EZK4NIX69UEHewhVfPw
+        expiry: 1525205740
+        uid: madie.corwin@reynoldsdooley.biz
+
+    + Body
+
+        [
+          {
+            "id": "d4ac6376-fe09-43e7-8a98-b4ef0f05c269",
+            "store_id": "ceaafd57-3a48-4dfe-8454-0d4a0104941a",
+            "user_id": "eee10293-6f2b-4a1f-9d58-40e1fe33be8d",
+            "role": "admin",
+            "created_at": "2018-04-01T20:15:40.902Z",
+            "updated_at": "2018-04-01T20:15:40.902Z"
+          }
+        ]
+
+## Single store membership [/store_memberships/:id]
+
++ Parameters
+  + role (required) - Membership&#39;s role (regular, admin, owner)
+
+### Delete a specific store membership [DELETE]
+
++ Request Deleting a store membership (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: N9XWcLx-aLKXmTZRWFK3_w
+        Token-Type: Bearer
+        Client: c7nYGQVLF5Grw2VAEbEffw
+        Expiry: 1525205742
+        Uid: theodore@conroy.info
+
++ Response 204 ()
+
+    + Headers
+
+        access-token: N9XWcLx-aLKXmTZRWFK3_w
+        token-type: Bearer
+        client: c7nYGQVLF5Grw2VAEbEffw
+        expiry: 1525205742
+        uid: theodore@conroy.info
+
+### Get a specific store membership [GET]
+
++ Request Getting a store membership (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: ahNdX_PNZFREzh-i7UheGQ
+        Token-Type: Bearer
+        Client: fExxUXNrge73ALf5k5TbqA
+        Expiry: 1525205741
+        Uid: serenity@nolanankunding.io
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: ahNdX_PNZFREzh-i7UheGQ
+        token-type: Bearer
+        client: fExxUXNrge73ALf5k5TbqA
+        expiry: 1525205741
+        uid: serenity@nolanankunding.io
+
+    + Body
+
+        {
+          "id": "91a7c45b-9650-4240-9bf8-b61dc5d55482",
+          "store_id": "e294e2d2-2d32-47a8-982c-f9cbd5c0610e",
+          "user_id": "d8b37e77-f7e4-4496-91e3-a36f0e285f2f",
+          "role": "owner",
+          "created_at": "2018-04-01T20:15:41.345Z",
+          "updated_at": "2018-04-01T20:15:41.345Z"
+        }
+
+### Update a specific store membership [PATCH]
+
++ Request Updating a store membership (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: G7ZitirsOnSGRUF8ekrsOg
+        Token-Type: Bearer
+        Client: o8H_2Ck3SBJXyzUJQQRGNQ
+        Expiry: 1525205741
+        Uid: edwardo@armstrong.org
+
+    + Body
+
+        {
+          "store_membership": {
+            "role": "admin"
+          }
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: G7ZitirsOnSGRUF8ekrsOg
+        token-type: Bearer
+        client: o8H_2Ck3SBJXyzUJQQRGNQ
+        expiry: 1525205741
+        uid: edwardo@armstrong.org
+
+    + Body
+
+        {
+          "id": "a360acbe-dfb1-495b-b6fc-1413ec187e31",
+          "store_id": "0315a3b4-7a41-42c6-87d3-d325cc017527",
+          "role": "admin",
+          "user_id": "5484b829-011d-4a5c-8860-3e43e9dddc2f",
+          "created_at": "2018-04-01T20:15:41.631Z",
+          "updated_at": "2018-04-01T20:15:41.631Z"
+        }
+
+# Group Stores
+
+## Stores collection [/stores]
+
++ Parameters
+  + name (required) - Store&#39;s name
+  + address - Store&#39;s address
+  + country (required) - Store&#39;s country
+  + key (required) - Store&#39;s key
+
+### Create a store [POST]
+
++ Request Create a store (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: 5Zi5E2fqQZHcR4ixsVpFhw
+        Token-Type: Bearer
+        Client: 19Kean40lICyw1be6-X0MQ
+        Expiry: 1525205742
+        Uid: max_kuhlman@larsonlegros.org
+
+    + Body
+
+        {
+          "store": {
+            "name": "Cantonica",
+            "address": "2788 Little Prairie",
+            "country": "SJ",
+            "key": "cantonica-111"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: 5Zi5E2fqQZHcR4ixsVpFhw
+        token-type: Bearer
+        client: 19Kean40lICyw1be6-X0MQ
+        expiry: 1525205742
+        uid: max_kuhlman@larsonlegros.org
+
+    + Body
+
+        {
+          "id": "f890a1c6-82a0-48a0-b0ea-71ca95ead857",
+          "name": "Cantonica",
+          "key": "cantonica-111",
+          "address": "2788 Little Prairie",
+          "country": "SJ",
+          "created_at": "2018-04-01T20:15:42.502Z",
+          "updated_at": "2018-04-01T20:15:42.502Z",
+          "store_membership": {
+            "id": "7c311add-61d0-481c-912a-7e36759ef80a",
+            "store_id": "f890a1c6-82a0-48a0-b0ea-71ca95ead857",
+            "user_id": "09028b1b-70f9-48f5-a57f-a170dc179594",
+            "role": null,
+            "created_at": "2018-04-01T20:15:42.509Z",
+            "updated_at": "2018-04-01T20:15:42.509Z"
+          }
+        }
+
+### Returns all stores [GET]
+
++ Request List all stores (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: coijlmOGnEwa0Z3RhrmHRQ
+        Token-Type: Bearer
+        Client: JPFR2_qUOXPZ3LTiD-5d5w
+        Expiry: 1525205742
+        Uid: mateo_champlin@fadelgaylord.org
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: coijlmOGnEwa0Z3RhrmHRQ
+        token-type: Bearer
+        client: JPFR2_qUOXPZ3LTiD-5d5w
+        expiry: 1525205742
+        uid: mateo_champlin@fadelgaylord.org
+
+    + Body
+
+        [
+          {
+            "id": "5517b662-2040-4253-af8a-60ff41a38e54",
+            "name": "Tatooine",
+            "key": "tatooine-110",
+            "address": "365 Bertrand Dale",
+            "country": "NG",
+            "created_at": "2018-04-01T20:15:42.124Z",
+            "updated_at": "2018-04-01T20:15:42.124Z",
+            "store_membership": {
+              "id": "21a43c85-9458-4f1d-b21e-3fc5f82a5cab",
+              "store_id": "5517b662-2040-4253-af8a-60ff41a38e54",
+              "user_id": "fda1eba5-c6dc-4fbd-ae14-dc6cdfc19541",
+              "role": "admin",
+              "created_at": "2018-04-01T20:15:42.139Z",
+              "updated_at": "2018-04-01T20:15:42.139Z"
+            }
+          }
+        ]
+
+## Single store [/stores/:id]
+
++ Parameters
+  + name (required) - Store&#39;s name
+  + address - Store&#39;s address
+  + country (required) - Store&#39;s country
+
+### Get a specific store [GET]
+
++ Request Getting a store (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: rLblRnr83rNWfTxBeAN4Hw
+        Token-Type: Bearer
+        Client: 7FAOUKOXkQtXwr4ONv-uZA
+        Expiry: 1525205742
+        Uid: alize_rosenbaum@koelpindaugherty.io
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: rLblRnr83rNWfTxBeAN4Hw
+        token-type: Bearer
+        client: 7FAOUKOXkQtXwr4ONv-uZA
+        expiry: 1525205742
+        uid: alize_rosenbaum@koelpindaugherty.io
+
+    + Body
+
+        {
+          "id": "8c58f6d0-db7f-4fbf-aac7-d2d1e81ea544",
+          "name": "Hoth",
+          "key": "hoth-113",
+          "address": "647 Dickens Passage",
+          "country": "ZW",
+          "created_at": "2018-04-01T20:15:42.533Z",
+          "updated_at": "2018-04-01T20:15:42.533Z",
+          "store_membership": {
+            "id": "2e21774c-93c7-49d6-bcac-3a69fea88bc6",
+            "store_id": "8c58f6d0-db7f-4fbf-aac7-d2d1e81ea544",
+            "user_id": "00ae4f4a-5374-40ba-a748-83776de27f1d",
+            "role": "admin",
+            "created_at": "2018-04-01T20:15:42.551Z",
+            "updated_at": "2018-04-01T20:15:42.551Z"
+          }
+        }
+
+### Update a specific store [PATCH]
+
++ Request Updating a store (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: kkfR_JncUywezU1MUW_zhA
+        Token-Type: Bearer
+        Client: lhS_rP7dbHKVXw_gQv0Z9Q
+        Expiry: 1525205742
+        Uid: isai.mcdermott@buckridge.net
+
+    + Body
+
+        {
+          "store": {
+            "name": "Scarif"
+          }
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: kkfR_JncUywezU1MUW_zhA
+        token-type: Bearer
+        client: lhS_rP7dbHKVXw_gQv0Z9Q
+        expiry: 1525205742
+        uid: isai.mcdermott@buckridge.net
+
+    + Body
+
+        {
+          "id": "4a363e47-e204-4ee0-bbea-f11447c438ee",
+          "name": "Scarif",
+          "key": "utapau-114",
+          "address": "9382 Heidi Unions",
+          "country": "TK",
+          "created_at": "2018-04-01T20:15:42.737Z",
+          "updated_at": "2018-04-01T20:15:42.918Z",
+          "store_membership": {
+            "id": "5f6cbdcc-ca3f-4e54-83a5-b18fa28a8e66",
+            "store_id": "4a363e47-e204-4ee0-bbea-f11447c438ee",
+            "user_id": "20397378-3f4d-4cb5-85fd-fb8cc600e9e9",
+            "role": "admin",
+            "created_at": "2018-04-01T20:15:42.751Z",
+            "updated_at": "2018-04-01T20:15:42.751Z"
+          }
+        }
+
+# Group VAT rates
+
+## Single VAT rate [/vat_rates/:country]
+
+### Get VAT rates for a country [GET]
+
++ Request Getting VAT rates for a country (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+          "attributes": {
+            "name": "Spain",
+            "code": "ES",
+            "country_code": "ES",
+            "periods": [
+              {
+                "effective_from": "0000-01-01",
+                "rates": {
+                  "super_reduced": 4.0,
+                  "reduced": 10.0,
+                  "standard": 21.0
+                }
+              }
+            ]
+          }
+        }
+
+## VAT rates [/vat_rates]
+
+### Returns all VAT rates [GET]
+
++ Request List all VAT rates (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        [
+          {
+            "attributes": {
+              "name": "Spain",
+              "code": "ES",
+              "country_code": "ES",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "super_reduced": 4.0,
+                    "reduced": 10.0,
+                    "standard": 21.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Bulgaria",
+              "code": "BG",
+              "country_code": "BG",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced": 9.0,
+                    "standard": 20.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Hungary",
+              "code": "HU",
+              "country_code": "HU",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced1": 5.0,
+                    "reduced2": 18.0,
+                    "standard": 27.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Latvia",
+              "code": "LV",
+              "country_code": "LV",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced": 12.0,
+                    "standard": 21.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Poland",
+              "code": "PL",
+              "country_code": "PL",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced1": 5.0,
+                    "reduced2": 8.0,
+                    "standard": 23.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "United Kingdom",
+              "code": "UK",
+              "country_code": "GB",
+              "periods": [
+                {
+                  "effective_from": "2011-01-04",
+                  "rates": {
+                    "standard": 20.0,
+                    "reduced": 5.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Czech Republic",
+              "code": "CZ",
+              "country_code": "CZ",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced": 15.0,
+                    "standard": 21.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Malta",
+              "code": "MT",
+              "country_code": "MT",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced1": 5.0,
+                    "reduced2": 7.0,
+                    "standard": 18.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Italy",
+              "code": "IT",
+              "country_code": "IT",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "super_reduced": 4.0,
+                    "reduced": 10.0,
+                    "standard": 22.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Slovenia",
+              "code": "SI",
+              "country_code": "SI",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced": 9.5,
+                    "standard": 22.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Ireland",
+              "code": "IE",
+              "country_code": "IE",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "super_reduced": 4.8,
+                    "reduced1": 9.0,
+                    "reduced2": 13.5,
+                    "standard": 23.0,
+                    "parking": 13.5
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Sweden",
+              "code": "SE",
+              "country_code": "SE",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced1": 6.0,
+                    "reduced2": 12.0,
+                    "standard": 25.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Denmark",
+              "code": "DK",
+              "country_code": "DK",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "standard": 25.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Finland",
+              "code": "FI",
+              "country_code": "FI",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced1": 10.0,
+                    "reduced2": 14.0,
+                    "standard": 24.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Cyprus",
+              "code": "CY",
+              "country_code": "CY",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced1": 5.0,
+                    "reduced2": 9.0,
+                    "standard": 19.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Luxembourg",
+              "code": "LU",
+              "country_code": "LU",
+              "periods": [
+                {
+                  "effective_from": "2016-01-01",
+                  "rates": {
+                    "super_reduced": 3.0,
+                    "reduced1": 8.0,
+                    "standard": 17.0,
+                    "parking": 13.0
+                  }
+                },
+                {
+                  "effective_from": "2015-01-01",
+                  "rates": {
+                    "super_reduced": 3.0,
+                    "reduced1": 8.0,
+                    "reduced2": 14.0,
+                    "standard": 17.0,
+                    "parking": 12.0
+                  }
+                },
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "super_reduced": 3.0,
+                    "reduced1": 6.0,
+                    "reduced2": 12.0,
+                    "standard": 15.0,
+                    "parking": 12.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Romania",
+              "code": "RO",
+              "country_code": "RO",
+              "periods": [
+                {
+                  "effective_from": "2017-01-01",
+                  "rates": {
+                    "reduced1": 5.0,
+                    "reduced2": 9.0,
+                    "standard": 19.0
+                  }
+                },
+                {
+                  "effective_from": "2016-01-01",
+                  "rates": {
+                    "reduced1": 5.0,
+                    "reduced2": 9.0,
+                    "standard": 20.0
+                  }
+                },
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced1": 5.0,
+                    "reduced2": 9.0,
+                    "standard": 24.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Estonia",
+              "code": "EE",
+              "country_code": "EE",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced": 9.0,
+                    "standard": 20.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Greece",
+              "code": "EL",
+              "country_code": "GR",
+              "periods": [
+                {
+                  "effective_from": "2016-06-01",
+                  "rates": {
+                    "reduced1": 6.0,
+                    "reduced2": 13.5,
+                    "standard": 24.0
+                  }
+                },
+                {
+                  "effective_from": "2016-01-01",
+                  "rates": {
+                    "reduced1": 6.0,
+                    "reduced2": 13.5,
+                    "standard": 23.0
+                  }
+                },
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced1": 6.5,
+                    "reduced2": 13.0,
+                    "standard": 23.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Lithuania",
+              "code": "LT",
+              "country_code": "LT",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced1": 5.0,
+                    "reduced2": 9.0,
+                    "standard": 21.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "France",
+              "code": "FR",
+              "country_code": "FR",
+              "periods": [
+                {
+                  "effective_from": "2014-01-01",
+                  "rates": {
+                    "super_reduced": 2.1,
+                    "reduced1": 5.5,
+                    "reduced2": 10.0,
+                    "standard": 20.0
+                  }
+                },
+                {
+                  "effective_from": "2012-01-01",
+                  "rates": {
+                    "super_reduced": 2.1,
+                    "reduced1": 5.5,
+                    "reduced2": 7.0,
+                    "standard": 19.6
+                  }
+                },
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "super_reduced": 2.1,
+                    "reduced1": 5.5,
+                    "standard": 19.6
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Croatia",
+              "code": "HR",
+              "country_code": "HR",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced1": 5.0,
+                    "reduced2": 13.0,
+                    "standard": 25.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Belgium",
+              "code": "BE",
+              "country_code": "BE",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced1": 6.0,
+                    "reduced2": 12.0,
+                    "standard": 21.0,
+                    "parking": 12.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Netherlands",
+              "code": "NL",
+              "country_code": "NL",
+              "periods": [
+                {
+                  "effective_from": "2012-10-01",
+                  "rates": {
+                    "reduced": 6.0,
+                    "standard": 21.0
+                  }
+                },
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced": 6.0,
+                    "standard": 19.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Slovakia",
+              "code": "SK",
+              "country_code": "SK",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced": 10.0,
+                    "standard": 20.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Germany",
+              "code": "DE",
+              "country_code": "DE",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced": 7.0,
+                    "standard": 19.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Portugal",
+              "code": "PT",
+              "country_code": "PT",
+              "periods": [
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced1": 6.0,
+                    "reduced2": 13.0,
+                    "standard": 23.0,
+                    "parking": 13.0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "attributes": {
+              "name": "Austria",
+              "code": "AT",
+              "country_code": "AT",
+              "periods": [
+                {
+                  "effective_from": "2016-01-01",
+                  "rates": {
+                    "reduced1": 10.0,
+                    "reduced2": 13.0,
+                    "standard": 20.0,
+                    "parking": 13.0
+                  }
+                },
+                {
+                  "effective_from": "0000-01-01",
+                  "rates": {
+                    "reduced": 10.0,
+                    "standard": 20.0,
+                    "parking": 12.0
+                  }
+                }
+              ]
+            }
+          }
+        ]
+
+# Group Variant Attributes
+
+## Variant Attributes collection [/variant_attributes]
+
++ Parameters
+  + value (required) - Variant Attribute&#39;s value
+  + custom_attribute_id (required) - Variant Attribute&#39;s custom attribute id
+  + variant_id (required) - Variant Attribute&#39;s variant id
+
+### Create a variant attribute [POST]
+
++ Request Create a variant attribute (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: mkPjmN4rkofYV_ox79AkRw
+        Token-Type: Bearer
+        Client: 2rOXrWR5w3TLvTmZbzByZw
+        Expiry: 1525205743
+        Uid: sabryna_legros@hagenes.com
+
+    + Body
+
+        {
+          "variant_attribute": {
+            "value": "Victory",
+            "custom_attribute_id": "d791d340-c048-494f-8e56-eb0917885699",
+            "variant_id": "e9262b2e-3e06-4fd9-8cf7-bf0a70fe23a2"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: mkPjmN4rkofYV_ox79AkRw
+        token-type: Bearer
+        client: 2rOXrWR5w3TLvTmZbzByZw
+        expiry: 1525205743
+        uid: sabryna_legros@hagenes.com
+
+    + Body
+
+        {
+          "id": "f66d9098-55a3-4e5e-b5a4-72b06e73d34f",
+          "value": "Victory",
+          "variant_id": "e9262b2e-3e06-4fd9-8cf7-bf0a70fe23a2",
+          "custom_attribute_id": "d791d340-c048-494f-8e56-eb0917885699",
+          "created_at": "2018-04-01T20:15:43.558Z",
+          "updated_at": "2018-04-01T20:15:43.558Z"
+        }
+
+### Returns all variant_attributes [GET]
+
++ Request List all variant attributes (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: 2FfQF0667-vEejrrCWrPIg
+        Token-Type: Bearer
+        Client: sJeGBhTl3Ll35d8NC55iug
+        Expiry: 1525205743
+        Uid: rashad_bradtke@macejkovicritchie.name
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: 2FfQF0667-vEejrrCWrPIg
+        token-type: Bearer
+        client: sJeGBhTl3Ll35d8NC55iug
+        expiry: 1525205743
+        uid: rashad_bradtke@macejkovicritchie.name
+
+    + Body
+
+        [
+          {
+            "id": "e4264ab3-550b-4150-a9c7-bebc6170e644",
+            "value": "Munich",
+            "variant_id": "7fea7262-1386-47c0-985c-60ad489414ee",
+            "custom_attribute_id": "f3a23215-025a-4465-ad72-4e73a0dbd157",
+            "created_at": "2018-04-01T20:15:43.129Z",
+            "updated_at": "2018-04-01T20:15:43.129Z"
+          }
+        ]
+
+## Single variant attribute [/variant_attributes/:id]
+
++ Parameters
+  + value (required) - Variant Attribute&#39;s value
+
+### Delete a specific variant attribute [DELETE]
+
++ Request Deleting a variant attribute (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: KhpEcvOHW9Yzji2WnNc6Sg
+        Token-Type: Bearer
+        Client: I8-OuM1n7XAsh68gcq2DHQ
+        Expiry: 1525205744
+        Uid: lorenza@hirthe.biz
+
++ Response 204 ()
+
+    + Headers
+
+        access-token: KhpEcvOHW9Yzji2WnNc6Sg
+        token-type: Bearer
+        client: I8-OuM1n7XAsh68gcq2DHQ
+        expiry: 1525205744
+        uid: lorenza@hirthe.biz
+
+### Get a specific variant attribute [GET]
+
++ Request Getting a variant attribute (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: EN8D7rG2KvijWKKAyp-tMw
+        Token-Type: Bearer
+        Client: 3HJhTCvP43bdcbvXOccmNg
+        Expiry: 1525205743
+        Uid: cletus_muller@smitham.biz
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: EN8D7rG2KvijWKKAyp-tMw
+        token-type: Bearer
+        client: 3HJhTCvP43bdcbvXOccmNg
+        expiry: 1525205743
+        uid: cletus_muller@smitham.biz
+
+    + Body
+
+        {
+          "id": "ff4daafd-30b2-408e-86f0-238268f946bb",
+          "value": "Munich",
+          "variant_id": "7449388e-0b45-43f1-bfb8-6ecdb9aa67c4",
+          "custom_attribute_id": "b3e5ceea-a794-4671-8f75-be159539e10c",
+          "created_at": "2018-04-01T20:15:43.654Z",
+          "updated_at": "2018-04-01T20:15:43.654Z"
+        }
+
+### Update a specific variant attribute [PATCH]
+
++ Request Updating a variant_attribute (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: RDHyrFSJIhPG7G5d6DvWKA
+        Token-Type: Bearer
+        Client: i0uFdsx1qTTKFsWg9LfVMw
+        Expiry: 1525205744
+        Uid: helen@towne.biz
+
+    + Body
+
+        {
+          "variant_attribute": {
+            "value": "Victory"
+          }
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: RDHyrFSJIhPG7G5d6DvWKA
+        token-type: Bearer
+        client: i0uFdsx1qTTKFsWg9LfVMw
+        expiry: 1525205744
+        uid: helen@towne.biz
+
+    + Body
+
+        {
+          "id": "6c2996d9-e357-40a9-8e55-7bcc922d02fb",
+          "variant_id": "6ebfbd61-bb2b-41e5-aae5-a1e7e6aeb01f",
+          "value": "Victory",
+          "custom_attribute_id": "cb7e0fba-cc5e-4044-b6e4-9bbf6795b934",
+          "created_at": "2018-04-01T20:15:43.886Z",
+          "updated_at": "2018-04-01T20:15:43.886Z"
+        }
+
+# Group Variants
+
+## Variants collection [/variants]
+
++ Parameters
+  + original_barcode (required) - Variant&#39;s original barcode
+  + buying_price (required) - Variant&#39;s buying price
+  + tax_free_price (required) - Variant&#39;s tax free price
+  + ratio (required) - Variant&#39;s ratio
+  + product_id (required) - Variant&#39;s product id
+  + provider_id (required) - Variant&#39;s provider id
+  + default (required) - (bool) Is it the product default variant ?
+
+### Create a variant [POST]
+
++ Request Create a variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: 6mkVxblzb7iGeY4gDVj6Sg
+        Token-Type: Bearer
+        Client: ZDveLoWpeLkVaUJy-FcAiQ
+        Expiry: 1525205744
+        Uid: lelah.stark@osinskidach.co
+
+    + Body
+
+        {
+          "variant": {
+            "original_barcode": "4833969611",
+            "buying_price": "98.39",
+            "tax_free_price": 177.102,
+            "ratio": "85.68",
+            "product_id": "706983f3-7c34-439a-972d-9dd27c56d0ce",
+            "provider_id": "34a437bb-0c42-4ee6-8162-7ae44c209049",
+            "default": false
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: 6mkVxblzb7iGeY4gDVj6Sg
+        token-type: Bearer
+        client: ZDveLoWpeLkVaUJy-FcAiQ
+        expiry: 1525205744
+        uid: lelah.stark@osinskidach.co
+
+    + Body
+
+        {
+          "id": "106b5b0e-b760-4e9c-b62e-3d07a341a621",
+          "original_barcode": "4833969611",
+          "barcode": "4833969611",
+          "buying_price": 98.39,
+          "tax_free_price": 177.102,
+          "ratio": 85.68,
+          "quantity": 0,
+          "default": true,
+          "created_at": "2018-04-01T20:15:44.762Z",
+          "updated_at": "2018-04-01T20:15:44.762Z",
+          "product": {
+            "id": "706983f3-7c34-439a-972d-9dd27c56d0ce",
+            "name": "La Fin Du Monde",
+            "created_at": "2018-04-01T20:15:44.598Z",
+            "updated_at": "2018-04-01T20:15:44.598Z",
+            "category": {
+              "id": "af891053-8912-4445-9ee2-573cab8bf1a7",
+              "name": "English Brown Ale",
+              "tva": "parking_rate",
+              "store_id": "cd6db6e7-0f06-498c-831a-e21a51d7889a",
+              "category_id": null,
+              "created_at": "2018-04-01T20:15:44.595Z",
+              "updated_at": "2018-04-01T20:15:44.595Z"
+            },
+            "manufacturer": {
+              "id": "55903379-051b-41fc-b47c-5116e180cc5e",
+              "name": "Godric Gryffindor",
+              "notes": "168 Hilpert Branch",
+              "store_id": "cd6db6e7-0f06-498c-831a-e21a51d7889a",
+              "created_at": "2018-04-01T20:15:44.597Z",
+              "updated_at": "2018-04-01T20:15:44.597Z"
+            }
+          },
+          "provider": {
+            "id": "34a437bb-0c42-4ee6-8162-7ae44c209049",
+            "name": "Krombopulos Michael",
+            "notes": "93233 Jaylan Stravenue",
+            "store_id": "cd6db6e7-0f06-498c-831a-e21a51d7889a",
+            "created_at": "2018-04-01T20:15:44.602Z",
+            "updated_at": "2018-04-01T20:15:44.602Z"
+          }
+        }
+
+### Returns all variants [GET]
+
++ Request List all variants (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: EiWc39FrDuxfoevIMZYnFg
+        Token-Type: Bearer
+        Client: gMdmWjAFBvf2o03X3YYsYA
+        Expiry: 1525205744
+        Uid: dena_gorczany@schmitt.net
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: EiWc39FrDuxfoevIMZYnFg
+        token-type: Bearer
+        client: gMdmWjAFBvf2o03X3YYsYA
+        expiry: 1525205744
+        uid: dena_gorczany@schmitt.net
+
+    + Body
+
+        [
+          {
+            "id": "5563c08c-c8e7-4c61-a130-cf408e9e75ef",
+            "original_barcode": "9126207506",
+            "barcode": "9126207506",
+            "buying_price": 32.71,
+            "tax_free_price": 58.878,
+            "ratio": 41.45,
+            "quantity": 0,
+            "default": true,
+            "created_at": "2018-04-01T20:15:44.402Z",
+            "updated_at": "2018-04-01T20:15:44.402Z",
+            "product": {
+              "id": "7b5d33a2-9baa-42a4-8029-ba43e8a87779",
+              "name": "Founders Breakfast Stout",
+              "created_at": "2018-04-01T20:15:44.384Z",
+              "updated_at": "2018-04-01T20:15:44.384Z",
+              "category": {
+                "id": "3341ae3d-3d2f-4d2b-883c-85bc23b7ac1a",
+                "name": "European Amber Lager",
+                "tva": "super_reduced_rate",
+                "store_id": "7be19c33-f950-4b52-b976-be0281805005",
+                "category_id": null,
+                "created_at": "2018-04-01T20:15:44.382Z",
+                "updated_at": "2018-04-01T20:15:44.382Z"
+              },
+              "manufacturer": {
+                "id": "83f5fe1b-5c44-40b1-a0b2-e752fec8df11",
+                "name": "Yaxley",
+                "notes": "99911 Stracke Ridge",
+                "store_id": "7be19c33-f950-4b52-b976-be0281805005",
+                "created_at": "2018-04-01T20:15:44.383Z",
+                "updated_at": "2018-04-01T20:15:44.383Z"
+              }
+            },
+            "provider": {
+              "id": "39961e35-6e17-44b1-acc7-7c2838a62398",
+              "name": "Jerry Smith",
+              "notes": "39979 Hilll Plaza",
+              "store_id": "cbe24114-eb9b-4f4e-9a6c-37c240fabeea",
+              "created_at": "2018-04-01T20:15:44.393Z",
+              "updated_at": "2018-04-01T20:15:44.393Z"
+            }
+          }
+        ]
+
+## Single variant [/variants/:id]
+
++ Parameters
+  + buying_price (required) - Variant&#39;s buying price
+  + tax_free_price (required) - Variant&#39;s tax free price
+  + ratio (required) - Variant&#39;s ratio
+  + default (required) - (bool) Is it the product default variant ?
+
+### Get a specific variant [GET]
+
++ Request Getting a variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: hbVJhBTmPmU48b3bMTGk9w
+        Token-Type: Bearer
+        Client: CxDJveIKxKyWW4kJlP__8w
+        Expiry: 1525205744
+        Uid: ruthie.feeney@whitedach.biz
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: hbVJhBTmPmU48b3bMTGk9w
+        token-type: Bearer
+        client: CxDJveIKxKyWW4kJlP__8w
+        expiry: 1525205744
+        uid: ruthie.feeney@whitedach.biz
+
+    + Body
+
+        {
+          "id": "08ca0e2b-152d-4dbc-b1da-586da0fc4e79",
+          "original_barcode": "4719772475",
+          "barcode": "4719772475",
+          "buying_price": 54.61,
+          "tax_free_price": 98.298,
+          "ratio": 32.26,
+          "quantity": 0,
+          "default": true,
+          "created_at": "2018-04-01T20:15:44.821Z",
+          "updated_at": "2018-04-01T20:15:44.821Z",
+          "product": {
+            "id": "6bbfee84-fda9-48e7-ad5c-c1502274b03b",
+            "name": "Sierra Nevada Celebration Ale",
+            "created_at": "2018-04-01T20:15:44.803Z",
+            "updated_at": "2018-04-01T20:15:44.803Z",
+            "category": {
+              "id": "3d9b2f24-242d-4675-b967-1b8ccc8ad81e",
+              "name": "German Wheat And Rye Beer",
+              "tva": "super_reduced_rate",
+              "store_id": "d4b8a723-e7ca-467e-8781-e39b5d39e663",
+              "category_id": null,
+              "created_at": "2018-04-01T20:15:44.800Z",
+              "updated_at": "2018-04-01T20:15:44.800Z"
+            },
+            "manufacturer": {
+              "id": "af5b42d1-1ec4-4cd1-baf3-54b07acd0f15",
+              "name": "Mundungus Fletcher",
+              "notes": "1427 Ettie Ports",
+              "store_id": "d4b8a723-e7ca-467e-8781-e39b5d39e663",
+              "created_at": "2018-04-01T20:15:44.802Z",
+              "updated_at": "2018-04-01T20:15:44.802Z"
+            }
+          },
+          "provider": {
+            "id": "fb7631c7-f158-449c-90a1-705ad6f66489",
+            "name": "Fart",
+            "notes": "703 Gutmann Trail",
+            "store_id": "f9c8f927-da15-40ef-ae4d-47b8a85ec4e8",
+            "created_at": "2018-04-01T20:15:44.812Z",
+            "updated_at": "2018-04-01T20:15:44.812Z"
+          }
+        }
+
+### Update a specific variant [PATCH]
+
++ Request Updating a variant (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: t5QvXifHdSrzdcJYAkxZOQ
+        Token-Type: Bearer
+        Client: IocHUpyoqF7K11_DCWjNSQ
+        Expiry: 1525205745
+        Uid: bennie@fahey.org
+
+    + Body
+
+        {
+          "variant": {
+            "ratio": 22.24
+          }
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: t5QvXifHdSrzdcJYAkxZOQ
+        token-type: Bearer
+        client: IocHUpyoqF7K11_DCWjNSQ
+        expiry: 1525205745
+        uid: bennie@fahey.org
+
+    + Body
+
+        {
+          "id": "05e9e813-499d-43db-9879-f5637cb7014e",
+          "original_barcode": "7516832948",
+          "barcode": "7516832948",
+          "buying_price": 32.32,
+          "tax_free_price": 58.176,
+          "ratio": 22.24,
+          "quantity": 0,
+          "default": true,
+          "created_at": "2018-04-01T20:15:45.033Z",
+          "updated_at": "2018-04-01T20:15:45.216Z",
+          "product": {
+            "id": "25a013b4-d0d4-4519-9941-d7a53dc4f6e0",
+            "name": "Brooklyn Black",
+            "created_at": "2018-04-01T20:15:45.012Z",
+            "updated_at": "2018-04-01T20:15:45.012Z",
+            "category": {
+              "id": "8fbcad76-df57-450b-8e3c-82f7cdba19dd",
+              "name": "Fruit Beer",
+              "tva": "super_reduced_rate",
+              "store_id": "b014b1ce-e12e-469e-a1f0-b325651fd5f9",
+              "category_id": null,
+              "created_at": "2018-04-01T20:15:45.009Z",
+              "updated_at": "2018-04-01T20:15:45.009Z"
+            },
+            "manufacturer": {
+              "id": "78699873-05ce-4bf4-98e5-0d8daff4e9a0",
+              "name": "Rowena Ravenclaw",
+              "notes": "63903 Green Oval",
+              "store_id": "b014b1ce-e12e-469e-a1f0-b325651fd5f9",
+              "created_at": "2018-04-01T20:15:45.010Z",
+              "updated_at": "2018-04-01T20:15:45.010Z"
+            }
+          },
+          "provider": {
+            "id": "a3a37b0b-6dcf-434b-86bb-534de78a1771",
+            "name": "Beta VII",
+            "notes": "6172 Brody Spring",
+            "store_id": "157c5762-e308-46d9-823f-a82a3746f8ca",
+            "created_at": "2018-04-01T20:15:45.023Z",
+            "updated_at": "2018-04-01T20:15:45.023Z"
+          }
+        }
+
+## Single variant [/variants/:id/by_barcode]
+
+### Get a specific variant [GET]
+
++ Request Getting a variant by barcode (application/json)
+
+    + Headers
+
+        Accept: application/json
+        Content-Type: application/json
+        Access-Token: BLFRLbKTBH5qRZh0tIimPw
+        Token-Type: Bearer
+        Client: gNiAPNb1yIbjY0RC6xjdfg
+        Expiry: 1525205745
+        Uid: retha_barton@trantow.io
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json
+        access-token: BLFRLbKTBH5qRZh0tIimPw
+        token-type: Bearer
+        client: gNiAPNb1yIbjY0RC6xjdfg
+        expiry: 1525205745
+        uid: retha_barton@trantow.io
+
+    + Body
+
+        {
+          "id": "ce159f62-277b-4576-82c5-92e65667c2a0",
+          "original_barcode": "6614535983",
+          "barcode": "6614535983",
+          "buying_price": 53.71,
+          "tax_free_price": 96.678,
+          "ratio": 98.22,
+          "quantity": 0,
+          "default": true,
+          "created_at": "2018-04-01T20:15:45.293Z",
+          "updated_at": "2018-04-01T20:15:45.293Z",
+          "product": {
+            "id": "5b136f1a-0c6f-4416-8172-6890ae04f29f",
+            "name": "Two Hearted Ale",
+            "created_at": "2018-04-01T20:15:45.270Z",
+            "updated_at": "2018-04-01T20:15:45.270Z",
+            "category": {
+              "id": "d98bc4a1-49b2-4d0b-ae7f-0c41a05bef20",
+              "name": "Wood-aged Beer",
+              "tva": "reduced_rate",
+              "store_id": "b18d5fa8-26ba-40f6-9851-1d126c778db4",
+              "category_id": null,
+              "created_at": "2018-04-01T20:15:45.266Z",
+              "updated_at": "2018-04-01T20:15:45.266Z"
+            },
+            "manufacturer": {
+              "id": "d065740f-382c-49b6-a24b-89c160353191",
+              "name": "Grawp",
+              "notes": "9675 Klein Shore",
+              "store_id": "b18d5fa8-26ba-40f6-9851-1d126c778db4",
+              "created_at": "2018-04-01T20:15:45.268Z",
+              "updated_at": "2018-04-01T20:15:45.268Z"
+            }
+          },
+          "provider": {
+            "id": "ce425d5d-d1c3-44e4-b7ba-4fb52fdd93c1",
+            "name": "Mr. Needful",
+            "notes": "4141 Waters Wall",
+            "store_id": "9210b981-b33d-4ef4-8b3d-c67849223bda",
+            "created_at": "2018-04-01T20:15:45.281Z",
+            "updated_at": "2018-04-01T20:15:45.281Z"
+          }
+        }
