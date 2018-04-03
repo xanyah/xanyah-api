@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180401190418) do
+ActiveRecord::Schema.define(version: 20180403091725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 20180401190418) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_manufacturers_on_store_id"
+  end
+
+  create_table "payment_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_payment_types_on_store_id"
   end
 
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -219,6 +228,7 @@ ActiveRecord::Schema.define(version: 20180401190418) do
   add_foreign_key "inventory_variants", "inventories"
   add_foreign_key "inventory_variants", "variants"
   add_foreign_key "manufacturers", "stores"
+  add_foreign_key "payment_types", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "manufacturers"
   add_foreign_key "products", "stores"

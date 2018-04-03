@@ -18,7 +18,7 @@ gem 'active_model_serializers', '~> 0.10.7'
 gem 'cancancan', '~> 2.0'
 gem 'countries'
 gem 'devise_token_auth', '0.1.42'
-gem 'faker'
+gem 'faker', git: 'git@github.com:stympy/faker.git'
 gem 'json_vat', '~> 1.0'
 gem 'rack-cors'
 
