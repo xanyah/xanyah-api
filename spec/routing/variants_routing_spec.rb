@@ -12,6 +12,10 @@ RSpec.describe VariantsController, type: :routing do
       expect(get: '/variants/1').to route_to('variants#show', id: '1')
     end
 
+    it 'routes to #search' do
+      expect(get: '/variants/search').to route_to('variants#search')
+    end
+
     it 'routes to #create' do
       expect(post: '/variants').to route_to('variants#create')
     end

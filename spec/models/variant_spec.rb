@@ -82,6 +82,27 @@ RSpec.describe Variant, type: :model do
     end
   end
 
+  describe 'search' do
+    it :barcode do
+      barcode = create(:variant).barcode
+      create(:variant)
+      expect(Variant.search(barcode).size).to eq(1)
+    end
+
+    it :original_barcode do
+      original_barcode = create(:variant).original_barcode
+      create(:variant)
+      expect(Variant.search(original_barcode).size).to eq(1)
+    end
+
+    it :product_name do
+      create(:variant, product: create(:product, name: 'Thon'))
+      create(:variant, product: create(:product, name: 'Mayo'))
+      expect(Variant.search('Th').size).to eq(1)
+      expect(Variant.search('Thon').size).to eq(1)
+    end
+  end
+
   describe 'abilities' do
     describe 'everyone' do
       it :cannot_create do

@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   resources :variant_attributes
   resources :variants, except: [:destroy] do
     get :by_barcode, on: :member
+    get :search, on: :collection
   end
 
   resources :vat_rates, only: %i[index show]

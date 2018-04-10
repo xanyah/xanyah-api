@@ -109,4 +109,22 @@ resource 'Variants' do
       end
     end
   end
+
+  route '/variants/search', 'Variants collection' do
+    let!(:variant) { create(:variant, product: create(:product, name: 'Cacao', store: membership.store)) }
+
+    parameter :store_id, 'Filter by store'
+    parameter :product, 'Filter by product'
+    parameter :query, 'Search query', required: true
+
+    get 'Search variants' do
+      let(:query) { 'Cacao' }
+
+      example_request 'Searching variants' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body.size).to eq(1)
+      end
+    end
+  end
 end

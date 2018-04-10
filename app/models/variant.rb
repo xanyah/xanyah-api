@@ -29,6 +29,15 @@ class Variant < ApplicationRecord
     tax_free_price + vat_price
   end
 
+  def self.search(query)
+    query = query.downcase
+    joins(:product).where("
+      barcode LIKE ?
+      OR original_barcode LIKE ?
+      OR LOWER(products.name) LIKE ?
+    ", "%#{query}", "%#{query}", "%#{query}%")
+  end
+
   protected
 
   def barcode_validation
