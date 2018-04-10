@@ -6,6 +6,7 @@ class Variant < ApplicationRecord
 
   belongs_to :product, optional: false
   belongs_to :provider, optional: false
+  has_one :category, through: :product
   has_one :store, through: :product
   has_many :variant_attributes, dependent: :destroy
 
@@ -15,6 +16,18 @@ class Variant < ApplicationRecord
   validates :quantity, presence: true, numericality: {greater_than_or_equal_to: 0}
   validates :tax_free_price, presence: true, numericality: {greater_than_or_equal_to: 0}
   validate :barcode_validation, on: :create
+
+  def vat
+    VatRate.find_by(country_code: store.country).send(category.tva)
+  end
+
+  def vat_price
+    tax_free_price * (vat / 100)
+  end
+
+  def price
+    tax_free_price + vat_price
+  end
 
   protected
 

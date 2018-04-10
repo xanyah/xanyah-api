@@ -28,7 +28,7 @@ RSpec.describe Variant, type: :model do
 
     describe 'buying_price' do
       it :presence do
-        expect(build(:variant, buying_price: nil)).not_to be_valid
+        expect(build(:variant, buying_price: nil, tax_free_price: 5)).not_to be_valid
       end
     end
 

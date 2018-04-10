@@ -6,6 +6,7 @@ class VariantSerializer < ActiveModel::Serializer
              :barcode,
              :buying_price,
              :tax_free_price,
+             :price,
              :ratio,
              :quantity,
              :default,

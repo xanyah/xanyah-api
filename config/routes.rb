@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   resources :providers, except: [:destroy]
 
+  resources :sales, except: %i[update destroy]
+
   resources :shippings, except: [:update] do
     patch :lock, on: :member
     put :lock, on: :member

@@ -26,7 +26,7 @@ RSpec.describe Store, type: :model do
       end
 
       it :valid do
-        expect(build(:store, country: ISO3166::Country.all.map(&:alpha2).sample)).to be_valid
+        expect(build(:store, country: VatRate.all.pluck(:country_code).sample)).to be_valid
         expect(build(:store, country: 'FE')).not_to be_valid
       end
     end
