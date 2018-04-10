@@ -14,8 +14,8 @@ class Order < ApplicationRecord
 
   def self.full_creation(params)
     Order.new(
-      store_id:  params[:store_id],
-      client_id: params[:client_id],
+      store_id:       params[:store_id],
+      client_id:      params[:client_id],
       order_variants: params[:order_variants].map do |ov|
         OrderVariant.new(
           quantity:   ov[:quantity],

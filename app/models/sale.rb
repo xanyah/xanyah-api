@@ -10,17 +10,17 @@ class Sale < ApplicationRecord
 
   def self.full_creation(params, user)
     Sale.new(
-      store_id:  params[:store_id],
-      user:      user,
-      client_id: params[:client_id],
-      sale_variants: params[:sale_variants].map { |sv|
+      store_id:      params[:store_id],
+      user:          user,
+      client_id:     params[:client_id],
+      sale_variants: params[:sale_variants].map {|sv|
         SaleVariant.new(
           quantity:   sv[:quantity],
           unit_price: sv[:unit_price],
           variant_id: sv[:variant_id]
         )
       },
-      sale_payments: params[:sale_payments].map { |sp|
+      sale_payments: params[:sale_payments].map {|sp|
         SalePayment.new(
           payment_type_id: sp[:payment_type_id],
           total:           sp[:total]

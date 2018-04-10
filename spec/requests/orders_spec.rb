@@ -44,8 +44,8 @@ RSpec.describe 'Orders', type: :request do
     }
     let(:params) {
        {
-         client_id: create(:client, store: store).id,
-         store_id:      store.id,
+         client_id:      create(:client, store: store).id,
+         store_id:       store.id,
          order_variants: order_variants
        }}
 
