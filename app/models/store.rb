@@ -10,6 +10,7 @@ class Store < ApplicationRecord
   has_many :inventories, dependent: :destroy
   has_many :inventory_variants, through: :inventories
   has_many :manufacturers, dependent: :destroy
+  has_many :orders, dependent: :destroy
   has_many :owner_store_memberships, -> { owner }, class_name: 'StoreMembership', inverse_of: :store
   has_many :owners, source: :user, through: :owner_store_memberships
   has_many :payment_types, dependent: :destroy

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404062044) do
+ActiveRecord::Schema.define(version: 20180410113353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,26 @@ ActiveRecord::Schema.define(version: 20180404062044) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_manufacturers_on_store_id"
+  end
+
+  create_table "order_variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "variant_id"
+    t.uuid "order_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_variants_on_order_id"
+    t.index ["variant_id"], name: "index_order_variants_on_variant_id"
+  end
+
+  create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "status", default: 0
+    t.uuid "client_id"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_orders_on_client_id"
+    t.index ["store_id"], name: "index_orders_on_store_id"
   end
 
   create_table "payment_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -274,6 +294,10 @@ ActiveRecord::Schema.define(version: 20180404062044) do
   add_foreign_key "inventory_variants", "inventories"
   add_foreign_key "inventory_variants", "variants"
   add_foreign_key "manufacturers", "stores"
+  add_foreign_key "order_variants", "orders"
+  add_foreign_key "order_variants", "variants"
+  add_foreign_key "orders", "clients"
+  add_foreign_key "orders", "stores"
   add_foreign_key "payment_types", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "manufacturers"
