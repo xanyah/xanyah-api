@@ -9,8 +9,10 @@ class Ability
   include InventoryAbility
   include InventoryVariantAbility
   include ManufacturerAbility
+  include PaymentTypeAbility
   include ProductAbility
   include ProviderAbility
+  include SaleAbility
   include ShippingAbility
   include ShippingVariantAbility
   include StockBackupAbility
@@ -32,8 +34,10 @@ class Ability
     inventory_ability user
     inventory_variant_ability user
     manufacturer_ability user
+    payment_type_ability user
     product_ability user
     provider_ability user
+    sale_ability user
     shipping_ability user
     shipping_variant_ability user
     stock_backup_ability user

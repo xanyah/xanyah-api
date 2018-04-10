@@ -1,3 +1,5 @@
+Rake::Task['vat_rates:update'].invoke
+
 puts "Creating users"
 
 owner_user = User.create!(
@@ -52,12 +54,12 @@ puts "Creating clients, manufacturers, providers, categories"
   Category.create!(
     name:     Faker::Space.planet,
     store:    demo_store,
-    tva:      %w[standard_rate reduced_rate reduced_rate_alt super_reduced_rate parking_rate].sample,
+    tva:      Category.tvas.keys.sample,
     category: [
       Category.create!(
         name:  Faker::Space.planet,
         store: demo_store,
-        tva:   %w[standard_rate reduced_rate reduced_rate_alt super_reduced_rate parking_rate].sample
+        tva:   Category.tvas.keys.sample
       ),
       nil
     ].sample

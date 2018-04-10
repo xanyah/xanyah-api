@@ -21,7 +21,7 @@ resource 'VAT rates' do
       example_request 'Getting VAT rates for a country' do
         expect(status).to eq(200)
         body = JSON.parse(response_body)
-        expect(body['attributes']['code']).to eq(country)
+        expect(body['country_code']).to eq(country)
       end
     end
   end

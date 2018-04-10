@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+class SaleSerializer < ActiveModel::Serializer
+  attributes :id, :total_price
+
+  belongs_to :client
+  belongs_to :store
+  belongs_to :user
+
+  has_many :sale_payments
+  has_many :sale_variants
+end

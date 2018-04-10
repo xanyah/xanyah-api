@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180401190418) do
+ActiveRecord::Schema.define(version: 20180404062044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,15 @@ ActiveRecord::Schema.define(version: 20180401190418) do
     t.index ["store_id"], name: "index_manufacturers_on_store_id"
   end
 
+  create_table "payment_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.uuid "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_payment_types_on_store_id"
+  end
+
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.uuid "category_id"
@@ -95,6 +104,40 @@ ActiveRecord::Schema.define(version: 20180401190418) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_providers_on_store_id"
+  end
+
+  create_table "sale_payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.float "total"
+    t.uuid "payment_type_id"
+    t.uuid "sale_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_type_id"], name: "index_sale_payments_on_payment_type_id"
+    t.index ["sale_id"], name: "index_sale_payments_on_sale_id"
+  end
+
+  create_table "sale_variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "quantity"
+    t.float "unit_price"
+    t.uuid "sale_id"
+    t.uuid "variant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sale_id"], name: "index_sale_variants_on_sale_id"
+    t.index ["variant_id"], name: "index_sale_variants_on_variant_id"
+  end
+
+  create_table "sales", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "completed", default: false
+    t.float "total_price"
+    t.uuid "client_id"
+    t.uuid "store_id"
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_sales_on_client_id"
+    t.index ["store_id"], name: "index_sales_on_store_id"
+    t.index ["user_id"], name: "index_sales_on_user_id"
   end
 
   create_table "shipping_variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -211,6 +254,18 @@ ActiveRecord::Schema.define(version: 20180401190418) do
     t.index ["provider_id"], name: "index_variants_on_provider_id"
   end
 
+  create_table "vat_rates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "country_code"
+    t.string "country_name"
+    t.float "standard_rate"
+    t.float "reduced_rate"
+    t.float "reduced_rate_alt"
+    t.float "super_reduced_rate"
+    t.float "parking_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "categories", "categories"
   add_foreign_key "categories", "stores"
   add_foreign_key "clients", "stores"
@@ -219,10 +274,18 @@ ActiveRecord::Schema.define(version: 20180401190418) do
   add_foreign_key "inventory_variants", "inventories"
   add_foreign_key "inventory_variants", "variants"
   add_foreign_key "manufacturers", "stores"
+  add_foreign_key "payment_types", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "manufacturers"
   add_foreign_key "products", "stores"
   add_foreign_key "providers", "stores"
+  add_foreign_key "sale_payments", "payment_types"
+  add_foreign_key "sale_payments", "sales"
+  add_foreign_key "sale_variants", "sales"
+  add_foreign_key "sale_variants", "variants"
+  add_foreign_key "sales", "clients"
+  add_foreign_key "sales", "stores"
+  add_foreign_key "sales", "users"
   add_foreign_key "shipping_variants", "shippings"
   add_foreign_key "shipping_variants", "variants"
   add_foreign_key "shippings", "stores"

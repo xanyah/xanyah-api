@@ -7,6 +7,6 @@ FactoryBot.define do
       "#{name.to_slug}-#{n}"
     end
     address { Faker::Address.street_address }
-    country { ISO3166::Country.all.map(&:alpha2).sample }
+    country { VatRate.all.pluck(:country_code).sample }
   end
 end

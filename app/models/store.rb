@@ -12,8 +12,10 @@ class Store < ApplicationRecord
   has_many :manufacturers, dependent: :destroy
   has_many :owner_store_memberships, -> { owner }, class_name: 'StoreMembership', inverse_of: :store
   has_many :owners, source: :user, through: :owner_store_memberships
+  has_many :payment_types, dependent: :destroy
   has_many :products, dependent: :destroy
   has_many :providers, dependent: :destroy
+  has_many :sales, dependent: :destroy
   has_many :shippings, dependent: :destroy
   has_many :shipping_variants, through: :shippings
   has_many :store_memberships, dependent: :destroy
@@ -23,7 +25,7 @@ class Store < ApplicationRecord
   has_many :variants, through: :products
   has_many :variant_attributes, through: :variants
 
-  validates :country, presence: true, inclusion: {in: ISO3166::Country.all.map(&:alpha2)}
+  validates :country, presence: true, inclusion: {in: VatRate.all.pluck(:country_code)}
   validates :key, presence: true, uniqueness: true, allow_nil: false
   validates :name, presence: true
 

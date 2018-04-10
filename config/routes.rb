@@ -18,9 +18,13 @@ Rails.application.routes.draw do
 
   resources :manufacturers, except: [:destroy]
 
+  resources :payment_types, except: [:destroy]
+
   resources :products, except: [:destroy]
 
   resources :providers, except: [:destroy]
+
+  resources :sales, except: %i[update destroy]
 
   resources :shippings, except: [:update] do
     patch :lock, on: :member
