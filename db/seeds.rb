@@ -1,3 +1,7 @@
+
+Rails.application.load_tasks
+Rake::Task['vat_rates:update'].invoke
+
 puts "Creating users"
 
 owner_user = User.create!(
