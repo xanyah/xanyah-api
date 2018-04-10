@@ -6,6 +6,6 @@ FactoryBot.define do
     unit_price { Faker::Number.decimal(2) }
 
     sale
-    variant
+    variant { build(:variant, store: sale&.store) }
   end
 end

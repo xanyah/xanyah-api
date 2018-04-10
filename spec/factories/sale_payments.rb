@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :sale_payment do
     total { Faker::Number.decimal(2) }
     sale
-    payment_type
+    payment_type { build(:payment_type, store: sale&.store) }
   end
 end
