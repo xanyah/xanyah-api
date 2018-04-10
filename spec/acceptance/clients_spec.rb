@@ -96,4 +96,21 @@ resource 'Clients' do
       end
     end
   end
+
+  route '/clients/search', 'Clients collection' do
+    let!(:customer) { create(:client, store: membership.store) }
+
+    parameter :store_id, 'Filter by store'
+    parameter :query, 'Search query', required: true
+
+    get 'Search clients' do
+      let(:query) { customer.firstname }
+
+      example_request 'Searching clients' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body.size).to eq(1)
+      end
+    end
+  end
 end

@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   resources :categories, except: [:destroy]
 
-  resources :clients, except: [:destroy]
+  resources :clients, except: [:destroy] do
+    get :search, on: :collection
+  end
 
   resources :custom_attributes
 
