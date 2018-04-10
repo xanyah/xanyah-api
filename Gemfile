@@ -17,7 +17,7 @@ gem 'rails', '~> 5.1.4'
 gem 'active_model_serializers', '~> 0.10.7'
 gem 'cancancan', '~> 2.0'
 gem 'devise_token_auth', '0.1.42'
-gem 'faker', github: 'stympy/faker.git'
+gem 'faker', github: 'stympy/faker'
 gem 'rack-cors'
 
 group :development, :test do
