@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :manufacturers, except: [:destroy]
 
+  resources :orders
+
   resources :payment_types, except: [:destroy]
 
   resources :products, except: [:destroy]
