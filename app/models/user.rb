@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :shipping_variants, through: :stores
   has_many :stock_backups, through: :stores
   has_many :stock_backup_variants, through: :stores
+  has_many :stores_store_memberships, through: :stores, source: :store_memberships
   has_many :inventory_variants, through: :stores
   has_many :variants, through: :products
   has_many :variant_attributes, through: :stores
