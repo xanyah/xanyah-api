@@ -6,8 +6,8 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = current_user.stores.map(&:products).flatten
-    @products = @products.select {|c| c.store_id == params[:store_id] } if params[:store_id].present?
+    @products = current_user.products
+    @products = @products.where(store_id: params[:store_id]) if params[:store_id].present?
 
     render json: @products
   end

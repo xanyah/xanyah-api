@@ -6,8 +6,8 @@ class InventoriesController < ApplicationController
 
   # GET /inventories
   def index
-    @inventories = current_user.stores.map(&:inventories).flatten
-    @inventories = @inventories.select {|c| c.store_id == params[:store_id] } if params[:store_id].present?
+    @inventories = current_user.inventories
+    @inventories = @inventories.where(store_id: params[:store_id]) if params[:store_id].present?
 
     render json: @inventories
   end
