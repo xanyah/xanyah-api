@@ -28,7 +28,9 @@ Rails.application.routes.draw do
 
   resources :products, except: [:destroy]
 
-  resources :providers, except: [:destroy]
+  resources :providers, except: [:destroy] do
+    get :search, on: :collection
+  end
 
   resources :sales, except: %i[update destroy]
 

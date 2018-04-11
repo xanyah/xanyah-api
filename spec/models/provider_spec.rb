@@ -20,4 +20,18 @@ RSpec.describe Provider, type: :model do
       end
     end
   end
+
+  describe 'search' do
+    it :name do
+      name = create(:provider).name
+      create(:provider)
+      expect(Provider.search(name).size).to eq(1)
+    end
+
+    it :notes do
+      notes = create(:provider).notes
+      create(:provider)
+      expect(Provider.search(notes).size).to eq(1)
+    end
+  end
 end
