@@ -114,7 +114,7 @@ resource 'Variants' do
     let!(:variant) { create(:variant, product: create(:product, name: 'Cacao', store: membership.store)) }
 
     parameter :store_id, 'Filter by store'
-    parameter :product, 'Filter by product'
+    parameter :product_id, 'Filter by product'
     parameter :query, 'Search query', required: true
 
     get 'Search variants' do

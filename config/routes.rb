@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
 
-  resources :orders
+  resources :orders do
+    get :search, on: :collection
+  end
 
   resources :payment_types, except: [:destroy]
 
