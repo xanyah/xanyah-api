@@ -6,4 +6,12 @@ class Manufacturer < ApplicationRecord
   has_many :products, dependent: :destroy
 
   validates :name, presence: true
+
+  def self.search(query)
+    query = query.downcase
+    where("
+      LOWER(manufacturers.name) LIKE ?
+      OR LOWER(manufacturers.notes) LIKE ?
+    ", "%#{query}%", "%#{query}%")
+  end
 end

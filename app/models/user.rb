@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :store_memberships, dependent: :destroy
   has_many :stores, through: :store_memberships
   has_many :clients, through: :stores
+  has_many :manufacturers, through: :stores
   has_many :orders, through: :stores
   has_many :payment_types, through: :stores
   has_many :products, through: :stores

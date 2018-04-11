@@ -2,14 +2,21 @@
 
 class ManufacturersController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource except: :search
 
   # GET /providers
   def index
-    @manufacturers = current_user.stores.map(&:manufacturers).flatten
-    @manufacturers = @manufacturers.select {|c| c.store_id == params[:store_id] } if params[:store_id].present?
+    @manufacturers = current_user.manufacturers
+    @manufacturers = @manufacturers.where(store_id: params[:store_id]) if params[:store_id].present?
 
     render json: @manufacturers
+  end
+
+  def search
+    @manufacturers = current_user.manufacturers
+    @manufacturers = @manufacturers.where(store_id: params[:store_id]) if params[:store_id].present?
+
+    render json: @manufacturers.search(params[:query])
   end
 
   # GET /providers/1

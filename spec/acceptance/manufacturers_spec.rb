@@ -84,4 +84,21 @@ resource 'Manufacturers' do
       end
     end
   end
+
+  route '/manufacturers/search', 'Manufacturers collection' do
+    let!(:manufacturer) { create(:manufacturer, store: membership.store) }
+
+    parameter :store_id, 'Filter by store'
+    parameter :query, 'Search query', required: true
+
+    get 'Search manufacturers' do
+      let(:query) { manufacturer.name }
+
+      example_request 'Searching manufacturers' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body.size).to eq(1)
+      end
+    end
+  end
 end

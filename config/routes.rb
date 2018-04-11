@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   get 'inventory_variants/:inventory_id/:variant_id', to: 'inventory_variants#by_variant'
   resources :inventory_variants
 
-  resources :manufacturers, except: [:destroy]
+  resources :manufacturers, except: [:destroy] do
+    get :search, on: :collection
+  end
 
   resources :orders
 
