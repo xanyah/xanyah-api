@@ -20,4 +20,18 @@ RSpec.describe Manufacturer, type: :model do
       end
     end
   end
+
+  describe 'search' do
+    it :name do
+      name = create(:manufacturer).name
+      create(:manufacturer)
+      expect(Manufacturer.search(name).size).to eq(1)
+    end
+
+    it :notes do
+      notes = create(:manufacturer).notes
+      create(:manufacturer)
+      expect(Manufacturer.search(notes).size).to eq(1)
+    end
+  end
 end

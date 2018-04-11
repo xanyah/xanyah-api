@@ -84,4 +84,21 @@ resource 'Providers' do
       end
     end
   end
+
+  route '/providers/search', 'Manufacturers collection' do
+    let!(:provider) { create(:provider, store: membership.store) }
+
+    parameter :store_id, 'Filter by store'
+    parameter :query, 'Search query', required: true
+
+    get 'Search providers' do
+      let(:query) { provider.name }
+
+      example_request 'Searching providers' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body.size).to eq(1)
+      end
+    end
+  end
 end

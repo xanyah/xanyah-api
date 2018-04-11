@@ -83,4 +83,21 @@ resource 'Orders' do
       end
     end
   end
+
+  route '/orders/search', 'Orders collection' do
+    let!(:order) { create(:order, client: create(:client, store: membership.store), store: membership.store) }
+
+    parameter :store_id, 'Filter by store'
+    parameter :query, 'Search query', required: true
+
+    get 'Search orders' do
+      let(:query) { order.client.firstname }
+
+      example_request 'Searching orders' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body.size).to eq(1)
+      end
+    end
+  end
 end

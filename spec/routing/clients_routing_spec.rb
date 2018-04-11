@@ -12,6 +12,10 @@ RSpec.describe ClientsController, type: :routing do
       expect(get: '/clients/1').to route_to('clients#show', id: '1')
     end
 
+    it 'routes to #search' do
+      expect(get: '/clients/search').to route_to('clients#search')
+    end
+
     it 'routes to #create' do
       expect(post: '/clients').to route_to('clients#create')
     end

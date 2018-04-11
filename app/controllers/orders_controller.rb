@@ -2,7 +2,7 @@
 
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource except: :search
 
   # GET /orders
   def index
@@ -10,6 +10,13 @@ class OrdersController < ApplicationController
     @orders = @orders.where(store_id: params[:store_id]) if params[:store_id].present?
 
     render json: @orders
+  end
+
+  def search
+    @orders = current_user.orders
+    @orders = @orders.where(store_id: params[:store_id]) if params[:store_id].present?
+
+    render json: @orders.search(params[:query])
   end
 
   # GET /orders/1

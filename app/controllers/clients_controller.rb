@@ -2,7 +2,7 @@
 
 class ClientsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource except: :search
 
   # GET /clients
   def index
@@ -10,6 +10,13 @@ class ClientsController < ApplicationController
     @clients = @clients.where(store_id: params[:store_id]) if params[:store_id].present?
 
     render json: @clients
+  end
+
+  def search
+    @clients = current_user.clients
+    @clients = @clients.where(store_id: params[:store_id]) if params[:store_id].present?
+
+    render json: @clients.search(params[:query])
   end
 
   # GET /clients/1

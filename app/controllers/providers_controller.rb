@@ -2,7 +2,7 @@
 
 class ProvidersController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource except: :search
 
   # GET /providers
   def index
@@ -10,6 +10,13 @@ class ProvidersController < ApplicationController
     @providers = @providers.where(store_id: params[:store_id]) if params[:store_id].present?
 
     render json: @providers
+  end
+
+  def search
+    @providers = current_user.providers
+    @providers = @providers.where(store_id: params[:store_id]) if params[:store_id].present?
+
+    render json: @providers.search(params[:query])
   end
 
   # GET /providers/1

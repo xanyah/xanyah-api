@@ -20,4 +20,30 @@ RSpec.describe Order, type: :model do
       end
     end
   end
+
+  describe 'search' do
+    it :product_name do
+      store = create(:store)
+      product1 = create(:product, name: 'Thon', store: store)
+      product2 = create(:product, name: 'Mayo', store: store)
+      order1 = create(:order, store:          store)
+      order2 = create(:order, store:          store)
+      create(:order_variant, order: order1, variant: create(:variant, product: product1))
+      create(:order_variant, order: order2, variant: create(:variant, product: product2))
+      expect(Order.search('Th').size).to eq(1)
+      expect(Order.search('Thon').size).to eq(1)
+    end
+
+    it :client_firstname do
+      order = create(:order)
+      create(:order)
+      expect(Order.search(order.client.firstname).size).to eq(1)
+    end
+
+    it :client_lastname do
+      order = create(:order)
+      create(:order)
+      expect(Order.search(order.client.lastname).size).to eq(1)
+    end
+  end
 end

@@ -2,14 +2,27 @@
 
 class VariantsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource except: :by_barcode
+  load_and_authorize_resource except: %i[by_barcode search]
 
   # GET /variants
   def index
     @variants = current_user.variants
     @variants = @variants.where(product_id: params[:product_id]) if params[:product_id].present?
+    if params[:store_id].present?
+      @variants = @variants.joins(:product).where('products.store_id = ?', params[:store_id])
+    end
 
     render json: @variants
+  end
+
+  def search
+    @variants = current_user.variants
+    @variants = @variants.where(product_id: params[:product_id]) if params[:product_id].present?
+    if params[:store_id].present?
+      @variants = @variants.joins(:product).where('products.store_id = ?', params[:store_id])
+    end
+
+    render json: @variants.search(params[:query])
   end
 
   # GET /variants/1
