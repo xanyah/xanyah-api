@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :custom_attributes
 
+  resources :file_imports, only: :create
+
   resources :inventories, except: [:update] do
     patch :lock, on: :member
     put :lock, on: :member

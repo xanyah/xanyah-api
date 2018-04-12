@@ -47,3 +47,63 @@ You can [delete a shipping](https://xanyah.github.io/xanyah-api/#shippings-singl
 - [Lock the shipping](https://xanyah.github.io/xanyah-api/#shippings-single-shipping-patch)
 
 :warning: Locking the shipping **will not** replace the quantity of the variant but add it. If your variant had a quantity of 10 and the shipping variant 2, locking will change the quantity to 12. :warning:
+
+## How to import variants
+
+`POST /file_imports`
+
+### Headers
+
+Login headers are required
+
+`Content-Type: multipart/form-data`
+
+### Supported file types
+
+JSON, CSV
+
+#### CSV
+
+CSV files must have a header line with the required keys (see below)
+
+#### JSON
+
+JSON files must be an array of objects with the required keys (see below)
+
+### Required keys
+
+- `product_name`
+- `product_category`
+- `product_manufacturer`
+- `product_store`
+- `variant_original_barcode`
+- `variant_buying_price`
+- `variant_tax_free_price`
+- `variant_provider`
+- `variant_ratio`
+
+### Example
+
+```
+POST /file_imports HTTP/1.1
+Host: localhost:3000
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+access-token: 0JSxBZnR2Oh4ZCsOnfZY6A
+token-type: Bearer
+client: rF6m_YENfHsg0twyKMXEeQ
+expiry: 1526138245
+uid: owner@xanyah.io
+Cache-Control: no-cache
+Postman-Token: 17cbb578-fa15-4d35-ab10-b8d9a5bc6929
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="variants.csv"
+Content-Type: text/csv
+
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="store_id"
+
+b435b8b7-de9c-45b9-857f-573910ac8c6a
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+```

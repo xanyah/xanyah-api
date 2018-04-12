@@ -15,22 +15,18 @@ gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'
 
 gem 'active_model_serializers', '~> 0.10.7'
+gem 'aws-sdk-s3', '~> 1'
 gem 'cancancan', '~> 2.0'
 gem 'devise_token_auth', '0.1.42'
 gem 'faker', github: 'stympy/faker'
 gem 'rack-cors'
+gem 'redis-namespace'
+gem 'sidekiq'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'apitome'
-  gem 'database_cleaner'
-  gem 'factory_bot_rails'
-  gem 'rspec-rails', '~> 3.6'
-  gem 'rspec_api_documentation'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
-  gem 'simplecov'
-  gem 'simplecov-console'
 end
 
 group :development do
@@ -41,7 +37,15 @@ group :development do
 end
 
 group :test do
+  gem 'apitome'
   gem 'codeclimate-test-reporter', '~> 1.0', '>= 1.0.8'
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 3.6'
+  gem 'rspec-sidekiq'
+  gem 'rspec_api_documentation'
+  gem 'simplecov'
+  gem 'simplecov-console'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
