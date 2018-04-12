@@ -7,6 +7,12 @@
     "postdeploy": "bundle exec rake db:schema:load db:seed"
   },
   "env": {
+    "AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
     "RACK_ENV": {
       "required": true
     },
@@ -17,6 +23,12 @@
       "required": true
     },
     "RAILS_SERVE_STATIC_FILES": {
+      "required": true
+    },
+    "S3_BUCKET": {
+      "required": true
+    },
+    "S3_REGION": {
       "required": true
     },
     "SECRET_KEY_BASE": {
