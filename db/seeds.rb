@@ -7,7 +7,8 @@ owner_user = User.create!(
   firstname: "Owner", lastname: "User",
   confirmed_at: Time.zone.now,
   password: "12345678",
-  locale: "en"
+  locale: "en",
+  tokens: nil
 )
 admin_user = User.create!(
   email:        "admin@xanyah.io",
@@ -15,7 +16,8 @@ admin_user = User.create!(
   lastname:     "User",
   confirmed_at: Time.zone.now,
   password:     "12345678",
-  locale:       "fr"
+  locale:       "fr",
+  tokens: nil
 )
 regular_user = User.create!(
   email:        "regular@xanyah.io",
@@ -23,7 +25,8 @@ regular_user = User.create!(
   lastname:     "User",
   confirmed_at: Time.zone.now,
   password:     "12345678",
-  locale:       "en"
+  locale:       "en",
+  tokens: nil
 )
 
 puts "Creating store"
