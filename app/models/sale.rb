@@ -26,8 +26,9 @@ class Sale < ApplicationRecord
         )
         if sv[:sale_variant_promotion].present?
           variant.sale_variant_promotion = SaleVariantPromotion.new(
-            type: sv[:sale_variant_promotion][:type],
-            amount: sv[:sale_variant_promotion][:amount])
+            type:   sv[:sale_variant_promotion][:type],
+            amount: sv[:sale_variant_promotion][:amount]
+          )
         end
         variant
       },
@@ -40,7 +41,7 @@ class Sale < ApplicationRecord
     )
     if params[:sale_promotion].present?
       sale.sale_promotion = SalePromotion.new(
-        type: params[:sale_promotion][:type],
+        type:   params[:sale_promotion][:type],
         amount: params[:sale_promotion][:amount]
       )
     end

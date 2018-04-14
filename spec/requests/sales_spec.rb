@@ -55,21 +55,22 @@ RSpec.describe 'Sales', type: :request do
     }
     let(:params) {
        {
-         store_id:      store.id,
-         sale_variants: sale_variants,
-         sale_payments: sale_payments,
+         store_id:       store.id,
+         sale_variants:  sale_variants,
+         sale_payments:  sale_payments,
          sale_promotion: {
-           type: 'flat_discount',
+           type:   'flat_discount',
            amount: 20
          },
-         total_price: sale_variants.inject(0) {|sum, element| sum + (element[:quantity] * element[:unit_price]) - 20 }
+         total_price:    sale_variants.inject(0) {|sum, element|
+                           sum + (element[:quantity] * element[:unit_price]) - 20
+                         }
        }}
 
     it 'creates only permitted sales' do
       post sales_path,
            params:  {sale: params},
            headers: user.create_new_auth_token
-      puts response.body
       expect(response).to have_http_status(:created)
       expect(JSON.parse(response.body)['id']).to be_present
       expect(Sale.all.size).to eq(1)
