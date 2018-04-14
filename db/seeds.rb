@@ -7,7 +7,8 @@ owner_user = User.create!(
   firstname: "Owner", lastname: "User",
   confirmed_at: Time.zone.now,
   password: "12345678",
-  locale: "en"
+  locale: "en",
+  tokens: nil
 )
 admin_user = User.create!(
   email:        "admin@xanyah.io",
@@ -15,7 +16,8 @@ admin_user = User.create!(
   lastname:     "User",
   confirmed_at: Time.zone.now,
   password:     "12345678",
-  locale:       "fr"
+  locale:       "fr",
+  tokens: nil
 )
 regular_user = User.create!(
   email:        "regular@xanyah.io",
@@ -23,7 +25,8 @@ regular_user = User.create!(
   lastname:     "User",
   confirmed_at: Time.zone.now,
   password:     "12345678",
-  locale:       "en"
+  locale:       "en",
+  tokens: nil
 )
 
 puts "Creating store"
@@ -37,9 +40,14 @@ StoreMembership.create!(store: demo_store, user: owner_user, role: :owner)
 StoreMembership.create!(store: demo_store, user: admin_user, role: :admin)
 StoreMembership.create!(store: demo_store, user: regular_user, role: :regular)
 
-puts "Creating clients, manufacturers, providers, categories"
+puts "Creating clients, manufacturers, providers, categories, payment types"
 
 5.times do
+  PaymentType.create!(
+    name: Faker::Currency.name,
+    description: Faker::Lorem.paragraph,
+    store: demo_store
+  )
   Client.create!(
     firstname: Faker::Name.first_name,
     lastname: Faker::Name.last_name,
