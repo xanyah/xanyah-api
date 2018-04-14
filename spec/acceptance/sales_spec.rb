@@ -35,6 +35,7 @@ resource 'Sales' do
                   "Sales's variants (array of sale variants: variant_id, quantity, unit_price)",
                   required: true
         parameter :sale_payments, "Sale's payments (array of sale payments: payment_type_id, total)", required: true
+        parameter :total_price, "Sale's total", required: true
       end
 
       let(:store_id) { membership.store.id }
@@ -52,6 +53,7 @@ resource 'Sales' do
           }
         end
       }
+      let(:total_price) { sale_variants.inject(0) {|sum, element| sum + (element[:quantity] * element[:unit_price]) } }
       let(:sale_payments) {
         vat = VatRate.find_by(country_code: membership.store.country).standard_rate
         total = sale_variants.map {|v|
