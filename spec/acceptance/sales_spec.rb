@@ -32,10 +32,11 @@ resource 'Sales' do
         parameter :store_id, "Sales's store id", required: true
         parameter :client_id, "Sales's client id"
         parameter :sale_variants,
-                  "Sales's variants (array of sale variants: variant_id, quantity, unit_price)",
+                  "Sales's variants (array of sale variants: variant_id, quantity, unit_price, sale_variant_promotion)",
                   required: true
         parameter :sale_payments, "Sale's payments (array of sale payments: payment_type_id, total)", required: true
         parameter :total_price, "Sale's total", required: true
+        parameter :sale_promotion, 'Promotion to apply on the sale'
       end
 
       let(:store_id) { membership.store.id }

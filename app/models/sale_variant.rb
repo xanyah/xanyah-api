@@ -11,6 +11,8 @@ class SaleVariant < ApplicationRecord
 
   after_create :update_variant
 
+  has_one :sale_variant_promotion, dependent: :destroy
+
   protected
 
   def store_validation
