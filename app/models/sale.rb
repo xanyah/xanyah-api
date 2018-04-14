@@ -10,6 +10,7 @@ class Sale < ApplicationRecord
 
   def self.full_creation(params, user)
     Sale.new(
+      total_price:   params[:total_price],
       store_id:      params[:store_id],
       user:          user,
       client_id:     params[:client_id],
