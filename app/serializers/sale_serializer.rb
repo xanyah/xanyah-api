@@ -7,6 +7,8 @@ class SaleSerializer < ActiveModel::Serializer
   belongs_to :store
   belongs_to :user
 
+  has_one :sale_promotion
+
   has_many :sale_payments
   has_many :sale_variants
 end

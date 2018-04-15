@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Sales', type: :request do
-  let(:store_membership) { create(:store_membership) }
-  let(:store) { store_membership.store }
+  let(:store) { create(:store, country: 'fr') }
+  let(:store_membership) { create(:store_membership, store: store) }
   let(:user) { store_membership.user }
 
   describe 'GET /sales' do
@@ -55,9 +55,16 @@ RSpec.describe 'Sales', type: :request do
     }
     let(:params) {
        {
-         store_id:      store.id,
-         sale_variants: sale_variants,
-         sale_payments: sale_payments
+         store_id:       store.id,
+         sale_variants:  sale_variants,
+         sale_payments:  sale_payments,
+         sale_promotion: {
+           type:   'flat_discount',
+           amount: 20
+         },
+         total_price:    sale_variants.inject(0) {|sum, element|
+                           sum + (element[:quantity] * element[:unit_price]) - 20
+                         }
        }}
 
     it 'creates only permitted sales' do
@@ -66,6 +73,10 @@ RSpec.describe 'Sales', type: :request do
            headers: user.create_new_auth_token
       expect(response).to have_http_status(:created)
       expect(JSON.parse(response.body)['id']).to be_present
+      expect(Sale.all.size).to eq(1)
+      expect(SalePromotion.all.size).to eq(1)
+      expect(SalePayment.all.size).to eq(1)
+      expect(SaleVariant.all.size).to eq(5)
     end
 
     it 'returns empty if !membership' do

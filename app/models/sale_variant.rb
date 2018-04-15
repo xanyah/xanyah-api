@@ -9,6 +9,10 @@ class SaleVariant < ApplicationRecord
   validates :quantity, presence: true, numericality: {greater_than_or_equal_to: 0}
   validate :store_validation
 
+  after_create :update_variant
+
+  has_one :sale_variant_promotion, dependent: :destroy
+
   protected
 
   def store_validation
@@ -16,5 +20,9 @@ class SaleVariant < ApplicationRecord
     !Variant.find(variant_id).nil? &&
     Variant.find(variant_id).store.id != sale&.store_id
     errors.add(:variant, 'must belong to store')
+  end
+
+  def update_variant
+    variant.update(quantity: variant.quantity - quantity)
   end
 end
