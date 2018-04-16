@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :sale_variant do
-    quantity { Faker::Number.number }
+    quantity { rand(0..200) }
     unit_price { Faker::Number.decimal(2) }
 
     sale

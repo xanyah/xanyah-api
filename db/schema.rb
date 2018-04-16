@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410113353) do
+ActiveRecord::Schema.define(version: 20180414165913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,24 @@ ActiveRecord::Schema.define(version: 20180410113353) do
     t.datetime "updated_at", null: false
     t.index ["payment_type_id"], name: "index_sale_payments_on_payment_type_id"
     t.index ["sale_id"], name: "index_sale_payments_on_sale_id"
+  end
+
+  create_table "sale_promotions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "type"
+    t.float "amount"
+    t.uuid "sale_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sale_id"], name: "index_sale_promotions_on_sale_id"
+  end
+
+  create_table "sale_variant_promotions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "type"
+    t.float "amount"
+    t.uuid "sale_variant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sale_variant_id"], name: "index_sale_variant_promotions_on_sale_variant_id"
   end
 
   create_table "sale_variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -305,6 +323,8 @@ ActiveRecord::Schema.define(version: 20180410113353) do
   add_foreign_key "providers", "stores"
   add_foreign_key "sale_payments", "payment_types"
   add_foreign_key "sale_payments", "sales"
+  add_foreign_key "sale_promotions", "sales"
+  add_foreign_key "sale_variant_promotions", "sale_variants"
   add_foreign_key "sale_variants", "sales"
   add_foreign_key "sale_variants", "variants"
   add_foreign_key "sales", "clients"

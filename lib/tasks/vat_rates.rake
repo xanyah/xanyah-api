@@ -9,7 +9,7 @@ namespace :vat_rates do
     response = Net::HTTP.get(URI('https://euvat.ga/rates.json'))
     response = JSON.parse(response)
     rates = response['rates']
-    rates.keys.each do |country_code|
+    rates.each_key do |country_code|
       api_rate = rates[country_code]
       vat_rate = VatRate.where(country_code: country_code).first_or_create
       vat_rate.update(
