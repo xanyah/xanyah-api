@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateSalePromotions < ActiveRecord::Migration[5.1]
   def change
     create_table :sale_promotions, id: :uuid do |t|

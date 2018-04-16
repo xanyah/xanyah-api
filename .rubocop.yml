@@ -2,14 +2,18 @@ require: rubocop-rspec
 
 AllCops:
   Exclude:
-    - 'bin/**/*'
-    - 'db/**/*'
-    - 'script/**/*'
-    - 'vendor/**/*'
+    - bin/**/*
+    - db/schema.rb
+    - vendor/**/*
   TargetRubyVersion: 2.4
 
 Rails:
   Enabled: true
+
+Rails/Output:
+  Enabled: true
+  Exclude: 
+    - db/seeds.rb
 
 RSpec/MultipleExpectations:
   Enabled: false

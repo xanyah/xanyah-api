@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateStockBackups < ActiveRecord::Migration[5.1]
   def change
     create_table :stock_backups, id: :uuid do |t|
