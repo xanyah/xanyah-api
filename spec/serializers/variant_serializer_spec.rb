@@ -44,4 +44,11 @@ RSpec.describe VariantSerializer do
       expect(json['provider']['name']).to eq(variant.provider.name)
     end
   end
+
+  describe 'has_many' do
+    it :variant_attributes do
+      create(:variant_attribute, variant: variant)
+      expect(json['variant_attributes'].size).to eq(1)
+    end
+  end
 end

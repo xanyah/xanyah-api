@@ -15,4 +15,6 @@ class VariantSerializer < ActiveModel::Serializer
 
   belongs_to :product, serializer: ProductSerializer
   belongs_to :provider
+
+  has_many :variant_attributes
 end
