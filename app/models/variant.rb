@@ -3,6 +3,7 @@
 class Variant < ApplicationRecord
   before_validation :set_barcode, on: :create
   before_validation :set_default, on: :create
+  before_validation :set_price
 
   belongs_to :product, optional: false
   belongs_to :provider, optional: false
@@ -22,11 +23,11 @@ class Variant < ApplicationRecord
   end
 
   def vat_price
-    tax_free_price * (vat / 100)
+    (tax_free_price * (vat / 100)).round(2)
   end
 
   def price
-    tax_free_price + vat_price
+    (tax_free_price + vat_price).round(2)
   end
 
   def self.search(query)
@@ -57,5 +58,10 @@ class Variant < ApplicationRecord
 
   def set_default
     self.default = product.variants.size <= 0 unless product.nil?
+  end
+
+  def set_price
+    self.tax_free_price = tax_free_price&.round(2)
+    self.buying_price = buying_price&.round(2)
   end
 end
