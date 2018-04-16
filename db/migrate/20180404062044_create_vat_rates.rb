@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateVatRates < ActiveRecord::Migration[5.1]
   def change
     create_table :vat_rates, id: :uuid do |t|

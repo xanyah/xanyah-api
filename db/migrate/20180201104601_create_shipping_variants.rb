@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateShippingVariants < ActiveRecord::Migration[5.1]
   def change
     create_table :shipping_variants, id: :uuid do |t|

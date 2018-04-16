@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProviders < ActiveRecord::Migration[5.1]
   def change
     create_table :providers, id: :uuid do |t|
