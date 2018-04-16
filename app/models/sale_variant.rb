@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SaleVariant < ApplicationRecord
+  before_validation :set_prices
+
   belongs_to :sale
   belongs_to :variant
 
@@ -24,5 +26,9 @@ class SaleVariant < ApplicationRecord
 
   def update_variant
     variant.update(quantity: variant.quantity - quantity)
+  end
+
+  def set_prices
+    self.unit_price = unit_price&.round(2)
   end
 end
