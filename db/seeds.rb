@@ -44,7 +44,7 @@ StoreMembership.create!(store: demo_store, user: regular_user, role: :regular)
 
 puts 'Creating clients, manufacturers, providers, categories, payment types'
 
-5.times do
+5.times do |idx|
   PaymentType.create!(
     name:        Faker::Currency.name,
     description: Faker::Lorem.paragraph,
@@ -62,12 +62,12 @@ puts 'Creating clients, manufacturers, providers, categories, payment types'
   Manufacturer.create!(name: Faker::HarryPotter.character, store: demo_store)
   Provider.create!(name: Faker::RickAndMorty.character, store: demo_store)
   Category.create!(
-    name:     Faker::Space.planet,
+    name:     "#{Faker::Space.planet} #{idx}",
     store:    demo_store,
     tva:      Category.tvas.keys.sample,
     category: [
       Category.create!(
-        name:  Faker::Space.planet,
+        name:  "#{Faker::Space.planet} #{idx}",
         store: demo_store,
         tva:   Category.tvas.keys.sample
       ),
