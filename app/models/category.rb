@@ -13,7 +13,7 @@ class Category < ApplicationRecord
   ]
 
   validates :tva, presence: true
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: {scope: :category}
 
   scope :without_category, -> { where(category_id: nil) }
   scope :children_of, ->(id) { where(category_id: id) }
