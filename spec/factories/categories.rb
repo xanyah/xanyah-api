@@ -2,7 +2,9 @@
 
 FactoryBot.define do
   factory :category do
-    name { Faker::Beer.style }
+    sequence :name do |n|
+      "#{Faker::Beer.style} #{n}"
+    end
     tva { Category.tvas.keys.sample }
     store
   end
