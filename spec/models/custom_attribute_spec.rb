@@ -12,6 +12,13 @@ RSpec.describe CustomAttribute, type: :model do
       it :presence do
         expect(build(:custom_attribute, name: nil)).not_to be_valid
       end
+
+      it :uniqueness do
+        custom_attribute = create(:custom_attribute)
+        expect(
+          build(:custom_attribute, name: custom_attribute.name, store: custom_attribute.store)
+        ).not_to be_valid
+      end
     end
 
     describe 'type' do

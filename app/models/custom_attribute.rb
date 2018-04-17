@@ -6,7 +6,7 @@ class CustomAttribute < ApplicationRecord
 
   has_many :variant_attributes, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: {scope: :store}
   validates :type, presence: true
 
   self.inheritance_column = :_type_disabled

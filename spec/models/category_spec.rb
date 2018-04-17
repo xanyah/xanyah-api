@@ -19,6 +19,13 @@ RSpec.describe Category, type: :model do
       it :presence do
         expect(build(:category, name: nil)).not_to be_valid
       end
+
+      it :uniqueness do
+        category = create(:category)
+        expect(
+          build(:category, name: category.name, store: category.store, category: category.category)
+        ).not_to be_valid
+      end
     end
 
     describe 'store' do
