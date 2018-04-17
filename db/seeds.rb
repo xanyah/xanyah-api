@@ -67,7 +67,7 @@ puts 'Creating clients, manufacturers, providers, categories, payment types'
     tva:      Category.tvas.keys.sample,
     category: [
       Category.create!(
-        name:  "#{Faker::Space.planet} #{idx}",
+        name:  "#{Faker::Space.planet} #{idx}-#{idx}",
         store: demo_store,
         tva:   Category.tvas.keys.sample
       ),
