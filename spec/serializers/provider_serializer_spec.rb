@@ -13,7 +13,7 @@ RSpec.describe ProviderSerializer do
       name
       created_at
       updated_at
-      note
+      notes
       store_id
       shippings_count
     ]

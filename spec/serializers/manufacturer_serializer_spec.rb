@@ -3,7 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ManufacturerSerializer do
-  let(:manufacturer) { create(:manufacturer) }
+  let(:store) { create(:store) }
+  let(:manufacturer) { create(:manufacturer, store: store) }
   let(:serializer) { described_class.new(manufacturer) }
   let(:serialization) { ActiveModelSerializers::Adapter.create(serializer) }
   let(:json) { JSON.parse(serialization.to_json) }
@@ -13,7 +14,7 @@ RSpec.describe ManufacturerSerializer do
       name
       created_at
       updated_at
-      note
+      notes
       store_id
       products_count
     ]
@@ -31,7 +32,7 @@ RSpec.describe ManufacturerSerializer do
 
   describe 'counts' do
     it :products do
-      create(:product, manufacturer: manufacturer)
+      create(:product, manufacturer: manufacturer, store: store)
       expect(json['products_count']).to eq(1)
     end
   end
