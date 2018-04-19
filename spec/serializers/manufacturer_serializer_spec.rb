@@ -16,7 +16,6 @@ RSpec.describe ManufacturerSerializer do
       updated_at
       notes
       store_id
-      products_count
     ]
   }
 

@@ -15,7 +15,6 @@ RSpec.describe ProviderSerializer do
       updated_at
       notes
       store_id
-      shippings_count
     ]
   }
 
