@@ -3,6 +3,10 @@
 class Provider < ApplicationRecord
   belongs_to :store, optional: false
 
+  has_many :shippings, dependent: :destroy
+  has_many :variants, dependent: :destroy
+  has_many :products, through: :variants
+
   validates :name, presence: true
 
   def self.search(query)
