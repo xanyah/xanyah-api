@@ -21,7 +21,19 @@ RSpec.describe 'Products', type: :request do
       create(:product, store: store)
       get products_path(manufacturer_id: p.manufacturer_id), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).size).to eq(1)
+      body = JSON.parse(response.body)
+      expect(body.size).to eq(1)
+      expect(body[0]['id']).to eq(p.id)
+    end
+
+    it 'filters by provider' do
+      v = create(:variant, product: create(:product, store: store))
+      create(:variant, product: create(:product, store: store))
+      get products_path(provider_id: v.provider_id), headers: user.create_new_auth_token
+      expect(response).to have_http_status(:ok)
+      body = JSON.parse(response.body)
+      expect(body.size).to eq(1)
+      expect(body[0]['id']).to eq(v.product.id)
     end
 
     it 'return empty if !membership' do

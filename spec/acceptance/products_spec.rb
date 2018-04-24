@@ -23,6 +23,7 @@ resource 'Products' do
     get 'Returns all products' do
       parameter :store_id, 'Filter by store'
       parameter :manufacturer_id, 'Filter by manufacturer'
+      parameter :provider_id, 'Filter by provider'
 
       before do
         create(:product)

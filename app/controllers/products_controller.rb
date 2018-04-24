@@ -9,6 +9,10 @@ class ProductsController < ApplicationController
     @products = current_user.products
     @products = @products.where(store_id: params[:store_id]) if params[:store_id].present?
     @products = @products.where(manufacturer_id: params[:manufacturer_id]) if params[:manufacturer_id].present?
+    if params[:provider_id].present?
+      @products = @products.joins(:variants)
+      @products = @products.where(variants: {provider_id: params[:provider_id]})
+    end
 
     render json: @products
   end

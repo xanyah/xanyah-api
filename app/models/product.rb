@@ -5,6 +5,7 @@ class Product < ApplicationRecord
   belongs_to :manufacturer, optional: false
   belongs_to :store, optional: false
   has_many :variants, dependent: :destroy
+  has_many :providers, through: :variants
 
   validates :name, presence: true
   validate :common_store
