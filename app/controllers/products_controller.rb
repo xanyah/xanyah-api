@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   def index
     @products = current_user.products
     @products = @products.where(store_id: params[:store_id]) if params[:store_id].present?
+    @products = @products.where(manufacturer_id: params[:manufacturer_id]) if params[:manufacturer_id].present?
 
     render json: @products
   end

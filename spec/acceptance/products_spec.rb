@@ -22,6 +22,7 @@ resource 'Products' do
   route '/products', 'Products collection' do
     get 'Returns all products' do
       parameter :store_id, 'Filter by store'
+      parameter :manufacturer_id, 'Filter by manufacturer'
 
       before do
         create(:product)

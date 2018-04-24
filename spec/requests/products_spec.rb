@@ -16,6 +16,14 @@ RSpec.describe 'Products', type: :request do
       expect(JSON.parse(response.body).size).to eq(1)
     end
 
+    it 'filters by manufacturer' do
+      p = create(:product, store: store)
+      create(:product, store: store)
+      get products_path(manufacturer_id: p.manufacturer_id), headers: user.create_new_auth_token
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body).size).to eq(1)
+    end
+
     it 'return empty if !membership' do
       get products_path, headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:ok)
