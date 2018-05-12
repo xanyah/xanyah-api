@@ -11,6 +11,7 @@ class Sale < ApplicationRecord
 
   has_many :sale_payments, dependent: :destroy
   has_many :sale_variants, dependent: :destroy
+  has_many :variants, through: :sale_variants
 
   def self.full_creation(params, user)
     sale = Sale.new(
