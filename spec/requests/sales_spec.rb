@@ -16,6 +16,14 @@ RSpec.describe 'Sales', type: :request do
       expect(JSON.parse(response.body).size).to eq(1)
     end
 
+    it 'filters by variant' do
+      sale_variant = create(:sale_variant, sale: create(:sale, store: store))
+      create(:sale_variant, sale: create(:sale, store: store))
+      get sales_path(variant_id: sale_variant.variant_id), headers: user.create_new_auth_token
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body).size).to eq(1)
+    end
+
     it 'returns empty if !membership' do
       get sales_path, headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:ok)
