@@ -21,6 +21,9 @@ resource 'Sales' do
 
   route '/sales', 'Sales collection' do
     get 'Returns all sales' do
+      parameter :store_id, 'Filter by store id'
+      parameter :variant_id, 'Filter by variant id'
+
       example_request 'List all sales' do
         expect(response_status).to eq(200)
         expect(JSON.parse(response_body).size).to eq(0)
