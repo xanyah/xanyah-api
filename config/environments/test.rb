@@ -30,6 +30,7 @@ Rails.application.configure do
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
   config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = false
   config.action_mailer.default_url_options = {host: ENV['DEFAULT_URL']}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {address: ENV['SMTP_ADDRESS'], port: ENV['SMTP_PORT']}
