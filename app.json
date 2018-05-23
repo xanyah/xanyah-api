@@ -37,6 +37,9 @@
     "SMTP_ADDRESS": {
       "required": true
     },
+    "SMTP_FROM": {
+      "required": true
+    },
     "SMTP_USERNAME": {
       "required": true
     },
