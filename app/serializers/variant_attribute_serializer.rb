@@ -6,6 +6,6 @@ class VariantAttributeSerializer < ActiveModel::Serializer
              :created_at,
              :updated_at
 
-  has_one :variant
-  has_one :custom_attribute
+  belongs_to :variant
+  belongs_to :custom_attribute
 end
