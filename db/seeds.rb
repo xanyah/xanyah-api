@@ -63,7 +63,7 @@ StoreMembership.create!(
 
 puts 'Creating clients, manufacturers, providers, categories, payment types'
 
-5.times do |_idx|
+5.times do
   PaymentType.create!(
     name:        Faker::Currency.name,
     description: Faker::Lorem.paragraph,
