@@ -10,6 +10,7 @@ class InventoryVariantsController < ApplicationController
     if params[:inventory_id].present?
       @inventory_variants = @inventory_variants.where(inventory_id: params[:inventory_id])
     end
+    @inventory_variants = @inventory_variants.where(variant_id: params[:variant_id]) if params[:variant_id].present?
 
     render json: @inventory_variants
   end
