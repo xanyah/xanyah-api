@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FileImportsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def create
     store = Store.find(params['store_id'])

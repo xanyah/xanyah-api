@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414165913) do
+ActiveRecord::Schema.define(version: 20180605123201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,19 @@ ActiveRecord::Schema.define(version: 20180414165913) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_payment_types_on_store_id"
+  end
+
+  create_table "plans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "gateway_id"
+    t.integer "monthly_price_cents", default: 0, null: false
+    t.string "monthly_price_currency", default: "EUR", null: false
+    t.integer "yearly_price_cents", default: 0, null: false
+    t.string "yearly_price_currency", default: "EUR", null: false
+    t.integer "status"
+    t.integer "max_users"
+    t.integer "max_variants"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -232,6 +245,21 @@ ActiveRecord::Schema.define(version: 20180414165913) do
     t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "gateway_customer_id"
+  end
+
+  create_table "subscriptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "store_id"
+    t.uuid "plan_id"
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.integer "status"
+    t.string "payment_gateway"
+    t.string "payment_gateway_subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
+    t.index ["store_id"], name: "index_subscriptions_on_store_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -338,6 +366,8 @@ ActiveRecord::Schema.define(version: 20180414165913) do
   add_foreign_key "stock_backups", "stores"
   add_foreign_key "store_memberships", "stores"
   add_foreign_key "store_memberships", "users"
+  add_foreign_key "subscriptions", "plans"
+  add_foreign_key "subscriptions", "stores"
   add_foreign_key "variant_attributes", "custom_attributes"
   add_foreign_key "variant_attributes", "variants"
   add_foreign_key "variants", "products"
