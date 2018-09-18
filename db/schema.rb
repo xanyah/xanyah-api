@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
   create_table "file_imports", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id"
     t.uuid "store_id"
+    t.boolean "processed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_file_imports_on_store_id"

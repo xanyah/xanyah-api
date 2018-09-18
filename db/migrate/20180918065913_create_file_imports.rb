@@ -6,6 +6,8 @@ class CreateFileImports < ActiveRecord::Migration[5.2]
       t.belongs_to :user, foreign_key: true, type: :uuid
       t.belongs_to :store, foreign_key: true, type: :uuid
 
+      t.boolean :processed, default: false
+
       t.timestamps
     end
   end

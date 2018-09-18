@@ -8,26 +8,29 @@ class FileImportWorker
   include Sidekiq::Worker
 
   def perform(file_import_id)
-    file_import = FileImport.find(file_import_id)
+    @file_import = FileImport.find(file_import_id)
 
-    return if file_import.nil?
+    return if @file_import.nil?
 
-    @store_id = file_import.store_id
-    file = file_import.file
+    @store_id = @file_import.store_id
+    file = @file_import.file
 
     return if file.nil?
 
-    ActiveRecord::Base.transaction do
-      case File.extname(file.filename.to_s)
-      when '.csv'
-        CSV.parse(file.download, headers: true, encoding: 'UTF-8') do |row|
-          create_product row.to_hash
-        end
-      when '.json'
-        JSON.parse(file.download).each do |row|
-          create_product row
+    begin
+      ActiveRecord::Base.transaction do
+        case File.extname(file.filename.to_s)
+        when '.csv'
+          CSV.parse(file.download, headers: true, encoding: 'UTF-8') do |row|
+            create_product row.to_hash
+          end
+        when '.json'
+          JSON.parse(file.download).each do |row|
+            create_product row
+          end
         end
       end
+      @file_import.update(processed: true)
     end
   end
 
