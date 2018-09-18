@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: d5d22148b4144cfc165ea9b8b8551cec11ba88f7
+  revision: bb7b836e3b7c301b65c2d5f91c7e474a2ca6b2f4
   specs:
     faker (1.9.1)
       i18n (>= 0.7)
@@ -228,7 +228,7 @@ GEM
       rubocop (>= 0.58.0)
     ruby-progressbar (1.10.0)
     ruby_dep (1.5.0)
-    sidekiq (5.2.1)
+    sidekiq (5.2.2)
       connection_pool (~> 2.2, >= 2.2.2)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
