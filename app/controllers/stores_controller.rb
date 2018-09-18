@@ -34,6 +34,10 @@ class StoresController < ApplicationController
     end
   end
 
+  def destroy
+    @store.destroy
+  end
+
   private
 
   # Only allow a trusted parameter "white list" through.

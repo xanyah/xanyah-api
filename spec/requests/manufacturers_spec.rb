@@ -75,4 +75,26 @@ RSpec.describe 'Manufacturers', type: :request do
       expect(JSON.parse(response.body)).to have_key('errors')
     end
   end
+
+  describe 'DELETE /manufacturers/:id' do
+    it 'destroys manufacturer if membership' do
+      store_membership.update(role: :admin)
+      manufacturer = create(:manufacturer, store: store)
+      delete manufacturer_path(manufacturer),
+             headers: user.create_new_auth_token
+      expect(response).to have_http_status(:no_content)
+    end
+
+    it 'returns 401 if !membership' do
+      delete manufacturer_path(create(:manufacturer)),
+             headers: create(:user).create_new_auth_token
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'returns 401 if !loggedin' do
+      patch manufacturer_path(create(:manufacturer))
+      expect(response).to have_http_status(:unauthorized)
+      expect(JSON.parse(response.body)).to have_key('errors')
+    end
+  end
 end

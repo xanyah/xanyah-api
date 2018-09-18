@@ -19,6 +19,7 @@ gem 'aws-sdk-s3', require: false
 gem 'cancancan', '~> 2.0'
 gem 'devise_token_auth'
 gem 'faker', github: 'stympy/faker'
+gem 'paranoia', '~> 2.2'
 gem 'rack-cors'
 gem 'redis-namespace'
 gem 'sidekiq'

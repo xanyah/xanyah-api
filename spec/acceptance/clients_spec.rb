@@ -95,6 +95,14 @@ resource 'Clients' do
         expect(body['firstname']).to eq(firstname)
       end
     end
+
+    delete 'Destroy a specific client' do
+      let(:id) { store_client.id }
+
+      example_request 'Destroying a client' do
+        expect(status).to eq(204)
+      end
+    end
   end
 
   route '/clients/search', 'Clients collection' do

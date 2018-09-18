@@ -101,5 +101,13 @@ resource 'Products' do
         expect(body['name']).to eq(name)
       end
     end
+
+    delete 'Destroy a specific product' do
+      let(:id) { product.id }
+
+      example_request 'Destroying a product' do
+        expect(status).to eq(204)
+      end
+    end
   end
 end

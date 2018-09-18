@@ -25,7 +25,7 @@ RSpec.describe PaymentTypesController, type: :routing do
     end
 
     it 'routes to #destroy' do
-      expect(delete: '/payment_types/1').not_to route_to('payment_types#destroy', id: '1')
+      expect(delete: '/payment_types/1').to route_to('payment_types#destroy', id: '1')
     end
   end
 end

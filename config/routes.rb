@@ -3,9 +3,9 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
 
-  resources :categories, except: [:destroy]
+  resources :categories
 
-  resources :clients, except: [:destroy] do
+  resources :clients do
     get :search, on: :collection
   end
 
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'inventory_variants/:inventory_id/:variant_id', to: 'inventory_variants#by_variant'
   resources :inventory_variants
 
-  resources :manufacturers, except: [:destroy] do
+  resources :manufacturers do
     get :search, on: :collection
   end
 
@@ -28,15 +28,15 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
 
-  resources :payment_types, except: [:destroy]
+  resources :payment_types
 
-  resources :products, except: [:destroy]
+  resources :products
 
-  resources :providers, except: [:destroy] do
+  resources :providers do
     get :search, on: :collection
   end
 
-  resources :sales, except: %i[update destroy]
+  resources :sales, except: %i[update]
 
   resources :shippings, except: [:update] do
     patch :lock, on: :member
@@ -49,10 +49,10 @@ Rails.application.routes.draw do
   resources :stock_backups, only: %i[index show]
 
   resources :store_memberships
-  resources :stores, except: [:destroy]
+  resources :stores
 
   resources :variant_attributes
-  resources :variants, except: [:destroy] do
+  resources :variants do
     get :by_barcode, on: :member
     get :search, on: :collection
   end

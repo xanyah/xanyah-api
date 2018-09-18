@@ -25,7 +25,7 @@ RSpec.describe SalesController, type: :routing do
     end
 
     it 'routes to #destroy' do
-      expect(delete: '/sales/1').not_to route_to('sales#destroy', id: '1')
+      expect(delete: '/sales/1').to route_to('sales#destroy', id: '1')
     end
   end
 end

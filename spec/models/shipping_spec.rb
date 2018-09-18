@@ -7,6 +7,15 @@ RSpec.describe Shipping, type: :model do
     expect(build(:shipping)).to be_valid
   end
 
+  it :is_paranoid do
+    shipping = create(:shipping)
+    expect(shipping.deleted_at).to be_nil
+    expect(Shipping.all).to include(shipping)
+    shipping.destroy
+    expect(shipping.deleted_at).not_to be_nil
+    expect(Shipping.all).not_to include(shipping)
+  end
+
   describe 'lock' do
     let(:shipping) { create(:shipping) }
 

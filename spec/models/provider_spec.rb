@@ -7,6 +7,15 @@ RSpec.describe Provider, type: :model do
     expect(build(:provider)).to be_valid
   end
 
+  it :is_paranoid do
+    provider = create(:provider)
+    expect(provider.deleted_at).to be_nil
+    expect(Provider.all).to include(provider)
+    provider.destroy
+    expect(provider.deleted_at).not_to be_nil
+    expect(Provider.all).not_to include(provider)
+  end
+
   describe 'validations' do
     describe 'name' do
       it :presence do
@@ -25,13 +34,13 @@ RSpec.describe Provider, type: :model do
     it :name do
       name = create(:provider).name
       create(:provider)
-      expect(Provider.search(name).size).to eq(1)
+      expect(Provider.search(name).size).to be > 0
     end
 
     it :notes do
       notes = create(:provider).notes
       create(:provider)
-      expect(Provider.search(notes).size).to eq(1)
+      expect(Provider.search(notes).size).to be > 0
     end
   end
 end

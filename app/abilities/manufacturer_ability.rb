@@ -2,7 +2,7 @@
 
 module ManufacturerAbility
   def manufacturer_ability(user)
-    can :cru, Manufacturer do |manufacturer|
+    can :manage, Manufacturer do |manufacturer|
       !manufacturer.store_id.nil? && manufacturer.store.users.include?(user)
     end
   end

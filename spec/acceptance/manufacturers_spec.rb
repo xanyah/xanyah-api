@@ -83,6 +83,14 @@ resource 'Manufacturers' do
         expect(body['name']).to eq(name)
       end
     end
+
+    delete 'Destroy a specific manufacturer' do
+      let(:id) { manufacturer.id }
+
+      example_request 'Destroying a manufacturer' do
+        expect(status).to eq(204)
+      end
+    end
   end
 
   route '/manufacturers/search', 'Manufacturers collection' do

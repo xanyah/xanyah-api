@@ -26,9 +26,6 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    alias_action :create, :read, :update, to: :cru
-    alias_action :create, :read, :update, :destroy, to: :crud
-
     category_ability user
     client_ability user
     custom_attribute_ability user

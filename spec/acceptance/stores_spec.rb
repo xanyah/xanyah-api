@@ -80,5 +80,13 @@ resource 'Stores' do
         expect(body['name']).to eq(name)
       end
     end
+
+    delete 'Destroy a specific store' do
+      let(:id) { membership.store.id }
+
+      example_request 'Destroying a store' do
+        expect(status).to eq(204)
+      end
+    end
   end
 end

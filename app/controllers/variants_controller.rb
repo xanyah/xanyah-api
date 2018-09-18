@@ -53,6 +53,10 @@ class VariantsController < ApplicationController
     render json: @variant
   end
 
+  def destroy
+    @variant.destroy
+  end
+
   private
 
   def create_params

@@ -81,4 +81,28 @@ RSpec.describe 'VariantAttributes', type: :request do
       expect(JSON.parse(response.body)).to have_key('errors')
     end
   end
+
+  describe 'DELETE /variant_attributes/:id' do
+    it 'destroys variant_attribute if membership' do
+      store_membership.update(role: :admin)
+      variant_attribute = create(:variant_attribute, variant: create(
+        :variant, product: create(:product, store: store)
+      ))
+      delete variant_attribute_path(variant_attribute),
+             headers: user.create_new_auth_token
+      expect(response).to have_http_status(:no_content)
+    end
+
+    it 'returns 401 if !membership' do
+      patch variant_attribute_path(create(:variant_attribute)),
+            headers: create(:user).create_new_auth_token
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'returns 401 if !loggedin' do
+      patch variant_attribute_path(create(:variant_attribute))
+      expect(response).to have_http_status(:unauthorized)
+      expect(JSON.parse(response.body)).to have_key('errors')
+    end
+  end
 end

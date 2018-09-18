@@ -7,6 +7,15 @@ RSpec.describe StockBackupVariant, type: :model do
     expect(build(:stock_backup_variant)).to be_valid
   end
 
+  it :is_paranoid do
+    stock_backup_variant = create(:stock_backup_variant)
+    expect(stock_backup_variant.deleted_at).to be_nil
+    expect(StockBackupVariant.all).to include(stock_backup_variant)
+    stock_backup_variant.destroy
+    expect(stock_backup_variant.deleted_at).not_to be_nil
+    expect(StockBackupVariant.all).not_to include(stock_backup_variant)
+  end
+
   describe 'validations' do
     describe 'stock_backup' do
       it :presence do

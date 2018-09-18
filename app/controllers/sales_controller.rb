@@ -2,7 +2,7 @@
 
 class SalesController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource only: :show
+  load_and_authorize_resource only: %i[show destroy]
 
   # GET /sales
   def index
@@ -30,5 +30,9 @@ class SalesController < ApplicationController
     else
       render json: @sale.errors, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @sale.destroy
   end
 end

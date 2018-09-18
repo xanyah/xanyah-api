@@ -46,6 +46,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    @product.destroy
+  end
+
   private
 
   # Only allow a trusted parameter "white list" through.
