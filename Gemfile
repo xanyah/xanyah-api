@@ -15,7 +15,7 @@ gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.2.1'
 
 gem 'active_model_serializers', '~> 0.10.7'
-gem 'aws-sdk-s3', '~> 1'
+gem 'aws-sdk-s3', require: false
 gem 'cancancan', '~> 2.0'
 gem 'devise_token_auth'
 gem 'faker', github: 'stympy/faker'

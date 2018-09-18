@@ -268,7 +268,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.7)
   apitome
-  aws-sdk-s3 (~> 1)
+  aws-sdk-s3
   cancancan (~> 2.0)
   codeclimate-test-reporter (~> 1.0, >= 1.0.8)
   database_cleaner

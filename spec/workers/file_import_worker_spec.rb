@@ -4,21 +4,25 @@ require 'rails_helper'
 RSpec.describe FileImportWorker, type: :worker do
   describe 'formats' do
     it :csv do
-      object_path = 'tests/variants/import.csv'
-      object = S3_BUCKET.object(object_path)
-      object.upload_file(Rails.root.join('spec', 'fixtures', 'files', 'variants.csv'))
+      file = File.open Rails.root.join('spec', 'fixtures', 'files', 'variants.csv')
+      membership = create(:store_membership, role: :admin)
 
-      FileImportWorker.new.perform object_path, create(:store).id
+      file_import = FileImport.create(user: membership.user, store: membership.store)
+      file_import.file.attach io: file, filename: 'variants.csv', content_type: 'text/csv'
+
+      FileImportWorker.new.perform file_import.id
       expect(Variant.all.size).to eq(1)
       expect(Product.all.size).to eq(1)
     end
 
     it :json do
-      object_path = 'tests/variants/import.json'
-      object = S3_BUCKET.object(object_path)
-      object.upload_file(Rails.root.join('spec', 'fixtures', 'files', 'variants.json'))
+      file = File.open Rails.root.join('spec', 'fixtures', 'files', 'variants.json')
+      membership = create(:store_membership, role: :admin)
 
-      FileImportWorker.new.perform object_path, create(:store).id
+      file_import = FileImport.create(user: membership.user, store: membership.store)
+      file_import.file.attach io: file, filename: 'variants.json', content_type: 'application/json'
+
+      FileImportWorker.new.perform file_import.id
       expect(Variant.all.size).to eq(1)
       expect(Product.all.size).to eq(1)
     end

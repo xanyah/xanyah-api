@@ -8,13 +8,17 @@ class FileImportsController < ApplicationController
     authorize! :read, store
 
     if ['application/json', 'text/csv'].include?(params['file'].content_type)
-      object_path = "variant_imports/#{current_user.id}/#{params['file'].original_filename}"
-      object = S3_BUCKET.object(object_path)
-      object.upload_file(params['file'].path)
+      @file = FileImport.new(file_import_params)
+      @file.user = current_user
 
-      FileImportWorker.perform_async object_path, params['store_id']
-    else
-      render nothing: true, status: :unprocessable_entity
+      return render nothing: true, status: :no_content if @file.save
     end
+    render nothing: true, status: :unprocessable_entity
+  end
+
+  private
+
+  def file_import_params
+    params.permit(:file, :store_id)
   end
 end
