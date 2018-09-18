@@ -21,6 +21,7 @@ class SaleVariant < ApplicationRecord
     return unless !variant_id.nil? &&
     !Variant.find(variant_id).nil? &&
     Variant.find(variant_id).store.id != sale&.store_id
+
     errors.add(:variant, 'must belong to store')
   end
 

@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :shipping do
-    locked_at { nil }
+  factory :file_import do
+    user
     store
-    provider
   end
 end

@@ -10,11 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180605123201) do
+ActiveRecord::Schema.define(version: 2018_09_18_065913) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
   enable_extension "pgcrypto"
+  enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -47,6 +68,16 @@ ActiveRecord::Schema.define(version: 20180605123201) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_custom_attributes_on_store_id"
+  end
+
+  create_table "file_imports", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "store_id"
+    t.boolean "processed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_file_imports_on_store_id"
+    t.index ["user_id"], name: "index_file_imports_on_user_id"
   end
 
   create_table "inventories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -103,19 +134,6 @@ ActiveRecord::Schema.define(version: 20180605123201) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_payment_types_on_store_id"
-  end
-
-  create_table "plans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "gateway_id"
-    t.integer "monthly_price_cents", default: 0, null: false
-    t.string "monthly_price_currency", default: "EUR", null: false
-    t.integer "yearly_price_cents", default: 0, null: false
-    t.string "yearly_price_currency", default: "EUR", null: false
-    t.integer "status"
-    t.integer "max_users"
-    t.integer "max_variants"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -245,21 +263,6 @@ ActiveRecord::Schema.define(version: 20180605123201) do
     t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "gateway_customer_id"
-  end
-
-  create_table "subscriptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "store_id"
-    t.uuid "plan_id"
-    t.datetime "started_at"
-    t.datetime "ended_at"
-    t.integer "status"
-    t.string "payment_gateway"
-    t.string "payment_gateway_subscription_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
-    t.index ["store_id"], name: "index_subscriptions_on_store_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -336,6 +339,8 @@ ActiveRecord::Schema.define(version: 20180605123201) do
   add_foreign_key "categories", "stores"
   add_foreign_key "clients", "stores"
   add_foreign_key "custom_attributes", "stores"
+  add_foreign_key "file_imports", "stores"
+  add_foreign_key "file_imports", "users"
   add_foreign_key "inventories", "stores"
   add_foreign_key "inventory_variants", "inventories"
   add_foreign_key "inventory_variants", "variants"
@@ -366,8 +371,6 @@ ActiveRecord::Schema.define(version: 20180605123201) do
   add_foreign_key "stock_backups", "stores"
   add_foreign_key "store_memberships", "stores"
   add_foreign_key "store_memberships", "users"
-  add_foreign_key "subscriptions", "plans"
-  add_foreign_key "subscriptions", "stores"
   add_foreign_key "variant_attributes", "custom_attributes"
   add_foreign_key "variant_attributes", "variants"
   add_foreign_key "variants", "products"
