@@ -14,7 +14,7 @@ resource 'Authentication' do
   let(:expiry) { auth_token['expiry'] }
   let(:uid) { auth_token['uid'] }
 
-  route '/auth', 'Authentication' do
+  route 'auth', 'Authentication' do
     post 'Sign up user' do
       parameter :email, "User's email", required: true
       parameter :password, "User's password", required: true
@@ -53,28 +53,28 @@ resource 'Authentication' do
       end
     end
 
-    patch 'Update current user' do
-      header 'Access-Token', :access_token
-      header 'Token-Type', :token_type
-      header 'Client', :client_id
-      header 'Expiry', :expiry
-      header 'Uid', :uid
+    # put 'Update current user' do
+    #   header 'Access-Token', :access_token
+    #   header 'Token-Type', :token_type
+    #   header 'Client', :client_id
+    #   header 'Expiry', :expiry
+    #   header 'Uid', :uid
 
-      parameter :firstname, "User's firstname"
-      parameter :lastname, "User's lastname"
-      parameter :locale, "User's locale"
+    #   parameter :firstname, "User's firstname"
+    #   parameter :lastname, "User's lastname"
+    #   parameter :locale, "User's locale"
 
-      let(:user) { build(:user) }
-      let(:firstname) { user.firstname }
-      let(:lastname) { user.lastname }
-      let(:locale) { user.locale }
+    #   let(:user) { build(:user) }
+    #   let(:firstname) { user.firstname }
+    #   let(:lastname) { user.lastname }
+    #   let(:locale) { user.locale }
 
-      example_request 'Update current user' do
-        expect(response_status).to eq(200)
-        response = JSON.parse(response_body)
-        expect(response['data']['firstname']).to eq(firstname)
-      end
-    end
+    #   example_request 'Update current user' do
+    #     expect(response_status).to eq(200)
+    #     response = JSON.parse(response_body)
+    #     expect(response['data']['firstname']).to eq(firstname)
+    #   end
+    # end
   end
 
   route 'auth/sign_in', 'User session' do
@@ -136,23 +136,23 @@ resource 'Authentication' do
       let(:redirect_url) { Faker::Internet.url }
     end
 
-    patch "Update current user's password" do
-      header 'Access-Token', :access_token
-      header 'Token-Type', :token_type
-      header 'Client', :client_id
-      header 'Expiry', :expiry
-      header 'Uid', :uid
+    # put "Update current user's password" do
+    #   header 'Access-Token', :access_token
+    #   header 'Token-Type', :token_type
+    #   header 'Client', :client_id
+    #   header 'Expiry', :expiry
+    #   header 'Uid', :uid
 
-      parameter :password, "User's new password", required: true
-      parameter :password_confirmation, "User's new password confirmation", required: true
+    #   parameter :password, "User's new password", required: true
+    #   parameter :password_confirmation, "User's new password confirmation", required: true
 
-      let(:user) { build(:user) }
-      let(:password) { user.password }
-      let(:password_confirmation) { user.password }
+    #   let(:user) { build(:user) }
+    #   let(:password) { user.password }
+    #   let(:password_confirmation) { user.password }
 
-      example_request "Update current user's password" do
-        expect(response_status).to eq(200)
-      end
-    end
+    #   example_request "Update current user's password" do
+    #     expect(response_status).to eq(200)
+    #   end
+    # end
   end
 end

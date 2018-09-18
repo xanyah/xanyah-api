@@ -14,6 +14,7 @@ class SalePayment < ApplicationRecord
     return unless !payment_type_id.nil? &&
       !PaymentType.find(payment_type_id).nil? &&
       PaymentType.find(payment_type_id).store.id != sale&.store_id
+
     errors.add(:payment_type, 'must belong to store')
   end
 end

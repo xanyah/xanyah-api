@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :shipping do
-    locked_at nil
+    locked_at { nil }
     store
     provider
   end
