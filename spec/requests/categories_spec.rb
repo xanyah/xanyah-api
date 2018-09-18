@@ -75,4 +75,26 @@ RSpec.describe 'Categories', type: :request do
       expect(JSON.parse(response.body)).to have_key('errors')
     end
   end
+
+  describe 'DELETE /categories/:id' do
+    it 'destroys category if membership' do
+      store_membership.update(role: :admin)
+      category = create(:category, store: store)
+      delete category_path(category),
+            headers: user.create_new_auth_token
+      expect(response).to have_http_status(:no_content)
+    end
+
+    it 'returns 401 if !membership' do
+      delete category_path(create(:category)),
+            headers: create(:user).create_new_auth_token
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'returns 401 if !loggedin' do
+      delete category_path(create(:category))
+      expect(response).to have_http_status(:unauthorized)
+      expect(JSON.parse(response.body)).to have_key('errors')
+    end
+  end
 end

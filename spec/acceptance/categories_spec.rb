@@ -83,5 +83,13 @@ resource 'Categories' do
         expect(body['name']).to eq(name)
       end
     end
+
+    delete 'Destroy a specific category' do
+      let(:id) { category.id }
+
+      example_request 'Destroying a category' do
+        expect(status).to eq(204)
+      end
+    end
   end
 end

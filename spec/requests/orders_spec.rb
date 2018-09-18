@@ -90,4 +90,23 @@ RSpec.describe 'Orders', type: :request do
       expect(JSON.parse(response.body)).to have_key('errors')
     end
   end
+
+  describe 'DELETE /orders/:id' do
+    it 'destroys order if membership' do
+      order = create(:order, store: store)
+      delete order_path(order), headers: user.create_new_auth_token
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'returns 401 if !membership' do
+      delete order_path(create(:order)), headers: create(:user).create_new_auth_token
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'returns 401 if !loggedin' do
+      delete order_path(create(:order))
+      expect(response).to have_http_status(:unauthorized)
+      expect(JSON.parse(response.body)).to have_key('errors')
+    end
+  end
 end

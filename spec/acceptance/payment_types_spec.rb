@@ -83,5 +83,13 @@ resource 'PaymentTypes' do
         expect(body['name']).to eq(name)
       end
     end
+
+    delete 'Destroy a specific payment_type' do
+      let(:id) { payment_type.id }
+
+      example_request 'Destroying a payment_type' do
+        expect(status).to eq(204)
+      end
+    end
   end
 end

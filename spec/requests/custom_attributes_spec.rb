@@ -76,4 +76,26 @@ RSpec.describe 'CustomAttributes', type: :request do
       expect(JSON.parse(response.body)).to have_key('errors')
     end
   end
+
+  describe 'DELETE /custom_attributes/:id' do
+    it 'destroys custom_attribute if membership' do
+      store_membership.update(role: :admin)
+      custom_attribute = create(:custom_attribute, store: store)
+      delete custom_attribute_path(custom_attribute),
+            headers: user.create_new_auth_token
+      expect(response).to have_http_status(:no_content)
+    end
+
+    it 'returns 401 if !membership' do
+      delete custom_attribute_path(create(:custom_attribute)),
+            headers: create(:user).create_new_auth_token
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'returns 401 if !loggedin' do
+      delete custom_attribute_path(create(:custom_attribute))
+      expect(response).to have_http_status(:unauthorized)
+      expect(JSON.parse(response.body)).to have_key('errors')
+    end
+  end
 end

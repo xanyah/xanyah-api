@@ -35,6 +35,10 @@ class PaymentTypesController < ApplicationController
     end
   end
 
+  def destroy
+    @payment_type.destroy
+  end
+
   private
 
   # Only allow a trusted parameter "white list" through.

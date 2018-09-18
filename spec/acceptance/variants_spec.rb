@@ -93,6 +93,14 @@ resource 'Variants' do
         expect(body['ratio']).to eq(ratio)
       end
     end
+
+    delete 'Destroy a specific variant' do
+      let(:id) { variant.id }
+
+      example_request 'Destroying a variant' do
+        expect(status).to eq(204)
+      end
+    end
   end
 
   route '/variants/:id/by_barcode', 'Single variant' do

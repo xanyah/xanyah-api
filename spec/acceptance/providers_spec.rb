@@ -83,6 +83,14 @@ resource 'Providers' do
         expect(body['name']).to eq(name)
       end
     end
+
+    delete 'Destroy a specific provider' do
+      let(:id) { provider.id }
+
+      example_request 'Destroying a provider' do
+        expect(status).to eq(204)
+      end
+    end
   end
 
   route '/providers/search', 'Manufacturers collection' do

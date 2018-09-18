@@ -88,5 +88,13 @@ resource 'Sales' do
         expect(body['id']).to eq(id)
       end
     end
+
+    delete 'Destroy a specific sale' do
+      let(:id) { sale.id }
+
+      example_request 'Destroying a sale' do
+        expect(status).to eq(204)
+      end
+    end
   end
 end

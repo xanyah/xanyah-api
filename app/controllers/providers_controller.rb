@@ -42,6 +42,10 @@ class ProvidersController < ApplicationController
     end
   end
 
+  def destroy
+    @provider.destroy
+  end
+
   private
 
   # Only allow a trusted parameter "white list" through.

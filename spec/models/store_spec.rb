@@ -86,8 +86,8 @@ RSpec.describe Store, type: :model do
       it :can_update do
         expect(Ability.new(membership.user)).to be_able_to(:update, membership.store)
       end
-      it :cannot_destroy do
-        expect(Ability.new(membership.user)).not_to be_able_to(:destroy, membership.store)
+      it :can_destroy do
+        expect(Ability.new(membership.user)).to be_able_to(:destroy, membership.store)
       end
     end
 
@@ -103,8 +103,8 @@ RSpec.describe Store, type: :model do
       it :can_update do
         expect(Ability.new(membership.user)).to be_able_to(:update, membership.store)
       end
-      it :cannot_destroy do
-        expect(Ability.new(membership.user)).not_to be_able_to(:destroy, membership.store)
+      it :can_destroy do
+        expect(Ability.new(membership.user)).to be_able_to(:destroy, membership.store)
       end
     end
   end

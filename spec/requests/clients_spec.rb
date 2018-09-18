@@ -75,4 +75,26 @@ RSpec.describe 'Clients', type: :request do
       expect(JSON.parse(response.body)).to have_key('errors')
     end
   end
+
+  describe 'DELETE /clients/:id' do
+    it 'destroys client if membership' do
+      store_membership.update(role: :admin)
+      client = create(:client, store: store)
+      delete client_path(client),
+            headers: user.create_new_auth_token
+      expect(response).to have_http_status(:no_content)
+    end
+
+    it 'returns 401 if !membership' do
+      delete client_path(create(:client)),
+            headers: create(:user).create_new_auth_token
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'returns 401 if !loggedin' do
+      delete client_path(create(:client))
+      expect(response).to have_http_status(:unauthorized)
+      expect(JSON.parse(response.body)).to have_key('errors')
+    end
+  end
 end

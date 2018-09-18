@@ -95,4 +95,26 @@ RSpec.describe 'Products', type: :request do
       expect(JSON.parse(response.body)).to have_key('errors')
     end
   end
+
+  describe 'DELETE /products/:id' do
+    it 'destroy product if membership' do
+      store_membership.update(role: :admin)
+      product = create(:product, store: store)
+      delete product_path(product),
+            headers: user.create_new_auth_token
+      expect(response).to have_http_status(:no_content)
+    end
+
+    it 'returns 401 if !membership' do
+      delete product_path(create(:product)),
+            headers: create(:user).create_new_auth_token
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'returns 401 if !loggedin' do
+      delete product_path(create(:product))
+      expect(response).to have_http_status(:unauthorized)
+      expect(JSON.parse(response.body)).to have_key('errors')
+    end
+  end
 end

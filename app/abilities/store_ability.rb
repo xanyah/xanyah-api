@@ -6,7 +6,7 @@ module StoreAbility
     can :read, Store do |store|
       store.users.include?(user)
     end
-    can :update, Store do |store|
+    can :manage, Store do |store|
       store.admins.include?(user)
     end
   end
