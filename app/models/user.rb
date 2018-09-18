@@ -33,4 +33,8 @@ class User < ApplicationRecord
               tokens created_at updated_at
             ])
   end
+
+  def tokens_has_json_column_type?
+    database_exists? && table_exists? && type_for_attribute('tokens').type.in?(%i[json jsonb])
+  end
 end
