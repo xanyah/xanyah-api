@@ -13,7 +13,7 @@ before_script:
     > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
-  - bundle exec rake db:create db:migrate db:seed
+  - bundle exec rake db:create db:migrate
   - RAILS_ENV=test bundle exec rake vat_rates:update
 script:
   - bundle exec rspec
