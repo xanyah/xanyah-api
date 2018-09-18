@@ -81,13 +81,13 @@ RSpec.describe 'Clients', type: :request do
       store_membership.update(role: :admin)
       client = create(:client, store: store)
       delete client_path(client),
-            headers: user.create_new_auth_token
+             headers: user.create_new_auth_token
       expect(response).to have_http_status(:no_content)
     end
 
     it 'returns 401 if !membership' do
       delete client_path(create(:client)),
-            headers: create(:user).create_new_auth_token
+             headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 

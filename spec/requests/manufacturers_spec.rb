@@ -81,13 +81,13 @@ RSpec.describe 'Manufacturers', type: :request do
       store_membership.update(role: :admin)
       manufacturer = create(:manufacturer, store: store)
       delete manufacturer_path(manufacturer),
-            headers: user.create_new_auth_token
+             headers: user.create_new_auth_token
       expect(response).to have_http_status(:no_content)
     end
 
     it 'returns 401 if !membership' do
       delete manufacturer_path(create(:manufacturer)),
-            headers: create(:user).create_new_auth_token
+             headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 

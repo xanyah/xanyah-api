@@ -85,21 +85,21 @@ RSpec.describe 'Stores', type: :request do
     it 'destroys store if membership >= admin' do
       membership = create(:store_membership, role: :admin)
       delete store_path(membership.store),
-            headers: membership.user.create_new_auth_token
+             headers: membership.user.create_new_auth_token
       expect(response).to have_http_status(:no_content)
     end
 
     it 'returns 401 if membership < admin' do
       membership = create(:store_membership, role: :regular)
       delete store_path(membership.store),
-            headers: membership.user.create_new_auth_token
+             headers: membership.user.create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
       expect(JSON.parse(response.body)).to have_key('errors')
     end
 
     it 'returns 401 if !membership' do
       delete store_path(create(:store)),
-            headers: create(:user).create_new_auth_token
+             headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 

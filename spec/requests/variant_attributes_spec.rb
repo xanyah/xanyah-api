@@ -89,7 +89,7 @@ RSpec.describe 'VariantAttributes', type: :request do
         :variant, product: create(:product, store: store)
       ))
       delete variant_attribute_path(variant_attribute),
-            headers: user.create_new_auth_token
+             headers: user.create_new_auth_token
       expect(response).to have_http_status(:no_content)
     end
 

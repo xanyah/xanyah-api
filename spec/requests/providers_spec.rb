@@ -81,13 +81,13 @@ RSpec.describe 'Providers', type: :request do
       store_membership.update(role: :admin)
       provider = create(:provider, store: store)
       delete provider_path(provider),
-            headers: user.create_new_auth_token
+             headers: user.create_new_auth_token
       expect(response).to have_http_status(:no_content)
     end
 
     it 'returns 401 if !membership' do
       delete provider_path(create(:provider)),
-            headers: create(:user).create_new_auth_token
+             headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 

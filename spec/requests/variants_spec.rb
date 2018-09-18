@@ -81,13 +81,13 @@ RSpec.describe 'Variants', type: :request do
       store_membership.update(role: :admin)
       variant = create(:variant, product: create(:product, store: store))
       delete variant_path(variant),
-            headers: user.create_new_auth_token
+             headers: user.create_new_auth_token
       expect(response).to have_http_status(:no_content)
     end
 
     it 'returns 401 if !membership' do
       delete variant_path(create(:variant)),
-            headers: create(:user).create_new_auth_token
+             headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 

@@ -82,13 +82,13 @@ RSpec.describe 'CustomAttributes', type: :request do
       store_membership.update(role: :admin)
       custom_attribute = create(:custom_attribute, store: store)
       delete custom_attribute_path(custom_attribute),
-            headers: user.create_new_auth_token
+             headers: user.create_new_auth_token
       expect(response).to have_http_status(:no_content)
     end
 
     it 'returns 401 if !membership' do
       delete custom_attribute_path(create(:custom_attribute)),
-            headers: create(:user).create_new_auth_token
+             headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 

@@ -2,7 +2,7 @@
 
 class SalesController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource only: [:show, :destroy]
+  load_and_authorize_resource only: %i[show destroy]
 
   # GET /sales
   def index

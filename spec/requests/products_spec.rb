@@ -101,13 +101,13 @@ RSpec.describe 'Products', type: :request do
       store_membership.update(role: :admin)
       product = create(:product, store: store)
       delete product_path(product),
-            headers: user.create_new_auth_token
+             headers: user.create_new_auth_token
       expect(response).to have_http_status(:no_content)
     end
 
     it 'returns 401 if !membership' do
       delete product_path(create(:product)),
-            headers: create(:user).create_new_auth_token
+             headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 
