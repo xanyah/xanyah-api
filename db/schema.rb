@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_18_065913) do
+ActiveRecord::Schema.define(version: 2018_09_18_090531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -44,7 +44,9 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["category_id"], name: "index_categories_on_category_id"
+    t.index ["deleted_at"], name: "index_categories_on_deleted_at"
     t.index ["store_id"], name: "index_categories_on_store_id"
   end
 
@@ -58,6 +60,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_clients_on_deleted_at"
     t.index ["store_id"], name: "index_clients_on_store_id"
   end
 
@@ -67,6 +71,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_custom_attributes_on_deleted_at"
     t.index ["store_id"], name: "index_custom_attributes_on_store_id"
   end
 
@@ -76,6 +82,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.boolean "processed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_file_imports_on_deleted_at"
     t.index ["store_id"], name: "index_file_imports_on_store_id"
     t.index ["user_id"], name: "index_file_imports_on_user_id"
   end
@@ -85,6 +93,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_inventories_on_deleted_at"
     t.index ["store_id"], name: "index_inventories_on_store_id"
   end
 
@@ -94,6 +104,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "variant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_inventory_variants_on_deleted_at"
     t.index ["inventory_id"], name: "index_inventory_variants_on_inventory_id"
     t.index ["variant_id"], name: "index_inventory_variants_on_variant_id"
   end
@@ -104,6 +116,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_manufacturers_on_deleted_at"
     t.index ["store_id"], name: "index_manufacturers_on_store_id"
   end
 
@@ -113,6 +127,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_order_variants_on_deleted_at"
     t.index ["order_id"], name: "index_order_variants_on_order_id"
     t.index ["variant_id"], name: "index_order_variants_on_variant_id"
   end
@@ -123,7 +139,9 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["client_id"], name: "index_orders_on_client_id"
+    t.index ["deleted_at"], name: "index_orders_on_deleted_at"
     t.index ["store_id"], name: "index_orders_on_store_id"
   end
 
@@ -133,6 +151,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_payment_types_on_deleted_at"
     t.index ["store_id"], name: "index_payment_types_on_store_id"
   end
 
@@ -143,7 +163,9 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
     t.index ["store_id"], name: "index_products_on_store_id"
   end
@@ -154,6 +176,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_providers_on_deleted_at"
     t.index ["store_id"], name: "index_providers_on_store_id"
   end
 
@@ -163,6 +187,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "sale_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_sale_payments_on_deleted_at"
     t.index ["payment_type_id"], name: "index_sale_payments_on_payment_type_id"
     t.index ["sale_id"], name: "index_sale_payments_on_sale_id"
   end
@@ -173,6 +199,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "sale_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_sale_promotions_on_deleted_at"
     t.index ["sale_id"], name: "index_sale_promotions_on_sale_id"
   end
 
@@ -182,6 +210,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "sale_variant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_sale_variant_promotions_on_deleted_at"
     t.index ["sale_variant_id"], name: "index_sale_variant_promotions_on_sale_variant_id"
   end
 
@@ -192,6 +222,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "variant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_sale_variants_on_deleted_at"
     t.index ["sale_id"], name: "index_sale_variants_on_sale_id"
     t.index ["variant_id"], name: "index_sale_variants_on_variant_id"
   end
@@ -204,7 +236,9 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["client_id"], name: "index_sales_on_client_id"
+    t.index ["deleted_at"], name: "index_sales_on_deleted_at"
     t.index ["store_id"], name: "index_sales_on_store_id"
     t.index ["user_id"], name: "index_sales_on_user_id"
   end
@@ -215,6 +249,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "variant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_shipping_variants_on_deleted_at"
     t.index ["shipping_id"], name: "index_shipping_variants_on_shipping_id"
     t.index ["variant_id"], name: "index_shipping_variants_on_variant_id"
   end
@@ -225,6 +261,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "provider_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_shippings_on_deleted_at"
     t.index ["provider_id"], name: "index_shippings_on_provider_id"
     t.index ["store_id"], name: "index_shippings_on_store_id"
   end
@@ -235,6 +273,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "variant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_stock_backup_variants_on_deleted_at"
     t.index ["stock_backup_id"], name: "index_stock_backup_variants_on_stock_backup_id"
     t.index ["variant_id"], name: "index_stock_backup_variants_on_variant_id"
   end
@@ -243,6 +283,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_stock_backups_on_deleted_at"
     t.index ["store_id"], name: "index_stock_backups_on_store_id"
   end
 
@@ -252,6 +294,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_store_memberships_on_deleted_at"
     t.index ["store_id"], name: "index_store_memberships_on_store_id"
     t.index ["user_id"], name: "index_store_memberships_on_user_id"
   end
@@ -263,6 +307,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_stores_on_deleted_at"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -291,7 +337,9 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.datetime "updated_at", null: false
     t.string "lastname"
     t.string "locale", default: "en"
+    t.datetime "deleted_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
@@ -303,7 +351,9 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "custom_attribute_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["custom_attribute_id"], name: "index_variant_attributes_on_custom_attribute_id"
+    t.index ["deleted_at"], name: "index_variant_attributes_on_deleted_at"
     t.index ["variant_id"], name: "index_variant_attributes_on_variant_id"
   end
 
@@ -319,6 +369,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.uuid "provider_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_variants_on_deleted_at"
     t.index ["product_id"], name: "index_variants_on_product_id"
     t.index ["provider_id"], name: "index_variants_on_provider_id"
   end
@@ -333,6 +385,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_065913) do
     t.float "parking_rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_vat_rates_on_deleted_at"
   end
 
   add_foreign_key "categories", "categories"

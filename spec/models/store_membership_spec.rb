@@ -7,6 +7,15 @@ RSpec.describe StoreMembership, type: :model do
     expect(build(:store_membership)).to be_valid
   end
 
+  it :is_paranoid do
+    store_membership = create(:store_membership)
+    expect(store_membership.deleted_at).to be_nil
+    expect(StoreMembership.all).to include(store_membership)
+    store_membership.destroy
+    expect(store_membership.deleted_at).not_to be_nil
+    expect(StoreMembership.all).not_to include(store_membership)
+  end
+
   describe 'validations' do
     it :uniqueness do
       membership = create(:store_membership)

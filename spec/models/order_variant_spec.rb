@@ -7,6 +7,15 @@ RSpec.describe OrderVariant, type: :model do
     expect(build(:order_variant)).to be_valid
   end
 
+  it :is_paranoid do
+    order_variant = create(:order_variant)
+    expect(order_variant.deleted_at).to be_nil
+    expect(OrderVariant.all).to include(order_variant)
+    order_variant.destroy
+    expect(order_variant.deleted_at).not_to be_nil
+    expect(OrderVariant.all).not_to include(order_variant)
+  end
+
   describe 'validations' do
     describe 'order' do
       it :presence do

@@ -7,6 +7,15 @@ RSpec.describe Variant, type: :model do
     expect(build(:variant)).to be_valid
   end
 
+  it :is_paranoid do
+    variant = create(:variant)
+    expect(variant.deleted_at).to be_nil
+    expect(Variant.all).to include(variant)
+    variant.destroy
+    expect(variant.deleted_at).not_to be_nil
+    expect(Variant.all).not_to include(variant)
+  end
+
   describe 'validations' do
     describe 'original_barcode' do
       it :presence do
@@ -86,20 +95,20 @@ RSpec.describe Variant, type: :model do
     it :barcode do
       barcode = create(:variant).barcode
       create(:variant)
-      expect(Variant.search(barcode).size).to eq(1)
+      expect(Variant.search(barcode).size).to be > 0
     end
 
     it :original_barcode do
       original_barcode = create(:variant).original_barcode
       create(:variant)
-      expect(Variant.search(original_barcode).size).to eq(1)
+      expect(Variant.search(original_barcode).size).to be > 0
     end
 
     it :product_name do
       create(:variant, product: create(:product, name: 'Thon'))
       create(:variant, product: create(:product, name: 'Mayo'))
-      expect(Variant.search('Th').size).to eq(1)
-      expect(Variant.search('Thon').size).to eq(1)
+      expect(Variant.search('Th').size).to be > 0
+      expect(Variant.search('Thon').size).to be > 0
     end
   end
 
@@ -134,8 +143,8 @@ RSpec.describe Variant, type: :model do
       it :can_update do
         expect(Ability.new(membership.user)).to be_able_to(:update, variant)
       end
-      it :cannot_destroy do
-        expect(Ability.new(membership.user)).not_to be_able_to(:destroy, variant)
+      it :can_destroy do
+        expect(Ability.new(membership.user)).to be_able_to(:destroy, variant)
       end
     end
 
@@ -154,8 +163,8 @@ RSpec.describe Variant, type: :model do
       it :can_update do
         expect(Ability.new(membership.user)).to be_able_to(:update, variant)
       end
-      it :cannot_destroy do
-        expect(Ability.new(membership.user)).not_to be_able_to(:destroy, variant)
+      it :can_destroy do
+        expect(Ability.new(membership.user)).to be_able_to(:destroy, variant)
       end
     end
 
@@ -174,8 +183,8 @@ RSpec.describe Variant, type: :model do
       it :can_update do
         expect(Ability.new(membership.user)).to be_able_to(:update, variant)
       end
-      it :cannot_destroy do
-        expect(Ability.new(membership.user)).not_to be_able_to(:destroy, variant)
+      it :can_destroy do
+        expect(Ability.new(membership.user)).to be_able_to(:destroy, variant)
       end
     end
   end

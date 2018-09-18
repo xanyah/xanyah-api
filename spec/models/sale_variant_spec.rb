@@ -7,6 +7,15 @@ RSpec.describe SaleVariant, type: :model do
     expect(build(:sale_variant)).to be_valid
   end
 
+  it :is_paranoid do
+    sale_variant = create(:sale_variant)
+    expect(sale_variant.deleted_at).to be_nil
+    expect(SaleVariant.all).to include(sale_variant)
+    sale_variant.destroy
+    expect(sale_variant.deleted_at).not_to be_nil
+    expect(SaleVariant.all).not_to include(sale_variant)
+  end
+
   describe 'validations' do
     describe 'sale' do
       it :presence do

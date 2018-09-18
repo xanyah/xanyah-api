@@ -3,6 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe SaleVariantPromotion, type: :model do
+  it :is_paranoid do
+    sale_variant_promotion = create(:sale_variant_promotion)
+    expect(sale_variant_promotion.deleted_at).to be_nil
+    expect(SaleVariantPromotion.all).to include(sale_variant_promotion)
+    sale_variant_promotion.destroy
+    expect(sale_variant_promotion.deleted_at).not_to be_nil
+    expect(SaleVariantPromotion.all).not_to include(sale_variant_promotion)
+  end
+
   describe 'validations' do
     describe 'amount' do
       it :presence do

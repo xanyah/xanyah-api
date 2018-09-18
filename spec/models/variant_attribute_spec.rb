@@ -7,6 +7,15 @@ RSpec.describe VariantAttribute, type: :model do
     expect(build(:variant_attribute)).to be_valid
   end
 
+  it :is_paranoid do
+    variant_attribute = create(:variant_attribute)
+    expect(variant_attribute.deleted_at).to be_nil
+    expect(VariantAttribute.all).to include(variant_attribute)
+    variant_attribute.destroy
+    expect(variant_attribute.deleted_at).not_to be_nil
+    expect(VariantAttribute.all).not_to include(variant_attribute)
+  end
+
   describe 'validations' do
     describe 'variant' do
       it :presence do

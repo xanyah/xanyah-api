@@ -14,6 +14,15 @@ RSpec.describe Category, type: :model do
     }.to change(Category, :count).by(2)
   end
 
+  it :is_paranoid do
+    category = create(:category)
+    expect(category.deleted_at).to be_nil
+    expect(Category.all).to include(category)
+    category.destroy
+    expect(category.deleted_at).not_to be_nil
+    expect(Category.all).not_to include(category)
+  end
+
   describe 'validations' do
     describe 'name' do
       it :presence do

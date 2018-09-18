@@ -7,6 +7,15 @@ RSpec.describe Store, type: :model do
     expect(build(:store)).to be_valid
   end
 
+  it :is_paranoid do
+    store = create(:store)
+    expect(store.deleted_at).to be_nil
+    expect(Store.all).to include(store)
+    store.destroy
+    expect(store.deleted_at).not_to be_nil
+    expect(Store.all).not_to include(store)
+  end
+
   describe 'validations' do
     describe 'key' do
       it :uniqueness do

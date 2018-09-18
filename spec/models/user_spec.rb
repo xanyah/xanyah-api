@@ -7,6 +7,15 @@ RSpec.describe User, type: :model do
     expect(build(:user)).to be_valid
   end
 
+  it :is_paranoid do
+    user = create(:user)
+    expect(user.deleted_at).to be_nil
+    expect(User.all).to include(user)
+    user.destroy
+    expect(user.deleted_at).not_to be_nil
+    expect(User.all).not_to include(user)
+  end
+
   describe 'validations' do
     describe 'email' do
       it :uniqueness do

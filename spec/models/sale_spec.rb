@@ -7,6 +7,15 @@ RSpec.describe Sale, type: :model do
     expect(build(:sale)).to be_valid
   end
 
+  it :is_paranoid do
+    sale = create(:sale)
+    expect(sale.deleted_at).to be_nil
+    expect(Sale.all).to include(sale)
+    sale.destroy
+    expect(sale.deleted_at).not_to be_nil
+    expect(Sale.all).not_to include(sale)
+  end
+
   describe 'validations' do
     describe 'store' do
       it :presence do

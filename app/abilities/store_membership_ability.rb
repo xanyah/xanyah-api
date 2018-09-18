@@ -2,7 +2,7 @@
 
 module StoreMembershipAbility
   def store_membership_ability(user)
-    can :cru, StoreMembership do |store_membership|
+    can :manage, StoreMembership do |store_membership|
       store_membership.store.admins.include?(user) && !store_membership.owner?
     end
     can :read, StoreMembership do |store_membership|

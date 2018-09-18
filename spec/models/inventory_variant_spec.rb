@@ -7,6 +7,15 @@ RSpec.describe InventoryVariant, type: :model do
     expect(build(:inventory_variant)).to be_valid
   end
 
+  it :is_paranoid do
+    inventory_variant = create(:inventory_variant)
+    expect(inventory_variant.deleted_at).to be_nil
+    expect(InventoryVariant.all).to include(inventory_variant)
+    inventory_variant.destroy
+    expect(inventory_variant.deleted_at).not_to be_nil
+    expect(InventoryVariant.all).not_to include(inventory_variant)
+  end
+
   describe 'validations' do
     describe 'quantity' do
       it :presence do

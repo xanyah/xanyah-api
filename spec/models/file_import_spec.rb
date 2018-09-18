@@ -15,6 +15,15 @@ RSpec.describe FileImport, type: :model do
     end
   end
 
+  it :is_paranoid do
+    file_import = create(:file_import)
+    expect(file_import.deleted_at).to be_nil
+    expect(FileImport.all).to include(file_import)
+    file_import.destroy
+    expect(file_import.deleted_at).not_to be_nil
+    expect(FileImport.all).not_to include(file_import)
+  end
+
   describe 'validations' do
     describe 'store' do
       it :presence do

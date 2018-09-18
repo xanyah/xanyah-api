@@ -2,7 +2,7 @@
 
 module ShippingVariantAbility
   def shipping_variant_ability(user)
-    can :crud, ShippingVariant do |iv|
+    can :manage, ShippingVariant do |iv|
       !iv.shipping_id.nil? &&
       iv.shipping.locked_at.nil? &&
       !iv.shipping.store_id.nil? &&
