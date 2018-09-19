@@ -38,13 +38,13 @@ class FileImportWorker
     manufacturer = Manufacturer.find_or_create_by(name: params['product_manufacturer'], store_id: @store_id)
     provider = Provider.find_or_create_by(name: params['variant_provider'], store_id: @store_id)
     category = Category.find_or_create_by(name: params['product_category'], store_id: @store_id)
-    product = Product.create!(
+    product = Product.find_or_create_by(
       name:         params['product_name'],
       category:     category,
       manufacturer: manufacturer,
       store_id:     @store_id
     )
-    Variant.create!(
+    Variant.find_or_create_by(
       original_barcode: params['variant_original_barcode'],
       buying_price:     params['variant_buying_price'].to_f,
       tax_free_price:   params['variant_tax_free_price'].to_f,

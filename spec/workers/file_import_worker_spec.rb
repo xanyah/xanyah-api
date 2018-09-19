@@ -12,8 +12,12 @@ RSpec.describe FileImportWorker, type: :worker do
 
       expect(file_import.processed).to eq(false)
       FileImportWorker.new.perform file_import.id
-      expect(Variant.all.size).to eq(1)
-      expect(Product.all.size).to eq(1)
+
+      expect(Category.all.size).to be > 0
+      expect(Manufacturer.all.size).to be > 0
+      expect(Product.all.size).to be > 0
+      expect(Provider.all.size).to be > 0
+      expect(Variant.all.size).to be > 0
 
       file_import.reload
       expect(file_import.processed).to eq(true)
@@ -28,8 +32,12 @@ RSpec.describe FileImportWorker, type: :worker do
 
       expect(file_import.processed).to eq(false)
       FileImportWorker.new.perform file_import.id
-      expect(Variant.all.size).to eq(1)
-      expect(Product.all.size).to eq(1)
+
+      expect(Category.all.size).to be > 0
+      expect(Manufacturer.all.size).to be > 0
+      expect(Product.all.size).to be > 0
+      expect(Provider.all.size).to be > 0
+      expect(Variant.all.size).to be > 0
 
       file_import.reload
       expect(file_import.processed).to eq(true)

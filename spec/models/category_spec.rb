@@ -44,8 +44,8 @@ RSpec.describe Category, type: :model do
     end
 
     describe 'tva' do
-      it :presence do
-        expect(build(:category, tva: nil)).not_to be_valid
+      it :sets_default do
+        expect(build(:category, tva: nil)).to be_valid
       end
     end
   end
