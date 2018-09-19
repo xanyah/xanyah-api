@@ -19,12 +19,12 @@ class FileImportWorker
 
     begin
       ActiveRecord::Base.transaction do
-        case File.extname(file.filename.to_s)
-        when '.csv'
+        case file.content_type
+        when 'text/csv'
           CSV.parse(file.download, headers: true, encoding: 'UTF-8') do |row|
             create_product row.to_hash
           end
-        when '.json'
+        when 'application/json'
           JSON.parse(file.download).each do |row|
             create_product row
           end
