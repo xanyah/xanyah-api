@@ -19,11 +19,13 @@ class Variant < ApplicationRecord
   validate :barcode_validation, on: :create
 
   def vat
+    return nil if category.nil? || store.nil?
+
     VatRate.find_by(country_code: store.country).send(category.tva)
   end
 
   def vat_price
-    (tax_free_price * (vat / 100)).round(2)
+    (tax_free_price * (vat.to_i / 100)).round(2)
   end
 
   def price
@@ -47,7 +49,7 @@ class Variant < ApplicationRecord
 
   def set_barcode # rubocop:disable Metrics/AbcSize
     return nil if product.nil? || original_barcode.nil?
-    return self.barcode = original_barcode if store.variants.find_by(barcode: original_barcode).nil?
+    return self.barcode = original_barcode if store&.variants&.find_by(barcode: original_barcode).nil?
 
     value = 0
     loop do

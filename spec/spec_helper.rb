@@ -16,11 +16,6 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'rake'
-require_relative '../config/application'
-
-Rails.application.load_tasks
-
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -45,9 +40,9 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.before(:all) do
+  config.before(:suite) do
     # Rake::Task['vat_rates:update'].invoke
-    vat_rate = VatRate.where(country_code: 'FRA').first_or_initialize
+    vat_rate = VatRate.where(country_code: 'FR').first_or_initialize
     vat_rate.country_name = 'France'
     vat_rate.standard_rate = 20
     vat_rate.reduced_rate = 10

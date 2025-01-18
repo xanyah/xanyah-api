@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-require 'json'
-
 class FileImportWorker
   include Rails.application.routes.url_helpers
   include Sidekiq::Worker

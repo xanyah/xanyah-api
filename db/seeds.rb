@@ -79,12 +79,12 @@ Rails.logger.debug 'Creating clients, manufacturers, providers, categories, paym
     store: demo_store
   )
   Manufacturer.create!(
-    name: Faker::HarryPotter.character,
+    name: Faker::Movies::HarryPotter.character,
     notes: Faker::Lorem.paragraph,
     store: demo_store
   )
   Provider.create!(
-    name: Faker::RickAndMorty.character,
+    name: Faker::TvShows::RickAndMorty.character,
     notes: Faker::Lorem.paragraph,
     store: demo_store
   )

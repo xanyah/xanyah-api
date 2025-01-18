@@ -16,7 +16,7 @@ resource 'VAT rates' do
 
   route '/vat_rates/:country', 'Single VAT rate' do
     get 'Get VAT rates for a country' do
-      let(:country) { 'ES' }
+      let(:country) { 'FR' }
 
       example_request 'Getting VAT rates for a country' do
         expect(status).to eq(200)

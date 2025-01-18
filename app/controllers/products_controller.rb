@@ -54,14 +54,14 @@ class ProductsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def create_params
-    params.require(:product).permit(:name, :category_id, :manufacturer_id, :store_id)
+    params.expect(product: %i[name category_id manufacturer_id store_id])
   end
 
   def variant_params
-    params.require(:variant).permit(:buying_price, :original_barcode, :tax_free_price, :provider_id, :ratio)
+    params.expect(variant: %i[buying_price original_barcode tax_free_price provider_id ratio])
   end
 
   def update_params
-    params.require(:product).permit(:name, :category_id, :manufacturer_id)
+    params.expect(product: %i[name category_id manufacturer_id])
   end
 end

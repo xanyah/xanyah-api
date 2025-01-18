@@ -56,18 +56,18 @@ class VariantsController < ApplicationController
   private
 
   def create_params
-    params.require(:variant).permit(
-      :original_barcode,
-      :buying_price,
-      :tax_free_price,
-      :provider_id,
-      :product_id,
-      :default,
-      :ratio
+    params.expect(
+      variant: %i[original_barcode
+                  buying_price
+                  tax_free_price
+                  provider_id
+                  product_id
+                  default
+                  ratio]
     )
   end
 
   def update_params
-    params.require(:variant).permit(:buying_price, :tax_free_price, :provider_id, :product_id, :default, :ratio)
+    params.expect(variant: %i[buying_price tax_free_price provider_id product_id default ratio])
   end
 end

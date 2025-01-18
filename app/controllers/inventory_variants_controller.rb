@@ -57,10 +57,10 @@ class InventoryVariantsController < ApplicationController
   private
 
   def create_params
-    params.require(:inventory_variant).permit(:quantity, :inventory_id, :variant_id)
+    params.expect(inventory_variant: %i[quantity inventory_id variant_id])
   end
 
   def update_params
-    params.require(:inventory_variant).permit(:quantity)
+    params.expect(inventory_variant: [:quantity])
   end
 end

@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '2.7.8'
+ruby '3.4.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -10,23 +10,22 @@ git_source(:github) do |repo_name|
 end
 
 # dotenv first to load environment variables everywhere
-gem 'dotenv-rails', '~> 2.5', groups: %i[development test]
+gem 'dotenv-rails', '~> 3.1', groups: %i[development test]
 
-gem 'pg', '~> 0.21'
-gem 'puma', '~> 3.12'
-gem 'rails', '~> 5.2'
-
-gem 'ffi', '< 1.17.0'
+gem 'pg', '~> 1.5'
+gem 'puma', '~> 6.5'
+gem 'rails', '~> 8.0'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'aws-sdk-s3', '~> 1.19', require: false
-gem 'cancancan', '~> 2.3'
-gem 'devise_token_auth', '~> 0.2'
-gem 'faker', '1.9.1'
-gem 'paranoia', '~> 2.4'
-gem 'rack-cors', '~> 1.0'
-gem 'redis-namespace', '~> 1.6'
-gem 'sidekiq', '~> 5.2'
+gem 'cancancan', '~> 3.6'
+gem 'csv', '~> 3.3'
+gem 'devise', '~> 4.9'
+gem 'devise_token_auth', '~> 1.2'
+gem 'faker', '~> 3.5'
+gem 'paranoia', github: 'rubysherpas/paranoia'
+gem 'rack-cors', '~> 2.0'
+gem 'sidekiq', '~> 7.3'
 
 group :development, :test do
   # Use database cleaner to delete records after each test
@@ -45,10 +44,10 @@ end
 
 group :test do
   gem 'apitome', '~> 0.2', require: false
-  gem 'rspec_api_documentation', '~> 6.0'
-  gem 'rspec-rails', '~> 3.8'
-  gem 'rspec-sidekiq', '~> 3.0'
-  gem 'simplecov', '~> 0.13'
+  gem 'rspec_api_documentation', github: 'SchoolKeep/rspec_api_documentation', ref: '13df1ac'
+  gem 'rspec-rails', '~> 7.1'
+  gem 'rspec-sidekiq', '~> 5.0'
+  gem 'simplecov', '~> 0.22'
   gem 'simplecov-console', '~> 0.4'
 end
 

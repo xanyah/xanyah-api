@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Sales' do
-  let(:store) { create(:store, country: 'fr') }
+  let(:store) { create(:store, country: 'FR') }
   let(:store_membership) { create(:store_membership, store: store) }
   let(:user) { store_membership.user }
 

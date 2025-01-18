@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StoreMembership < ApplicationRecord
-  enum role: { regular: 0, admin: 1, owner: 2 }
+  enum :role, { regular: 0, admin: 1, owner: 2 }
   validates :store, uniqueness: { scope: :user }
   belongs_to :store, optional: false
   belongs_to :user, optional: false

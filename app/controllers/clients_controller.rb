@@ -51,10 +51,10 @@ class ClientsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def create_params
-    params.require(:client).permit(:firstname, :lastname, :email, :phone, :address, :notes, :store_id)
+    params.expect(client: %i[firstname lastname email phone address notes store_id])
   end
 
   def update_params
-    params.require(:client).permit(:firstname, :lastname, :email, :phone, :address, :notes)
+    params.expect(client: %i[firstname lastname email phone address notes])
   end
 end

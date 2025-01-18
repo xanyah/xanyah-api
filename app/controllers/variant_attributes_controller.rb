@@ -43,10 +43,10 @@ class VariantAttributesController < ApplicationController
   private
 
   def create_params
-    params.require(:variant_attribute).permit(:variant_id, :custom_attribute_id, :value)
+    params.expect(variant_attribute: %i[variant_id custom_attribute_id value])
   end
 
   def update_params
-    params.require(:variant_attribute).permit(:value)
+    params.expect(variant_attribute: [:value])
   end
 end

@@ -41,6 +41,6 @@ class InventoriesController < ApplicationController
   private
 
   def create_params
-    params.require(:inventory).permit(:store_id)
+    params.expect(inventory: [:store_id])
   end
 end

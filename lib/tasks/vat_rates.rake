@@ -5,7 +5,6 @@ require 'net/http'
 namespace :vat_rates do
   desc 'Update VAT rates from https://euvat.ga/'
   task update: :environment do
-    ActiveRecord::Migration.check_pending!
     response = Net::HTTP.get(URI("http://apilayer.net/api/rate_list?access_key=#{ENV.fetch('VAT_LAYER_API_KEY', nil)}"))
     response = JSON.parse(response)
     rates = response['rates']
