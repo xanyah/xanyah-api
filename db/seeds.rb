@@ -38,7 +38,7 @@ store_name = 'EasySport'
 demo_store = Store.create!(
   name: store_name,
   country: 'FR',
-  key: store_name.to_slug
+  key: store_name.parameterize
 )
 
 Rails.logger.debug 'Creating store membership'
