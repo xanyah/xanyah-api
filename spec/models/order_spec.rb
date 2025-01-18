@@ -10,10 +10,10 @@ RSpec.describe Order, type: :model do
   it :is_paranoid do
     order = create(:order)
     expect(order.deleted_at).to be_nil
-    expect(Order.all).to include(order)
+    expect(described_class.all).to include(order)
     order.destroy
     expect(order.deleted_at).not_to be_nil
-    expect(Order.all).not_to include(order)
+    expect(described_class.all).not_to include(order)
   end
 
   describe 'validations' do
@@ -39,20 +39,20 @@ RSpec.describe Order, type: :model do
       order2 = create(:order, store:          store)
       create(:order_variant, order: order1, variant: create(:variant, product: product1))
       create(:order_variant, order: order2, variant: create(:variant, product: product2))
-      expect(Order.search('Th').size).to be > 0
-      expect(Order.search('Thon').size).to be > 0
+      expect(described_class.search('Th').size).to be > 0
+      expect(described_class.search('Thon').size).to be > 0
     end
 
     it :client_firstname do
       order = create(:order)
       create(:order)
-      expect(Order.search(order.client.firstname).size).to be > 0
+      expect(described_class.search(order.client.firstname).size).to be > 0
     end
 
     it :client_lastname do
       order = create(:order)
       create(:order)
-      expect(Order.search(order.client.lastname).size).to be > 0
+      expect(described_class.search(order.client.lastname).size).to be > 0
     end
   end
 end

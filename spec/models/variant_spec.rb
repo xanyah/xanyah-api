@@ -10,10 +10,10 @@ RSpec.describe Variant, type: :model do
   it :is_paranoid do
     variant = create(:variant)
     expect(variant.deleted_at).to be_nil
-    expect(Variant.all).to include(variant)
+    expect(described_class.all).to include(variant)
     variant.destroy
     expect(variant.deleted_at).not_to be_nil
-    expect(Variant.all).not_to include(variant)
+    expect(described_class.all).not_to include(variant)
   end
 
   describe 'validations' do
@@ -95,36 +95,39 @@ RSpec.describe Variant, type: :model do
     it :barcode do
       barcode = create(:variant).barcode
       create(:variant)
-      expect(Variant.search(barcode).size).to be > 0
+      expect(described_class.search(barcode).size).to be > 0
     end
 
     it :original_barcode do
       original_barcode = create(:variant).original_barcode
       create(:variant)
-      expect(Variant.search(original_barcode).size).to be > 0
+      expect(described_class.search(original_barcode).size).to be > 0
     end
 
     it :product_name do
       create(:variant, product: create(:product, name: 'Thon'))
       create(:variant, product: create(:product, name: 'Mayo'))
-      expect(Variant.search('Th').size).to be > 0
-      expect(Variant.search('Thon').size).to be > 0
+      expect(described_class.search('Th').size).to be > 0
+      expect(described_class.search('Thon').size).to be > 0
     end
   end
 
   describe 'abilities' do
     describe 'everyone' do
       it :cannot_create do
-        expect(Ability.new(build(:user))).not_to be_able_to(:create, Variant.new)
+        expect(Ability.new(build(:user))).not_to be_able_to(:create, described_class.new)
       end
+
       it :cannot_read do
-        expect(Ability.new(build(:user))).not_to be_able_to(:read, Variant.new)
+        expect(Ability.new(build(:user))).not_to be_able_to(:read, described_class.new)
       end
+
       it :cannot_update do
-        expect(Ability.new(build(:user))).not_to be_able_to(:update, Variant.new)
+        expect(Ability.new(build(:user))).not_to be_able_to(:update, described_class.new)
       end
+
       it :cannot_destroy do
-        expect(Ability.new(build(:user))).not_to be_able_to(:destroy, Variant.new)
+        expect(Ability.new(build(:user))).not_to be_able_to(:destroy, described_class.new)
       end
     end
 
@@ -137,12 +140,15 @@ RSpec.describe Variant, type: :model do
           :create, build(:variant, product: create(:product, store: membership.store))
         )
       end
+
       it :can_read do
         expect(Ability.new(membership.user)).to be_able_to(:read, variant)
       end
+
       it :can_update do
         expect(Ability.new(membership.user)).to be_able_to(:update, variant)
       end
+
       it :can_destroy do
         expect(Ability.new(membership.user)).to be_able_to(:destroy, variant)
       end
@@ -157,12 +163,15 @@ RSpec.describe Variant, type: :model do
           :create, build(:variant, product: create(:product, store: membership.store))
         )
       end
+
       it :can_read do
         expect(Ability.new(membership.user)).to be_able_to(:read, variant)
       end
+
       it :can_update do
         expect(Ability.new(membership.user)).to be_able_to(:update, variant)
       end
+
       it :can_destroy do
         expect(Ability.new(membership.user)).to be_able_to(:destroy, variant)
       end
@@ -177,12 +186,15 @@ RSpec.describe Variant, type: :model do
           :create, build(:variant, product: create(:product, store: membership.store))
         )
       end
+
       it :can_read do
         expect(Ability.new(membership.user)).to be_able_to(:read, variant)
       end
+
       it :can_update do
         expect(Ability.new(membership.user)).to be_able_to(:update, variant)
       end
+
       it :can_destroy do
         expect(Ability.new(membership.user)).to be_able_to(:destroy, variant)
       end

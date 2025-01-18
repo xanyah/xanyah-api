@@ -24,10 +24,10 @@ RSpec.describe CustomAttribute, type: :model do
     it :is_paranoid do
       custom_attribute = create(:custom_attribute)
       expect(custom_attribute.deleted_at).to be_nil
-      expect(CustomAttribute.all).to include(custom_attribute)
+      expect(described_class.all).to include(custom_attribute)
       custom_attribute.destroy
       expect(custom_attribute.deleted_at).not_to be_nil
-      expect(CustomAttribute.all).not_to include(custom_attribute)
+      expect(described_class.all).not_to include(custom_attribute)
     end
 
     describe 'type' do

@@ -17,21 +17,19 @@ class FileImportWorker
 
     return if file.nil?
 
-    begin
-      ActiveRecord::Base.transaction do
-        case file.content_type
-        when 'text/csv'
-          CSV.parse(file.download, headers: true, encoding: 'UTF-8') do |row|
-            create_product row.to_hash
-          end
-        when 'application/json'
-          JSON.parse(file.download).each do |row|
-            create_product row
-          end
+    ActiveRecord::Base.transaction do
+      case file.content_type
+      when 'text/csv'
+        CSV.parse(file.download, headers: true, encoding: 'UTF-8') do |row|
+          create_product row.to_hash
+        end
+      when 'application/json'
+        JSON.parse(file.download).each do |row|
+          create_product row
         end
       end
-      @file_import.update(processed: true)
     end
+    @file_import.update(processed: true)
   end
 
   def create_product(params)

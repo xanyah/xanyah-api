@@ -10,10 +10,10 @@ RSpec.describe Shipping, type: :model do
   it :is_paranoid do
     shipping = create(:shipping)
     expect(shipping.deleted_at).to be_nil
-    expect(Shipping.all).to include(shipping)
+    expect(described_class.all).to include(shipping)
     shipping.destroy
     expect(shipping.deleted_at).not_to be_nil
-    expect(Shipping.all).not_to include(shipping)
+    expect(described_class.all).not_to include(shipping)
   end
 
   describe 'lock' do

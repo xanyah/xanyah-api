@@ -10,10 +10,10 @@ RSpec.describe SaleVariant, type: :model do
   it :is_paranoid do
     sale_variant = create(:sale_variant)
     expect(sale_variant.deleted_at).to be_nil
-    expect(SaleVariant.all).to include(sale_variant)
+    expect(described_class.all).to include(sale_variant)
     sale_variant.destroy
     expect(sale_variant.deleted_at).not_to be_nil
-    expect(SaleVariant.all).not_to include(sale_variant)
+    expect(described_class.all).not_to include(sale_variant)
   end
 
   describe 'validations' do

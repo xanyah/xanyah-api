@@ -11,16 +11,16 @@ RSpec.describe Category, type: :model do
     expect {
       category = create(:category)
       create(:category, category: category)
-    }.to change(Category, :count).by(2)
+    }.to change(described_class, :count).by(2)
   end
 
   it :is_paranoid do
     category = create(:category)
     expect(category.deleted_at).to be_nil
-    expect(Category.all).to include(category)
+    expect(described_class.all).to include(category)
     category.destroy
     expect(category.deleted_at).not_to be_nil
-    expect(Category.all).not_to include(category)
+    expect(described_class.all).not_to include(category)
   end
 
   describe 'validations' do
@@ -57,11 +57,11 @@ RSpec.describe Category, type: :model do
     let(:subcategory_3) { create(:category, category: category) }
 
     it :without_category do
-      expect(Category.without_category).to include(category)
+      expect(described_class.without_category).to include(category)
     end
 
     it :children_of do
-      expect(Category.children_of(category.id)).to include(subcategory_1, subcategory_2, subcategory_3)
+      expect(described_class.children_of(category.id)).to include(subcategory_1, subcategory_2, subcategory_3)
     end
   end
 end

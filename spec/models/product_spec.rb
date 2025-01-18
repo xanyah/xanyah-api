@@ -10,10 +10,10 @@ RSpec.describe Product, type: :model do
   it :is_paranoid do
     product = create(:product)
     expect(product.deleted_at).to be_nil
-    expect(Product.all).to include(product)
+    expect(described_class.all).to include(product)
     product.destroy
     expect(product.deleted_at).not_to be_nil
-    expect(Product.all).not_to include(product)
+    expect(described_class.all).not_to include(product)
   end
 
   describe 'validations' do

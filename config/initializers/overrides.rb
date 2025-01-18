@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-Dir[Rails.root.join('lib', 'extensions', '*.rb')].each {|l| require l }
+Dir[Rails.root.join('lib', 'extensions', '*.rb')].sort.each {|l| require l }

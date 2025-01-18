@@ -10,10 +10,10 @@ RSpec.describe Inventory, type: :model do
   it :is_paranoid do
     inventory = create(:inventory)
     expect(inventory.deleted_at).to be_nil
-    expect(Inventory.all).to include(inventory)
+    expect(described_class.all).to include(inventory)
     inventory.destroy
     expect(inventory.deleted_at).not_to be_nil
-    expect(Inventory.all).not_to include(inventory)
+    expect(described_class.all).not_to include(inventory)
   end
 
   describe 'lock' do

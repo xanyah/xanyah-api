@@ -10,10 +10,10 @@ RSpec.describe Store, type: :model do
   it :is_paranoid do
     store = create(:store)
     expect(store.deleted_at).to be_nil
-    expect(Store.all).to include(store)
+    expect(described_class.all).to include(store)
     store.destroy
     expect(store.deleted_at).not_to be_nil
-    expect(Store.all).not_to include(store)
+    expect(described_class.all).not_to include(store)
   end
 
   describe 'validations' do
@@ -44,16 +44,19 @@ RSpec.describe Store, type: :model do
   describe 'abilities' do
     describe 'everyone' do
       it :can_create do
-        expect(Ability.new(build(:user))).to be_able_to(:create, Store.new)
+        expect(Ability.new(build(:user))).to be_able_to(:create, described_class.new)
       end
+
       it :cannot_read do
-        expect(Ability.new(build(:user))).not_to be_able_to(:read, Store.new)
+        expect(Ability.new(build(:user))).not_to be_able_to(:read, described_class.new)
       end
+
       it :cannot_update do
-        expect(Ability.new(build(:user))).not_to be_able_to(:update, Store.new)
+        expect(Ability.new(build(:user))).not_to be_able_to(:update, described_class.new)
       end
+
       it :cannot_destroy do
-        expect(Ability.new(build(:user))).not_to be_able_to(:destroy, Store.new)
+        expect(Ability.new(build(:user))).not_to be_able_to(:destroy, described_class.new)
       end
     end
 
@@ -61,14 +64,17 @@ RSpec.describe Store, type: :model do
       let(:membership) { create(:store_membership, role: :regular) }
 
       it :can_create do
-        expect(Ability.new(membership.user)).to be_able_to(:create, Store.new)
+        expect(Ability.new(membership.user)).to be_able_to(:create, described_class.new)
       end
+
       it :can_read do
         expect(Ability.new(membership.user)).to be_able_to(:read, membership.store)
       end
+
       it :cannot_update do
         expect(Ability.new(membership.user)).not_to be_able_to(:update, membership.store)
       end
+
       it :cannot_destroy do
         expect(Ability.new(membership.user)).not_to be_able_to(:destroy, membership.store)
       end
@@ -78,14 +84,17 @@ RSpec.describe Store, type: :model do
       let(:membership) { create(:store_membership, role: :admin) }
 
       it :can_create do
-        expect(Ability.new(membership.user)).to be_able_to(:create, Store.new)
+        expect(Ability.new(membership.user)).to be_able_to(:create, described_class.new)
       end
+
       it :can_read do
         expect(Ability.new(membership.user)).to be_able_to(:read, membership.store)
       end
+
       it :can_update do
         expect(Ability.new(membership.user)).to be_able_to(:update, membership.store)
       end
+
       it :can_destroy do
         expect(Ability.new(membership.user)).to be_able_to(:destroy, membership.store)
       end
@@ -95,14 +104,17 @@ RSpec.describe Store, type: :model do
       let(:membership) { create(:store_membership, role: :owner) }
 
       it :can_create do
-        expect(Ability.new(membership.user)).to be_able_to(:create, Store.new)
+        expect(Ability.new(membership.user)).to be_able_to(:create, described_class.new)
       end
+
       it :can_read do
         expect(Ability.new(membership.user)).to be_able_to(:read, membership.store)
       end
+
       it :can_update do
         expect(Ability.new(membership.user)).to be_able_to(:update, membership.store)
       end
+
       it :can_destroy do
         expect(Ability.new(membership.user)).to be_able_to(:destroy, membership.store)
       end

@@ -10,10 +10,10 @@ RSpec.describe ShippingVariant, type: :model do
   it :is_paranoid do
     shipping_variant = create(:shipping_variant)
     expect(shipping_variant.deleted_at).to be_nil
-    expect(ShippingVariant.all).to include(shipping_variant)
+    expect(described_class.all).to include(shipping_variant)
     shipping_variant.destroy
     expect(shipping_variant.deleted_at).not_to be_nil
-    expect(ShippingVariant.all).not_to include(shipping_variant)
+    expect(described_class.all).not_to include(shipping_variant)
   end
 
   describe 'validations' do

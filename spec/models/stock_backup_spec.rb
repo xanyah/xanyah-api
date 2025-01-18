@@ -10,10 +10,10 @@ RSpec.describe StockBackup, type: :model do
   it :is_paranoid do
     stock_backup = create(:stock_backup)
     expect(stock_backup.deleted_at).to be_nil
-    expect(StockBackup.all).to include(stock_backup)
+    expect(described_class.all).to include(stock_backup)
     stock_backup.destroy
     expect(stock_backup.deleted_at).not_to be_nil
-    expect(StockBackup.all).not_to include(stock_backup)
+    expect(described_class.all).not_to include(stock_backup)
   end
 
   describe 'validations' do

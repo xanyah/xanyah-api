@@ -10,10 +10,10 @@ RSpec.describe User, type: :model do
   it :is_paranoid do
     user = create(:user)
     expect(user.deleted_at).to be_nil
-    expect(User.all).to include(user)
+    expect(described_class.all).to include(user)
     user.destroy
     expect(user.deleted_at).not_to be_nil
-    expect(User.all).not_to include(user)
+    expect(described_class.all).not_to include(user)
   end
 
   describe 'validations' do

@@ -11,7 +11,7 @@ RSpec.describe FileImportWorker, type: :worker do
       file_import.file.attach io: file, filename: 'variants.csv', content_type: 'text/csv'
 
       expect(file_import.processed).to eq(false)
-      FileImportWorker.new.perform file_import.id
+      described_class.new.perform file_import.id
 
       expect(Category.all.size).to be > 0
       expect(Manufacturer.all.size).to be > 0
@@ -31,7 +31,7 @@ RSpec.describe FileImportWorker, type: :worker do
       file_import.file.attach io: file, filename: 'variants.json', content_type: 'application/json'
 
       expect(file_import.processed).to eq(false)
-      FileImportWorker.new.perform file_import.id
+      described_class.new.perform file_import.id
 
       expect(Category.all.size).to be > 0
       expect(Manufacturer.all.size).to be > 0

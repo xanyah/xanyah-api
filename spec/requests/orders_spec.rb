@@ -43,11 +43,12 @@ RSpec.describe 'Orders', type: :request do
       end
     }
     let(:params) {
-       {
-         client_id:      create(:client, store: store).id,
-         store_id:       store.id,
-         order_variants: order_variants
-       }}
+      {
+        client_id:      create(:client, store: store).id,
+        store_id:       store.id,
+        order_variants: order_variants
+      }
+    }
 
     it 'creates only permitted orders' do
       post orders_path,

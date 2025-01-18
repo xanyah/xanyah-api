@@ -1,0 +1,41 @@
+name: Unit Tests
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  rspec:
+    name: RSpec
+    runs-on: ubuntu-24.04
+
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: xanyah
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+
+    env:
+      DATABASE_URL: postgres://postgres:postgres@localhost/xanyah
+      RAILS_DEFAULT_HOST: localhost:3000
+      RAILS_ENV: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Setup database
+        run: bundle exec rails db:schema:load
+
+      - name: Run RSpec
+        run: bundle exec rspec --force-color

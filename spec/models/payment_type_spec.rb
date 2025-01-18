@@ -10,10 +10,10 @@ RSpec.describe PaymentType, type: :model do
   it :is_paranoid do
     payment_type = create(:payment_type)
     expect(payment_type.deleted_at).to be_nil
-    expect(PaymentType.all).to include(payment_type)
+    expect(described_class.all).to include(payment_type)
     payment_type.destroy
     expect(payment_type.deleted_at).not_to be_nil
-    expect(PaymentType.all).not_to include(payment_type)
+    expect(described_class.all).not_to include(payment_type)
   end
 
   describe 'validations' do

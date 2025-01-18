@@ -10,10 +10,10 @@ RSpec.describe Manufacturer, type: :model do
   it :is_paranoid do
     manufacturer = create(:manufacturer)
     expect(manufacturer.deleted_at).to be_nil
-    expect(Manufacturer.all).to include(manufacturer)
+    expect(described_class.all).to include(manufacturer)
     manufacturer.destroy
     expect(manufacturer.deleted_at).not_to be_nil
-    expect(Manufacturer.all).not_to include(manufacturer)
+    expect(described_class.all).not_to include(manufacturer)
   end
 
   describe 'validations' do
@@ -34,13 +34,13 @@ RSpec.describe Manufacturer, type: :model do
     it :name do
       name = create(:manufacturer).name
       create(:manufacturer)
-      expect(Manufacturer.search(name).size).to be > 0
+      expect(described_class.search(name).size).to be > 0
     end
 
     it :notes do
       notes = create(:manufacturer).notes
       create(:manufacturer)
-      expect(Manufacturer.search(notes).size).to be > 0
+      expect(described_class.search(notes).size).to be > 0
     end
   end
 end
