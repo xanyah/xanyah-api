@@ -17,7 +17,6 @@
     }
   },
   "scripts": {
-    "first-deploy": "bundle exec rails db:schema:load db:seed",
-    "postdeploy": "bundle exex rails db:migrate"
+    "first-deploy": "bundle exec rails db:schema:load db:seed"
   }
 }
