@@ -43,7 +43,6 @@ end
 
 group :test do
   gem 'apitome', '~> 0.2', require: false
-  gem 'codeclimate-test-reporter', '~> 1.0', '>= 1.0.8'
   gem 'database_cleaner', '~> 1.7'
   gem 'factory_bot_rails', '~> 4.11'
   gem 'rspec_api_documentation', '~> 6.0'
