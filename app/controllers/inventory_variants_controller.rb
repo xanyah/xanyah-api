@@ -7,9 +7,7 @@ class InventoryVariantsController < ApplicationController
   # GET /inventory_variants
   def index
     @inventory_variants = current_user.inventory_variants
-    if params[:inventory_id].present?
-      @inventory_variants = @inventory_variants.where(inventory_id: params[:inventory_id])
-    end
+    @inventory_variants = @inventory_variants.where(inventory_id: params[:inventory_id]) if params[:inventory_id].present?
     @inventory_variants = @inventory_variants.where(variant_id: params[:variant_id]) if params[:variant_id].present?
 
     render json: @inventory_variants
@@ -23,7 +21,7 @@ class InventoryVariantsController < ApplicationController
   def by_variant
     @inventory_variant = InventoryVariant.where(
       inventory_id: params[:inventory_id],
-      variant_id:   params[:variant_id]
+      variant_id: params[:variant_id]
     ).first_or_create
     authorize! :create, @inventory_variant
     if @inventory_variant.save

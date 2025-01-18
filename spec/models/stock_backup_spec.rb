@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StockBackup, type: :model do
+RSpec.describe StockBackup do
   it :has_valid_factory do
     expect(build(:stock_backup)).to be_valid
   end

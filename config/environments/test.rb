@@ -31,9 +31,9 @@ Rails.application.configure do
   config.action_controller.allow_forgery_protection = false
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = false
-  config.action_mailer.default_url_options = {host: ENV['DEFAULT_URL']}
+  config.action_mailer.default_url_options = { host: ENV.fetch('DEFAULT_URL', nil) }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {address: ENV['SMTP_ADDRESS'], port: ENV['SMTP_PORT']}
+  config.action_mailer.smtp_settings = { address: ENV.fetch('SMTP_ADDRESS', nil), port: ENV.fetch('SMTP_PORT', nil) }
 
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the

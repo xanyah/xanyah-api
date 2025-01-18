@@ -2,16 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.describe FileImport, type: :model do
+RSpec.describe FileImport do
   it :has_valid_factory do
     expect(build(:file_import)).to be_valid
   end
 
   describe 'callbacks' do
     it :worker_creation do
-      expect {
+      expect do
         create(:file_import)
-      }.to change(FileImportWorker.jobs, :size).by(1)
+      end.to change(FileImportWorker.jobs, :size).by(1)
     end
   end
 

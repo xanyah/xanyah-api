@@ -38,19 +38,19 @@ resource 'Orders' do
 
       let(:store_id) { membership.store.id }
       let(:client_id) { create(:client, store: membership.store).id }
-      let(:order_variants) {
+      let(:order_variants) do
         Array.new(5).map do
           variant = create(:variant, product: create(:product,
                                                      category: create(:category,
-                                                                      tva:   :standard_rate,
+                                                                      tva: :standard_rate,
                                                                       store: membership.store),
-                                                     store:    membership.store))
+                                                     store: membership.store))
           {
             variant_id: variant.id,
-            quantity:   rand(20)
+            quantity: rand(20)
           }
         end
-      }
+      end
 
       example_request 'Create an order' do
         expect(response_status).to eq(201)

@@ -7,18 +7,18 @@ RSpec.describe ShippingVariantSerializer do
   let(:serializer) { described_class.new(shipping_variant) }
   let(:serialization) { ActiveModelSerializers::Adapter.create(serializer) }
   let(:json) { JSON.parse(serialization.to_json) }
-  let(:default_attributes) {
+  let(:default_attributes) do
     %w[
       id
       quantity
       created_at
       updated_at
     ]
-  }
+  end
 
   it :default_attributes do
     default_attributes.each do |attribute|
-      if shipping_variant.send(attribute).class == ActiveSupport::TimeWithZone
+      if shipping_variant.send(attribute).instance_of?(ActiveSupport::TimeWithZone)
         expect(Time.zone.parse(json[attribute]).to_s).to eq(shipping_variant.send(attribute).to_s)
       else
         expect(json[attribute]).to eq(shipping_variant.send(attribute))

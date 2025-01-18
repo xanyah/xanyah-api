@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe InventoriesController, type: :routing do
+RSpec.describe InventoriesController do
   describe 'routing' do
     it 'routes to #index' do
       expect(get: '/inventories').to route_to('inventories#index')

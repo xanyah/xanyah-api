@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Inventories', type: :request do
+RSpec.describe 'Inventories' do
   let(:store_membership) { create(:store_membership) }
   let(:store) { store_membership.store }
   let(:user) { store_membership.user }
@@ -13,13 +13,13 @@ RSpec.describe 'Inventories', type: :request do
       create(:inventory, store: store)
       get inventories_path, headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).size).to eq(1)
+      expect(response.parsed_body.size).to eq(1)
     end
 
     it 'return empty if !membership' do
       get inventories_path, headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).size).to eq(0)
+      expect(response.parsed_body.size).to eq(0)
     end
 
     it 'returns 401 if !loggedin' do
@@ -33,7 +33,7 @@ RSpec.describe 'Inventories', type: :request do
       inventory = create(:inventory, store: store)
       get inventory_path(inventory), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)['id']).to be_present
+      expect(response.parsed_body['id']).to be_present
     end
 
     it 'returns 401 if !membership' do
@@ -44,7 +44,7 @@ RSpec.describe 'Inventories', type: :request do
     it 'returns 401 if !loggedin' do
       get inventory_path(create(:inventory))
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 
@@ -54,7 +54,7 @@ RSpec.describe 'Inventories', type: :request do
       inventory = create(:inventory, store: store, locked_at: nil)
       patch lock_inventory_path(inventory), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)['locked_at']).not_to eq(nil)
+      expect(response.parsed_body['locked_at']).not_to be_nil
     end
 
     it 'returns 401 if !membership' do
@@ -65,7 +65,7 @@ RSpec.describe 'Inventories', type: :request do
     it 'returns 401 if !loggedin' do
       patch lock_inventory_path(create(:inventory))
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 
@@ -95,13 +95,13 @@ RSpec.describe 'Inventories', type: :request do
     it 'returns 401 if !membership' do
       delete inventory_path(create(:inventory)), headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
 
     it 'returns 401 if !loggedin' do
       delete inventory_path(create(:inventory))
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 end

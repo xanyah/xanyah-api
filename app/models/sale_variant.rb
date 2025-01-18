@@ -8,7 +8,7 @@ class SaleVariant < ApplicationRecord
 
   has_one :store, through: :sale
 
-  validates :quantity, presence: true, numericality: {greater_than_or_equal_to: 0}
+  validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validate :store_validation
 
   after_create :update_variant
@@ -19,8 +19,8 @@ class SaleVariant < ApplicationRecord
 
   def store_validation
     return unless !variant_id.nil? &&
-    !Variant.find(variant_id).nil? &&
-    Variant.find(variant_id).store.id != sale&.store_id
+                  !Variant.find(variant_id).nil? &&
+                  Variant.find(variant_id).store.id != sale&.store_id
 
     errors.add(:variant, 'must belong to store')
   end

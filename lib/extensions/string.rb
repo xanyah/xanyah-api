@@ -17,7 +17,7 @@ class String
     ret.gsub!(/\s*[^A-Za-z0-9\.\-]\s*/, '-')
 
     # convert double underscores to single
-    ret.gsub!(/-+/, '-')
+    ret.squeeze!('-')
 
     # strip off leading/trailing underscore
     ret.gsub!(/\A[-\.]+|[-\.]+\z/, '')

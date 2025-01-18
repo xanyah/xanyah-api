@@ -7,18 +7,18 @@ RSpec.describe ProductSerializer do
   let(:serializer) { described_class.new(product) }
   let(:serialization) { ActiveModelSerializers::Adapter.create(serializer) }
   let(:json) { JSON.parse(serialization.to_json) }
-  let(:default_attributes) {
+  let(:default_attributes) do
     %w[
       id
       name
       created_at
       updated_at
     ]
-  }
+  end
 
   it :default_attributes do
     default_attributes.each do |attribute|
-      if product.send(attribute).class == ActiveSupport::TimeWithZone
+      if product.send(attribute).instance_of?(ActiveSupport::TimeWithZone)
         expect(Time.zone.parse(json[attribute]).to_s).to eq(product.send(attribute).to_s)
       else
         expect(json[attribute]).to eq(product.send(attribute))

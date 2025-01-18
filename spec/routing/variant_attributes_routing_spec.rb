@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe VariantAttributesController, type: :routing do
+RSpec.describe VariantAttributesController do
   describe 'routing' do
     it 'routes to #index' do
       expect(get: '/variant_attributes').to route_to('variant_attributes#index')

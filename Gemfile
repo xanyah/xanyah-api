@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '2.5.9'
+ruby '2.7.8'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -29,22 +29,22 @@ gem 'redis-namespace', '~> 1.6'
 gem 'sidekiq', '~> 5.2'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'rubocop', '~> 0.59', require: false
-  gem 'rubocop-rspec', '~> 1.29', require: false
-end
+  # Use database cleaner to delete records after each test
+  gem 'database_cleaner-active_record', '~> 2.2'
+  # Use Factorybot for test factories
+  gem 'factory_bot_rails', '~> 6.4'
 
-group :development do
-  gem 'listen', '~> 3.1', '< 3.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '~> 2.0'
-  gem 'spring-watcher-listen', '~> 2.0'
+  gem 'rubocop', '~> 1.70', require: false
+  gem 'rubocop-factory_bot', '~> 2.26', require: false
+  # gem 'rubocop-i18n', github: 'puppetlabs/rubocop-i18n', require: false
+  gem 'rubocop-performance', '~> 1.23', require: false
+  gem 'rubocop-rails', '~> 2.28', require: false
+  gem 'rubocop-rspec_rails', '~> 2.30', require: false
+  gem 'rubocop-thread_safety', '~> 0.6', require: false
 end
 
 group :test do
   gem 'apitome', '~> 0.2', require: false
-  gem 'database_cleaner', '~> 1.7'
-  gem 'factory_bot_rails', '~> 4.11'
   gem 'rspec_api_documentation', '~> 6.0'
   gem 'rspec-rails', '~> 3.8'
   gem 'rspec-sidekiq', '~> 3.0'

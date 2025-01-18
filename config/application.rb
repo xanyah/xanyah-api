@@ -35,19 +35,19 @@ module XanyahApi
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
       g.orm :active_record, primary_key_type: :uuid
       g.test_framework :rspec,
-                       fixtures:         true,
-                       view_specs:       false,
-                       helper_specs:     false,
-                       routing_specs:    true,
+                       fixtures: true,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: true,
                        controller_specs: false,
-                       request_specs:    true
+                       request_specs: true
     end
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource '*',
-                 expose:  %w[access-token client expiry token-type uid],
+                 expose: %w[access-token client expiry token-type uid],
                  headers: :any,
                  methods: :any
       end

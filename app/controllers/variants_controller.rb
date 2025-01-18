@@ -8,19 +8,15 @@ class VariantsController < ApplicationController
   def index
     @variants = current_user.variants
     @variants = @variants.where(product_id: params[:product_id]) if params[:product_id].present?
-    if params[:store_id].present?
-      @variants = @variants.joins(:product).where('products.store_id = ?', params[:store_id])
-    end
+    @variants = @variants.joins(:product).where(products: { store_id: params[:store_id] }) if params[:store_id].present?
 
     render json: @variants
   end
 
-  def search
+  def search # rubocop:disable Metrics/AbcSize
     @variants = current_user.variants
     @variants = @variants.where(product_id: params[:product_id]) if params[:product_id].present?
-    if params[:store_id].present?
-      @variants = @variants.joins(:product).where('products.store_id = ?', params[:store_id])
-    end
+    @variants = @variants.joins(:product).where(products: { store_id: params[:store_id] }) if params[:store_id].present?
 
     render json: @variants.search(params[:query])
   end

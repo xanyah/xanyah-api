@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'VatRates', type: :request do
+RSpec.describe 'VatRates' do
   describe 'GET /vat_rates' do
     it 'works! (now write some real specs)' do
       get vat_rates_path

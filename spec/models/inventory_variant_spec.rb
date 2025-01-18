@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe InventoryVariant, type: :model do
+RSpec.describe InventoryVariant do
   it :has_valid_factory do
     expect(build(:inventory_variant)).to be_valid
   end
@@ -22,7 +22,7 @@ RSpec.describe InventoryVariant, type: :model do
         expect(create(:shipping_variant, quantity: nil).quantity).to eq(0)
       end
 
-      it :greater_or_equal_to_0 do
+      it 'greater_or_equal_to_0' do
         expect(build(:inventory_variant, quantity: -1)).not_to be_valid
         expect(build(:inventory_variant, quantity: 0)).to be_valid
         expect(build(:inventory_variant, quantity: 1)).to be_valid

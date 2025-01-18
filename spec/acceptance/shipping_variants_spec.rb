@@ -26,7 +26,7 @@ resource 'Shipping Variants' do
       before do
         create(:shipping_variant)
         create(:shipping_variant,
-               variant:  create(:variant, product: create(:product, store: membership.store)),
+               variant: create(:variant, product: create(:product, store: membership.store)),
                shipping: create(:shipping, store: membership.store, locked_at: nil))
       end
 
@@ -55,11 +55,11 @@ resource 'Shipping Variants' do
   end
 
   route '/shipping_variants/:id', 'Single shipping variant' do
-    let!(:shipping_variant) {
+    let!(:shipping_variant) do
       create(:shipping_variant,
-             variant:  create(:variant, product: create(:product, store: membership.store)),
+             variant: create(:variant, product: create(:product, store: membership.store)),
              shipping: create(:shipping, store: membership.store, locked_at: nil))
-    }
+    end
 
     with_options scope: :shipping_variant do
       parameter :quantity, "Shipping variant's quantity", required: true
@@ -98,11 +98,11 @@ resource 'Shipping Variants' do
   end
 
   route '/shipping_variants/:shipping_id/:variant_id', 'Single shipping variant by shipping/variant id' do
-    let!(:shipping_variant) {
+    let!(:shipping_variant) do
       create(:shipping_variant,
-             variant:  create(:variant, product: create(:product, store: membership.store)),
+             variant: create(:variant, product: create(:product, store: membership.store)),
              shipping: create(:shipping, store: membership.store, locked_at: nil))
-    }
+    end
 
     with_options scope: :shipping_variant do
       parameter :quantity, "Shipping variant's quantity", required: true

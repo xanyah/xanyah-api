@@ -26,7 +26,7 @@ class Store < ApplicationRecord
   has_many :variants, through: :products
   has_many :variant_attributes, through: :variants
 
-  validates :country, presence: true, inclusion: {in: VatRate.all.pluck(:country_code)}
+  validates :country, presence: true, inclusion: { in: VatRate.pluck(:country_code) }
   validates :key, presence: true, uniqueness: true, allow_nil: false
   validates :name, presence: true
 

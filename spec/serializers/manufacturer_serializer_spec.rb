@@ -8,7 +8,7 @@ RSpec.describe ManufacturerSerializer do
   let(:serializer) { described_class.new(manufacturer) }
   let(:serialization) { ActiveModelSerializers::Adapter.create(serializer) }
   let(:json) { JSON.parse(serialization.to_json) }
-  let(:default_attributes) {
+  let(:default_attributes) do
     %w[
       id
       name
@@ -17,11 +17,11 @@ RSpec.describe ManufacturerSerializer do
       notes
       store_id
     ]
-  }
+  end
 
   it :default_attributes do
     default_attributes.each do |attribute|
-      if manufacturer.send(attribute).class == ActiveSupport::TimeWithZone
+      if manufacturer.send(attribute).instance_of?(ActiveSupport::TimeWithZone)
         expect(Time.zone.parse(json[attribute]).to_s).to eq(manufacturer.send(attribute).to_s)
       else
         expect(json[attribute]).to eq(manufacturer.send(attribute))

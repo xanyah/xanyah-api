@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe VatRatesController, type: :routing do
+RSpec.describe VatRatesController do
   describe 'routing' do
     it 'routes to #index' do
       expect(get: '/vat_rates').to route_to('vat_rates#index')

@@ -6,8 +6,8 @@ class ShippingVariant < ApplicationRecord
 
   before_validation :set_default_quantity
 
-  validates :quantity, presence: true, numericality: {greater_than_or_equal_to: 0}
-  validates :variant_id, uniqueness: {scope: :shipping_id}
+  validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :variant_id, uniqueness: { scope: :shipping_id }
   validate :shipping_locked
 
   protected

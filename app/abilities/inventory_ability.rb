@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module InventoryAbility
-  def inventory_ability(user)
+  def inventory_ability(user) # rubocop:disable Metrics/AbcSize
     can :read, Inventory do |inventory|
       !inventory.store_id.nil? && inventory.store.users.include?(user)
     end

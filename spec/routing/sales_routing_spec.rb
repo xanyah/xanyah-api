@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SalesController, type: :routing do
+RSpec.describe SalesController do
   describe 'routing' do
     it 'routes to #index' do
       expect(get: '/sales').to route_to('sales#index')

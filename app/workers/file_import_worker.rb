@@ -7,7 +7,7 @@ class FileImportWorker
   include Rails.application.routes.url_helpers
   include Sidekiq::Worker
 
-  def perform(file_import_id)
+  def perform(file_import_id) # rubocop:disable Metrics/AbcSize
     @file_import = FileImport.find(file_import_id)
 
     return if @file_import.nil?
@@ -37,18 +37,18 @@ class FileImportWorker
     provider = Provider.find_or_create_by(name: params['variant_provider'], store_id: @store_id)
     category = Category.find_or_create_by(name: params['product_category'], store_id: @store_id)
     product = Product.find_or_create_by(
-      name:         params['product_name'],
-      category:     category,
+      name: params['product_name'],
+      category: category,
       manufacturer: manufacturer,
-      store_id:     @store_id
+      store_id: @store_id
     )
     Variant.find_or_create_by(
       original_barcode: params['variant_original_barcode'],
-      buying_price:     params['variant_buying_price'].to_f,
-      tax_free_price:   params['variant_tax_free_price'].to_f,
-      ratio:            params['variant_ratio'].to_f,
-      provider:         provider,
-      product:          product
+      buying_price: params['variant_buying_price'].to_f,
+      tax_free_price: params['variant_tax_free_price'].to_f,
+      ratio: params['variant_ratio'].to_f,
+      provider: provider,
+      product: product
     )
   end
 end

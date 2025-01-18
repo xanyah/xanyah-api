@@ -20,7 +20,7 @@ class ShippingVariantsController < ApplicationController
   def by_variant
     @shipping_variant = ShippingVariant.where(
       shipping_id: params[:shipping_id],
-      variant_id:  params[:variant_id]
+      variant_id: params[:variant_id]
     ).first_or_create
     authorize! :create, @shipping_variant
     if @shipping_variant.save

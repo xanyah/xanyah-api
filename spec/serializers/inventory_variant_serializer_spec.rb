@@ -7,18 +7,18 @@ RSpec.describe InventoryVariantSerializer do
   let(:serializer) { described_class.new(inventory_variant) }
   let(:serialization) { ActiveModelSerializers::Adapter.create(serializer) }
   let(:json) { JSON.parse(serialization.to_json) }
-  let(:default_attributes) {
+  let(:default_attributes) do
     %w[
       id
       quantity
       created_at
       updated_at
     ]
-  }
+  end
 
   it :default_attributes do
     default_attributes.each do |attribute|
-      if inventory_variant.send(attribute).class == ActiveSupport::TimeWithZone
+      if inventory_variant.send(attribute).instance_of?(ActiveSupport::TimeWithZone)
         expect(Time.zone.parse(json[attribute]).to_s).to eq(inventory_variant.send(attribute).to_s)
       else
         expect(json[attribute]).to eq(inventory_variant.send(attribute))

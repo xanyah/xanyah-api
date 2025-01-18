@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module InventoryVariantAbility
-  def inventory_variant_ability(user)
+  def inventory_variant_ability(user) # rubocop:disable Metrics/AbcSize
     can :manage, InventoryVariant do |iv|
       !iv.inventory_id.nil? &&
-      iv.inventory.locked_at.nil? &&
-      !iv.inventory.store_id.nil? &&
-      iv.inventory.store.users.include?(user)
+        iv.inventory.locked_at.nil? &&
+        !iv.inventory.store_id.nil? &&
+        iv.inventory.store.users.include?(user)
     end
     can :read, InventoryVariant do |iv|
       !iv.inventory.store_id.nil? && iv.inventory.store.users.include?(user)

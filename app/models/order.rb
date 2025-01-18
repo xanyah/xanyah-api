@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
-  enum status: %i[
-    pending
-    delivered
-    canceled
-  ]
+  enum status: { pending: 0, delivered: 1, canceled: 2 }
 
   belongs_to :client, optional: false
   belongs_to :store, optional: false
@@ -16,11 +12,11 @@ class Order < ApplicationRecord
 
   def self.full_creation(params)
     Order.new(
-      store_id:       params[:store_id],
-      client_id:      params[:client_id],
+      store_id: params[:store_id],
+      client_id: params[:client_id],
       order_variants: params[:order_variants].map do |ov|
         OrderVariant.new(
-          quantity:   ov[:quantity],
+          quantity: ov[:quantity],
           variant_id: ov[:variant_id]
         )
       end

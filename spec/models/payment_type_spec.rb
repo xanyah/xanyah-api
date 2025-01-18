@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PaymentType, type: :model do
+RSpec.describe PaymentType do
   it :has_valid_factory do
     expect(build(:payment_type)).to be_valid
   end

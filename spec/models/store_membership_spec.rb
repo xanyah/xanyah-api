@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StoreMembership, type: :model do
+RSpec.describe StoreMembership do
   it :has_valid_factory do
     expect(build(:store_membership)).to be_valid
   end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe VariantsController, type: :routing do
+RSpec.describe VariantsController do
   describe 'routing' do
     it 'routes to #index' do
       expect(get: '/variants').to route_to('variants#index')

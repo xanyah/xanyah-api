@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Client, type: :model do
+RSpec.describe Client do
   it :has_valid_factory do
     expect(build(:client)).to be_valid
   end
