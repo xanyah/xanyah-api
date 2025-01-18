@@ -7,6 +7,6 @@ FactoryBot.define do
       "#{name.to_slug}-#{n}"
     end
     address { Faker::Address.street_address }
-    country { VatRate.all.pluck(:country_code).sample }
+    country { 'FRA' }
   end
 end

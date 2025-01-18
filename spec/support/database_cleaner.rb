@@ -22,11 +22,9 @@ RSpec.configure do |config|
   #   DatabaseCleaner.strategy = :transaction
   # end
 
-  config.before do
-    DatabaseCleaner.start
-  end
-
-  config.after do
-    DatabaseCleaner.clean
+  config.around do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 end

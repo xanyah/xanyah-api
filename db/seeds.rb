@@ -79,12 +79,12 @@ puts 'Creating clients, manufacturers, providers, categories, payment types'
     store:     demo_store
   )
   Manufacturer.create!(
-    name:  Faker::Movies::HarryPotter.character,
+    name:  Faker::HarryPotter.character,
     notes: Faker::Lorem.paragraph,
     store: demo_store
   )
   Provider.create!(
-    name:  Faker::TvShows::RickAndMorty.character,
+    name:  Faker::RickAndMorty.character,
     notes: Faker::Lorem.paragraph,
     store: demo_store
   )

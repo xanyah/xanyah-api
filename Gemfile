@@ -22,7 +22,7 @@ gem 'active_model_serializers', '~> 0.10'
 gem 'aws-sdk-s3', '~> 1.19', require: false
 gem 'cancancan', '~> 2.3'
 gem 'devise_token_auth', '~> 0.2'
-gem 'faker', '~> 1.9'
+gem 'faker', '1.9.1'
 gem 'paranoia', '~> 2.4'
 gem 'rack-cors', '~> 1.0'
 gem 'redis-namespace', '~> 1.6'

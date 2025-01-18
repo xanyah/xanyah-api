@@ -46,7 +46,15 @@ RSpec.configure do |config|
   end
 
   config.before(:all) do
-    Rake::Task['vat_rates:update'].invoke
+    # Rake::Task['vat_rates:update'].invoke
+    vat_rate = VatRate.where(country_code: 'FRA').first_or_initialize
+    vat_rate.country_name = 'France'
+    vat_rate.standard_rate = 20
+    vat_rate.reduced_rate = 10
+    vat_rate.reduced_rate_alt = 10
+    vat_rate.super_reduced_rate = 5.5
+    vat_rate.parking_rate = 2.5
+    vat_rate.save!
   end
 
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
