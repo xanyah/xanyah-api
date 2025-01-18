@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StoreMembershipsController, type: :routing do
+RSpec.describe StoreMembershipsController do
   describe 'routing' do
     it 'routes to #index' do
       expect(get: '/store_memberships').to route_to('store_memberships#index')

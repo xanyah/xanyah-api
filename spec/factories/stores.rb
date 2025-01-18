@@ -2,11 +2,11 @@
 
 FactoryBot.define do
   factory :store do
-    name { Faker::StarWars.planet }
+    name { Faker::Movies::StarWars.planet }
     sequence :key do |n|
-      "#{name.to_slug}-#{n}"
+      "#{name.parameterize}-#{n}"
     end
     address { Faker::Address.street_address }
-    country { 'FRA' }
+    country { 'FR' }
   end
 end

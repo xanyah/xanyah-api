@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StockBackupsController, type: :routing do
+RSpec.describe StockBackupsController do
   describe 'routing' do
     it 'routes to #index' do
       expect(get: '/stock_backups').to route_to('stock_backups#index')

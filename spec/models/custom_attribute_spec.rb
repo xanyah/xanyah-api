@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CustomAttribute, type: :model do
+RSpec.describe CustomAttribute do
   it :has_valid_factory do
     expect(build(:custom_attribute)).to be_valid
   end

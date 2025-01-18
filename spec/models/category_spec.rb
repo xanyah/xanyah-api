@@ -2,16 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.describe Category, type: :model do
+RSpec.describe Category do
   it :has_valid_factory do
     expect(build(:category)).to be_valid
   end
 
   it 'creates a new Category with a SubCategory' do
-    expect {
+    expect do
       category = create(:category)
       create(:category, category: category)
-    }.to change(described_class, :count).by(2)
+    end.to change(described_class, :count).by(2)
   end
 
   it :is_paranoid do
@@ -52,16 +52,16 @@ RSpec.describe Category, type: :model do
 
   describe 'scopes' do
     let(:category) { create(:category) }
-    let(:subcategory_1) { create(:category, category: category) }
-    let(:subcategory_2) { create(:category, category: category) }
-    let(:subcategory_3) { create(:category, category: category) }
+    let(:subcategory1) { create(:category, category: category) }
+    let(:subcategory2) { create(:category, category: category) }
+    let(:subcategory3) { create(:category, category: category) }
 
     it :without_category do
       expect(described_class.without_category).to include(category)
     end
 
     it :children_of do
-      expect(described_class.children_of(category.id)).to include(subcategory_1, subcategory_2, subcategory_3)
+      expect(described_class.children_of(category.id)).to include(subcategory1, subcategory2, subcategory3)
     end
   end
 end

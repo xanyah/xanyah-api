@@ -7,7 +7,7 @@ RSpec.describe VariantSerializer do
   let(:serializer) { described_class.new(variant) }
   let(:serialization) { ActiveModelSerializers::Adapter.create(serializer) }
   let(:json) { JSON.parse(serialization.to_json) }
-  let(:default_attributes) {
+  let(:default_attributes) do
     %w[
       id
       original_barcode
@@ -20,11 +20,11 @@ RSpec.describe VariantSerializer do
       created_at
       updated_at
     ]
-  }
+  end
 
   it :default_attributes do
     default_attributes.each do |attribute|
-      if variant.send(attribute).class == ActiveSupport::TimeWithZone
+      if variant.send(attribute).instance_of?(ActiveSupport::TimeWithZone)
         expect(Time.zone.parse(json[attribute]).to_s).to eq(variant.send(attribute).to_s)
       else
         expect(json[attribute]).to eq(variant.send(attribute))

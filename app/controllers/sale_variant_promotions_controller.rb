@@ -49,6 +49,6 @@ class SaleVariantPromotionsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def sale_variant_promotion_params
-    params.require(:sale_variant_promotion).permit(:type, :amount, :sale_variant_id)
+    params.expect(sale_variant_promotion: %i[type amount sale_variant_id])
   end
 end

@@ -5,13 +5,13 @@ class ProductsController < ApplicationController
   load_and_authorize_resource
 
   # GET /products
-  def index
+  def index # rubocop:disable Metrics/AbcSize
     @products = current_user.products
     @products = @products.where(store_id: params[:store_id]) if params[:store_id].present?
     @products = @products.where(manufacturer_id: params[:manufacturer_id]) if params[:manufacturer_id].present?
     if params[:provider_id].present?
       @products = @products.joins(:variants)
-      @products = @products.where(variants: {provider_id: params[:provider_id]})
+      @products = @products.where(variants: { provider_id: params[:provider_id] })
     end
 
     render json: @products
@@ -54,14 +54,14 @@ class ProductsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def create_params
-    params.require(:product).permit(:name, :category_id, :manufacturer_id, :store_id)
+    params.expect(product: %i[name category_id manufacturer_id store_id])
   end
 
   def variant_params
-    params.require(:variant).permit(:buying_price, :original_barcode, :tax_free_price, :provider_id, :ratio)
+    params.expect(variant: %i[buying_price original_barcode tax_free_price provider_id ratio])
   end
 
   def update_params
-    params.require(:product).permit(:name, :category_id, :manufacturer_id)
+    params.expect(product: %i[name category_id manufacturer_id])
   end
 end

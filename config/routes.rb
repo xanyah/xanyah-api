@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  default_url_options host: ENV.fetch('RAILS_DEFAULT_HOST', 'localhost:3000')
+
   mount_devise_token_auth_for 'User', at: 'auth'
 
   resources :categories

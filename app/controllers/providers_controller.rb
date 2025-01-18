@@ -50,10 +50,10 @@ class ProvidersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def create_params
-    params.require(:provider).permit(:name, :notes, :store_id)
+    params.expect(provider: %i[name notes store_id])
   end
 
   def update_params
-    params.require(:provider).permit(:name, :notes)
+    params.expect(provider: %i[name notes])
   end
 end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Products', type: :request do
+RSpec.describe 'Products' do
   let(:store_membership) { create(:store_membership) }
   let(:store) { store_membership.store }
   let(:user) { store_membership.user }
@@ -13,7 +13,7 @@ RSpec.describe 'Products', type: :request do
       create(:product, store: store)
       get products_path, headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).size).to eq(1)
+      expect(response.parsed_body.size).to eq(1)
     end
 
     it 'filters by manufacturer' do
@@ -21,7 +21,7 @@ RSpec.describe 'Products', type: :request do
       create(:product, store: store)
       get products_path(manufacturer_id: p.manufacturer_id), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      body = JSON.parse(response.body)
+      body = response.parsed_body
       expect(body.size).to eq(1)
       expect(body[0]['id']).to eq(p.id)
     end
@@ -31,7 +31,7 @@ RSpec.describe 'Products', type: :request do
       create(:variant, product: create(:product, store: store))
       get products_path(provider_id: v.provider_id), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      body = JSON.parse(response.body)
+      body = response.parsed_body
       expect(body.size).to eq(1)
       expect(body[0]['id']).to eq(v.product.id)
     end
@@ -39,7 +39,7 @@ RSpec.describe 'Products', type: :request do
     it 'return empty if !membership' do
       get products_path, headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).size).to eq(0)
+      expect(response.parsed_body.size).to eq(0)
     end
 
     it 'returns 401 if !loggedin' do
@@ -53,7 +53,7 @@ RSpec.describe 'Products', type: :request do
       product = create(:product, store: store)
       get product_path(product), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)['id']).to be_present
+      expect(response.parsed_body['id']).to be_present
     end
 
     it 'returns 401 if !membership' do
@@ -64,7 +64,7 @@ RSpec.describe 'Products', type: :request do
     it 'returns 401 if !loggedin' do
       get product_path(create(:product))
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 
@@ -74,25 +74,25 @@ RSpec.describe 'Products', type: :request do
       product = create(:product, store: store)
       new_product = build(:product)
       patch product_path(product),
-            params:  {product: {name: new_product.name}},
+            params: { product: { name: new_product.name } },
             headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)['name']).to eq(new_product.name)
+      expect(response.parsed_body['name']).to eq(new_product.name)
     end
 
     it 'returns 401 if !membership' do
       new_product = build(:product)
       patch product_path(create(:product)),
-            params:  {product: {name: new_product.name}},
+            params: { product: { name: new_product.name } },
             headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 
     it 'returns 401 if !loggedin' do
       new_product = build(:product)
-      patch product_path(create(:product)), params: {product: {name: new_product.name}}
+      patch product_path(create(:product)), params: { product: { name: new_product.name } }
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 
@@ -114,7 +114,7 @@ RSpec.describe 'Products', type: :request do
     it 'returns 401 if !loggedin' do
       delete product_path(create(:product))
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 end

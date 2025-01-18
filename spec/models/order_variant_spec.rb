@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe OrderVariant, type: :model do
+RSpec.describe OrderVariant do
   it :has_valid_factory do
     expect(build(:order_variant)).to be_valid
   end

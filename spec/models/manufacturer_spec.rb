@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Manufacturer, type: :model do
+RSpec.describe Manufacturer do
   it :has_valid_factory do
     expect(build(:manufacturer)).to be_valid
   end

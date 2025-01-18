@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :order_variant do
     order
     variant { build(:variant, store: order&.store) }
-    quantity { Faker::Number.number(3) }
+    quantity { Faker::Number.number(digits: 3) }
   end
 end

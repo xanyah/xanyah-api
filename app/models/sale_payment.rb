@@ -12,8 +12,8 @@ class SalePayment < ApplicationRecord
 
   def store_validation
     return unless !payment_type_id.nil? &&
-      !PaymentType.find(payment_type_id).nil? &&
-      PaymentType.find(payment_type_id).store.id != sale&.store_id
+                  !PaymentType.find(payment_type_id).nil? &&
+                  PaymentType.find(payment_type_id).store.id != sale&.store_id
 
     errors.add(:payment_type, 'must belong to store')
   end

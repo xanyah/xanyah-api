@@ -10,7 +10,7 @@ class SalesController < ApplicationController
     @sales = @sales.where(store_id: params[:store_id]) if params[:store_id].present?
     if params[:variant_id].present?
       @sales = @sales.joins(:variants)
-      @sales = @sales.where(variants: {id: params[:variant_id]})
+      @sales = @sales.where(variants: { id: params[:variant_id] })
     end
 
     render json: @sales

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Inventory, type: :model do
+RSpec.describe Inventory do
   it :has_valid_factory do
     expect(build(:inventory)).to be_valid
   end
@@ -22,7 +22,7 @@ RSpec.describe Inventory, type: :model do
     it :locks do
       inventory.lock
       inventory.reload
-      expect(inventory.locked_at).not_to eq(nil)
+      expect(inventory.locked_at).not_to be_nil
     end
 
     it :updates_variants_quantity do
@@ -42,10 +42,10 @@ RSpec.describe Inventory, type: :model do
       create(:inventory_variant, inventory: inventory)
       create(:inventory_variant, inventory: inventory)
       create(:inventory_variant)
-      expect {
+      expect do
         inventory.lock
-      }.to change(StockBackup, :count).by(1)
-                                      .and change(StockBackupVariant, :count).by(2)
+      end.to change(StockBackup, :count).by(1)
+                                        .and change(StockBackupVariant, :count).by(2)
     end
   end
 end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Shipping, type: :model do
+RSpec.describe Shipping do
   it :has_valid_factory do
     expect(build(:shipping)).to be_valid
   end
@@ -22,7 +22,7 @@ RSpec.describe Shipping, type: :model do
     it :locks do
       shipping.lock
       shipping.reload
-      expect(shipping.locked_at).not_to eq(nil)
+      expect(shipping.locked_at).not_to be_nil
     end
 
     it :updates_variants_quantity do

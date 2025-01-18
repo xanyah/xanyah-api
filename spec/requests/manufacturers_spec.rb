@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Manufacturers', type: :request do
+RSpec.describe 'Manufacturers' do
   let(:store_membership) { create(:store_membership) }
   let(:store) { store_membership.store }
   let(:user) { store_membership.user }
@@ -13,13 +13,13 @@ RSpec.describe 'Manufacturers', type: :request do
       create(:manufacturer, store: store)
       get manufacturers_path, headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).size).to eq(1)
+      expect(response.parsed_body.size).to eq(1)
     end
 
     it 'return empty if !membership' do
       get manufacturers_path, headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).size).to eq(0)
+      expect(response.parsed_body.size).to eq(0)
     end
 
     it 'returns 401 if !loggedin' do
@@ -33,7 +33,7 @@ RSpec.describe 'Manufacturers', type: :request do
       manufacturer = create(:manufacturer, store: store)
       get manufacturer_path(manufacturer), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)['id']).to be_present
+      expect(response.parsed_body['id']).to be_present
     end
 
     it 'returns 401 if !membership' do
@@ -44,7 +44,7 @@ RSpec.describe 'Manufacturers', type: :request do
     it 'returns 401 if !loggedin' do
       get manufacturer_path(create(:manufacturer))
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 
@@ -54,25 +54,25 @@ RSpec.describe 'Manufacturers', type: :request do
       manufacturer = create(:manufacturer, store: store)
       new_manufacturer = build(:manufacturer)
       patch manufacturer_path(manufacturer),
-            params:  {manufacturer: {name: new_manufacturer.name}},
+            params: { manufacturer: { name: new_manufacturer.name } },
             headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)['name']).to eq(new_manufacturer.name)
+      expect(response.parsed_body['name']).to eq(new_manufacturer.name)
     end
 
     it 'returns 401 if !membership' do
       new_manufacturer = build(:manufacturer)
       patch manufacturer_path(create(:manufacturer)),
-            params:  {manufacturer: {name: new_manufacturer.name}},
+            params: { manufacturer: { name: new_manufacturer.name } },
             headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 
     it 'returns 401 if !loggedin' do
       new_manufacturer = build(:manufacturer)
-      patch manufacturer_path(create(:manufacturer)), params: {manufacturer: {name: new_manufacturer.name}}
+      patch manufacturer_path(create(:manufacturer)), params: { manufacturer: { name: new_manufacturer.name } }
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 
@@ -94,7 +94,7 @@ RSpec.describe 'Manufacturers', type: :request do
     it 'returns 401 if !loggedin' do
       patch manufacturer_path(create(:manufacturer))
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 end

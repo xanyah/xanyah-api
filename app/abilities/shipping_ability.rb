@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ShippingAbility
-  def shipping_ability(user)
+  def shipping_ability(user) # rubocop:disable Metrics/AbcSize
     can :read, Shipping do |shipping|
       !shipping.store_id.nil? && shipping.store.users.include?(user)
     end

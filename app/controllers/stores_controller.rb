@@ -42,10 +42,10 @@ class StoresController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def create_params
-    params.require(:store).permit(:name, :address, :country, :key)
+    params.expect(store: %i[name address country key])
   end
 
   def update_params
-    params.require(:store).permit(:name, :address, :country)
+    params.expect(store: %i[name address country])
   end
 end

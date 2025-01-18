@@ -26,7 +26,7 @@ resource 'Inventory Variants' do
       before do
         create(:inventory_variant)
         create(:inventory_variant,
-               variant:   create(:variant, product: create(:product, store: membership.store)),
+               variant: create(:variant, product: create(:product, store: membership.store)),
                inventory: create(:inventory, store: membership.store, locked_at: nil))
       end
 
@@ -55,11 +55,11 @@ resource 'Inventory Variants' do
   end
 
   route '/inventory_variants/:id', 'Single inventory variant' do
-    let!(:inventory_variant) {
+    let!(:inventory_variant) do
       create(:inventory_variant,
-             variant:   create(:variant, product: create(:product, store: membership.store)),
+             variant: create(:variant, product: create(:product, store: membership.store)),
              inventory: create(:inventory, store: membership.store, locked_at: nil))
-    }
+    end
 
     with_options scope: :inventory_variant do
       parameter :quantity, "Inventory variant's quantity", required: true
@@ -98,11 +98,11 @@ resource 'Inventory Variants' do
   end
 
   route '/inventory_variants/:inventory_id/:variant_id', 'Single inventory variant by inventory/variant id' do
-    let!(:inventory_variant) {
+    let!(:inventory_variant) do
       create(:inventory_variant,
-             variant:   create(:variant, product: create(:product, store: membership.store)),
+             variant: create(:variant, product: create(:product, store: membership.store)),
              inventory: create(:inventory, store: membership.store, locked_at: nil))
-    }
+    end
 
     with_options scope: :inventory_variant do
       parameter :quantity, "Inventory variant's quantity", required: true

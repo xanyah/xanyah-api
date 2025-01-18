@@ -43,31 +43,31 @@ resource 'Sales' do
       end
 
       let(:store_id) { membership.store.id }
-      let(:sale_variants) {
+      let(:sale_variants) do
         Array.new(5).map do
           variant = create(:variant, product: create(:product,
                                                      category: create(:category,
-                                                                      tva:   :standard_rate,
+                                                                      tva: :standard_rate,
                                                                       store: membership.store),
-                                                     store:    membership.store))
+                                                     store: membership.store))
           {
             variant_id: variant.id,
             unit_price: variant.price,
-            quantity:   rand(20)
+            quantity: rand(20)
           }
         end
-      }
-      let(:total_price) { sale_variants.inject(0) {|sum, element| sum + (element[:quantity] * element[:unit_price]) } }
-      let(:sale_payments) {
+      end
+      let(:total_price) { sale_variants.inject(0) { |sum, element| sum + (element[:quantity] * element[:unit_price]) } }
+      let(:sale_payments) do
         vat = VatRate.find_by(country_code: membership.store.country).standard_rate
-        total = sale_variants.map {|v|
+        total = sale_variants.sum do |v|
           v[:quantity].to_i * (v[:unit_price].to_f + (v[:unit_price].to_f * (vat / 100)))
-        }.inject :+
+        end
         [{
           payment_type_id: create(:payment_type, store: membership.store).id,
-          total:           total
+          total: total
         }]
-      }
+      end
 
       example_request 'Create a sale' do
         expect(response_status).to eq(201)

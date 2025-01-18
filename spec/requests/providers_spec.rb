@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Providers', type: :request do
+RSpec.describe 'Providers' do
   let(:store_membership) { create(:store_membership) }
   let(:store) { store_membership.store }
   let(:user) { store_membership.user }
@@ -13,13 +13,13 @@ RSpec.describe 'Providers', type: :request do
       create(:provider, store: store)
       get providers_path, headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).size).to eq(1)
+      expect(response.parsed_body.size).to eq(1)
     end
 
     it 'returns empty if !membership' do
       get providers_path, headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).size).to eq(0)
+      expect(response.parsed_body.size).to eq(0)
     end
 
     it 'returns 401 if !loggedin' do
@@ -33,7 +33,7 @@ RSpec.describe 'Providers', type: :request do
       provider = create(:provider, store: store)
       get provider_path(provider), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)['id']).to be_present
+      expect(response.parsed_body['id']).to be_present
     end
 
     it 'returns 401 if !membership' do
@@ -44,7 +44,7 @@ RSpec.describe 'Providers', type: :request do
     it 'returns 401 if !loggedin' do
       get provider_path(create(:provider))
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 
@@ -54,25 +54,25 @@ RSpec.describe 'Providers', type: :request do
       provider = create(:provider, store: store)
       new_provider = build(:provider)
       patch provider_path(provider),
-            params:  {provider: {name: new_provider.name}},
+            params: { provider: { name: new_provider.name } },
             headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)['name']).to eq(new_provider.name)
+      expect(response.parsed_body['name']).to eq(new_provider.name)
     end
 
     it 'returns 401 if !membership' do
       new_provider = build(:provider)
       patch provider_path(create(:provider)),
-            params:  {provider: {name: new_provider.name}},
+            params: { provider: { name: new_provider.name } },
             headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:unauthorized)
     end
 
     it 'returns 401 if !loggedin' do
       new_provider = build(:provider)
-      patch provider_path(create(:provider)), params: {provider: {name: new_provider.name}}
+      patch provider_path(create(:provider)), params: { provider: { name: new_provider.name } }
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 
@@ -94,7 +94,7 @@ RSpec.describe 'Providers', type: :request do
     it 'returns 401 if !loggedin' do
       delete provider_path(create(:provider))
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 end

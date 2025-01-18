@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :sale do
-    total_price { Faker::Number.decimal(2) }
+    total_price { Faker::Number.decimal(l_digits: 2) }
 
     store
     user

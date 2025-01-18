@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.1]
-  def change
+  def change # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     create_table(:users, id: :uuid) do |t|
       ## Required
       t.string :provider, null: false, default: 'email'

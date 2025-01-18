@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'File Imports', type: :request do
+RSpec.describe 'File Imports' do
   let(:store_membership) { create(:store_membership) }
   let(:store) { store_membership.store }
   let(:user) { store_membership.user }
@@ -10,51 +10,51 @@ RSpec.describe 'File Imports', type: :request do
   describe 'POST /file_imports' do
     it 'Creates csv import if membership' do
       store_membership.update(role: :admin)
-      expect {
+      expect do
         post file_imports_path,
-             params:  {
+             params: {
                store_id: store.id,
-               file:     fixture_file_upload('files/variants.csv', 'text/csv')
+               file: fixture_file_upload('variants.csv', 'text/csv')
              },
              headers: user.create_new_auth_token
         expect(response).to have_http_status(:no_content)
-      }.to change(FileImportWorker.jobs, :size).by(1)
+      end.to change(FileImportWorker.jobs, :size).by(1)
     end
 
     it 'Creates json import if membership' do
       store_membership.update(role: :admin)
-      expect {
-        post file_imports_path,
-             params:  {
-               store_id: store.id,
-               file:     fixture_file_upload('files/variants.json', 'application/json')
-             },
-             headers: user.create_new_auth_token
-        expect(response).to have_http_status(:no_content)
-      }.to change(FileImportWorker.jobs, :size).by(1)
-    end
-
-    it 'returns 401 if !membership' do
-      expect {
-        post file_imports_path,
-             params:  {
-               store_id: store.id,
-               file:     fixture_file_upload('files/variants.json', 'text/json')
-             },
-             headers: create(:user).create_new_auth_token
-        expect(response).to have_http_status(:unauthorized)
-      }.to change(FileImportWorker.jobs, :size).by(0)
-    end
-
-    it 'returns 401 if !loggedin' do
-      expect {
+      expect do
         post file_imports_path,
              params: {
                store_id: store.id,
-               file:     fixture_file_upload('files/variants.json', 'text/json')
+               file: fixture_file_upload('variants.json', 'application/json')
+             },
+             headers: user.create_new_auth_token
+        expect(response).to have_http_status(:no_content)
+      end.to change(FileImportWorker.jobs, :size).by(1)
+    end
+
+    it 'returns 401 if !membership' do
+      expect do
+        post file_imports_path,
+             params: {
+               store_id: store.id,
+               file: fixture_file_upload('variants.json', 'text/json')
+             },
+             headers: create(:user).create_new_auth_token
+        expect(response).to have_http_status(:unauthorized)
+      end.not_to change(FileImportWorker.jobs, :size)
+    end
+
+    it 'returns 401 if !loggedin' do
+      expect do
+        post file_imports_path,
+             params: {
+               store_id: store.id,
+               file: fixture_file_upload('variants.json', 'text/json')
              }
         expect(response).to have_http_status(:unauthorized)
-      }.to change(FileImportWorker.jobs, :size).by(0)
+      end.not_to change(FileImportWorker.jobs, :size)
     end
   end
 end

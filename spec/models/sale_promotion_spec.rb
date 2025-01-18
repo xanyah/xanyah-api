@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SalePromotion, type: :model do
+RSpec.describe SalePromotion do
   it :is_paranoid do
     sale_promotion = create(:sale_promotion)
     expect(sale_promotion.deleted_at).to be_nil

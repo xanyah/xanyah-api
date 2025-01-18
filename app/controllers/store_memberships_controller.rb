@@ -44,10 +44,10 @@ class StoreMembershipsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def create_params
-    params.require(:store_membership).permit(:store_id, :user_id, :role)
+    params.expect(store_membership: %i[store_id user_id role])
   end
 
   def update_params
-    params.require(:store_membership).permit(:role)
+    params.expect(store_membership: [:role])
   end
 end

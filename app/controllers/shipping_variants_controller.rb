@@ -20,7 +20,7 @@ class ShippingVariantsController < ApplicationController
   def by_variant
     @shipping_variant = ShippingVariant.where(
       shipping_id: params[:shipping_id],
-      variant_id:  params[:variant_id]
+      variant_id: params[:variant_id]
     ).first_or_create
     authorize! :create, @shipping_variant
     if @shipping_variant.save
@@ -56,10 +56,10 @@ class ShippingVariantsController < ApplicationController
   private
 
   def create_params
-    params.require(:shipping_variant).permit(:quantity, :shipping_id, :variant_id)
+    params.expect(shipping_variant: %i[quantity shipping_id variant_id])
   end
 
   def update_params
-    params.require(:shipping_variant).permit(:quantity)
+    params.expect(shipping_variant: [:quantity])
   end
 end

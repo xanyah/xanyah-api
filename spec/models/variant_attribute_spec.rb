@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe VariantAttribute, type: :model do
+RSpec.describe VariantAttribute do
   it :has_valid_factory do
     expect(build(:variant_attribute)).to be_valid
   end

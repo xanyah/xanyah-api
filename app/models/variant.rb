@@ -12,18 +12,20 @@ class Variant < ApplicationRecord
   has_many :variant_attributes, dependent: :destroy
 
   validates :barcode, presence: true
-  validates :buying_price, presence: true, numericality: {greater_than_or_equal_to: 0}
+  validates :buying_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :original_barcode, presence: true
-  validates :quantity, presence: true, numericality: {greater_than_or_equal_to: 0}
-  validates :tax_free_price, presence: true, numericality: {greater_than_or_equal_to: 0}
+  validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :tax_free_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validate :barcode_validation, on: :create
 
   def vat
+    return nil if category.nil? || store.nil?
+
     VatRate.find_by(country_code: store.country).send(category.tva)
   end
 
   def vat_price
-    (tax_free_price * (vat / 100)).round(2)
+    (tax_free_price * (vat.to_i / 100)).round(2)
   end
 
   def price
@@ -45,9 +47,9 @@ class Variant < ApplicationRecord
     errors.add(:barcode, 'must be uniq') unless store.nil? || store.variants.find_by(barcode: barcode).nil?
   end
 
-  def set_barcode
+  def set_barcode # rubocop:disable Metrics/AbcSize
     return nil if product.nil? || original_barcode.nil?
-    return self.barcode = original_barcode if store.variants.find_by(barcode: original_barcode).nil?
+    return self.barcode = original_barcode if store&.variants&.find_by(barcode: original_barcode).nil?
 
     value = 0
     loop do

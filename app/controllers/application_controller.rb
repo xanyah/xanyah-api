@@ -10,11 +10,11 @@ class ApplicationController < ActionController::API
   end
 
   rescue_from ArgumentError do |exception|
-    render json: {errors: [exception]}, status: :unprocessable_entity
+    render json: { errors: [exception] }, status: :unprocessable_entity
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    render json: {errors: [exception]}, status: :unauthorized
+    render json: { errors: [exception] }, status: :unauthorized
   end
 
   protected

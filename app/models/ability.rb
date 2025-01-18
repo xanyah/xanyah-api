@@ -23,7 +23,7 @@ class Ability
   include VariantAbility
   include VariantAttributeAbility
 
-  def initialize(user)
+  def initialize(user) # rubocop:disable Metrics/AbcSize
     user ||= User.new
 
     category_ability user

@@ -44,11 +44,11 @@ resource 'Variant Attributes' do
       let(:value) { variant_attribute[:value] }
       let(:custom_attribute_id) { variant_attribute[:custom_attribute_id] }
       let(:variant_id) { variant_attribute[:variant_id] }
-      let(:variant_attribute) {
+      let(:variant_attribute) do
         attributes_for(:variant_attribute,
                        custom_attribute_id: create(:custom_attribute, store: membership.store).id,
-                       variant_id:          create(:variant, product: create(:product, store: membership.store)).id)
-      }
+                       variant_id: create(:variant, product: create(:product, store: membership.store)).id)
+      end
 
       example_request 'Create a variant attribute' do
         expect(response_status).to eq(201)
@@ -58,9 +58,9 @@ resource 'Variant Attributes' do
   end
 
   route '/variant_attributes/:id', 'Single variant attribute' do
-    let!(:variant_attribute) {
+    let!(:variant_attribute) do
       create(:variant_attribute, variant: create(:variant, product: create(:product, store: membership.store)))
-    }
+    end
 
     with_options scope: :variant_attribute do
       parameter :value, "Variant Attribute's value", required: true

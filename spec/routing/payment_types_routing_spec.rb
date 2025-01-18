@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PaymentTypesController, type: :routing do
+RSpec.describe PaymentTypesController do
   describe 'routing' do
     it 'routes to #index' do
       expect(get: '/payment_types').to route_to('payment_types#index')

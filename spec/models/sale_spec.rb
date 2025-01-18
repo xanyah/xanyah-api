@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Sale, type: :model do
+RSpec.describe Sale do
   it :has_valid_factory do
     expect(build(:sale)).to be_valid
   end

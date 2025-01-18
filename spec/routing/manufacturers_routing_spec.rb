@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ManufacturersController, type: :routing do
+RSpec.describe ManufacturersController do
   describe 'routing' do
     it 'routes to #index' do
       expect(get: '/manufacturers').to route_to('manufacturers#index')

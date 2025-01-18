@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :shipping_variant do
-    quantity { Faker::Number.number(3) }
+    quantity { Faker::Number.number(digits: 3) }
     shipping
     variant
   end

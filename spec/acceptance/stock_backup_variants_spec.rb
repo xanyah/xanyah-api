@@ -36,12 +36,12 @@ resource 'Stock Backup Variants' do
   end
 
   route '/stock_backup_variants/:id', 'Single stock backup variant' do
-    let!(:stock_backup_variant) {
+    let!(:stock_backup_variant) do
       create(
         :stock_backup_variant,
         stock_backup: create(:stock_backup, store: membership.store)
       )
-    }
+    end
 
     get 'Get a specific stock backup variant' do
       let(:id) { stock_backup_variant.id }

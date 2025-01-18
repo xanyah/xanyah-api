@@ -80,7 +80,7 @@ resource 'Inventories' do
         expect(status).to eq(200)
         body = JSON.parse(response_body)
         expect(body['id']).to eq(id)
-        expect(body['locked_at']).not_to eq(nil)
+        expect(body['locked_at']).not_to be_nil
       end
     end
   end

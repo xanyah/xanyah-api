@@ -43,10 +43,10 @@ class CustomAttributesController < ApplicationController
   private
 
   def create_params
-    params.require(:custom_attribute).permit(:name, :type, :store_id)
+    params.expect(custom_attribute: %i[name type store_id])
   end
 
   def update_params
-    params.require(:custom_attribute).permit(:name, :type)
+    params.expect(custom_attribute: %i[name type])
   end
 end

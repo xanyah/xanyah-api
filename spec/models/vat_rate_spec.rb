@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe VatRate, type: :model do
+RSpec.describe VatRate do
   describe 'validations' do
     describe 'country_code' do
       it :uniqueness do

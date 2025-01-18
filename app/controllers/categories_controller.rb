@@ -43,10 +43,10 @@ class CategoriesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def create_params
-    params.require(:category).permit(:name, :tva, :store_id, :category_id)
+    params.expect(category: %i[name tva store_id category_id])
   end
 
   def update_params
-    params.require(:category).permit(:name, :category_id)
+    params.expect(category: %i[name category_id])
   end
 end

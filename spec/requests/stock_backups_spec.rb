@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'StockBackups', type: :request do
+RSpec.describe 'StockBackups' do
   let(:store_membership) { create(:store_membership) }
   let(:store) { store_membership.store }
   let(:user) { store_membership.user }
@@ -13,13 +13,13 @@ RSpec.describe 'StockBackups', type: :request do
       create(:stock_backup, store: store)
       get stock_backups_path, headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).size).to eq(1)
+      expect(response.parsed_body.size).to eq(1)
     end
 
     it 'return empty if !membership' do
       get stock_backups_path, headers: create(:user).create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).size).to eq(0)
+      expect(response.parsed_body.size).to eq(0)
     end
 
     it 'returns 401 if !loggedin' do
@@ -33,7 +33,7 @@ RSpec.describe 'StockBackups', type: :request do
       stock_backup = create(:stock_backup, store: store)
       get stock_backup_path(stock_backup), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)['id']).to be_present
+      expect(response.parsed_body['id']).to be_present
     end
 
     it 'returns 401 if !membership' do
@@ -44,7 +44,7 @@ RSpec.describe 'StockBackups', type: :request do
     it 'returns 401 if !loggedin' do
       get stock_backup_path(create(:stock_backup))
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)).to have_key('errors')
+      expect(response.parsed_body).to have_key('errors')
     end
   end
 end

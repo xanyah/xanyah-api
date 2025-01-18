@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Store, type: :model do
+RSpec.describe Store do
   it :has_valid_factory do
     expect(build(:store)).to be_valid
   end
@@ -35,7 +35,7 @@ RSpec.describe Store, type: :model do
       end
 
       it :valid do
-        expect(build(:store, country: VatRate.all.pluck(:country_code).sample)).to be_valid
+        expect(build(:store, country: VatRate.pluck(:country_code).sample)).to be_valid
         expect(build(:store, country: 'FE')).not_to be_valid
       end
     end

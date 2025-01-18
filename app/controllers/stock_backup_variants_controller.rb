@@ -7,9 +7,7 @@ class StockBackupVariantsController < ApplicationController
   # GET /stock_backup_variants
   def index
     @stock_backup_variants = current_user.stock_backup_variants
-    if params[:stock_backup_id].present?
-      @stock_backup_variants = @stock_backup_variants.where(stock_backup_id: params[:stock_backup_id])
-    end
+    @stock_backup_variants = @stock_backup_variants.where(stock_backup_id: params[:stock_backup_id]) if params[:stock_backup_id].present?
 
     render json: @stock_backup_variants
   end

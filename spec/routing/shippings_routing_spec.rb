@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ShippingsController, type: :routing do
+RSpec.describe ShippingsController do
   describe 'routing' do
     it 'routes to #index' do
       expect(get: '/shippings').to route_to('shippings#index')

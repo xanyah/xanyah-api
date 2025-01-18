@@ -50,10 +50,10 @@ class ManufacturersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def create_params
-    params.require(:manufacturer).permit(:name, :notes, :store_id)
+    params.expect(manufacturer: %i[name notes store_id])
   end
 
   def update_params
-    params.require(:manufacturer).permit(:name, :notes)
+    params.expect(manufacturer: %i[name notes])
   end
 end
