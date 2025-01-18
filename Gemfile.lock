@@ -119,6 +119,8 @@ GEM
     bcrypt (3.1.20)
     benchmark (0.4.0)
     bigdecimal (3.1.9)
+    brakeman (7.0.0)
+      racc
     builder (3.3.0)
     cancancan (3.6.1)
     case_transform (0.2)
@@ -359,6 +361,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.10)
   apitome (~> 0.2)
   aws-sdk-s3 (~> 1.19)
+  brakeman (~> 7.0)
   cancancan (~> 3.6)
   csv (~> 3.3)
   database_cleaner-active_record (~> 2.2)

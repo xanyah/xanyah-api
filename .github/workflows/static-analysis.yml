@@ -6,54 +6,22 @@ on:
     branches: [ main ]
 
 jobs:
-  # brakeman:
-  #   name: Brakeman
-  #   runs-on: ubuntu-24.04
+  brakeman:
+    name: Brakeman
+    runs-on: ubuntu-24.04
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #     - name: Set up Ruby
-  #       uses: ruby/setup-ruby@v1
-  #       with:
-  #         ruby-version: .ruby-version
-  #         bundler-cache: true
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
 
-  #     - name: Scan for common Rails security vulnerabilities using static analysis
-  #       run: bundle exec brakeman
-
-  # i18n:
-  #   name: i18n
-  #   runs-on: ubuntu-24.04
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-
-  #     - name: Set up Ruby
-  #       uses: ruby/setup-ruby@v1
-  #       with:
-  #         ruby-version: .ruby-version
-  #         bundler-cache: true
-
-  #     - name: Lint i18n files
-  #       run: bundle exec i18n-tasks health
-
-  # erb_lint:
-  #   name: ERBLint
-  #   runs-on: ubuntu-24.04
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-
-  #     - name: Set up Ruby
-  #       uses: ruby/setup-ruby@v1
-  #       with:
-  #         ruby-version: .ruby-version
-  #         bundler-cache: true
-
-  #     - name: Lint ERB files
-  #       run: bundle exec erb_lint --lint-all
+      - name: Scan for common Rails security vulnerabilities using static analysis
+        run: bundle exec brakeman
 
   rubocop:
     name: Rubocop

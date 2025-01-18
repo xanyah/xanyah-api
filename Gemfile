@@ -28,6 +28,8 @@ gem 'rack-cors', '~> 2.0'
 gem 'sidekiq', '~> 7.3'
 
 group :development, :test do
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem 'brakeman', '~> 7.0', require: false
   # Use database cleaner to delete records after each test
   gem 'database_cleaner-active_record', '~> 2.2'
   # Use Factorybot for test factories
