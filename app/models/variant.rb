@@ -18,6 +18,8 @@ class Variant < ApplicationRecord
   validates :tax_free_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validate :barcode_validation, on: :create
 
+  accepts_nested_attributes_for :variant_attributes, allow_destroy: true
+
   def vat
     return nil if category.nil? || store.nil?
 

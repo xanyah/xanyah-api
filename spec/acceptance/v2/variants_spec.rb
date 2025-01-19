@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'Variants' do
+resource 'Variants', document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Access-Token', :access_token
@@ -19,9 +19,10 @@ resource 'Variants' do
   let(:expiry) { auth_token['expiry'] }
   let(:uid) { auth_token['uid'] }
 
-  route '/variants', 'Variants collection' do
+  route '/v2/variants', 'Variants collection' do
     get 'Returns all variants' do
-      parameter :product_id, 'Filter by product'
+      parameter 'q[product_id_eq]', 'Filter by product'
+      parameter 'q[barcode_eq]', 'Filter by barcode'
 
       before do
         create(:variant)
@@ -35,14 +36,24 @@ resource 'Variants' do
     end
 
     post 'Create a variant' do
-      with_options scope: :variant do
-        parameter :original_barcode, "Variant's original barcode", required: true
-        parameter :buying_price, "Variant's buying price", required: true
-        parameter :tax_free_price, "Variant's tax free price", required: true
-        parameter :ratio, "Variant's ratio", required: true
-        parameter :product_id, "Variant's product id", required: true
-        parameter :provider_id, "Variant's provider id", required: true
-        parameter :default, '(bool) Is it the product default variant ?', required: true
+      with_options scope: :variant, required: true, with_example: true do
+        parameter :original_barcode, "Variant's original barcode"
+        parameter :buying_price, "Variant's buying price", type: :float
+        parameter :tax_free_price, "Variant's tax free price", type: :float
+        parameter :ratio, "Variant's ratio", type: :float
+        parameter :product_id, "Variant's product id"
+        parameter :provider_id, "Variant's provider id"
+        parameter :default, 'Is it the product default variant ?', type: :boolean
+        parameter :variant_attributes_attributes,
+                  "Variant's custom attributes",
+                  type: :array,
+                  items: {
+                    type: :object,
+                    properties: {
+                      value: { type: :string },
+                      custom_attribute_id: { type: :string }
+                    }
+                  }
       end
 
       let(:original_barcode) { variant[:original_barcode] }
@@ -61,15 +72,8 @@ resource 'Variants' do
     end
   end
 
-  route '/variants/:id', 'Single variant' do
+  route '/v2/variants/:id', 'Single variant' do
     let!(:variant) { create(:variant, product: create(:product, store: membership.store)) }
-
-    with_options scope: :variant do
-      parameter :buying_price, "Variant's buying price", required: true
-      parameter :tax_free_price, "Variant's tax free price", required: true
-      parameter :ratio, "Variant's ratio", required: true
-      parameter :default, '(bool) Is it the product default variant ?', required: true
-    end
 
     get 'Get a specific variant' do
       let(:id) { variant.id }
@@ -83,6 +87,25 @@ resource 'Variants' do
     end
 
     patch 'Update a specific variant' do
+      with_options scope: :variant, with_example: true do
+        parameter :buying_price, "Variant's buying price", type: :float
+        parameter :tax_free_price, "Variant's tax free price", type: :float
+        parameter :ratio, "Variant's ratio", type: :float
+        parameter :default, 'Is it the product default variant ?', type: :boolean
+        parameter :variant_attributes_attributes,
+                  "Variant's custom attributes",
+                  type: :array,
+                  items: {
+                    type: :object,
+                    properties: {
+                      destroy: { type: :boolean },
+                      id: { type: :string },
+                      value: { type: :string },
+                      custom_attribute_id: { type: :string }
+                    }
+                  }
+      end
+
       let(:id) { variant.id }
       let(:ratio) { build(:variant).ratio }
 
@@ -99,39 +122,6 @@ resource 'Variants' do
 
       example_request 'Destroying a variant' do
         expect(status).to eq(204)
-      end
-    end
-  end
-
-  route '/variants/:id/by_barcode', 'Single variant' do
-    let!(:variant) { create(:variant, product: create(:product, store: membership.store)) }
-
-    get 'Get a specific variant' do
-      let(:id) { variant.barcode }
-
-      example_request 'Getting a variant by barcode' do
-        expect(status).to eq(200)
-        body = JSON.parse(response_body)
-        expect(body['id']).to eq(variant.id)
-        expect(body['ratio']).to eq(variant.ratio)
-      end
-    end
-  end
-
-  route '/variants/search', 'Variants collection' do
-    let!(:variant) { create(:variant, product: create(:product, name: 'Cacao', store: membership.store)) }
-
-    parameter :store_id, 'Filter by store'
-    parameter :product_id, 'Filter by product'
-    parameter :query, 'Search query', required: true
-
-    get 'Search variants' do
-      let(:query) { 'Cacao' }
-
-      example_request 'Searching variants' do
-        expect(status).to eq(200)
-        body = JSON.parse(response_body)
-        expect(body.size).to eq(1)
       end
     end
   end

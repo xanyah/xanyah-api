@@ -97,6 +97,6 @@ Rails.application.routes.draw do
       get :by_barcode, on: :member
     end
 
-    resources :vat_rates, only: %i[index show]
+    resources :vat_rates, only: :index
   end
 end

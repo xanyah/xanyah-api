@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'Variant Attributes' do
+resource 'Variant Attributes', document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Access-Token', :access_token
@@ -19,9 +19,9 @@ resource 'Variant Attributes' do
   let(:expiry) { auth_token['expiry'] }
   let(:uid) { auth_token['uid'] }
 
-  route '/variant_attributes', 'Variant Attributes collection' do
+  route '/v2/variant_attributes', 'Variant Attributes collection' do
     get 'Returns all variant_attributes' do
-      parameter :variant_id, 'Filter by variant'
+      parameter 'q[variant_id_eq]', 'Filter by variant'
 
       before do
         create(:variant_attribute)
@@ -35,10 +35,10 @@ resource 'Variant Attributes' do
     end
 
     post 'Create a variant attribute' do
-      with_options scope: :variant_attribute do
-        parameter :value, "Variant Attribute's value", required: true
-        parameter :custom_attribute_id, "Variant Attribute's custom attribute id", required: true
-        parameter :variant_id, "Variant Attribute's variant id", required: true
+      with_options scope: :variant_attribute, required: true, with_example: true do
+        parameter :value, "Variant Attribute's value"
+        parameter :custom_attribute_id, "Variant Attribute's custom attribute id"
+        parameter :variant_id, "Variant Attribute's variant id"
       end
 
       let(:value) { variant_attribute[:value] }
@@ -57,13 +57,9 @@ resource 'Variant Attributes' do
     end
   end
 
-  route '/variant_attributes/:id', 'Single variant attribute' do
+  route '/v2/variant_attributes/:id', 'Single variant attribute' do
     let!(:variant_attribute) do
       create(:variant_attribute, variant: create(:variant, product: create(:product, store: membership.store)))
-    end
-
-    with_options scope: :variant_attribute do
-      parameter :value, "Variant Attribute's value", required: true
     end
 
     get 'Get a specific variant attribute' do
@@ -78,6 +74,10 @@ resource 'Variant Attributes' do
     end
 
     patch 'Update a specific variant attribute' do
+      with_options scope: :variant_attribute, with_example: true do
+        parameter :value, "Variant Attribute's value"
+      end
+
       let(:id) { variant_attribute.id }
       let(:value) { build(:variant_attribute).value }
 

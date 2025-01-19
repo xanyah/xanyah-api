@@ -16,10 +16,14 @@ class ApplicationPolicy
     user.store_user?(record.store)
   end
 
-  alias show? store_user?
-  alias create? store_admin?
-  alias update? store_admin?
-  alias destroy? store_admin?
+  def no
+    false
+  end
+
+  alias show? no
+  alias create? no
+  alias update? no
+  alias destroy? no
 
   class Scope
     def initialize(user, scope)
@@ -28,7 +32,7 @@ class ApplicationPolicy
     end
 
     def resolve
-      scope.where(store_id: user.store_ids)
+      scope.none
     end
 
     private
