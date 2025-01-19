@@ -28,12 +28,15 @@ gem 'rack-cors', '~> 2.0'
 gem 'sidekiq', '~> 7.3'
 
 group :development, :test do
+  gem 'apitome', '~> 0.2', require: false
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'brakeman', '~> 7.0', require: false
   # Use database cleaner to delete records after each test
   gem 'database_cleaner-active_record', '~> 2.2'
   # Use Factorybot for test factories
   gem 'factory_bot_rails', '~> 6.4'
+
+  gem 'rspec_api_documentation', github: 'SchoolKeep/rspec_api_documentation', ref: '13df1ac'
 
   gem 'rubocop', '~> 1.70', require: false
   gem 'rubocop-factory_bot', '~> 2.26', require: false
@@ -45,8 +48,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'apitome', '~> 0.2', require: false
-  gem 'rspec_api_documentation', github: 'SchoolKeep/rspec_api_documentation', ref: '13df1ac'
   gem 'rspec-rails', '~> 7.1'
   gem 'rspec-sidekiq', '~> 5.0'
   gem 'simplecov', '~> 0.22'

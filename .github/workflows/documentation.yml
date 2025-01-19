@@ -1,0 +1,52 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  github_pages:
+    name: GitHub Pages
+    runs-on: ubuntu-24.04
+
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: xanyah
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+
+    env:
+      DATABASE_URL: postgres://postgres:postgres@localhost/xanyah
+      RAILS_DEFAULT_HOST: localhost:3000
+      RAILS_ENV: test
+
+    permissions:
+      contents: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Setup database
+        run: bundle exec rails db:schema:load
+
+      - name: Run RSpec API Documentation
+        run: bundle exec rake docs:generate
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs
