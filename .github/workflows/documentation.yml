@@ -5,8 +5,8 @@ on:
     branches: [ main ]
 
 jobs:
-  github_pages:
-    name: GitHub Pages
+  build:
+    name: Build
     runs-on: ubuntu-24.04
 
     services:
@@ -22,13 +22,6 @@ jobs:
       DATABASE_URL: postgres://postgres:postgres@localhost/xanyah
       RAILS_DEFAULT_HOST: localhost:3000
       RAILS_ENV: test
-
-    permissions:
-      contents: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout code
@@ -46,7 +39,28 @@ jobs:
       - name: Run RSpec API Documentation
         run: bundle exec rake docs:generate
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          folder: docs
+          name: documentation
+          path: docs
+          retention-days: 1
+
+  deploy:
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: documentation
