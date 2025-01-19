@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'Stock Backup Variants' do
+resource 'Stock Backup Variants', document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Access-Token', :access_token
@@ -19,9 +19,9 @@ resource 'Stock Backup Variants' do
   let(:expiry) { auth_token['expiry'] }
   let(:uid) { auth_token['uid'] }
 
-  route '/stock_backup_variants', 'Stock backup variants collection' do
+  route '/v2/stock_backup_variants', 'Stock backup variants collection' do
     get 'Returns all stock backup_variants' do
-      parameter :stock_backup_id, 'Filter by stock backup'
+      parameter 'q[stock_backup_id_eq]', 'Filter by stock backup'
 
       before do
         create(:stock_backup_variant)
@@ -35,7 +35,7 @@ resource 'Stock Backup Variants' do
     end
   end
 
-  route '/stock_backup_variants/:id', 'Single stock backup variant' do
+  route '/v2/stock_backup_variants/:id', 'Single stock backup variant' do
     let!(:stock_backup_variant) do
       create(
         :stock_backup_variant,

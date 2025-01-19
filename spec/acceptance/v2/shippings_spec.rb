@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'Shippings' do
+resource 'Shippings', document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Access-Token', :access_token
@@ -19,9 +19,9 @@ resource 'Shippings' do
   let(:expiry) { auth_token['expiry'] }
   let(:uid) { auth_token['uid'] }
 
-  route '/shippings', 'Shippings collection' do
+  route '/v2/shippings', 'Shippings collection' do
     get 'Returns all shippings' do
-      parameter :store_id, 'Filter by store'
+      parameter 'q[store_id_eq]', 'Filter by store'
 
       before do
         create(:shipping)
@@ -35,9 +35,9 @@ resource 'Shippings' do
     end
 
     post 'Create a shipping' do
-      with_options scope: :shipping do
-        parameter :store_id, "Shipping's store id", required: true
-        parameter :provider_id, "Shipping's provider id", required: true
+      with_options scope: :shipping, required: true, with_example: true do
+        parameter :store_id, "Shipping's store id"
+        parameter :provider_id, "Shipping's provider id"
       end
 
       let(:store_id) { membership.store_id }
@@ -50,7 +50,7 @@ resource 'Shippings' do
     end
   end
 
-  route '/shippings/:id', 'Single shipping' do
+  route '/v2/shippings/:id', 'Single shipping' do
     let!(:shipping) { create(:shipping, store: membership.store) }
 
     get 'Get a specific shipping' do
@@ -72,7 +72,7 @@ resource 'Shippings' do
     end
   end
 
-  route '/shippings/:id/lock', 'Single shipping' do
+  route '/v2/shippings/:id/lock', 'Single shipping' do
     let!(:shipping) { create(:shipping, store: membership.store, locked_at: nil) }
 
     patch 'Lock a specific shipping' do

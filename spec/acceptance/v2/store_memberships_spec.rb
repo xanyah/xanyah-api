@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'Store Memberships' do
+resource 'Store Memberships', document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Access-Token', :access_token
@@ -19,9 +19,9 @@ resource 'Store Memberships' do
   let(:expiry) { auth_token['expiry'] }
   let(:uid) { auth_token['uid'] }
 
-  route '/store_memberships', 'Store memberships collection' do
+  route '/v2/store_memberships', 'Store memberships collection' do
     get 'Returns all store memberships' do
-      parameter :store_id, 'Filter by store'
+      parameter 'q[store_id_eq]', 'Filter by store'
 
       example_request 'List all store memberships' do
         expect(response_status).to eq(200)
@@ -30,10 +30,12 @@ resource 'Store Memberships' do
     end
 
     post 'Create a store membership' do
-      with_options scope: :store_membership do
-        parameter :user_id, "Membership's user", required: true
-        parameter :store_id, "Membership's store", required: true
-        parameter :role, "Membership's role (regular, admin, owner)", required: true
+      with_options scope: :store_membership, required: true, with_example: true do
+        parameter :user_id, "Membership's user"
+        parameter :store_id, "Membership's store"
+        parameter :role, "Membership's role (regular, admin, owner)",
+                  type: :string,
+                  enum: %w[regular admin owner]
       end
 
       let(:user_id) { create(:user).id }
@@ -47,9 +49,7 @@ resource 'Store Memberships' do
     end
   end
 
-  route '/store_memberships/:id', 'Single store membership' do
-    parameter :role, "Membership's role (regular, admin, owner)", required: true, scope: :store_membership
-
+  route '/v2/store_memberships/:id', 'Single store membership' do
     get 'Get a specific store membership' do
       let(:id) { create(:store_membership, store: membership.store).id }
 
@@ -61,6 +61,11 @@ resource 'Store Memberships' do
     end
 
     patch 'Update a specific store membership' do
+      parameter :role, "Membership's role (regular, admin, owner)",
+                type: :string,
+                enum: %w[regular admin owner],
+                scope: :store_membership
+
       let(:id) { create(:store_membership, role: :admin, store: membership.store).id }
       let(:role) { :admin }
 

@@ -4,6 +4,8 @@ class ShippingVariant < ApplicationRecord
   belongs_to :shipping, optional: false
   belongs_to :variant, optional: false
 
+  has_one :store, through: :shipping
+
   before_validation :set_default_quantity
 
   validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }

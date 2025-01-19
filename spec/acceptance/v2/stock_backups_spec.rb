@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'Stock Backups' do
+resource 'Stock Backups', document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Access-Token', :access_token
@@ -19,9 +19,9 @@ resource 'Stock Backups' do
   let(:expiry) { auth_token['expiry'] }
   let(:uid) { auth_token['uid'] }
 
-  route '/stock_backups', 'Stock backups collection' do
+  route '/v2/stock_backups', 'Stock backups collection' do
     get 'Returns all stock backups' do
-      parameter :store_id, 'Filter by store'
+      parameter 'q[store_id_eq]', 'Filter by store'
 
       before do
         create(:stock_backup)
@@ -35,7 +35,7 @@ resource 'Stock Backups' do
     end
   end
 
-  route '/stock_backups/:id', 'Single stock_backup' do
+  route '/v2/stock_backups/:id', 'Single stock_backup' do
     let!(:stock_backup) { create(:stock_backup, store: membership.store) }
 
     get 'Get a specific stock backup' do

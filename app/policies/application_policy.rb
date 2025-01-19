@@ -8,6 +8,10 @@ class ApplicationPolicy
     @record = record
   end
 
+  def store_owner?
+    user.store_owner?(record.store)
+  end
+
   def store_admin?
     user.store_admin?(record.store)
   end

@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'Shipping Variants' do
+resource 'Shipping Variants', document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Access-Token', :access_token
@@ -19,9 +19,9 @@ resource 'Shipping Variants' do
   let(:expiry) { auth_token['expiry'] }
   let(:uid) { auth_token['uid'] }
 
-  route '/shipping_variants', 'Shipping variants collection' do
+  route '/v2/shipping_variants', 'Shipping variants collection' do
     get 'Returns all shipping_variants' do
-      parameter :shipping_id, 'Filter by shipping'
+      parameter 'q[shipping_id_eq]', 'Filter by shipping'
 
       before do
         create(:shipping_variant)
@@ -37,10 +37,10 @@ resource 'Shipping Variants' do
     end
 
     post 'Create an shipping variant' do
-      with_options scope: :shipping_variant do
-        parameter :shipping_id, "Shipping variant's shipping id", required: true
-        parameter :variant_id, "Shipping variant's variant id", required: true
-        parameter :quantity, "Shipping variant's quantity", required: true
+      with_options scope: :shipping_variant, required: true, with_example: true do
+        parameter :shipping_id, "Shipping variant's shipping id"
+        parameter :variant_id, "Shipping variant's variant id"
+        parameter :quantity, "Shipping variant's quantity", type: :number
       end
 
       let(:variant_id) { create(:variant, product: create(:product, store: membership.store)).id }
@@ -54,15 +54,11 @@ resource 'Shipping Variants' do
     end
   end
 
-  route '/shipping_variants/:id', 'Single shipping variant' do
+  route '/v2/shipping_variants/:id', 'Single shipping variant' do
     let!(:shipping_variant) do
       create(:shipping_variant,
              variant: create(:variant, product: create(:product, store: membership.store)),
              shipping: create(:shipping, store: membership.store, locked_at: nil))
-    end
-
-    with_options scope: :shipping_variant do
-      parameter :quantity, "Shipping variant's quantity", required: true
     end
 
     get 'Get a specific shipping variant' do
@@ -76,6 +72,10 @@ resource 'Shipping Variants' do
     end
 
     patch 'Update an specific shipping variant' do
+      with_options scope: :shipping_variant, with_example: true do
+        parameter :quantity, "Shipping variant's quantity"
+      end
+
       let(:id) { shipping_variant.id }
       let(:quantity) { 12 }
 
@@ -93,29 +93,6 @@ resource 'Shipping Variants' do
       example_request 'Deleting an shipping variant' do
         expect(status).to eq(204)
         expect(response_body).to be_empty
-      end
-    end
-  end
-
-  route '/shipping_variants/:shipping_id/:variant_id', 'Single shipping variant by shipping/variant id' do
-    let!(:shipping_variant) do
-      create(:shipping_variant,
-             variant: create(:variant, product: create(:product, store: membership.store)),
-             shipping: create(:shipping, store: membership.store, locked_at: nil))
-    end
-
-    with_options scope: :shipping_variant do
-      parameter :quantity, "Shipping variant's quantity", required: true
-    end
-
-    get 'Get a specific shipping variant by shipping and variant id' do
-      let(:shipping_id) { shipping_variant.shipping_id }
-      let(:variant_id) { shipping_variant.variant_id }
-
-      example_request 'Getting an shipping variant' do
-        expect(status).to eq(200)
-        body = JSON.parse(response_body)
-        expect(body['id']).to eq(shipping_variant.id)
       end
     end
   end

@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'Stores' do
+resource 'Stores', document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Access-Token', :access_token
@@ -11,7 +11,7 @@ resource 'Stores' do
   header 'Expiry', :expiry
   header 'Uid', :uid
 
-  let(:membership) { create(:store_membership, role: :admin) }
+  let(:membership) { create(:store_membership, role: :owner) }
   let(:auth_token) { membership.user.create_new_auth_token }
   let(:access_token) { auth_token['access-token'] }
   let(:token_type) { auth_token['token-type'] }
@@ -19,9 +19,10 @@ resource 'Stores' do
   let(:expiry) { auth_token['expiry'] }
   let(:uid) { auth_token['uid'] }
 
-  route '/stores', 'Stores collection' do
+  route '/v2/stores', 'Stores collection' do
     get 'Returns all stores' do
       let!(:store) { create(:store) }
+
       example_request 'List all stores' do
         expect(response_status).to eq(200)
         expect(JSON.parse(response_body).size).to eq(1)
@@ -29,7 +30,7 @@ resource 'Stores' do
     end
 
     post 'Create a store' do
-      with_options scope: :store do
+      with_options scope: :store, with_example: true do
         parameter :name, "Store's name", required: true
         parameter :address, "Store's address"
         parameter :country, "Store's country", required: true
@@ -49,13 +50,7 @@ resource 'Stores' do
     end
   end
 
-  route '/stores/:id', 'Single store' do
-    with_options scope: :store do
-      parameter :name, "Store's name", required: true
-      parameter :address, "Store's address"
-      parameter :country, "Store's country", required: true
-    end
-
+  route '/v2/stores/:id', 'Single store' do
     get 'Get a specific store' do
       let(:id) { membership.store.id }
 
@@ -70,6 +65,12 @@ resource 'Stores' do
     end
 
     patch 'Update a specific store' do
+      with_options scope: :store, with_example: true do
+        parameter :name, "Store's name", required: true
+        parameter :address, "Store's address"
+        parameter :country, "Store's country", required: true
+      end
+
       let(:id) { membership.store.id }
       let(:name) { build(:store).name }
 

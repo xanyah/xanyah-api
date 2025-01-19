@@ -42,6 +42,10 @@ class User < ApplicationRecord
     store_memberships.where(store_id: store.id, role: %i[admin owner]).any?
   end
 
+  def store_owner?(store)
+    store_memberships.where(store_id: store.id, role: :owner).any?
+  end
+
   def store_user?(store)
     store_memberships.where(store_id: store.id).any?
   end
