@@ -42,7 +42,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: documentation
           path: docs
           retention-days: 1
 
@@ -51,6 +50,7 @@ jobs:
     needs: build
 
     permissions:
+      contents: read
       pages: write
       id-token: write
 
@@ -58,10 +58,11 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          artifact_name: documentation
