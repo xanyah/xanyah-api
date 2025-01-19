@@ -37,4 +37,12 @@ class User < ApplicationRecord
   def tokens_has_json_column_type?
     database_exists? && table_exists? && type_for_attribute('tokens').type.in?(%i[json jsonb])
   end
+
+  def store_admin?(store)
+    store_memberships.where(store_id: store.id, role: %i[admin owner]).any?
+  end
+
+  def store_user?(store)
+    store_memberships.where(store_id: store.id).any?
+  end
 end

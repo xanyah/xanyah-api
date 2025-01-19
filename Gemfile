@@ -24,7 +24,9 @@ gem 'devise', '~> 4.9'
 gem 'devise_token_auth', '~> 1.2'
 gem 'faker', '~> 3.5'
 gem 'paranoia', github: 'rubysherpas/paranoia'
+gem 'pundit', '~> 2.4'
 gem 'rack-cors', '~> 2.0'
+gem 'ransack', '~> 4.2'
 gem 'sidekiq', '~> 7.3'
 
 group :development, :test do
@@ -35,6 +37,8 @@ group :development, :test do
   gem 'database_cleaner-active_record', '~> 2.2'
   # Use Factorybot for test factories
   gem 'factory_bot_rails', '~> 6.4'
+
+  gem 'pry', '~> 0.15.2'
 
   gem 'rspec_api_documentation', github: 'SchoolKeep/rspec_api_documentation', ref: '13df1ac'
 

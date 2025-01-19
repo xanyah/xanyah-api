@@ -60,4 +60,8 @@ Rails.application.routes.draw do
   end
 
   resources :vat_rates, only: %i[index show]
+
+  namespace :v2 do
+    resources :categories
+  end
 end

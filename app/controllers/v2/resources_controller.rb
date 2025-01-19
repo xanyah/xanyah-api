@@ -1,0 +1,59 @@
+# frozen_string_literal: true
+
+module V2
+  class ResourcesController < BaseController
+    after_action :verify_authorized, except: :index
+    after_action :verify_policy_scoped, only: :index
+    before_action :set_record, except: %i[index create]
+
+    def index
+      @q = policy_scope(model_class).ransack(params[:q])
+      @records = @q.result(distinct: true)
+
+      render json: @records
+    end
+
+    def show
+      authorize @record
+
+      render json: @record
+    end
+
+    def create
+      @record = model_class.new(permitted_attributes(model_class))
+      authorize @record
+
+      if @record.save
+        render json: @record, status: :created
+      else
+        render json: @record.errors, status: :unprocessable_entity
+      end
+    end
+
+    def update
+      authorize @record
+
+      if @record.update(permitted_attributes(@record))
+        render json: @record
+      else
+        render json: @record.errors, status: :unprocessable_entity
+      end
+    end
+
+    def destroy
+      authorize @record
+
+      head :no_content
+    end
+
+    private
+
+    def model_class
+      controller_name.classify.constantize
+    end
+
+    def set_record
+      @record = model_class.find(params[:id])
+    end
+  end
+end
