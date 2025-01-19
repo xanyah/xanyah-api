@@ -27,4 +27,5 @@ node_modules
 !.env.example
 yarn-error.log
 
-docs/api/open_api.json
+docs/**/open_api.json
+public/docs

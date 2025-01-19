@@ -3,6 +3,7 @@
 class InventoryVariant < ApplicationRecord
   belongs_to :inventory, optional: false
   belongs_to :variant, optional: false
+  has_one :store, through: :inventory
 
   before_validation :set_default_quantity
 

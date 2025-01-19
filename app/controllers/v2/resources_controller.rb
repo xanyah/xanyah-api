@@ -20,7 +20,7 @@ module V2
     end
 
     def create
-      @record = model_class.new(permitted_attributes(model_class))
+      @record = model_class.new(permitted_attributes(model_class)) if @record.nil?
       authorize @record
 
       if @record.save
@@ -42,6 +42,8 @@ module V2
 
     def destroy
       authorize @record
+
+      @record.destroy
 
       head :no_content
     end

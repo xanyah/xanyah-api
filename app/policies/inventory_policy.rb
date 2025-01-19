@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
-class CategoryPolicy < Presets::AdminEditablePolicy
+class InventoryPolicy < Presets::UserEditablePolicy
+  alias lock? store_user?
+
   def permitted_attributes_for_create
-    %i[name tva store_id category_id]
+    %i[store_id]
   end
 
   def permitted_attributes_for_update
-    %i[name category_id]
+    %i[]
   end
 end

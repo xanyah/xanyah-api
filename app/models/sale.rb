@@ -13,6 +13,10 @@ class Sale < ApplicationRecord
   has_many :sale_variants, dependent: :destroy
   has_many :variants, through: :sale_variants
 
+  accepts_nested_attributes_for :sale_promotion, allow_destroy: true
+  accepts_nested_attributes_for :sale_payments, allow_destroy: true
+  accepts_nested_attributes_for :sale_variants, allow_destroy: true
+
   def self.full_creation(params, user) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     sale = Sale.new(
       total_price: params[:total_price],

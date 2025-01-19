@@ -1,0 +1,7 @@
+version: '3'
+
+tasks:
+  docs:
+    cmds:
+    - rake docs:generate
+    - cp -r docs public

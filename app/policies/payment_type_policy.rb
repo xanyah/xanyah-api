@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class CategoryPolicy < Presets::AdminEditablePolicy
+class PaymentTypePolicy < Presets::AdminEditablePolicy
   def permitted_attributes_for_create
-    %i[name tva store_id category_id]
+    %i[name description store_id]
   end
 
   def permitted_attributes_for_update
-    %i[name category_id]
+    %i[name description]
   end
 end

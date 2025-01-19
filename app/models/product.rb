@@ -7,6 +7,8 @@ class Product < ApplicationRecord
   has_many :variants, dependent: :destroy
   has_many :providers, through: :variants
 
+  accepts_nested_attributes_for :variants, allow_destroy: true
+
   validates :name, presence: true
   validate :common_store
 

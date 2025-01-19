@@ -10,6 +10,8 @@ class Order < ApplicationRecord
   has_many :variants, through: :order_variants
   has_many :products, through: :variants
 
+  accepts_nested_attributes_for :order_variants, allow_destroy: true
+
   def self.full_creation(params)
     Order.new(
       store_id: params[:store_id],
@@ -23,6 +25,7 @@ class Order < ApplicationRecord
     )
   end
 
+  # @deprecated
   def self.search(query)
     query = query.downcase
     left_outer_joins(:client).left_outer_joins(:products).where("

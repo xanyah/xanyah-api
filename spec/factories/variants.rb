@@ -9,5 +9,10 @@ FactoryBot.define do
     tax_free_price { (buying_price * ratio).round(2) }
     product
     provider
+
+    trait :as_params do
+      product_id { create(:product).id }
+      provider_id { create(:provider).id }
+    end
   end
 end

@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'V2/Categories' do
+resource 'Categories', type: :acceptance, document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Access-Token', :access_token
@@ -35,9 +35,9 @@ resource 'V2/Categories' do
     end
 
     post 'Create a category' do
-      with_options scope: :category do
+      with_options scope: :category, with_example: true do
         parameter :name, "Category's name", required: true
-        parameter :tva, "Category's TVA rate", required: true
+        parameter :tva, "Category's TVA rate", required: true, type: :number
         parameter :store_id, "Category's store id", required: true
       end
 
@@ -56,11 +56,6 @@ resource 'V2/Categories' do
   route '/v2/categories/:id', 'Single category' do
     let!(:category) { create(:category, store: membership.store) }
 
-    with_options scope: :category do
-      parameter :name, "Category's name", required: true
-      parameter :tva, "Category's TVA rate", required: true
-    end
-
     get 'Get a specific category' do
       let(:id) { category.id }
 
@@ -75,6 +70,11 @@ resource 'V2/Categories' do
     patch 'Update a specific category' do
       let(:id) { category.id }
       let(:name) { build(:category).name }
+
+      with_options scope: :category, with_example: true do
+        parameter :name, "Category's name"
+        parameter :tva, "Category's TVA rate", type: :number
+      end
 
       example_request 'Updating a category' do
         expect(status).to eq(200)

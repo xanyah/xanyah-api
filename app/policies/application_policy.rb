@@ -8,33 +8,18 @@ class ApplicationPolicy
     @record = record
   end
 
-  def index?
-    false
+  def store_admin?
+    user.store_admin?(record.store)
   end
 
-  def show?
-    false
+  def store_user?
+    user.store_user?(record.store)
   end
 
-  def create?
-    false
-  end
-
-  def new?
-    create?
-  end
-
-  def update?
-    false
-  end
-
-  def edit?
-    update?
-  end
-
-  def destroy?
-    false
-  end
+  alias show? store_user?
+  alias create? store_admin?
+  alias update? store_admin?
+  alias destroy? store_admin?
 
   class Scope
     def initialize(user, scope)
@@ -43,7 +28,7 @@ class ApplicationPolicy
     end
 
     def resolve
-      raise NoMethodError, "You must define #resolve in #{self.class}"
+      scope.where(store_id: user.store_ids)
     end
 
     private

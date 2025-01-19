@@ -15,6 +15,8 @@ class SaleVariant < ApplicationRecord
 
   has_one :sale_variant_promotion, dependent: :destroy
 
+  accepts_nested_attributes_for :sale_variant_promotion, allow_destroy: true
+
   protected
 
   def store_validation
