@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'Sales' do
+resource 'Sales', document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Access-Token', :access_token

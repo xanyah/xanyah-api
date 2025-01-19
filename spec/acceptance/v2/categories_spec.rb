@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'Categories', type: :acceptance, document: :v2 do
+resource 'Categories', document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Access-Token', :access_token
