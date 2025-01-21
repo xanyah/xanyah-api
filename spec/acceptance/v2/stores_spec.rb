@@ -33,13 +33,13 @@ resource 'Stores', document: :v2 do
       with_options scope: :store, with_example: true do
         parameter :name, "Store's name", required: true
         parameter :address, "Store's address"
-        parameter :country, "Store's country", required: true
+        parameter :country_id, "Store's country", required: true
         parameter :key, "Store's key", required: true
       end
 
       let(:name) { store[:name] }
       let(:address) { store[:address] }
-      let(:country) { store[:country] }
+      let(:country_id) { Country.first.id }
       let(:key) { store[:key] }
       let(:store) { attributes_for(:store) }
 

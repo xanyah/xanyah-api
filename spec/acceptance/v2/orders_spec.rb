@@ -52,7 +52,6 @@ resource 'Orders', document: :v2 do
         Array.new(5).map do
           variant = create(:variant, product: create(:product,
                                                      category: create(:category,
-                                                                      tva: :standard_rate,
                                                                       store: membership.store),
                                                      store: membership.store))
           {

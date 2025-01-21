@@ -84,25 +84,25 @@ resource 'Sales', document: :v2 do
         Array.new(5).map do
           variant = create(:variant, product: create(:product,
                                                      category: create(:category,
-                                                                      tva: :standard_rate,
                                                                       store: membership.store),
                                                      store: membership.store))
           {
             variant_id: variant.id,
-            unit_price: variant.price,
+            amount_cents: variant.amount_cents,
+            amount_currency: variant.amount_currency,
             quantity: rand(20)
           }
         end
       end
-      let(:total_price) { sale_variants_attributes.inject(0) { |sum, element| sum + (element[:quantity] * element[:unit_price]) } }
+      let(:total_price) { sale_variants_attributes.inject(0) { |sum, element| sum + (element[:quantity] * element[:amount_cents]) } }
       let(:sale_payment_attributes) do
-        vat = VatRate.find_by(country_code: membership.store.country).standard_rate
+        vat = VatRate.find_by(country_code: membership.store.country)
         total = sale_variants_attributes.sum do |v|
-          v[:quantity].to_i * (v[:unit_price].to_f + (v[:unit_price].to_f * (vat / 100)))
+          v[:quantity].to_i * (v[:amount_cents] + (v[:amount_cents] * (vat.rate_percent_cents / 10_000)))
         end
         [{
           payment_type_id: create(:payment_type, store: membership.store).id,
-          total: total
+          total_amount_cents: total
         }]
       end
 

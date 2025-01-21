@@ -6,7 +6,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean_with(
       :truncation,
-      except: %w[vat_rates]
+      except: %w[countries vat_rates]
     )
   end
 

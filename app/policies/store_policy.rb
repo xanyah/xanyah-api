@@ -18,11 +18,11 @@ class StorePolicy < ApplicationPolicy
   end
 
   def permitted_attributes_for_create
-    %i[name address country key]
+    %i[name address country_id key]
   end
 
   def permitted_attributes_for_update
-    %i[name address country]
+    %i[name address]
   end
 
   class Scope < ApplicationPolicy::Scope

@@ -35,14 +35,14 @@ resource 'Categories', document: :v2 do
     end
 
     post 'Create a category' do
-      with_options scope: :category, with_example: true do
-        parameter :name, "Category's name", required: true
-        parameter :tva, "Category's TVA rate", required: true, type: :number
-        parameter :store_id, "Category's store id", required: true
+      with_options scope: :category, with_example: true, required: true do
+        parameter :name, "Category's name"
+        parameter :vat_rate_id, "Category's TVA rate"
+        parameter :store_id, "Category's store id"
       end
 
       let(:name) { category[:name] }
-      let(:tva) { category[:tva] }
+      let(:vat_rate_id) { VatRate.first.id }
       let(:store_id) { membership.store_id }
       let(:category) { attributes_for(:category) }
 

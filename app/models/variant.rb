@@ -33,7 +33,7 @@ class Variant < ApplicationRecord
   end
 
   def amount
-    @amount ||= tax_free_amount + vat_price
+    @amount ||= tax_free_amount + vat_amount
   end
 
   def amount_cents
