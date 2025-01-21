@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MigratePricesToMoney < ActiveRecord::Migration[8.0]
   TABLES_TO_MIGRATE = {
     sale_payments: [
@@ -19,14 +21,14 @@ class MigratePricesToMoney < ActiveRecord::Migration[8.0]
       %i[buying_price buying_amount],
       %i[tax_free_price tax_free_amount]
     ]
-  }
+  }.freeze
 
   def migrate_table_column(table_name, original_column_name, target_column_name)
     add_monetize table_name, target_column_name
 
     reversible do |direction|
       direction.up do
-        execute "UPDATE #{table_name} SET #{target_column_name}_cents = COALESCE(#{original_column_name}, 0) * 100, #{target_column_name}_currency = 'eur'"
+        execute "UPDATE #{table_name} SET #{target_column_name}_cents = COALESCE(#{original_column_name}, 0) * 100, #{target_column_name}_currency = 'EUR'"
       end
 
       direction.down do

@@ -4,21 +4,21 @@ require 'net/http'
 
 namespace :vat_rates do
   desc 'Update VAT rates from https://euvat.ga/'
-  task update: :environment do
-    response = Net::HTTP.get(URI("http://apilayer.net/api/rate_list?access_key=#{ENV.fetch('VAT_LAYER_API_KEY', nil)}"))
+  task import: :environment do
+    response = Net::HTTP.get(URI("https://apilayer.net/api/rate_list?access_key=#{ENV.fetch('VAT_LAYER_API_KEY', nil)}"))
     response = JSON.parse(response)
     rates = response['rates']
-    rates.each_key do |country_code|
-      api_rate = rates[country_code]
-      vat_rate = VatRate.where(country_code: country_code).first_or_create
-      vat_rate.update(
-        country_name: api_rate['country'] || 0,
-        standard_rate: api_rate['standard_rate'] || 0
-        # reduced_rate:       api_rate['reduced_rate'] || 0,
-        # reduced_rate_alt:   api_rate['reduced_rate_alt'] || 0,
-        # super_reduced_rate: api_rate['super_reduced_rate'] || 0,
-        # parking_rate:       api_rate['parking_rate'] || 0
-      )
+
+    rates.each do |country_code, data|
+      country = Country.where(code: country_code).first_or_create do |pending_country|
+        pending_country.name = data['country_name']
+      end
+
+      VatRate.where(country:, rate_percent_cents: (data['standard_rate'] * 100).to_i).first_or_create!
+
+      data['reduced_rates'].each_value do |value|
+        VatRate.where(country:, rate_percent_cents: (value * 100).to_i).first_or_create!
+      end
     end
   end
 end

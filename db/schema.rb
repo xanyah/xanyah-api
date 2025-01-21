@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_20_192244) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_21_212013) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -45,15 +45,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_20_192244) do
 
   create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
-    t.integer "tva"
     t.uuid "store_id"
     t.uuid "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.uuid "vat_rate_id"
     t.index ["category_id"], name: "index_categories_on_category_id"
     t.index ["deleted_at"], name: "index_categories_on_deleted_at"
     t.index ["store_id"], name: "index_categories_on_store_id"
+    t.index ["vat_rate_id"], name: "index_categories_on_vat_rate_id"
   end
 
   create_table "clients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -69,6 +70,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_20_192244) do
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_clients_on_deleted_at"
     t.index ["store_id"], name: "index_clients_on_store_id"
+  end
+
+  create_table "countries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["code"], name: "index_countries_on_code", unique: true
+    t.index ["name"], name: "index_countries_on_name", unique: true
   end
 
   create_table "custom_attributes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -315,10 +326,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_20_192244) do
     t.string "key"
     t.string "name"
     t.string "address"
-    t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.uuid "country_id"
+    t.index ["country_id"], name: "index_stores_on_country_id"
     t.index ["deleted_at"], name: "index_stores_on_deleted_at"
   end
 
@@ -389,17 +401,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_20_192244) do
   end
 
   create_table "vat_rates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "country_code"
-    t.string "country_name"
-    t.float "standard_rate"
-    t.float "reduced_rate"
-    t.float "reduced_rate_alt"
-    t.float "super_reduced_rate"
-    t.float "parking_rate"
+    t.uuid "country_id"
+    t.integer "rate_percent_cents"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_vat_rates_on_deleted_at"
+    t.index ["country_id"], name: "index_vat_rates_on_country_id"
   end
 
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"

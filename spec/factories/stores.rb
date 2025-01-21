@@ -7,6 +7,6 @@ FactoryBot.define do
       "#{name.parameterize}-#{n}"
     end
     address { Faker::Address.street_address }
-    country { 'FR' }
+    country { Country.first || build(:country) }
   end
 end

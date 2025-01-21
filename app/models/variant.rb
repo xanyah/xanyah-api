@@ -7,6 +7,7 @@ class Variant < ApplicationRecord
   belongs_to :product, optional: false
   belongs_to :provider, optional: false
   has_one :category, through: :product
+  has_one :vat_rate, through: :category
   has_one :store, through: :product
   has_many :variant_attributes, dependent: :destroy
 
@@ -19,18 +20,28 @@ class Variant < ApplicationRecord
 
   accepts_nested_attributes_for :variant_attributes, allow_destroy: true
 
-  def vat
-    return nil if category.nil? || store.nil?
-
-    VatRate.find_by(country_code: store.country).send(category.tva)
+  def vat_amount
+    @vat_amount ||= tax_free_amount * (vat_rate&.rate_percent_cents.to_i / (100 * 100))
   end
 
-  def vat_price
-    (tax_free_amount * (vat.to_i / 100)).round(2)
+  def vat_amount_cents
+    @vat_amount_cents ||= vat_amount.fractional
   end
 
-  def price
-    (tax_free_amount + vat_price).round(2)
+  def vat_amount_currency
+    @vat_amount_currency ||= vat_amount.currency.iso_code
+  end
+
+  def amount
+    @amount ||= tax_free_amount + vat_price
+  end
+
+  def amount_cents
+    @amount_cents ||= amount.fractional
+  end
+
+  def amount_currency
+    @amount_currency ||= amount.currency.iso_code
   end
 
   def self.search(query)

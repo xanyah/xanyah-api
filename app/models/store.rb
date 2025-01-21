@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Store < ApplicationRecord
+  belongs_to :country
   has_many :admin_store_memberships, -> { admin }, class_name: 'StoreMembership', inverse_of: :store
   has_many :admins, source: :user, through: :admin_store_memberships
   has_many :backup_variants, through: :stock_backups
@@ -26,9 +27,6 @@ class Store < ApplicationRecord
   has_many :variants, through: :products
   has_many :variant_attributes, through: :variants
 
-  validates :country, presence: true, inclusion: { in: -> { VatRate.pluck(:country_code) } }
   validates :key, presence: true, uniqueness: true, allow_nil: false
   validates :name, presence: true
-
-  before_validation { self.country = country.nil? ? '' : country.upcase }
 end

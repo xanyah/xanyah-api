@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :sale do
     total_amount_cents { rand(0..100) }
-    total_amount_currency { 'eur' }
+    total_amount_currency { 'EUR' }
 
     store
     user

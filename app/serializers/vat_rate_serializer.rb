@@ -2,11 +2,7 @@
 
 class VatRateSerializer < ActiveModel::Serializer
   attributes :id,
-             :country_code,
-             :country_name,
-             :standard_rate,
-             :reduced_rate,
-             :reduced_rate_alt,
-             :super_reduced_rate,
-             :parking_rate
+             :rate_percent_cents
+
+  belongs_to :country
 end
