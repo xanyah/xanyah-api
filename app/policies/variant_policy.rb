@@ -10,8 +10,10 @@ class VariantPolicy < Presets::UserEditablePolicy
   def permitted_attributes_for_create
     [
       :original_barcode,
-      :buying_price,
-      :tax_free_price,
+      :buying_amount_cents,
+      :buying_amount_currency,
+      :tax_free_amount_cents,
+      :tax_free_amount_currency,
       :ratio,
       :product_id,
       :provider_id,
@@ -25,8 +27,10 @@ class VariantPolicy < Presets::UserEditablePolicy
 
   def permitted_attributes_for_update
     [
-      :buying_price,
-      :tax_free_price,
+      :buying_amount_cents,
+      :buying_amount_currency,
+      :tax_free_amount_cents,
+      :tax_free_amount_currency,
       :ratio,
       :default,
       { variant_attributes_attributes: %i[

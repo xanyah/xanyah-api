@@ -5,7 +5,7 @@ class OrderPolicy < Presets::UserEditablePolicy
     [
       :client_id,
       :store_id,
-      { order_variants_attributes: %i[variant_id quantity unit_price] }
+      { order_variants_attributes: %i[variant_id quantity amount_cents amount_currency] }
     ]
   end
 

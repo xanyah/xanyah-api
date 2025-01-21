@@ -187,6 +187,15 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.4)
+    monetize (1.13.0)
+      money (~> 6.12)
+    money (6.19.0)
+      i18n (>= 0.6.4, <= 2)
+    money-rails (1.15.0)
+      activesupport (>= 3.0)
+      monetize (~> 1.9)
+      money (~> 6.13)
+      railties (>= 3.0)
     mustache (1.1.1)
     net-imap (0.5.5)
       date
@@ -400,6 +409,7 @@ DEPENDENCIES
   dotenv-rails (~> 3.1)
   factory_bot_rails (~> 6.4)
   faker (~> 3.5)
+  money-rails (~> 1.15)
   paranoia!
   pg (~> 1.5)
   pry (~> 0.15.2)
@@ -426,4 +436,4 @@ RUBY VERSION
    ruby 3.4.1p0
 
 BUNDLED WITH
-   2.6.2
+   2.6.3

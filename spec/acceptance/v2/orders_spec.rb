@@ -39,7 +39,8 @@ resource 'Orders', document: :v2 do
                     properties: {
                       variant_id: { type: :string },
                       quantity: { type: :integer },
-                      unit_price: { type: :float }
+                      amount_cents: { type: :integer },
+                      amount_currency: { type: :string }
                     }
                   },
                   required: true

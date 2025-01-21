@@ -2,10 +2,10 @@
 
 class SalePromotionPolicy < Presets::UserEditablePolicy
   def permitted_attributes_for_create
-    %i[type amount sale_id]
+    %i[type amount_cents amount_currency sale_id]
   end
 
   def permitted_attributes_for_update
-    %i[type amount]
+    %i[type amount_cents amount_currency]
   end
 end

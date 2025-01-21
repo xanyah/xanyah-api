@@ -8,9 +8,11 @@ class ProductPolicy < Presets::UserEditablePolicy
       :manufacturer_id,
       :store_id,
       { variants_attributes: %i[
-        buying_price
+        buying_amount_cents
+        buying_amount_currency
         original_barcode
-        tax_free_price
+        tax_free_amount_cents
+        tax_free_amount_currency
         provider_id
         ratio
       ] }

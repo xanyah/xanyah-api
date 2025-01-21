@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SaleVariantSerializer < ActiveModel::Serializer
-  attributes :id, :quantity, :unit_price
+  attributes :id, :quantity, :amount_cents, :amount_currency
 
   belongs_to :variant
 

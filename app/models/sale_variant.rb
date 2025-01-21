@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SaleVariant < ApplicationRecord
-  before_validation :set_price
-
   belongs_to :sale
   belongs_to :variant
 
@@ -17,6 +15,8 @@ class SaleVariant < ApplicationRecord
 
   accepts_nested_attributes_for :sale_variant_promotion, allow_destroy: true
 
+  monetize :amount_cents
+
   protected
 
   def store_validation
@@ -29,9 +29,5 @@ class SaleVariant < ApplicationRecord
 
   def update_variant
     variant.update(quantity: variant.quantity - quantity)
-  end
-
-  def set_price
-    self.unit_price = unit_price&.round(2)
   end
 end

@@ -3,7 +3,6 @@
 class Variant < ApplicationRecord
   before_validation :set_barcode, on: :create
   before_validation :set_default, on: :create
-  before_validation :set_price
 
   belongs_to :product, optional: false
   belongs_to :provider, optional: false
@@ -12,11 +11,11 @@ class Variant < ApplicationRecord
   has_many :variant_attributes, dependent: :destroy
 
   validates :barcode, presence: true
-  validates :buying_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :original_barcode, presence: true
   validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :tax_free_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validate :barcode_validation, on: :create
+
+  monetize :buying_amount_cents, :tax_free_amount_cents
 
   accepts_nested_attributes_for :variant_attributes, allow_destroy: true
 
@@ -27,11 +26,11 @@ class Variant < ApplicationRecord
   end
 
   def vat_price
-    (tax_free_price * (vat.to_i / 100)).round(2)
+    (tax_free_amount * (vat.to_i / 100)).round(2)
   end
 
   def price
-    (tax_free_price + vat_price).round(2)
+    (tax_free_amount + vat_price).round(2)
   end
 
   def self.search(query)
@@ -63,10 +62,5 @@ class Variant < ApplicationRecord
 
   def set_default
     self.default = product.variants.size <= 0 unless product.nil?
-  end
-
-  def set_price
-    self.tax_free_price = tax_free_price&.round(2)
-    self.buying_price = buying_price&.round(2)
   end
 end

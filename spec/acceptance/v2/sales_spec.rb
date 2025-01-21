@@ -48,7 +48,8 @@ resource 'Sales', document: :v2 do
                         type: :object,
                         properties: {
                           type: { type: :string },
-                          amount: { type: :float }
+                          amount_cents: { type: :integer },
+                          amount_currency: { type: :string }
                         }
                       }
                     }
@@ -62,7 +63,8 @@ resource 'Sales', document: :v2 do
                     type: :object,
                     properties: {
                       payment_type_id: { type: :string },
-                      total: { type: :float }
+                      total_amount_cents: { type: :integer },
+                      total_amount_currency: { type: :string }
                     }
                   },
                   required: true
@@ -72,7 +74,8 @@ resource 'Sales', document: :v2 do
                   type: :object,
                   properties: {
                     type: { type: :string },
-                    amount: { type: :float }
+                    amount_cents: { type: :integer },
+                    amount_currency: { type: :string }
                   }
       end
 

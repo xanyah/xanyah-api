@@ -3,7 +3,8 @@
 FactoryBot.define do
   factory :sale_variant do
     quantity { rand(0..200) }
-    unit_price { Faker::Number.decimal(l_digits: 2) }
+    amount_cents { rand(0..100) }
+    amount_currency { 'eur' }
 
     sale
     variant { build(:variant, store: sale&.store) }

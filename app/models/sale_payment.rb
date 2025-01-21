@@ -4,6 +4,8 @@ class SalePayment < ApplicationRecord
   belongs_to :sale
   belongs_to :payment_type
 
+  monetize :total_amount_cents
+
   has_one :store, through: :sale
 
   validate :store_validation

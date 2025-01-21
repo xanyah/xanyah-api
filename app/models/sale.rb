@@ -5,7 +5,7 @@ class Sale < ApplicationRecord
   belongs_to :store, optional: false
   belongs_to :user, optional: false
 
-  validates :total_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  monetize :total_amount_cents
 
   has_one :sale_promotion, dependent: :destroy
 
@@ -17,6 +17,7 @@ class Sale < ApplicationRecord
   accepts_nested_attributes_for :sale_payments, allow_destroy: true
   accepts_nested_attributes_for :sale_variants, allow_destroy: true
 
+  # @deprecated
   def self.full_creation(params, user) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     sale = Sale.new(
       total_price: params[:total_price],

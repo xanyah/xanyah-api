@@ -3,7 +3,8 @@
 FactoryBot.define do
   factory :sale_promotion do
     type { SalePromotion.types.keys.sample }
-    amount { rand(1..100) / 10 }
+    amount_cents { rand(1..100) }
+    amount_currency { 'eur' }
     sale
   end
 end

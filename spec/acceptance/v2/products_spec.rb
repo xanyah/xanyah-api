@@ -50,8 +50,10 @@ resource 'Products', document: :v2 do
                     type: :object,
                     properties: {
                       original_barcode: { type: :string },
-                      buying_price: { type: :float },
-                      tax_free_price: { type: :float },
+                      buying_amount_cents: { type: :integer },
+                      buying_amount_currency: { type: :string },
+                      tax_free_amount_cents: { type: :integer },
+                      tax_free_amount_currency: { type: :string },
                       provider_id: { type: :string },
                       ratio: { type: :float }
                     }
@@ -101,8 +103,10 @@ resource 'Products', document: :v2 do
                     properties: {
                       id: { type: :string },
                       original_barcode: { type: :string },
-                      buying_price: { type: :float },
-                      tax_free_price: { type: :float },
+                      buying_amount_cents: { type: :integer },
+                      buying_amount_currency: { type: :string },
+                      tax_free_amount_cents: { type: :integer },
+                      tax_free_amount_currency: { type: :string },
                       provider_id: { type: :string },
                       ratio: { type: :float },
                       _destroy: { type: :boolean }

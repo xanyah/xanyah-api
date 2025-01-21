@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :sale_payment do
-    total { Faker::Number.decimal(l_digits: 2) }
+    total_amount_cents { rand(0..100) }
+    total_amount_currency { 'eur' }
     sale
     payment_type { build(:payment_type, store: sale&.store) }
   end

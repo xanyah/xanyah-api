@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_18_135038) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_20_192244) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -188,12 +188,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_18_135038) do
   end
 
   create_table "sale_payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.float "total"
     t.uuid "payment_type_id"
     t.uuid "sale_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.integer "total_amount_cents", default: 0, null: false
+    t.string "total_amount_currency", default: "EUR", null: false
     t.index ["deleted_at"], name: "index_sale_payments_on_deleted_at"
     t.index ["payment_type_id"], name: "index_sale_payments_on_payment_type_id"
     t.index ["sale_id"], name: "index_sale_payments_on_sale_id"
@@ -201,34 +202,37 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_18_135038) do
 
   create_table "sale_promotions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "type"
-    t.float "amount"
     t.uuid "sale_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "EUR", null: false
     t.index ["deleted_at"], name: "index_sale_promotions_on_deleted_at"
     t.index ["sale_id"], name: "index_sale_promotions_on_sale_id"
   end
 
   create_table "sale_variant_promotions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "type"
-    t.float "amount"
     t.uuid "sale_variant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "EUR", null: false
     t.index ["deleted_at"], name: "index_sale_variant_promotions_on_deleted_at"
     t.index ["sale_variant_id"], name: "index_sale_variant_promotions_on_sale_variant_id"
   end
 
   create_table "sale_variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "quantity"
-    t.float "unit_price"
     t.uuid "sale_id"
     t.uuid "variant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "EUR", null: false
     t.index ["deleted_at"], name: "index_sale_variants_on_deleted_at"
     t.index ["sale_id"], name: "index_sale_variants_on_sale_id"
     t.index ["variant_id"], name: "index_sale_variants_on_variant_id"
@@ -236,13 +240,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_18_135038) do
 
   create_table "sales", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "completed", default: false
-    t.float "total_price"
     t.uuid "client_id"
     t.uuid "store_id"
     t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.integer "total_amount_cents", default: 0, null: false
+    t.string "total_amount_currency", default: "EUR", null: false
     t.index ["client_id"], name: "index_sales_on_client_id"
     t.index ["deleted_at"], name: "index_sales_on_deleted_at"
     t.index ["store_id"], name: "index_sales_on_store_id"
@@ -366,8 +371,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_18_135038) do
   create_table "variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "original_barcode"
     t.string "barcode"
-    t.float "buying_price", default: 0.0
-    t.float "tax_free_price", default: 0.0
     t.float "ratio", default: 0.0
     t.integer "quantity", default: 0
     t.boolean "default"
@@ -376,6 +379,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_18_135038) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.integer "buying_amount_cents", default: 0, null: false
+    t.string "buying_amount_currency", default: "EUR", null: false
+    t.integer "tax_free_amount_cents", default: 0, null: false
+    t.string "tax_free_amount_currency", default: "EUR", null: false
     t.index ["deleted_at"], name: "index_variants_on_deleted_at"
     t.index ["product_id"], name: "index_variants_on_product_id"
     t.index ["provider_id"], name: "index_variants_on_provider_id"

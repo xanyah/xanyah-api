@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :sale do
-    total_price { Faker::Number.decimal(l_digits: 2) }
+    total_amount_cents { rand(0..100) }
+    total_amount_currency { 'eur' }
 
     store
     user

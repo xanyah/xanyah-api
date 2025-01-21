@@ -38,8 +38,10 @@ resource 'Variants', document: :v2 do
     post 'Create a variant' do
       with_options scope: :variant, required: true, with_example: true do
         parameter :original_barcode, "Variant's original barcode"
-        parameter :buying_price, "Variant's buying price", type: :float
-        parameter :tax_free_price, "Variant's tax free price", type: :float
+        parameter :buying_amount_cents, "Variant's buying price", type: :integer
+        parameter :buying_amount_currency, "Variant's buying currency", type: :string
+        parameter :tax_free_amount_cents, "Variant's tax free price", type: :integer
+        parameter :tax_free_amount_currency, "Variant's tax free currency", type: :string
         parameter :ratio, "Variant's ratio", type: :float
         parameter :product_id, "Variant's product id"
         parameter :provider_id, "Variant's provider id"
@@ -57,8 +59,10 @@ resource 'Variants', document: :v2 do
       end
 
       let(:original_barcode) { variant[:original_barcode] }
-      let(:buying_price) { variant[:buying_price] }
-      let(:tax_free_price) { variant[:tax_free_price] }
+      let(:buying_amount_cents) { variant[:buying_amount_cents] }
+      let(:tax_free_amount_currency) { variant[:tax_free_amount_currency] }
+      let(:buying_amount_cents) { variant[:buying_amount_cents] }
+      let(:tax_free_amount_currency) { variant[:tax_free_amount_currency] }
       let(:ratio) { variant[:ratio] }
       let(:default) { variant[:default] }
       let(:provider_id) { create(:provider, store: membership.store).id }
@@ -88,8 +92,10 @@ resource 'Variants', document: :v2 do
 
     patch 'Update a specific variant' do
       with_options scope: :variant, with_example: true do
-        parameter :buying_price, "Variant's buying price", type: :float
-        parameter :tax_free_price, "Variant's tax free price", type: :float
+        parameter :buying_amount_cents, "Variant's buying price", type: :integer
+        parameter :buying_amount_currency, "Variant's buying currency", type: :string
+        parameter :tax_free_amount_cents, "Variant's tax free price", type: :integer
+        parameter :tax_free_amount_currency, "Variant's tax free currency", type: :string
         parameter :ratio, "Variant's ratio", type: :float
         parameter :default, 'Is it the product default variant ?', type: :boolean
         parameter :variant_attributes_attributes,
