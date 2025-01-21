@@ -10,9 +10,9 @@ GIT
 
 GIT
   remote: https://github.com/rubysherpas/paranoia.git
-  revision: d15a01eeed674a049af539771ef48a8259256f55
+  revision: fe46c57e9a52d3fb03c7e12254693d7e99b95563
   specs:
-    paranoia (3.0.0)
+    paranoia (3.0.1)
       activerecord (>= 6, < 8.1)
 
 GEM
@@ -162,7 +162,7 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    i18n (1.14.6)
+    i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     io-console (0.8.0)
     irb (1.14.3)
