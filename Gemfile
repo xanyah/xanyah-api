@@ -43,7 +43,7 @@ group :development, :test do
 
   gem 'rspec_api_documentation', github: 'SchoolKeep/rspec_api_documentation', ref: '13df1ac'
 
-  gem 'rubocop', '~> 1.70', require: false
+  gem 'rubocop', '~> 1.71', require: false
   gem 'rubocop-factory_bot', '~> 2.26', require: false
   # gem 'rubocop-i18n', github: 'puppetlabs/rubocop-i18n', require: false
   gem 'rubocop-performance', '~> 1.23', require: false
