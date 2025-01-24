@@ -8,13 +8,6 @@ GIT
       mustache (~> 1.0, >= 0.99.4)
       rspec (~> 3.0)
 
-GIT
-  remote: https://github.com/rubysherpas/paranoia.git
-  revision: d15a01eeed674a049af539771ef48a8259256f55
-  specs:
-    paranoia (3.0.0)
-      activerecord (>= 6, < 8.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -100,8 +93,8 @@ GEM
       railties
     ast (2.4.2)
     aws-eventstream (1.3.0)
-    aws-partitions (1.1040.0)
-    aws-sdk-core (3.216.0)
+    aws-partitions (1.1042.0)
+    aws-sdk-core (3.216.1)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -162,10 +155,11 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    i18n (1.14.6)
+    i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     io-console (0.8.0)
-    irb (1.14.3)
+    irb (1.15.1)
+      pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jmespath (1.6.2)
@@ -206,28 +200,34 @@ GEM
       timeout
     net-smtp (0.5.0)
     nio4r (2.7.4)
-    nokogiri (1.18.1-aarch64-linux-gnu)
+    nokogiri (1.18.2-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.1-aarch64-linux-musl)
+    nokogiri (1.18.2-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.1-arm-linux-gnu)
+    nokogiri (1.18.2-arm-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.1-arm-linux-musl)
+    nokogiri (1.18.2-arm-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.1-arm64-darwin)
+    nokogiri (1.18.2-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.1-x86_64-darwin)
+    nokogiri (1.18.2-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.1-x86_64-linux-gnu)
+    nokogiri (1.18.2-x86_64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.1-x86_64-linux-musl)
+    nokogiri (1.18.2-x86_64-linux-musl)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (9.3.3)
     parallel (1.26.3)
+    paranoia (3.0.1)
+      activerecord (>= 6, < 8.1)
     parser (3.3.7.0)
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
+    pp (0.6.2)
+      prettyprint
+    prettyprint (0.2.0)
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -321,7 +321,7 @@ GEM
       rspec-mocks (~> 3.0)
       sidekiq (>= 5, < 8)
     rspec-support (3.13.2)
-    rubocop (1.70.0)
+    rubocop (1.71.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -343,7 +343,7 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.52.0, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rspec (3.3.0)
+    rubocop-rspec (3.4.0)
       rubocop (~> 1.61)
     rubocop-rspec_rails (2.30.0)
       rubocop (~> 1.61)
@@ -352,7 +352,8 @@ GEM
       rubocop (>= 1.48.1)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
-    sidekiq (7.3.7)
+    sidekiq (7.3.8)
+      base64
       connection_pool (>= 2.3.0)
       logger
       rack (>= 2.2.4)
@@ -410,7 +411,8 @@ DEPENDENCIES
   factory_bot_rails (~> 6.4)
   faker (~> 3.5)
   money-rails (~> 1.15)
-  paranoia!
+  pagy (~> 9.3)
+  paranoia (~> 3.0)
   pg (~> 1.5)
   pry (~> 0.15.2)
   puma (~> 6.5)

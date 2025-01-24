@@ -3,7 +3,7 @@
 class VariantPolicy < Presets::UserEditablePolicy
   class Scope < ApplicationPolicy::Scope
     def resolve
-      scope.includes(:product).where(product: { store_id: user.store_ids })
+      scope.includes(:product).where(products: { store_id: user.store_ids })
     end
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddVatRateToCategory < ActiveRecord::Migration[8.0]
   def change
     change_table :categories do |t|

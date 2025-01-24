@@ -2,8 +2,9 @@
 
 module V2
   class BaseController < ActionController::API
-    include Pundit::Authorization
     include DeviseTokenAuth::Concerns::SetUserByToken
+    include Pagy::Backend
+    include Pundit::Authorization
 
     before_action :authenticate_user!
 

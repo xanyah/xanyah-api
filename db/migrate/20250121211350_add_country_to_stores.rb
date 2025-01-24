@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddCountryToStores < ActiveRecord::Migration[8.0]
   def change
     change_table :stores do |t|

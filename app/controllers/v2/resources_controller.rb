@@ -8,7 +8,9 @@ module V2
 
     def index
       @q = policy_scope(model_class).ransack(params[:q])
-      @records = @q.result(distinct: true)
+      @pagy, @records = pagy(@q.result(distinct: true))
+
+      pagy_headers_merge(@pagy)
 
       render json: @records
     end

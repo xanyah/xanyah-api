@@ -24,7 +24,7 @@ gem 'devise', '~> 4.9'
 gem 'devise_token_auth', '~> 1.2'
 gem 'faker', '~> 3.5'
 gem 'money-rails', '~> 1.15'
-gem 'paranoia', github: 'rubysherpas/paranoia'
+gem 'paranoia', '~> 3.0'
 gem 'pundit', '~> 2.4'
 gem 'rack-cors', '~> 2.0'
 gem 'ransack', '~> 4.2'
@@ -61,3 +61,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem 'pagy', '~> 9.3'
