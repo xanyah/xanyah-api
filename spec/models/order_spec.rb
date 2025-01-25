@@ -23,9 +23,9 @@ RSpec.describe Order do
       end
     end
 
-    describe 'client' do
+    describe 'customer' do
       it :presence do
-        expect(build(:order, client: nil)).not_to be_valid
+        expect(build(:order, customer: nil)).not_to be_valid
       end
     end
   end
@@ -37,22 +37,22 @@ RSpec.describe Order do
       product2 = create(:product, name: 'Mayo', store: store)
       order1 = create(:order, store:          store)
       order2 = create(:order, store:          store)
-      create(:order_variant, order: order1, variant: create(:variant, product: product1))
-      create(:order_variant, order: order2, variant: create(:variant, product: product2))
+      create(:order_product, order: order1, product: create(:product, product: product1))
+      create(:order_product, order: order2, product: create(:product, product: product2))
       expect(described_class.search('Th').size).to be > 0
       expect(described_class.search('Thon').size).to be > 0
     end
 
-    it :client_firstname do
+    it :customer_firstname do
       order = create(:order)
       create(:order)
-      expect(described_class.search(order.client.firstname).size).to be > 0
+      expect(described_class.search(order.customer.firstname).size).to be > 0
     end
 
-    it :client_lastname do
+    it :customer_lastname do
       order = create(:order)
       create(:order)
-      expect(described_class.search(order.client.lastname).size).to be > 0
+      expect(described_class.search(order.customer.lastname).size).to be > 0
     end
   end
 end

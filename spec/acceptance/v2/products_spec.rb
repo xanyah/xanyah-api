@@ -38,35 +38,25 @@ resource 'Products', document: :v2 do
 
     post 'Create a product' do
       with_options scope: :product, with_example: true do
-        parameter :name, "Product's name", required: true
+        parameter :buying_amount_cents, "Product's buying amount"
+        parameter :buying_amount_currency, "Product's buying amount currency"
         parameter :category_id, "Product's category id", required: true
         parameter :manufacturer_id, "Product's manufacturer id", required: true
+        parameter :name, "Product's name", required: true
+        parameter :provider_id, "Product's provider"
+        parameter :sku, "Product's SKU (store barcode of the product. Can be UPC)"
         parameter :store_id, "Product's store id", required: true
-
-        parameter :variants_attributes,
-                  "Product's variants",
-                  type: :array,
-                  items: {
-                    type: :object,
-                    properties: {
-                      original_barcode: { type: :string },
-                      buying_amount_cents: { type: :integer },
-                      buying_amount_currency: { type: :string },
-                      tax_free_amount_cents: { type: :integer },
-                      tax_free_amount_currency: { type: :string },
-                      provider_id: { type: :string },
-                      ratio: { type: :float }
-                    }
-                  },
-                  required: true
+        parameter :tax_free_amount_cents, "Product's tax free amount"
+        parameter :tax_free_amount_currency, "Product's tax free amount currency"
+        parameter :upc, "Product's UPC (original barcode of the product)"
       end
 
       let(:name) { product[:name] }
       let(:category_id) { create(:category, store: membership.store).id }
       let(:manufacturer_id) { create(:manufacturer, store: membership.store).id }
+      let(:provider_id) { create(:provider, store: membership.store).id }
       let(:store_id) { membership.store_id }
       let(:product) { attributes_for(:product, store: membership.store) }
-      let(:variants_attributes) { [attributes_for(:variant, :as_params)] }
 
       example_request 'Create a product' do
         expect(response_status).to eq(201)
@@ -91,28 +81,16 @@ resource 'Products', document: :v2 do
 
     patch 'Update a specific product' do
       with_options scope: :product, with_example: true do
-        parameter :name, "Product's name"
+        parameter :buying_amount_cents, "Product's buying amount"
+        parameter :buying_amount_currency, "Product's buying amount currency"
         parameter :category_id, "Product's category id"
         parameter :manufacturer_id, "Product's manufacturer id"
-
-        parameter :variants_attributes,
-                  "Product's variants",
-                  type: :array,
-                  items: {
-                    type: :object,
-                    properties: {
-                      id: { type: :string },
-                      original_barcode: { type: :string },
-                      buying_amount_cents: { type: :integer },
-                      buying_amount_currency: { type: :string },
-                      tax_free_amount_cents: { type: :integer },
-                      tax_free_amount_currency: { type: :string },
-                      provider_id: { type: :string },
-                      ratio: { type: :float },
-                      _destroy: { type: :boolean }
-                    }
-                  },
-                  required: true
+        parameter :name, "Product's name"
+        parameter :provider_id, "Product's provider"
+        parameter :sku, "Product's SKU (store barcode of the product. Can be UPC)"
+        parameter :tax_free_amount_cents, "Product's tax free amount"
+        parameter :tax_free_amount_currency, "Product's tax free amount currency"
+        parameter :upc, "Product's UPC (original barcode of the product)"
       end
 
       let(:id) { product.id }

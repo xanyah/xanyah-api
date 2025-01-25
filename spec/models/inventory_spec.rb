@@ -25,27 +25,27 @@ RSpec.describe Inventory do
       expect(inventory.locked_at).not_to be_nil
     end
 
-    it :updates_variants_quantity do
-      ivariant1 = create(:inventory_variant, inventory: inventory)
-      ivariant2 = create(:inventory_variant, inventory: inventory)
-      ivariant3 = create(:inventory_variant)
+    it :updates_products_quantity do
+      iproduct1 = create(:inventory_product, inventory: inventory)
+      iproduct2 = create(:inventory_product, inventory: inventory)
+      iproduct3 = create(:inventory_product)
       inventory.lock
-      ivariant1.reload
-      ivariant2.reload
-      ivariant3.reload
-      expect(ivariant1.variant.quantity).to eq(ivariant1.quantity)
-      expect(ivariant2.variant.quantity).to eq(ivariant2.quantity)
-      expect(ivariant3.variant.quantity).not_to eq(ivariant3.quantity)
+      iproduct1.reload
+      iproduct2.reload
+      iproduct3.reload
+      expect(iproduct1.product.quantity).to eq(iproduct1.quantity)
+      expect(iproduct2.product.quantity).to eq(iproduct2.quantity)
+      expect(iproduct3.product.quantity).not_to eq(iproduct3.quantity)
     end
 
     it :creates_backup do
-      create(:inventory_variant, inventory: inventory)
-      create(:inventory_variant, inventory: inventory)
-      create(:inventory_variant)
+      create(:inventory_product, inventory: inventory)
+      create(:inventory_product, inventory: inventory)
+      create(:inventory_product)
       expect do
         inventory.lock
       end.to change(StockBackup, :count).by(1)
-                                        .and change(StockBackupVariant, :count).by(2)
+                                        .and change(StockBackupproduct, :count).by(2)
     end
   end
 end

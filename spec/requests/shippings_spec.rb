@@ -70,7 +70,7 @@ RSpec.describe 'Shippings' do
   end
 
   describe 'DELETE /shippings/:id' do
-    it 'deletes shipping variant if membership >= admin' do
+    it 'deletes shipping product if membership >= admin' do
       store_membership.update(role: :admin)
       shipping = create(:shipping, store: store, locked_at: nil)
       delete shipping_path(shipping), headers: store_membership.user.create_new_auth_token

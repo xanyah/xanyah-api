@@ -55,6 +55,6 @@ class OrdersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def order_params
-    params.expect(order: %i[client_id store_id])
+    params.expect(order: %i[customer_id store_id])
   end
 end

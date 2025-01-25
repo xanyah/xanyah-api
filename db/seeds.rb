@@ -61,7 +61,7 @@ StoreMembership.create!(
   role: :regular
 )
 
-Rails.logger.debug 'Creating clients, manufacturers, providers, categories, payment types'
+Rails.logger.debug 'Creating customers, manufacturers, providers, categories, payment types'
 
 5.times do
   PaymentType.create!(
@@ -69,7 +69,7 @@ Rails.logger.debug 'Creating clients, manufacturers, providers, categories, paym
     description: Faker::Lorem.paragraph,
     store: demo_store
   )
-  Client.create!(
+  Customer.create!(
     firstname: Faker::Name.first_name,
     lastname: Faker::Name.last_name,
     email: Faker::Internet.email,
@@ -155,15 +155,13 @@ Rails.logger.debug 'Creating Products'
 # Sports
 
 price1 = rand(5...100)
-basket_ball_hoop_variant = Variant.create!(
-  product: Product.create!(
-    name: 'Basketball Hoop',
-    store: demo_store,
-    manufacturer: Manufacturer.all.sample,
-    category: basketball_category
-  ),
+basket_ball_hoop_product = Product.create!(
+  name: 'Basketball Hoop',
+  store: demo_store,
+  manufacturer: Manufacturer.all.sample,
+  category: basketball_category,
   provider: Provider.all.sample,
-  original_barcode: '0000000001',
+  upc: '0000000001',
   buying_price: price1,
   tax_free_price: price1 * 1.5,
   ratio: 1.5,
@@ -171,7 +169,7 @@ basket_ball_hoop_variant = Variant.create!(
 )
 
 price2 = rand(5...100)
-soccer_ball_variant = Variant.create!(
+soccer_ball_product = Variant.create!(
   product: Product.create!(
     name: 'Soccer Ball',
     store: demo_store,
@@ -187,7 +185,7 @@ soccer_ball_variant = Variant.create!(
 )
 
 price3 = rand(5...100)
-rugby_ball_variant = Variant.create!(
+rugby_ball_product = Variant.create!(
   product: Product.create!(
     name: 'Rugby Ball',
     store: demo_store,
@@ -205,7 +203,7 @@ rugby_ball_variant = Variant.create!(
 # Clothing
 
 price4 = rand(5...100)
-polo_men_variant = Variant.create!(
+polo_men_product = Variant.create!(
   product: Product.create!(
     name: 'Polo',
     store: demo_store,
@@ -221,7 +219,7 @@ polo_men_variant = Variant.create!(
 )
 
 price5 = rand(5...100)
-sport_bra_women_variant = Variant.create!(
+sport_bra_women_product = Variant.create!(
   product: Product.create!(
     name: 'Sport Bra',
     store: demo_store,
@@ -237,7 +235,7 @@ sport_bra_women_variant = Variant.create!(
 )
 
 price6 = rand(5...100)
-jogging_children_variant = Variant.create!(
+jogging_children_product = Variant.create!(
   product: Product.create!(
     name: 'Jogging',
     store: demo_store,
@@ -255,64 +253,64 @@ jogging_children_variant = Variant.create!(
 Rails.logger.debug 'Creating Orders'
 
 order1 = Order.create!(
-  client: Client.all.sample,
+  customer: Customer.all.sample,
   store: demo_store,
   status: 'pending',
-  order_variants: []
+  order_products: []
 )
 
 order2 = Order.create!(
-  client: Client.all.sample,
+  customer: Customer.all.sample,
   store: demo_store,
   status: 'delivered',
-  order_variants: []
+  order_products: []
 )
 
 order3 = Order.create!(
-  client: Client.all.sample,
+  customer: Customer.all.sample,
   store: demo_store,
   status: 'canceled',
-  order_variants: []
+  order_products: []
 )
 
 OrderVariant.create!(
-  variant: jogging_children_variant,
+  product: jogging_children_product,
   order: order1,
   quantity: rand(0...20)
 )
 
 OrderVariant.create!(
-  variant: soccer_ball_variant,
+  product: soccer_ball_product,
   order: order1,
   quantity: rand(0...20)
 )
 
 OrderVariant.create!(
-  variant: polo_men_variant,
+  product: polo_men_product,
   order: order2,
   quantity: rand(0...20)
 )
 
 OrderVariant.create!(
-  variant: basket_ball_hoop_variant,
+  product: basket_ball_hoop_product,
   order: order2,
   quantity: rand(0...20)
 )
 
 OrderVariant.create!(
-  variant: sport_bra_women_variant,
+  product: sport_bra_women_product,
   order: order3,
   quantity: rand(0...20)
 )
 
 OrderVariant.create!(
-  variant: rugby_ball_variant,
+  product: rugby_ball_product,
   order: order3,
   quantity: rand(0...20)
 )
 
 OrderVariant.create!(
-  variant: jogging_children_variant,
+  product: jogging_children_product,
   order: order1,
   quantity: rand(0...20)
 )
@@ -321,35 +319,35 @@ Rails.logger.debug 'Creating Inventories'
 
 inventory1 = Inventory.create!(
   store: demo_store,
-  inventory_variants: []
+  inventory_products: []
 )
 
 inventory2 = Inventory.create!(
   store: demo_store,
-  inventory_variants: []
+  inventory_products: []
 )
 
 InventoryVariant.create!(
   inventory: inventory1,
-  variant: jogging_children_variant,
+  product: jogging_children_product,
   quantity: rand(0...20)
 )
 
 InventoryVariant.create!(
   inventory: inventory1,
-  variant: sport_bra_women_variant,
+  product: sport_bra_women_product,
   quantity: rand(0...20)
 )
 
 InventoryVariant.create!(
   inventory: inventory2,
-  variant: basket_ball_hoop_variant,
+  product: basket_ball_hoop_product,
   quantity: rand(0...20)
 )
 
 InventoryVariant.create!(
   inventory: inventory2,
-  variant: rugby_ball_variant,
+  product: rugby_ball_product,
   quantity: rand(0...20)
 )
 
@@ -360,7 +358,7 @@ Rails.logger.debug 'Creating Sales'
 sale1 = Sale.create!(
   total_price: 15,
   store: demo_store,
-  client: Client.all.sample,
+  customer: Customer.all.sample,
   user: regular_user
 )
 
@@ -371,7 +369,7 @@ SalePayment.create!(
 
 SaleVariant.create!(
   sale: sale1,
-  variant: rugby_ball_variant,
+  product: rugby_ball_product,
   quantity: 1
 )
 

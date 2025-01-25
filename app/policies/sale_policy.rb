@@ -4,13 +4,16 @@ class SalePolicy < Presets::UserEditablePolicy
   def permitted_attributes_for_create
     [
       :store_id,
-      :client_id,
+      :customer_id,
       :total_amount_cents,
       :total_amount_currency,
-      { sale_variants_attributes: [
-          :variant_id,
-          :quantity,
-          { sale_variant_promotion_attributes: %i[type amount_cents amount_currency] }
+      { sale_products_attributes: %i[
+          product_id
+          quantity
+          amount_cents
+          amount_currency
+          original_amount_cents
+          original_amount_currency
         ],
         sale_payments_attributes: %i[
           payment_type_id

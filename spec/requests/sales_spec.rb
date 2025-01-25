@@ -16,10 +16,10 @@ RSpec.describe 'Sales' do
       expect(response.parsed_body.size).to eq(1)
     end
 
-    it 'filters by variant' do
-      sale_variant = create(:sale_variant, sale: create(:sale, store: store))
-      create(:sale_variant, sale: create(:sale, store: store))
-      get sales_path(variant_id: sale_variant.variant_id), headers: user.create_new_auth_token
+    it 'filters by product' do
+      sale_product = create(:sale_product, sale: create(:sale, store: store))
+      create(:sale_product, sale: create(:sale, store: store))
+      get sales_path(product_id: sale_product.product_id), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
       expect(response.parsed_body.size).to eq(1)
     end
@@ -37,23 +37,23 @@ RSpec.describe 'Sales' do
   end
 
   describe 'POST /sales' do
-    let(:sale_variants) do
+    let(:sale_products) do
       Array.new(5).map do
-        variant = create(:variant, product: create(:product,
+        product = create(:product, product: create(:product,
                                                    category: create(:category,
                                                                     tva: :standard_rate,
                                                                     store: store),
                                                    store: store))
         {
-          variant_id: variant.id,
-          unit_price: variant.price,
+          product_id: product.id,
+          unit_price: product.price,
           quantity: rand(20)
         }
       end
     end
     let(:sale_payments) do
       vat = VatRate.find_by(country_code: store.country).standard_rate
-      total = sale_variants.sum do |v|
+      total = sale_products.sum do |v|
         v[:quantity].to_i * (v[:unit_price].to_f + (v[:unit_price].to_f * (vat / 100)))
       end
       [{
@@ -64,13 +64,13 @@ RSpec.describe 'Sales' do
     let(:params) do
       {
         store_id: store.id,
-        sale_variants: sale_variants,
+        sale_products: sale_products,
         sale_payments: sale_payments,
         sale_promotion: {
           type: 'flat_discount',
           amount: 20
         },
-        total_price: sale_variants.inject(0) do |sum, element|
+        total_price: sale_products.inject(0) do |sum, element|
           sum + (element[:quantity] * element[:unit_price]) - 20
         end
       }
@@ -85,7 +85,7 @@ RSpec.describe 'Sales' do
       expect(Sale.all.size).to eq(1)
       expect(SalePromotion.all.size).to eq(1)
       expect(SalePayment.all.size).to eq(1)
-      expect(SaleVariant.all.size).to eq(5)
+      expect(Saleproduct.all.size).to eq(5)
     end
 
     it 'returns empty if !membership' do

@@ -3,35 +3,11 @@
 class Order < ApplicationRecord
   enum :status, { pending: 0, delivered: 1, canceled: 2 }
 
-  belongs_to :client, optional: false
+  belongs_to :customer, optional: false
   belongs_to :store, optional: false
 
-  has_many :order_variants, dependent: :destroy
-  has_many :variants, through: :order_variants
-  has_many :products, through: :variants
+  has_many :order_products, dependent: :destroy
+  has_many :products, through: :order_products
 
-  accepts_nested_attributes_for :order_variants, allow_destroy: true
-
-  def self.full_creation(params)
-    Order.new(
-      store_id: params[:store_id],
-      client_id: params[:client_id],
-      order_variants: params[:order_variants].map do |ov|
-        OrderVariant.new(
-          quantity: ov[:quantity],
-          variant_id: ov[:variant_id]
-        )
-      end
-    )
-  end
-
-  # @deprecated
-  def self.search(query)
-    query = query.downcase
-    left_outer_joins(:client).left_outer_joins(:products).where("
-      LOWER(clients.firstname) LIKE ?
-      OR LOWER(clients.lastname) LIKE ?
-      OR LOWER(products.name) LIKE ?
-    ", "%#{query}%", "%#{query}%", "%#{query}%")
-  end
+  accepts_nested_attributes_for :order_products, allow_destroy: true
 end
