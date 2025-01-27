@@ -18,6 +18,7 @@ class ProductPolicy < Presets::UserEditablePolicy
       tax_free_amount_currency
       sku
       upc
+      manufacturer_sku
     ]
   end
 
@@ -37,6 +38,7 @@ class ProductPolicy < Presets::UserEditablePolicy
       tax_free_amount_currency
       sku
       upc
+      manufacturer_sku
     ]
   end
 end

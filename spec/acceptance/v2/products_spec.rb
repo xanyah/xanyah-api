@@ -42,6 +42,7 @@ resource 'Products', document: :v2 do
         parameter :buying_amount_currency, "Product's buying amount currency"
         parameter :category_id, "Product's category id", required: true
         parameter :manufacturer_id, "Product's manufacturer id", required: true
+        parameter :manufacturer_sku, "Product's manufacturer SKU", required: true
         parameter :name, "Product's name", required: true
         parameter :provider_id, "Product's provider"
         parameter :sku, "Product's SKU (store barcode of the product. Can be UPC)"
@@ -85,6 +86,7 @@ resource 'Products', document: :v2 do
         parameter :buying_amount_currency, "Product's buying amount currency"
         parameter :category_id, "Product's category id"
         parameter :manufacturer_id, "Product's manufacturer id"
+        parameter :manufacturer_sku, "Product's manufacturer SKU"
         parameter :name, "Product's name"
         parameter :provider_id, "Product's provider"
         parameter :sku, "Product's SKU (store barcode of the product. Can be UPC)"

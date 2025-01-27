@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_27_193801) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_27_194413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -200,6 +200,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_193801) do
     t.integer "quantity", default: 0
     t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "EUR", null: false
+    t.string "manufacturer_sku"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"

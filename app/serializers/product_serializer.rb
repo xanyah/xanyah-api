@@ -10,7 +10,8 @@ class ProductSerializer < ActiveModel::Serializer
              :tax_free_amount_cents,
              :tax_free_amount_currency,
              :sku,
-             :upc
+             :upc,
+             :manufacturer_sku
 
   belongs_to :category
   belongs_to :manufacturer
