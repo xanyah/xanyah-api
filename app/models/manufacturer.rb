@@ -7,6 +7,12 @@ class Manufacturer < ApplicationRecord
 
   validates :name, presence: true
 
+  before_validation :set_code
+
+  def set_code
+    self.code = name.first(4).upcase if code.blank?
+  end
+
   def self.search(query)
     query = query.downcase
     where("

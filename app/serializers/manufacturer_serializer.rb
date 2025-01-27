@@ -2,14 +2,9 @@
 
 class ManufacturerSerializer < ActiveModel::Serializer
   attributes :id,
-             :products_count,
-             :created_at,
-             :updated_at,
+             :code,
              :name,
              :notes,
-             :store_id
-
-  def products_count
-    object.products.size
-  end
+             :created_at,
+             :updated_at
 end

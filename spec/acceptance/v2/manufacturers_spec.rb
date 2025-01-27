@@ -38,6 +38,7 @@ resource 'Manufacturers', document: :v2 do
     post 'Create a manufacturer' do
       with_options scope: :manufacturer, with_example: true do
         parameter :name, "Manufacturer's name", required: true
+        parameter :code, "Manufacturer's code (will be replaced by name's 4 first characters if empty)", required: true
         parameter :notes, 'Notes about manufacturer'
         parameter :store_id, "Manufacturer's store id", required: true
       end
@@ -71,6 +72,7 @@ resource 'Manufacturers', document: :v2 do
     patch 'Update a specific manufacturer' do
       with_options scope: :manufacturer, with_example: true do
         parameter :name, "Manufacturer's name"
+        parameter :code, "Manufacturer's code (will be replaced by name's 4 first characters if empty)"
         parameter :notes, 'Notes about manufacturer'
       end
 

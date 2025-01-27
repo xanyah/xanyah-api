@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_27_193542) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_27_193801) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -133,6 +133,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_193542) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.string "code"
     t.index ["deleted_at"], name: "index_manufacturers_on_deleted_at"
     t.index ["store_id"], name: "index_manufacturers_on_store_id"
   end
