@@ -3,9 +3,16 @@
 class ProductSerializer < ActiveModel::Serializer
   attributes :id,
              :name,
-             :created_at,
-             :updated_at
+             :amount_cents,
+             :amount_currency,
+             :buying_amount_cents,
+             :buying_amount_currency,
+             :tax_free_amount_cents,
+             :tax_free_amount_currency,
+             :sku,
+             :upc
 
-  has_one :category
-  has_one :manufacturer
+  belongs_to :category
+  belongs_to :manufacturer
+  belongs_to :provider
 end

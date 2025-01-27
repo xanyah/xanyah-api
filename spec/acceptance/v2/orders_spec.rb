@@ -30,14 +30,14 @@ resource 'Orders', document: :v2 do
     post 'Create an order' do
       with_options scope: :order, with_example: true do
         parameter :store_id, "Orders's store id", required: true
-        parameter :client_id, "Orders's client id", required: true
-        parameter :order_variants_attributes,
-                  "Orders's variants",
+        parameter :customer_id, "Orders's customer id", required: true
+        parameter :order_products_attributes,
+                  "Orders's products",
                   type: :array,
                   items: {
                     type: :object,
                     properties: {
-                      variant_id: { type: :string },
+                      product_id: { type: :string },
                       quantity: { type: :integer },
                       amount_cents: { type: :integer },
                       amount_currency: { type: :string }
@@ -47,15 +47,15 @@ resource 'Orders', document: :v2 do
       end
 
       let(:store_id) { membership.store.id }
-      let(:client_id) { create(:client, store: membership.store).id }
-      let(:order_variants_attributes) do
+      let(:customer_id) { create(:customer, store: membership.store).id }
+      let(:order_products_attributes) do
         Array.new(5).map do
-          variant = create(:variant, product: create(:product,
-                                                     category: create(:category,
-                                                                      store: membership.store),
-                                                     store: membership.store))
+          product = create(:product,
+                           category: create(:category,
+                                            store: membership.store),
+                           store: membership.store)
           {
-            variant_id: variant.id,
+            product_id: product.id,
             quantity: rand(20)
           }
         end

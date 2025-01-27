@@ -25,20 +25,20 @@ RSpec.describe Shipping do
       expect(shipping.locked_at).not_to be_nil
     end
 
-    it :updates_variants_quantity do
-      svariant1 = create(:shipping_variant, shipping: shipping)
-      svariant1_qty = svariant1.variant.quantity
-      svariant2 = create(:shipping_variant, shipping: shipping)
-      svariant2_qty = svariant2.variant.quantity
-      svariant3 = create(:shipping_variant)
-      svariant3_qty = svariant3.variant.quantity
+    it :updates_products_quantity do
+      sproduct1 = create(:shipping_product, shipping: shipping)
+      sproduct1_qty = sproduct1.product.quantity
+      sproduct2 = create(:shipping_product, shipping: shipping)
+      sproduct2_qty = sproduct2.product.quantity
+      sproduct3 = create(:shipping_product)
+      sproduct3_qty = sproduct3.product.quantity
       shipping.lock
-      svariant1.reload
-      svariant2.reload
-      svariant3.reload
-      expect(svariant1.variant.quantity).to eq(svariant1_qty + svariant1.quantity)
-      expect(svariant2.variant.quantity).to eq(svariant2_qty + svariant2.quantity)
-      expect(svariant3.variant.quantity).not_to eq(svariant3_qty + svariant3.quantity)
+      sproduct1.reload
+      sproduct2.reload
+      sproduct3.reload
+      expect(sproduct1.product.quantity).to eq(sproduct1_qty + sproduct1.quantity)
+      expect(sproduct2.product.quantity).to eq(sproduct2_qty + sproduct2.quantity)
+      expect(sproduct3.product.quantity).not_to eq(sproduct3_qty + sproduct3.quantity)
     end
   end
 end

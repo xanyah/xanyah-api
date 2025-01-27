@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  resources :clients do
+  resources :customers do
     get :search, on: :collection
   end
 
@@ -19,8 +19,6 @@ Rails.application.routes.draw do
     patch :lock, on: :member
     put :lock, on: :member
   end
-  get 'inventory_variants/:inventory_id/:variant_id', to: 'inventory_variants#by_variant'
-  resources :inventory_variants
 
   resources :manufacturers do
     get :search, on: :collection
@@ -44,33 +42,22 @@ Rails.application.routes.draw do
     patch :lock, on: :member
     put :lock, on: :member
   end
-  get 'shipping_variants/:shipping_id/:variant_id', to: 'shipping_variants#by_variant'
-  resources :shipping_variants
-
-  resources :stock_backup_variants, only: %i[index show]
-  resources :stock_backups, only: %i[index show]
 
   resources :store_memberships
   resources :stores
-
-  resources :variant_attributes
-  resources :variants do
-    get :by_barcode, on: :member
-    get :search, on: :collection
-  end
 
   resources :vat_rates, only: %i[index show]
 
   namespace :v2 do
     resources :categories
-    resources :clients
+    resources :customers
     resources :custom_attributes
     resources :file_imports, only: :create
     resources :inventories, except: [:update] do
       patch :lock, on: :member
       put :lock, on: :member
     end
-    resources :inventory_variants
+    resources :inventory_products
     resources :manufacturers
     resources :orders, except: :destroy do
       patch :cancel, on: :member
@@ -83,19 +70,12 @@ Rails.application.routes.draw do
       patch :lock, on: :member
       put :lock, on: :member
     end
-    get 'shipping_variants/:shipping_id/:variant_id', to: 'shipping_variants#by_variant'
-    resources :shipping_variants
-
-    resources :stock_backup_variants, only: %i[index show]
-    resources :stock_backups, only: %i[index show]
+    resources :shipping_products
 
     resources :store_memberships
     resources :stores
 
-    resources :variant_attributes
-    resources :variants do
-      get :by_barcode, on: :member
-    end
+    resources :products
 
     resources :vat_rates, only: :index
   end

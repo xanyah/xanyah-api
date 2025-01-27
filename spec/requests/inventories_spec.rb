@@ -70,7 +70,7 @@ RSpec.describe 'Inventories' do
   end
 
   describe 'DELETE /inventories/:id' do
-    it 'deletes inventory variant if membership >= admin' do
+    it 'deletes inventory product if membership >= admin' do
       store_membership.update(role: :admin)
       inventory = create(:inventory, store: store, locked_at: nil)
       delete inventory_path(inventory), headers: store_membership.user.create_new_auth_token

@@ -3,11 +3,11 @@
 class Shipping < ApplicationRecord
   belongs_to :provider, optional: false
   belongs_to :store, optional: false
-  has_many :shipping_variants, dependent: :destroy
+  has_many :shipping_products, dependent: :destroy
 
   def lock
-    shipping_variants.each do |shipping_variant|
-      shipping_variant.variant.update(quantity: shipping_variant.variant.quantity + shipping_variant.quantity)
+    shipping_products.each do |shipping_product|
+      shipping_product.product.update(quantity: shipping_product.product.quantity + shipping_product.quantity)
     end
     self.locked_at = Time.zone.now
     save

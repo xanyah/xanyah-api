@@ -22,7 +22,7 @@ resource 'Sales', document: :v2 do
   route '/v2/sales', 'Sales collection' do
     get 'Returns all sales' do
       parameter 'q[store_id_eq]', 'Filter by store id'
-      parameter 'q[variant_id_eq]', 'Filter by variant id'
+      parameter 'q[product_id_eq]', 'Filter by product id'
 
       example_request 'List all sales' do
         expect(response_status).to eq(200)
@@ -33,18 +33,18 @@ resource 'Sales', document: :v2 do
     post 'Create a sale' do
       with_options scope: :sale do
         parameter :store_id, "Sales's store id", required: true
-        parameter :client_id, "Sales's client id"
+        parameter :customer_id, "Sales's customer id"
         parameter :total_price, "Sale's total", required: true
 
-        parameter :sale_variants_attributes,
-                  "Sales's variants",
+        parameter :sale_products_attributes,
+                  "Sales's products",
                   type: :array,
                   items: {
                     type: :object,
                     properties: {
-                      variant_id: { type: :string },
+                      product_id: { type: :string },
                       quantity: { type: :integer },
-                      sale_variant_promotion_attributes: {
+                      sale_product_promotion_attributes: {
                         type: :object,
                         properties: {
                           type: { type: :string },
@@ -80,24 +80,24 @@ resource 'Sales', document: :v2 do
       end
 
       let(:store_id) { membership.store.id }
-      let(:sale_variants_attributes) do
+      let(:sale_products_attributes) do
         Array.new(5).map do
-          variant = create(:variant, product: create(:product,
-                                                     category: create(:category,
-                                                                      store: membership.store),
-                                                     store: membership.store))
+          product = create(:product,
+                           category: create(:category,
+                                            store: membership.store),
+                           store: membership.store)
           {
-            variant_id: variant.id,
-            amount_cents: variant.amount_cents,
-            amount_currency: variant.amount_currency,
+            product_id: product.id,
+            amount_cents: product.amount_cents,
+            amount_currency: product.amount_currency,
             quantity: rand(20)
           }
         end
       end
-      let(:total_price) { sale_variants_attributes.inject(0) { |sum, element| sum + (element[:quantity] * element[:amount_cents]) } }
+      let(:total_price) { sale_products_attributes.inject(0) { |sum, element| sum + (element[:quantity] * element[:amount_cents]) } }
       let(:sale_payment_attributes) do
         vat = VatRate.find_by(country_code: membership.store.country)
-        total = sale_variants_attributes.sum do |v|
+        total = sale_products_attributes.sum do |v|
           v[:quantity].to_i * (v[:amount_cents] + (v[:amount_cents] * (vat.rate_percent_cents / 10_000)))
         end
         [{

@@ -4,18 +4,12 @@ class Product < ApplicationRecord
   belongs_to :category, optional: false
   belongs_to :manufacturer, optional: false
   belongs_to :store, optional: false
-  has_many :variants, dependent: :destroy
-  has_many :providers, through: :variants
+  belongs_to :provider, optional: false
 
-  accepts_nested_attributes_for :variants, allow_destroy: true
+  has_many :product_custom_attributes, dependent: :destroy
+
+  monetize :buying_amount_cents, :tax_free_amount_cents, :amount_cents
 
   validates :name, presence: true
-  validate :common_store
-
-  protected
-
-  def common_store
-    errors.add(:category, 'must belong to store') if category.nil? || category.store != store
-    errors.add(:manufacturer, 'must belong to store') if manufacturer.nil? || manufacturer.store != store
-  end
+  validates :sku, uniqueness: { scope: :store }
 end

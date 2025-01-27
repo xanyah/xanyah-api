@@ -7,6 +7,6 @@ FactoryBot.define do
 
     store
     user
-    client
+    customer
   end
 end

@@ -29,24 +29,24 @@ RSpec.describe 'Orders' do
   end
 
   describe 'POST /orders' do
-    let(:order_variants) do
+    let(:order_products) do
       Array.new(5).map do
-        variant = create(:variant, product: create(:product,
+        product = create(:product, product: create(:product,
                                                    category: create(:category,
                                                                     tva: :standard_rate,
                                                                     store: store),
                                                    store: store))
         {
-          variant_id: variant.id,
+          product_id: product.id,
           quantity: rand(20)
         }
       end
     end
     let(:params) do
       {
-        client_id: create(:client, store: store).id,
+        customer_id: create(:customer, store: store).id,
         store_id: store.id,
-        order_variants: order_variants
+        order_products: order_products
       }
     end
 

@@ -27,8 +27,8 @@ RSpec.describe 'Products' do
     end
 
     it 'filters by provider' do
-      v = create(:variant, product: create(:product, store: store))
-      create(:variant, product: create(:product, store: store))
+      v = create(:product, product: create(:product, store: store))
+      create(:product, product: create(:product, store: store))
       get products_path(provider_id: v.provider_id), headers: user.create_new_auth_token
       expect(response).to have_http_status(:ok)
       body = response.parsed_body

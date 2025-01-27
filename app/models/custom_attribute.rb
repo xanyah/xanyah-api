@@ -4,7 +4,7 @@ class CustomAttribute < ApplicationRecord
   enum :type, { text: 0, number: 1 }
   belongs_to :store, optional: false
 
-  has_many :variant_attributes, dependent: :destroy
+  has_many :product_custom_attributes, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :store }
   validates :type, presence: true
