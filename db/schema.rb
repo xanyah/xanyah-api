@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_25_131345) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_27_193542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -197,13 +197,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_25_131345) do
     t.integer "tax_free_amount_cents", default: 0, null: false
     t.string "tax_free_amount_currency", default: "EUR", null: false
     t.integer "quantity", default: 0
-    t.uuid "provider_id"
     t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "EUR", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
-    t.index ["provider_id"], name: "index_products_on_provider_id"
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
@@ -384,7 +382,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_25_131345) do
   add_foreign_key "product_custom_attributes", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "manufacturers"
-  add_foreign_key "products", "providers"
   add_foreign_key "products", "stores"
   add_foreign_key "providers", "stores"
   add_foreign_key "sale_payments", "payment_types"

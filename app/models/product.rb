@@ -4,7 +4,6 @@ class Product < ApplicationRecord
   belongs_to :category, optional: false
   belongs_to :manufacturer, optional: false
   belongs_to :store, optional: false
-  belongs_to :provider, optional: false
 
   has_many :product_custom_attributes, dependent: :destroy
 

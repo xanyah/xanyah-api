@@ -16,7 +16,6 @@ class ProductPolicy < Presets::UserEditablePolicy
       tax_free_amount
       tax_free_amount_cents
       tax_free_amount_currency
-      provider_id
       sku
       upc
     ]
@@ -36,7 +35,6 @@ class ProductPolicy < Presets::UserEditablePolicy
       tax_free_amount
       tax_free_amount_cents
       tax_free_amount_currency
-      provider_id
       sku
       upc
     ]

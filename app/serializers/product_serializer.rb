@@ -14,5 +14,4 @@ class ProductSerializer < ActiveModel::Serializer
 
   belongs_to :category
   belongs_to :manufacturer
-  belongs_to :provider
 end
