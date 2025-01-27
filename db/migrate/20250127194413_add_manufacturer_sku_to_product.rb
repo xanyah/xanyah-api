@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddManufacturerSkuToProduct < ActiveRecord::Migration[8.0]
   def change
     add_column :products, :manufacturer_sku, :string

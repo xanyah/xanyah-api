@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAmountToProducts < ActiveRecord::Migration[8.0]
   def change
     change_table :products, bulk: true do |t|

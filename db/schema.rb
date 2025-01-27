@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_27_194413) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_27_195007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -286,12 +286,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_194413) do
   end
 
   create_table "shippings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.datetime "locked_at"
+    t.datetime "validated_at"
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "provider_id"
     t.datetime "deleted_at"
+    t.string "state"
+    t.datetime "cancelled_at"
     t.index ["deleted_at"], name: "index_shippings_on_deleted_at"
     t.index ["provider_id"], name: "index_shippings_on_provider_id"
     t.index ["store_id"], name: "index_shippings_on_store_id"

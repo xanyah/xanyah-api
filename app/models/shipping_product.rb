@@ -12,6 +12,6 @@ class ShippingProduct < ApplicationRecord
   protected
 
   def shipping_locked
-    errors.add(:shipping, 'is locked') unless shipping.nil? || shipping.locked_at.nil?
+    errors.add(:shipping, :validated) if shipping.validated?
   end
 end

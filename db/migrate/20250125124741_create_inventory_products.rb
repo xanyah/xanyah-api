@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateInventoryProducts < ActiveRecord::Migration[8.0]
   def change
     create_table :inventory_products, id: :uuid do |t|

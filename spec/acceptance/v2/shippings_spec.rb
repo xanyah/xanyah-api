@@ -72,17 +72,38 @@ resource 'Shippings', document: :v2 do
     end
   end
 
-  route '/v2/shippings/:id/lock', 'Single shipping' do
-    let!(:shipping) { create(:shipping, store: membership.store, locked_at: nil) }
+  route '/v2/shippings/:id/validate', 'Single shipping' do
+    route_description "Once validated, the shipping's products will be added to the stock."
 
-    patch 'Lock a specific shipping' do
+    let!(:shipping) { create(:shipping, store: membership.store, state: :pending) }
+
+    patch 'Validate a specific shipping' do
       let(:id) { shipping.id }
 
-      example_request 'Locking a shipping' do
+      example_request 'Validating a shipping' do
         expect(status).to eq(200)
         body = JSON.parse(response_body)
         expect(body['id']).to eq(id)
-        expect(body['locked_at']).not_to be_nil
+        expect(body['state']).to eq('validated')
+        expect(body['validated_at']).not_to be_nil
+      end
+    end
+  end
+
+  route '/v2/shippings/:id/rollback', 'Single shipping' do
+    route_description "Once rollbacked, the shipping's products will be removed from the stock."
+
+    let!(:shipping) { create(:shipping, store: membership.store, state: :validated) }
+
+    patch 'Rollback a specific shipping' do
+      let(:id) { shipping.id }
+
+      example_request 'Rollbacking a shipping' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body['id']).to eq(id)
+        expect(body['state']).to eq('cancelled')
+        expect(body['cancelled_at']).not_to be_nil
       end
     end
   end

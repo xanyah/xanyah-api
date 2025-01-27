@@ -67,8 +67,8 @@ Rails.application.routes.draw do
     resources :providers
     resources :sales, except: %i[update]
     resources :shippings, except: [:update] do
-      patch :lock, on: :member
-      put :lock, on: :member
+      patch :validate, on: :member
+      patch :rollback, on: :member
     end
     resources :shipping_products
 

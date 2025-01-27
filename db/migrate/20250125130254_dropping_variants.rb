@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class DroppingVariants < ActiveRecord::Migration[8.0]
-  def change
+  def change # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     drop_table :inventory_variants do |t|
       t.integer :quantity
       t.belongs_to :inventory

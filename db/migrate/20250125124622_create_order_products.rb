@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateOrderProducts < ActiveRecord::Migration[8.0]
   def change
     create_table :order_products, id: :uuid do |t|

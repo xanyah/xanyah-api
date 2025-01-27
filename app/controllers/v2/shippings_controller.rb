@@ -2,10 +2,20 @@
 
 module V2
   class ShippingsController < ResourcesController
-    def lock
+    def validate
       authorize @record
 
-      if @record.lock
+      if @record.validate
+        render json: @record
+      else
+        render json: @record.errors, status: :unprocessable_entity
+      end
+    end
+
+    def rollback
+      authorize @record
+
+      if @record.rollback
         render json: @record
       else
         render json: @record.errors, status: :unprocessable_entity

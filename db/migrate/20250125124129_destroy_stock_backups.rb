@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DestroyStockBackups < ActiveRecord::Migration[8.0]
   def change
     drop_table :stock_backup_variants do |t|

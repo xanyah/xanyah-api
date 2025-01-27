@@ -16,6 +16,7 @@ gem 'pg', '~> 1.5'
 gem 'puma', '~> 6.5'
 gem 'rails', '~> 8.0'
 
+gem 'aasm', '~> 5.5'
 gem 'active_model_serializers', '~> 0.10'
 gem 'aws-sdk-s3', '~> 1.19', require: false
 gem 'cancancan', '~> 3.6'
@@ -24,6 +25,7 @@ gem 'devise', '~> 4.9'
 gem 'devise_token_auth', '~> 1.2'
 gem 'faker', '~> 3.5'
 gem 'money-rails', '~> 1.15'
+gem 'pagy', '~> 9.3'
 gem 'paranoia', '~> 3.0'
 gem 'pundit', '~> 2.4'
 gem 'rack-cors', '~> 2.0'
@@ -61,5 +63,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-gem 'pagy', '~> 9.3'
