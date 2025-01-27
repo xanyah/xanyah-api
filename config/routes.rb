@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :customers do
-    get :search, on: :collection
+    # get :search, on: :collection
   end
 
   resources :custom_attributes
@@ -21,11 +21,11 @@ Rails.application.routes.draw do
   end
 
   resources :manufacturers do
-    get :search, on: :collection
+    # get :search, on: :collection
   end
 
   resources :orders do
-    get :search, on: :collection
+    # get :search, on: :collection
   end
 
   resources :payment_types
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   resources :products
 
   resources :providers do
-    get :search, on: :collection
+    # get :search, on: :collection
   end
 
   resources :sales, except: %i[update]

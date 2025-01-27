@@ -12,12 +12,4 @@ class Manufacturer < ApplicationRecord
   def set_code
     self.code = name.first(4).upcase if code.blank?
   end
-
-  def self.search(query)
-    query = query.downcase
-    where("
-      LOWER(manufacturers.name) LIKE ?
-      OR LOWER(manufacturers.notes) LIKE ?
-    ", "%#{query}%", "%#{query}%")
-  end
 end

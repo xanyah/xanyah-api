@@ -11,6 +11,5 @@ FactoryBot.define do
 
     category { build(:category, store: store) }
     manufacturer { build(:manufacturer, store: store) }
-    provider { build(:provider, store: store) }
   end
 end
