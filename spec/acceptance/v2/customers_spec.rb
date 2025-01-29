@@ -2,7 +2,7 @@
 
 require 'acceptance_helper'
 
-resource 'Customer', document: :v2 do
+resource 'Customers', document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   header 'Authorization', :authorization

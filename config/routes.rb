@@ -49,7 +49,7 @@ Rails.application.routes.draw do
 
   namespace :v2 do
     resources :categories
-    resource :current_user, controller: :current_user, only: :update
+    resource :current_user, controller: :current_user, except: :destroy
     resources :customers
     resources :custom_attributes
     resources :file_imports, only: :create

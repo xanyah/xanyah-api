@@ -47,6 +47,14 @@ resource 'Authentication' do
   route '/v2/current_user', 'Current User' do
     header 'Authorization', :authorization
 
+    get 'Get user' do
+      example_request 'Get user' do
+        expect(response_status).to eq(200)
+        response = JSON.parse(response_body)
+        expect(response['lastname']).to eq(user.lastname)
+      end
+    end
+
     patch 'Update user' do
       with_options scope: :user, with_example: true do
         parameter :email, 'User new email'

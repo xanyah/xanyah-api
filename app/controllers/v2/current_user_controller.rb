@@ -2,6 +2,10 @@
 
 module V2
   class CurrentUserController < BaseController
+    def show
+      render json: current_user
+    end
+
     def update
       current_user.update(update_params)
 
