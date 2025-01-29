@@ -13,7 +13,7 @@ end
 gem 'dotenv-rails', '~> 3.1', groups: %i[development test]
 
 gem 'pg', '~> 1.5'
-gem 'puma', '~> 6.5'
+gem 'puma', '~> 6.6'
 gem 'rails', '~> 8.0'
 
 gem 'aasm', '~> 5.5'
