@@ -7,6 +7,18 @@ class User < ApplicationRecord
          :confirmable, :lockable
   include DeviseTokenAuth::Concerns::User
 
+  has_many :access_grants,
+           class_name: 'Doorkeeper::AccessGrant',
+           foreign_key: :resource_owner_id,
+           dependent: :delete_all,
+           inverse_of: :resource_owner
+
+  has_many :access_tokens,
+           class_name: 'Doorkeeper::AccessToken',
+           foreign_key: :resource_owner_id,
+           dependent: :delete_all,
+           inverse_of: :resource_owner
+
   has_many :store_memberships, dependent: :destroy
   has_many :stores, through: :store_memberships
   has_many :categories, through: :stores

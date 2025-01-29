@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  use_doorkeeper
   default_url_options host: ENV.fetch('RAILS_DEFAULT_HOST', 'localhost:3000')
-
-  mount_devise_token_auth_for 'User', at: 'auth'
 
   resources :categories
 
@@ -50,6 +49,7 @@ Rails.application.routes.draw do
 
   namespace :v2 do
     resources :categories
+    resource :current_user, controller: :current_user, only: :update
     resources :customers
     resources :custom_attributes
     resources :file_imports, only: :create

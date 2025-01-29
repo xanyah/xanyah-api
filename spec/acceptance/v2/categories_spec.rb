@@ -5,19 +5,10 @@ require 'acceptance_helper'
 resource 'Categories', document: :v2 do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
-  header 'Access-Token', :access_token
-  header 'Token-Type', :token_type
-  header 'Client', :client_id
-  header 'Expiry', :expiry
-  header 'Uid', :uid
+  header 'Authorization', :authorization
 
+  let(:authorization) { "Bearer #{create(:access_token, resource_owner_id: membership.user_id).token}" }
   let(:membership) { create(:store_membership, role: :admin) }
-  let(:auth_token) { membership.user.create_new_auth_token }
-  let(:access_token) { auth_token['access-token'] }
-  let(:token_type) { auth_token['token-type'] }
-  let(:client_id) { auth_token['client'] }
-  let(:expiry) { auth_token['expiry'] }
-  let(:uid) { auth_token['uid'] }
 
   route '/v2/categories', 'Categories collection' do
     get 'Returns all categories' do

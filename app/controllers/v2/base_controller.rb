@@ -5,6 +5,7 @@ module V2
     include DeviseTokenAuth::Concerns::SetUserByToken
     include Pagy::Backend
     include Pundit::Authorization
+    include DoorkeeperUserConcern
 
     before_action :authenticate_user!
 
