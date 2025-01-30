@@ -2,7 +2,7 @@
 
 class DroppingVariants < ActiveRecord::Migration[8.0]
   def change # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-    drop_table :inventory_variants do |t|
+    drop_table :inventory_variants, id: :uuid do |t|
       t.integer :quantity
       t.belongs_to :inventory
       t.belongs_to :variant
@@ -11,7 +11,7 @@ class DroppingVariants < ActiveRecord::Migration[8.0]
       t.datetime :deleted_at
     end
 
-    drop_table :order_variants do |t|
+    drop_table :order_variants, id: :uuid do |t|
       t.belongs_to :variant
       t.belongs_to :order
       t.integer :quantity
@@ -19,7 +19,7 @@ class DroppingVariants < ActiveRecord::Migration[8.0]
       t.datetime :deleted_at
     end
 
-    drop_table :sale_variant_promotions do |t|
+    drop_table :sale_variant_promotions, id: :uuid do |t|
       t.integer :type
       t.belongs_to :sale_variant
       t.timestamps
@@ -28,7 +28,7 @@ class DroppingVariants < ActiveRecord::Migration[8.0]
       t.string :amount_currency, default: 'EUR', null: false
     end
 
-    drop_table :sale_variants do |t|
+    drop_table :sale_variants, id: :uuid do |t|
       t.integer :quantity
       t.belongs_to :sale
       t.belongs_to :variant
@@ -38,7 +38,7 @@ class DroppingVariants < ActiveRecord::Migration[8.0]
       t.string :amount_currency, default: 'EUR', null: false
     end
 
-    drop_table :shipping_variants do |t|
+    drop_table :shipping_variants, id: :uuid do |t|
       t.integer :quantity
       t.belongs_to :shipping
       t.belongs_to :variant
@@ -46,7 +46,7 @@ class DroppingVariants < ActiveRecord::Migration[8.0]
       t.datetime :deleted_at
     end
 
-    drop_table :variant_attributes do |t|
+    drop_table :variant_attributes, id: :uuid do |t|
       t.string :value
       t.belongs_to :variant
       t.belongs_to :custom_attribute
@@ -54,7 +54,7 @@ class DroppingVariants < ActiveRecord::Migration[8.0]
       t.datetime :deleted_at
     end
 
-    drop_table :variants do |t|
+    drop_table :variants, id: :uuid do |t|
       t.string :original_barcode
       t.string :barcode
       t.float :ratio, default: 0.0

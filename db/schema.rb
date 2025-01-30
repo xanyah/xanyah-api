@@ -18,9 +18,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
+    t.uuid "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -32,12 +32,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.text "metadata"
     t.bigint "byte_size", null: false
     t.string "checksum"
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", force: :cascade do |t|
+  create_table "active_storage_variant_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
@@ -49,7 +49,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.uuid "vat_rate_id"
     t.index ["category_id"], name: "index_categories_on_category_id"
     t.index ["deleted_at"], name: "index_categories_on_deleted_at"
@@ -73,7 +73,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.index ["deleted_at"], name: "index_custom_attributes_on_deleted_at"
     t.index ["store_id"], name: "index_custom_attributes_on_store_id"
   end
@@ -88,7 +88,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.index ["deleted_at"], name: "index_customers_on_deleted_at"
     t.index ["store_id"], name: "index_customers_on_store_id"
   end
@@ -97,9 +97,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "user_id"
     t.uuid "store_id"
     t.boolean "processed", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "deleted_at", precision: nil
     t.index ["deleted_at"], name: "index_file_imports_on_deleted_at"
     t.index ["store_id"], name: "index_file_imports_on_store_id"
     t.index ["user_id"], name: "index_file_imports_on_user_id"
@@ -110,7 +110,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.index ["deleted_at"], name: "index_inventories_on_deleted_at"
     t.index ["store_id"], name: "index_inventories_on_store_id"
   end
@@ -132,7 +132,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.string "code"
     t.index ["deleted_at"], name: "index_manufacturers_on_deleted_at"
     t.index ["store_id"], name: "index_manufacturers_on_store_id"
@@ -197,7 +197,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["deleted_at"], name: "index_orders_on_deleted_at"
     t.index ["store_id"], name: "index_orders_on_store_id"
@@ -209,7 +209,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.index ["deleted_at"], name: "index_payment_types_on_deleted_at"
     t.index ["store_id"], name: "index_payment_types_on_store_id"
   end
@@ -232,7 +232,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.string "sku"
     t.string "upc"
     t.integer "buying_amount_cents", default: 0, null: false
@@ -255,7 +255,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.index ["deleted_at"], name: "index_providers_on_deleted_at"
     t.index ["store_id"], name: "index_providers_on_store_id"
   end
@@ -265,7 +265,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "sale_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.integer "total_amount_cents", default: 0, null: false
     t.string "total_amount_currency", default: "EUR", null: false
     t.index ["deleted_at"], name: "index_sale_payments_on_deleted_at"
@@ -293,7 +293,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "sale_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "EUR", null: false
     t.index ["deleted_at"], name: "index_sale_promotions_on_deleted_at"
@@ -307,7 +307,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.integer "total_amount_cents", default: 0, null: false
     t.string "total_amount_currency", default: "EUR", null: false
     t.index ["customer_id"], name: "index_sales_on_customer_id"
@@ -319,7 +319,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
   create_table "shipping_products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "shipping_id", null: false
     t.uuid "product_id", null: false
-    t.integer "quantity", default: 0
+    t.integer "quantity", default: 1
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -333,7 +333,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "provider_id"
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.string "state"
     t.datetime "cancelled_at"
     t.index ["deleted_at"], name: "index_shippings_on_deleted_at"
@@ -347,7 +347,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.index ["deleted_at"], name: "index_store_memberships_on_deleted_at"
     t.index ["store_id"], name: "index_store_memberships_on_store_id"
     t.index ["user_id"], name: "index_store_memberships_on_user_id"
@@ -359,7 +359,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.uuid "country_id"
     t.index ["country_id"], name: "index_stores_on_country_id"
     t.index ["deleted_at"], name: "index_stores_on_deleted_at"
@@ -391,7 +391,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_201932) do
     t.datetime "updated_at", null: false
     t.string "lastname"
     t.string "locale", default: "en"
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true

@@ -3,7 +3,8 @@ FROM mcr.microsoft.com/devcontainers/base:1-bookworm
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
-    libpq-dev
+    libpq-dev \
+    libvips-dev
 
 # [Optional] Uncomment this line to install additional gems.
 # RUN su vscode -c "gem install <your-gem-names-here>"
