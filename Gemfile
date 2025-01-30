@@ -18,7 +18,7 @@ gem 'rails', '~> 8.0'
 
 gem 'aasm', '~> 5.5'
 gem 'active_model_serializers', '~> 0.10'
-gem 'aws-sdk-s3', '~> 1.19', require: false
+gem 'aws-sdk-s3', '~> 1.179', require: false
 gem 'cancancan', '~> 3.6'
 gem 'csv', '~> 3.3'
 gem 'devise', '~> 4.9'
