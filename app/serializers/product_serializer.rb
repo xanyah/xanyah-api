@@ -22,10 +22,11 @@ class ProductSerializer < ActiveModel::Serializer
   def images
     object.images.map do |image|
       {
+        large: image_variant_path(image, :large),
+        medium: image_variant_path(image, :medium),
         open_graph: image_variant_path(image, :open_graph),
         thumbnail: image_variant_path(image, :thumbnail),
-        medium: image_variant_path(image, :medium),
-        large: image_variant_path(image, :large)
+        signed_id: image.signed_id
       }
     end
   end
