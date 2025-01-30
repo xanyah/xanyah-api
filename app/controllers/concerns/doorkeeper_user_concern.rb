@@ -4,7 +4,7 @@ module DoorkeeperUserConcern
   extend ActiveSupport::Concern
 
   def current_user
-    @current_user ||= User.find_by(id: cached_doorkeeper_token.resource_owner_id) unless cached_doorkeeper_token&.revoked?
+    @current_user ||= User.find_by(id: cached_doorkeeper_token.resource_owner_id) if !cached_doorkeeper_token.nil? && !cached_doorkeeper_token&.revoked?
   end
 
   def cached_doorkeeper_token

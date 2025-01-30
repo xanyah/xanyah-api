@@ -6,6 +6,6 @@ class CategoryPolicy < Presets::AdminEditablePolicy
   end
 
   def permitted_attributes_for_update
-    %i[name category_id]
+    %i[name category_id vat_rate_id]
   end
 end

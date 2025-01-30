@@ -77,6 +77,6 @@ Rails.application.routes.draw do
 
     resources :products
 
-    resources :vat_rates, only: :index
+    resources :vat_rates, only: %i[index show]
   end
 end
