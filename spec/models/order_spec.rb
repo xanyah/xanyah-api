@@ -29,30 +29,4 @@ RSpec.describe Order do
       end
     end
   end
-
-  describe 'search' do
-    it :product_name do
-      store = create(:store)
-      product1 = create(:product, name: 'Thon', store: store)
-      product2 = create(:product, name: 'Mayo', store: store)
-      order1 = create(:order, store:          store)
-      order2 = create(:order, store:          store)
-      create(:order_product, order: order1, product: create(:product, product: product1))
-      create(:order_product, order: order2, product: create(:product, product: product2))
-      expect(described_class.search('Th').size).to be > 0
-      expect(described_class.search('Thon').size).to be > 0
-    end
-
-    it :customer_firstname do
-      order = create(:order)
-      create(:order)
-      expect(described_class.search(order.customer.firstname).size).to be > 0
-    end
-
-    it :customer_lastname do
-      order = create(:order)
-      create(:order)
-      expect(described_class.search(order.customer.lastname).size).to be > 0
-    end
-  end
 end

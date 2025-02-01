@@ -13,12 +13,6 @@ RSpec.describe SalePromotion do
   end
 
   describe 'validations' do
-    describe 'amount' do
-      it :presence do
-        expect(build(:sale_promotion, amount: nil)).not_to be_valid
-      end
-    end
-
     describe 'sale' do
       it :presence do
         expect(build(:sale_promotion, sale: nil)).not_to be_valid

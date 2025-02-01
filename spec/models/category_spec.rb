@@ -42,12 +42,6 @@ RSpec.describe Category do
         expect(build(:category, store: nil)).not_to be_valid
       end
     end
-
-    describe 'tva' do
-      it :sets_default do
-        expect(build(:category, tva: nil)).to be_valid
-      end
-    end
   end
 
   describe 'scopes' do

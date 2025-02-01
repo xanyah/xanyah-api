@@ -19,12 +19,10 @@ gem 'rails', '~> 8.0'
 gem 'aasm', '~> 5.5'
 gem 'active_model_serializers', '~> 0.10'
 gem 'aws-sdk-s3', '~> 1.179', require: false
-gem 'cancancan', '~> 3.6'
 gem 'csv', '~> 3.3'
 gem 'devise', '~> 4.9'
-gem 'devise_token_auth', '~> 1.2'
 gem 'doorkeeper', '~> 5.8'
-gem 'faker', '~> 3.5'
+gem 'faker', '~> 3.5', require: false
 gem 'image_processing', '~> 1.13'
 gem 'money-rails', '~> 1.15'
 gem 'pagy', '~> 9.3'
@@ -35,7 +33,6 @@ gem 'ransack', '~> 4.2'
 gem 'sidekiq', '~> 7.3'
 
 group :development, :test do
-  gem 'apitome', '~> 0.2', require: false
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'brakeman', '~> 7.0', require: false
   # Use database cleaner to delete records after each test

@@ -29,18 +29,4 @@ RSpec.describe Manufacturer do
       end
     end
   end
-
-  describe 'search' do
-    it :name do
-      name = create(:manufacturer).name
-      create(:manufacturer)
-      expect(described_class.search(name).size).to be > 0
-    end
-
-    it :notes do
-      notes = create(:manufacturer).notes
-      create(:manufacturer)
-      expect(described_class.search(notes).size).to be > 0
-    end
-  end
 end

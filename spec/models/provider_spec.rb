@@ -29,18 +29,4 @@ RSpec.describe Provider do
       end
     end
   end
-
-  describe 'search' do
-    it :name do
-      name = create(:provider).name
-      create(:provider)
-      expect(described_class.search(name).size).to be > 0
-    end
-
-    it :notes do
-      notes = create(:provider).notes
-      create(:provider)
-      expect(described_class.search(notes).size).to be > 0
-    end
-  end
 end

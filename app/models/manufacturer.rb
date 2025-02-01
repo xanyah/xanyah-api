@@ -10,6 +10,6 @@ class Manufacturer < ApplicationRecord
   before_validation :set_code
 
   def set_code
-    self.code = name.first(4).upcase if code.blank?
+    self.code = name&.first(4)&.upcase if code.blank?
   end
 end

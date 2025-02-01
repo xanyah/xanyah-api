@@ -81,15 +81,15 @@ resource 'Shippings', document: :v2 do
     end
   end
 
-  route '/v2/shippings/:id/rollback', 'Single shipping' do
-    route_description "Once rollbacked, the shipping's products will be removed from the stock."
+  route '/v2/shippings/:id/cancel', 'Single shipping' do
+    route_description "Once cancelled, the shipping's products will be removed from the stock."
 
     let!(:shipping) { create(:shipping, store: membership.store, state: :validated) }
 
-    patch 'Rollback a specific shipping' do
+    patch 'Cancel a specific shipping' do
       let(:id) { shipping.id }
 
-      example_request 'Rollbacking a shipping' do
+      example_request 'Cancelling a shipping' do
         expect(status).to eq(200)
         body = JSON.parse(response_body)
         expect(body['id']).to eq(id)

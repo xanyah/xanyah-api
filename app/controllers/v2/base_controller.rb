@@ -2,7 +2,6 @@
 
 module V2
   class BaseController < ActionController::API
-    include DeviseTokenAuth::Concerns::SetUserByToken
     include Pagy::Backend
     include Pundit::Authorization
     include DoorkeeperUserConcern

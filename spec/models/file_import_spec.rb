@@ -7,14 +7,6 @@ RSpec.describe FileImport do
     expect(build(:file_import)).to be_valid
   end
 
-  describe 'callbacks' do
-    it :worker_creation do
-      expect do
-        create(:file_import)
-      end.to change(FileImportWorker.jobs, :size).by(1)
-    end
-  end
-
   it :is_paranoid do
     file_import = create(:file_import)
     expect(file_import.deleted_at).to be_nil

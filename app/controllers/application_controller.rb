@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
-  include CanCan::ControllerAdditions
-  include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from ActiveRecord::RecordNotFound do
@@ -11,10 +9,6 @@ class ApplicationController < ActionController::API
 
   rescue_from ArgumentError do |exception|
     render json: { errors: [exception] }, status: :unprocessable_entity
-  end
-
-  rescue_from CanCan::AccessDenied do |exception|
-    render json: { errors: [exception] }, status: :unauthorized
   end
 
   protected

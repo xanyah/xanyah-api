@@ -2,39 +2,34 @@
 
 class User < ApplicationRecord
   # Include default devise modules.
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable
-  include DeviseTokenAuth::Concerns::User
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :trackable,
+         # :validatable,
+         # :confirmable,
+         :lockable
 
+  #  rubocop:disable Rails/InverseOf
   has_many :access_grants,
            class_name: 'Doorkeeper::AccessGrant',
            foreign_key: :resource_owner_id,
-           dependent: :delete_all,
-           inverse_of: :resource_owner
+           dependent: :delete_all
 
   has_many :access_tokens,
            class_name: 'Doorkeeper::AccessToken',
            foreign_key: :resource_owner_id,
-           dependent: :delete_all,
-           inverse_of: :resource_owner
+           dependent: :delete_all
+  #  rubocop:enable Rails/InverseOf
 
   has_many :store_memberships, dependent: :destroy
   has_many :stores, through: :store_memberships
-  has_many :categories, through: :stores
-  has_many :customers, through: :stores
-  has_many :custom_attributes, through: :stores
-  has_many :inventories, through: :stores
-  has_many :manufacturers, through: :stores
-  has_many :orders, through: :stores
-  has_many :payment_types, through: :stores
-  has_many :products, through: :stores
-  has_many :providers, through: :stores
-  has_many :sales, through: :stores
-  has_many :shippings, through: :stores
-  has_many :shipping_products, through: :stores
-  has_many :stores_store_memberships, through: :stores, source: :store_memberships
-  has_many :inventory_products, through: :stores
+  has_many :sales, dependent: :nullify
+
+  validates :email,
+            presence: true,
+            uniqueness: true
 
   def token_validation_response
     as_json(except: %i[

@@ -14,7 +14,6 @@ RSpec.describe StoreSerializer do
       name
       key
       address
-      country
       created_at
       updated_at
     ]

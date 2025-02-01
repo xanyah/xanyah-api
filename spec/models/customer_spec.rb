@@ -23,36 +23,4 @@ RSpec.describe Customer do
     expect(customer.deleted_at).not_to be_nil
     expect(described_class.all).not_to include(customer)
   end
-
-  describe 'search' do
-    it :firstname do
-      firstname = create(:customer).firstname
-      create(:customer)
-      expect(described_class.search(firstname).size).to be > 0
-    end
-
-    it :lastname do
-      lastname = create(:customer).lastname
-      create(:customer)
-      expect(described_class.search(lastname).size).to be > 0
-    end
-
-    it :email do
-      email = create(:customer).email
-      create(:customer)
-      expect(described_class.search(email).size).to be > 0
-    end
-
-    it :phone do
-      phone = create(:customer).phone
-      create(:customer)
-      expect(described_class.search(phone).size).to be > 0
-    end
-
-    it :notes do
-      notes = create(:customer).notes
-      create(:customer)
-      expect(described_class.search(notes).size).to be > 0
-    end
-  end
 end

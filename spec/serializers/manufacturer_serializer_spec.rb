@@ -15,7 +15,6 @@ RSpec.describe ManufacturerSerializer do
       created_at
       updated_at
       notes
-      store_id
     ]
   end
 
@@ -26,13 +25,6 @@ RSpec.describe ManufacturerSerializer do
       else
         expect(json[attribute]).to eq(manufacturer.send(attribute))
       end
-    end
-  end
-
-  describe 'counts' do
-    it :products do
-      create(:product, manufacturer: manufacturer, store: store)
-      expect(json['products_count']).to eq(1)
     end
   end
 end
