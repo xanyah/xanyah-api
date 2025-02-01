@@ -61,7 +61,11 @@ Rails.application.routes.draw do
     resources :manufacturers
     resources :orders, except: :destroy do
       patch :cancel, on: :member
+      patch :deliver, on: :member
+      patch :order, on: :member
+      patch :withdraw, on: :member
     end
+    resources :order_products, only: :index
     resources :payment_types
     resources :products
     resources :providers

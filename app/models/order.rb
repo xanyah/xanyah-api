@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
-  enum :status, { pending: 0, delivered: 1, canceled: 2 }
+  include Order::StateMachine
 
   belongs_to :customer, optional: false
   belongs_to :store, optional: false

@@ -74,16 +74,61 @@ resource 'Orders', document: :v2 do
   end
 
   route '/v2/orders/:id/cancel', 'Single order' do
-    let!(:order) { create(:order, store: membership.store) }
+    let!(:order) { create(:order, store: membership.store, state: :ordered) }
 
     patch 'Cancel an order' do
       let(:id) { order.id }
 
-      example_request 'Getting an order' do
+      example_request 'Cancelling an order' do
         expect(status).to eq(200)
         body = JSON.parse(response_body)
         expect(body['id']).to eq(id)
-        expect(body['status']).to eq('canceled')
+        expect(body['state']).to eq('cancelled')
+      end
+    end
+  end
+
+  route '/v2/orders/:id/order', 'Single order' do
+    let!(:order) { create(:order, store: membership.store) }
+
+    patch 'Order an order' do
+      let(:id) { order.id }
+
+      example_request 'Ordering an order' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body['id']).to eq(id)
+        expect(body['state']).to eq('ordered')
+      end
+    end
+  end
+
+  route '/v2/orders/:id/deliver', 'Single order' do
+    let!(:order) { create(:order, store: membership.store, state: :ordered) }
+
+    patch 'Deliver an order' do
+      let(:id) { order.id }
+
+      example_request 'Delivering an order' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body['id']).to eq(id)
+        expect(body['state']).to eq('delivered')
+      end
+    end
+  end
+
+  route '/v2/orders/:id/withdraw', 'Single order' do
+    let!(:order) { create(:order, store: membership.store, state: :delivered) }
+
+    patch 'Withdraw an order' do
+      let(:id) { order.id }
+
+      example_request 'Withdrawing an order' do
+        expect(status).to eq(200)
+        body = JSON.parse(response_body)
+        expect(body['id']).to eq(id)
+        expect(body['state']).to eq('withdrawn')
       end
     end
   end

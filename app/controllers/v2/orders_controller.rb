@@ -2,13 +2,15 @@
 
 module V2
   class OrdersController < ResourcesController
-    def cancel
-      authorize @record, :update?
+    %i[order deliver withdraw cancel].each do |action|
+      define_method(action) do
+        authorize @record, :update?
 
-      if @record.update(status: :canceled)
-        render json: @record
-      else
-        render json: @record.errors, status: :unprocessable_entity
+        if @record.send(:"#{action}!")
+          render json: @record
+        else
+          render json: @record.errors, status: :unprocessable_entity
+        end
       end
     end
   end

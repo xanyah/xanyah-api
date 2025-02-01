@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :order do
-    status { %i[pending delivered canceled].sample }
+    state { :pending }
     customer
     store
   end
