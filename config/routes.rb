@@ -70,9 +70,12 @@ Rails.application.routes.draw do
     resources :products
     resources :providers
     resources :sales, except: %i[update]
+    resources :sale_payments, only: :index
+    resources :sale_products, only: :index
+    resources :sales, except: %i[update]
     resources :shippings, except: [:update] do
       patch :validate, on: :member
-      patch :rollback, on: :member
+      patch :cancel, on: :member
     end
     resources :shipping_products
 

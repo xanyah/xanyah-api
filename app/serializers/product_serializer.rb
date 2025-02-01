@@ -11,6 +11,7 @@ class ProductSerializer < ActiveModel::Serializer
              :buying_amount_currency,
              :tax_free_amount_cents,
              :tax_free_amount_currency,
+             :quantity,
              :sku,
              :upc,
              :manufacturer_sku,

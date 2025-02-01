@@ -5,17 +5,17 @@ module V2
     def validate
       authorize @record
 
-      if @record.validate
+      if @record.validate!
         render json: @record
       else
         render json: @record.errors, status: :unprocessable_entity
       end
     end
 
-    def rollback
+    def cancel
       authorize @record
 
-      if @record.rollback
+      if @record.cancel!
         render json: @record
       else
         render json: @record.errors, status: :unprocessable_entity

@@ -16,4 +16,14 @@ class Sale < ApplicationRecord
   accepts_nested_attributes_for :sale_promotion, allow_destroy: true
   accepts_nested_attributes_for :sale_payments, allow_destroy: true
   accepts_nested_attributes_for :sale_products, allow_destroy: true
+
+  after_create :update_stock
+
+  private
+
+  def update_stock
+    sale_products.each do |sale_product|
+      sale_product.product.update(quantity: sale_product.product.quantity - sale_product.quantity)
+    end
+  end
 end

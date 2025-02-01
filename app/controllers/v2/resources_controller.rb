@@ -7,7 +7,7 @@ module V2
     before_action :set_record, except: %i[index create]
 
     def index
-      @q = policy_scope(model_class).ransack(params[:q])
+      @q = policy_scope(model_class).includes(included_relationships).ransack(params[:q])
       @pagy, @records = pagy(@q.result(distinct: true))
 
       pagy_headers_merge(@pagy)
@@ -58,6 +58,10 @@ module V2
 
     def set_record
       @record = model_class.find(params[:id])
+    end
+
+    def included_relationships
+      []
     end
   end
 end

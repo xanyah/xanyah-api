@@ -7,7 +7,7 @@ class Shipping
     included do
       include AASM
 
-      aasm column: :state do
+      aasm column: :state, timestamps: true do
         state :pending, initial: true
         state :validated
         state :cancelled
@@ -16,7 +16,7 @@ class Shipping
           transitions from: %i[pending cancelled], to: :validated
         end
 
-        event :rollback, before: :extract_products do
+        event :cancel, before: :extract_products do
           transitions from: :validated, to: :cancelled
         end
       end
@@ -25,14 +25,12 @@ class Shipping
         shipping_products.each do |shipping_product|
           shipping_product.product.update(quantity: shipping_product.product.quantity + shipping_product.quantity)
         end
-        self.validated_at = Time.current
       end
 
       def extract_products
         shipping_products.each do |shipping_product|
           shipping_product.product.update(quantity: shipping_product.product.quantity - shipping_product.quantity)
         end
-        self.cancelled_at = Time.current
       end
     end
   end

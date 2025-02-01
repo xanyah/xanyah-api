@@ -7,5 +7,9 @@ module V2
       @record.user = current_user
       super
     end
+
+    def included_relationships
+      %i[customer user]
+    end
   end
 end

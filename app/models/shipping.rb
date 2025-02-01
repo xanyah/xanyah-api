@@ -6,4 +6,6 @@ class Shipping < ApplicationRecord
   belongs_to :provider, optional: false
   belongs_to :store, optional: false
   has_many :shipping_products, dependent: :destroy
+
+  accepts_nested_attributes_for :shipping_products, allow_destroy: true
 end
