@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe SalePayment do
   it :has_valid_factory do
-    expect(build(:sale_payment)).to be_valid
+    expect(create(:sale_payment)).to be_valid
   end
 
   it :is_paranoid do

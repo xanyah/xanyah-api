@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :order do
     state { :pending }
-    customer
     store
+    customer { build(:customer, store:) }
   end
 end

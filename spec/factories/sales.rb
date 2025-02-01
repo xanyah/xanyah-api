@@ -7,6 +7,6 @@ FactoryBot.define do
 
     store
     user
-    customer
+    customer { build(:customer, store:) }
   end
 end

@@ -16,7 +16,7 @@ FactoryBot.define do
 
     store
 
-    category { build(:category, store: store) }
-    manufacturer { build(:manufacturer, store: store) }
+    category { build(:category, store:) }
+    manufacturer { build(:manufacturer, store:) }
   end
 end

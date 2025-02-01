@@ -4,19 +4,10 @@ class SalePayment < ApplicationRecord
   belongs_to :sale
   belongs_to :payment_type
 
-  monetize :total_amount_cents
-
   has_one :store, through: :sale
 
-  validate :store_validation
+  validates_ownership_of :payment_type, with: :store
+  validates_ownership_of :sale, with: :store
 
-  protected
-
-  def store_validation
-    return unless !payment_type_id.nil? &&
-                  !PaymentType.find(payment_type_id).nil? &&
-                  PaymentType.find(payment_type_id).store.id != sale&.store_id
-
-    errors.add(:payment_type, 'must belong to store')
-  end
+  monetize :total_amount_cents
 end

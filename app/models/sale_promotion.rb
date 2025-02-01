@@ -4,6 +4,7 @@ class SalePromotion < ApplicationRecord
   self.inheritance_column = :_type_disabled
 
   belongs_to :sale
+
   monetize :amount_cents
 
   validates :amount_cents,

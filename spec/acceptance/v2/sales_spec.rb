@@ -73,10 +73,7 @@ resource 'Sales', document: :v2 do
       let(:store_id) { membership.store.id }
       let(:sale_products_attributes) do
         Array.new(5).map do
-          product = create(:product,
-                           category: create(:category,
-                                            store: membership.store),
-                           store: membership.store)
+          product = create(:product, store: membership.store)
           {
             product_id: product.id,
             amount_cents: product.amount_cents,
@@ -92,7 +89,7 @@ resource 'Sales', document: :v2 do
           v[:quantity].to_i * (v[:amount_cents] + (v[:amount_cents] * (vat.rate_percent_cents / 10_000)))
         end
         [{
-          payment_type_id: create(:payment_type, store: membership.store).id,
+          payment_type_id: create(:payment_type, store_id: store_id).id,
           total_amount_cents: total
         }]
       end

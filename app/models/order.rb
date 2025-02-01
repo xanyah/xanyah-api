@@ -6,6 +6,8 @@ class Order < ApplicationRecord
   belongs_to :customer, optional: false
   belongs_to :store, optional: false
 
+  validates_ownership_of :customer, with: :store
+
   has_many :order_products, dependent: :destroy
   has_many :products, through: :order_products
 

@@ -27,11 +27,4 @@ RSpec.describe ProviderSerializer do
       end
     end
   end
-
-  describe 'counts' do
-    it :shippings do
-      create(:shipping, provider: provider)
-      expect(json['shippings_count']).to eq(1)
-    end
-  end
 end

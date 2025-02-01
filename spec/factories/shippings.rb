@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :shipping do
     state { :pending }
     store
-    provider
+    provider { build(:provider, store:) }
   end
 end

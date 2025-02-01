@@ -10,7 +10,7 @@ RSpec.describe Category do
   it 'creates a new Category with a SubCategory' do
     expect do
       category = create(:category)
-      create(:category, category: category)
+      create(:category, category: category, store: category.store)
     end.to change(described_class, :count).by(2)
   end
 
@@ -46,9 +46,9 @@ RSpec.describe Category do
 
   describe 'scopes' do
     let(:category) { create(:category) }
-    let(:subcategory1) { create(:category, category: category) }
-    let(:subcategory2) { create(:category, category: category) }
-    let(:subcategory3) { create(:category, category: category) }
+    let(:subcategory1) { create(:category, store: category.store, category: category) }
+    let(:subcategory2) { create(:category, store: category.store, category: category) }
+    let(:subcategory3) { create(:category, store: category.store, category: category) }
 
     it :without_category do
       expect(described_class.without_category).to include(category)

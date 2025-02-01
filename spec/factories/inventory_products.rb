@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :inventory_product do
     inventory
-    product
+    product { build(:product, store: inventory.store) }
     quantity { rand(1..25) }
   end
 end

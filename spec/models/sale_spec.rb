@@ -31,8 +31,9 @@ RSpec.describe Sale do
   end
 
   it 'removes quantity from products' do
-    product = create(:product, quantity: 10)
-    create(:sale, sale_products_attributes: [{ product_id: product.id, quantity: 2 }])
+    store = create(:store)
+    product = create(:product, store: store, quantity: 10)
+    create(:sale, store: store, sale_products_attributes: [{ product_id: product.id, quantity: 2 }])
     expect(product.reload.quantity).to eq(8)
   end
 end

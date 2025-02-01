@@ -5,6 +5,9 @@ class Product < ApplicationRecord
   belongs_to :manufacturer, optional: false
   belongs_to :store, optional: false
 
+  validates_ownership_of :category, with: :store
+  validates_ownership_of :manufacturer, with: :store
+
   has_many :product_custom_attributes, dependent: :destroy
 
   monetize :buying_amount_cents, :tax_free_amount_cents, :amount_cents

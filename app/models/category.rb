@@ -5,6 +5,8 @@ class Category < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :vat_rate, optional: false
 
+  validates_ownership_of :category, with: :store
+
   validates :name, presence: true, uniqueness: { scope: :category }
 
   scope :without_category, -> { where(category_id: nil) }

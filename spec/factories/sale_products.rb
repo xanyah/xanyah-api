@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :sale_product do
     sale
-    product
+    product { build(:product, store: sale.store) }
 
     amount { product.amount }
   end
