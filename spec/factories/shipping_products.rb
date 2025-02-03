@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :shipping_product do
     shipping
-    product { build(:product, store: shipping.store) }
+    product { create(:product, store: shipping.store) }
     quantity { rand(1..25) }
   end
 end
