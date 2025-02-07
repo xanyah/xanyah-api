@@ -290,7 +290,7 @@ GEM
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
-    rdoc (6.11.0)
+    rdoc (6.12.0)
       psych (>= 4.0.0)
     redis-client (0.23.2)
       connection_pool
@@ -304,7 +304,7 @@ GEM
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
       rspec-mocks (~> 3.13.0)
-    rspec-core (3.13.2)
+    rspec-core (3.13.3)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.3)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -312,7 +312,7 @@ GEM
     rspec-mocks (3.13.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-rails (7.1.0)
+    rspec-rails (7.1.1)
       actionpack (>= 7.0)
       activesupport (>= 7.0)
       railties (>= 7.0)
