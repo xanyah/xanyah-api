@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   namespace :v2 do
     resources :categories
+    resources :countries, only: %i[index show]
     resource :current_user, controller: :current_user, except: :destroy
     resources :customers
     resources :custom_attributes
