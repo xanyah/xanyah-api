@@ -37,8 +37,8 @@ Rails.application.routes.draw do
       patch :cancel, on: :member
     end
     resources :shipping_products
-    resources :store_memberships
-    resources :stores
+    resources :store_memberships, except: :create
+    resources :stores, except: :create
     resources :products
     resources :vat_rates, only: %i[index show]
   end
