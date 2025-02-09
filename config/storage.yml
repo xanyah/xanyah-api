@@ -6,9 +6,10 @@ test:
   service: Disk
   root: <%= Rails.root.join("tmp/storage") %>
 
-amazon:
+scaleway:
   service: S3
-  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
-  bucket: <%= ENV['S3_BUCKET'] %>
-  region: <%= ENV['S3_REGION'] %>
-  secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  access_key_id: <%= ENV.fetch("SCALEWAY_ACCESS_KEY_ID", "") %>
+  secret_access_key: <%= ENV.fetch("SCALEWAY_ACCESS_KEY_SECRET", "") %>
+  region: <%= ENV.fetch("SCALEWAY_REGION", "") %>
+  bucket: <%= ENV.fetch("SCALEWAY_BUCKET_NAME", "") %>
+  endpoint: <%= ENV.fetch("SCALEWAY_ENDPOINT", "") %>
