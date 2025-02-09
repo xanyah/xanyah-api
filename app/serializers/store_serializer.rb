@@ -4,10 +4,16 @@ class StoreSerializer < ActiveModel::Serializer
   attributes :id,
              :name,
              :key,
-             :address,
+             :address1,
+             :address2,
+             :zipcode,
+             :phone_number,
+             :website_url,
+             :email_address,
              :country,
              :created_at,
              :updated_at,
+             :color,
              :store_membership
 
   def store_membership

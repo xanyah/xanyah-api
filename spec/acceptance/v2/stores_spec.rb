@@ -23,9 +23,15 @@ resource 'Stores', document: :v2 do
     post 'Create a store' do
       with_options scope: :store, with_example: true do
         parameter :name, "Store's name", required: true
-        parameter :address, "Store's address"
         parameter :country_id, "Store's country", required: true
         parameter :key, "Store's key", required: true
+        parameter :address1, "Store's address (line 1)"
+        parameter :address2, "Store's address (line 2)"
+        parameter :zipcode, "Store's zipcode"
+        parameter :phone_number, "Store's phone number"
+        parameter :website_url, "Store's website url"
+        parameter :email_address, "Store's email address"
+        parameter :color, "Store's color"
       end
 
       let(:name) { store[:name] }
@@ -60,6 +66,13 @@ resource 'Stores', document: :v2 do
         parameter :name, "Store's name", required: true
         parameter :address, "Store's address"
         parameter :country, "Store's country", required: true
+        parameter :address1, "Store's address (line 1)"
+        parameter :address2, "Store's address (line 2)"
+        parameter :zipcode, "Store's zipcode"
+        parameter :phone_number, "Store's phone number"
+        parameter :website_url, "Store's website url"
+        parameter :email_address, "Store's email address"
+        parameter :color, "Store's color"
       end
 
       let(:id) { membership.store.id }

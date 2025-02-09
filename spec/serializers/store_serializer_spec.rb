@@ -13,7 +13,7 @@ RSpec.describe StoreSerializer do
       id
       name
       key
-      address
+      address1
       created_at
       updated_at
     ]

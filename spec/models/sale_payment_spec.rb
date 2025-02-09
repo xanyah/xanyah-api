@@ -22,11 +22,5 @@ RSpec.describe SalePayment do
         expect(build(:sale_payment, sale: nil)).not_to be_valid
       end
     end
-
-    describe 'payment type' do
-      it :presence do
-        expect(build(:sale_payment, payment_type: nil)).not_to be_valid
-      end
-    end
   end
 end

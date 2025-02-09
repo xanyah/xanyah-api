@@ -6,7 +6,7 @@ FactoryBot.define do
     sequence :key do |n|
       "#{name.parameterize}-#{n}"
     end
-    address { Faker::Address.street_address }
+    address1 { Faker::Address.street_address }
     country { Country.first || build(:country) }
   end
 end
