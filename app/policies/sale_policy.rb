@@ -25,6 +25,10 @@ class SalePolicy < Presets::UserEditablePolicy
   end
 
   def permitted_attributes_for_update
-    %i[]
+    if record.customer_id.nil?
+      %i[customer_id]
+    else
+      []
+    end
   end
 end

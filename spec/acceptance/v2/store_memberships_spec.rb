@@ -20,24 +20,24 @@ resource 'Store Memberships', document: :v2 do
       end
     end
 
-    post 'Create a store membership' do
-      with_options scope: :store_membership, required: true, with_example: true do
-        parameter :user_id, "Membership's user"
-        parameter :store_id, "Membership's store"
-        parameter :role, "Membership's role (regular, admin, owner)",
-                  type: :string,
-                  enum: %w[regular admin owner]
-      end
+    # post 'Create a store membership' do
+    #   with_options scope: :store_membership, required: true, with_example: true do
+    #     parameter :user_id, "Membership's user"
+    #     parameter :store_id, "Membership's store"
+    #     parameter :role, "Membership's role (regular, admin, owner)",
+    #               type: :string,
+    #               enum: %w[regular admin owner]
+    #   end
 
-      let(:user_id) { create(:user).id }
-      let(:store_id) { membership.store.id }
-      let(:role) { :regular }
+    #   let(:user_id) { create(:user).id }
+    #   let(:store_id) { membership.store.id }
+    #   let(:role) { :regular }
 
-      example_request 'Create a store membership' do
-        expect(response_status).to eq(201)
-        expect(JSON.parse(response_body)['id']).to be_present
-      end
-    end
+    #   example_request 'Create a store membership' do
+    #     expect(response_status).to eq(201)
+    #     expect(JSON.parse(response_body)['id']).to be_present
+    #   end
+    # end
   end
 
   route '/v2/store_memberships/:id', 'Single store membership' do

@@ -6,5 +6,7 @@ class ProductCustomAttribute < ApplicationRecord
 
   has_one :store, through: :custom_attribute
 
+  validates :product, uniqueness: { scope: :custom_attribute }
+
   validates_ownership_of :product, with: :store
 end

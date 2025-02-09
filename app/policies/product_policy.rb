@@ -19,7 +19,8 @@ class ProductPolicy < Presets::UserEditablePolicy
       :sku,
       :upc,
       :manufacturer_sku,
-      { images: [] }
+      { product_custom_attributes_attributes: %i[custom_attribute_id value],
+        images: [] }
     ]
   end
 
@@ -40,7 +41,8 @@ class ProductPolicy < Presets::UserEditablePolicy
       :sku,
       :upc,
       :manufacturer_sku,
-      { images: [] }
+      { product_custom_attributes_attributes: %i[id custom_attribute_id value],
+        images: [] }
     ]
   end
 end

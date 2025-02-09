@@ -22,6 +22,8 @@ class ProductSerializer < ActiveModel::Serializer
   belongs_to :category
   belongs_to :manufacturer
 
+  has_many :product_custom_attributes
+
   def images
     object.images.map do |image|
       {

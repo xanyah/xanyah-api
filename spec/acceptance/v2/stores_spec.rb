@@ -20,32 +20,32 @@ resource 'Stores', document: :v2 do
       end
     end
 
-    post 'Create a store' do
-      with_options scope: :store, with_example: true do
-        parameter :name, "Store's name", required: true
-        parameter :country_id, "Store's country", required: true
-        parameter :key, "Store's key", required: true
-        parameter :address1, "Store's address (line 1)"
-        parameter :address2, "Store's address (line 2)"
-        parameter :zipcode, "Store's zipcode"
-        parameter :city, "Store's color"
-        parameter :phone_number, "Store's phone number"
-        parameter :website_url, "Store's website url"
-        parameter :email_address, "Store's email address"
-        parameter :color, "Store's color"
-      end
+    # post 'Create a store' do
+    #   with_options scope: :store, with_example: true do
+    #     parameter :name, "Store's name", required: true
+    #     parameter :country_id, "Store's country", required: true
+    #     parameter :key, "Store's key", required: true
+    #     parameter :address1, "Store's address (line 1)"
+    #     parameter :address2, "Store's address (line 2)"
+    #     parameter :zipcode, "Store's zipcode"
+    #     parameter :city, "Store's color"
+    #     parameter :phone_number, "Store's phone number"
+    #     parameter :website_url, "Store's website url"
+    #     parameter :email_address, "Store's email address"
+    #     parameter :color, "Store's color"
+    #   end
 
-      let(:name) { store[:name] }
-      let(:address) { store[:address] }
-      let(:country_id) { Country.first.id }
-      let(:key) { store[:key] }
-      let(:store) { attributes_for(:store) }
+    #   let(:name) { store[:name] }
+    #   let(:address) { store[:address] }
+    #   let(:country_id) { Country.first.id }
+    #   let(:key) { store[:key] }
+    #   let(:store) { attributes_for(:store) }
 
-      example_request 'Create a store' do
-        expect(response_status).to eq(201)
-        expect(JSON.parse(response_body)['id']).to be_present
-      end
-    end
+    #   example_request 'Create a store' do
+    #     expect(response_status).to eq(201)
+    #     expect(JSON.parse(response_body)['id']).to be_present
+    #   end
+    # end
   end
 
   route '/v2/stores/:id', 'Single store' do

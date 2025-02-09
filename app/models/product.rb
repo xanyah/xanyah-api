@@ -10,6 +10,8 @@ class Product < ApplicationRecord
 
   has_many :product_custom_attributes, dependent: :destroy
 
+  accepts_nested_attributes_for :product_custom_attributes
+
   monetize :buying_amount_cents, :tax_free_amount_cents, :amount_cents
 
   validates :name, presence: true
