@@ -371,6 +371,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_09_135124) do
     t.string "phone_number"
     t.string "email_address"
     t.string "color"
+    t.string "city"
     t.index ["country_id"], name: "index_stores_on_country_id"
     t.index ["deleted_at"], name: "index_stores_on_deleted_at"
   end

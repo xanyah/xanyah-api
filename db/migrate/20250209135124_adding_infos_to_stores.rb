@@ -8,6 +8,7 @@ class AddingInfosToStores < ActiveRecord::Migration[8.0]
       t.string :phone_number
       t.string :email_address
       t.string :color
+      t.string :city
     end
   end
 end

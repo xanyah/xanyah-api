@@ -4,6 +4,7 @@ class StoreSerializer < ActiveModel::Serializer
   attributes :id,
              :name,
              :key,
+             :city,
              :address1,
              :address2,
              :zipcode,

@@ -28,6 +28,7 @@ class StorePolicy < ApplicationPolicy
       email_address
       country_id
       color
+      city
       key
     ]
   end
@@ -42,6 +43,7 @@ class StorePolicy < ApplicationPolicy
       website_url
       email_address
       color
+      city
     ]
   end
 
