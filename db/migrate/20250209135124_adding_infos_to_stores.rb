@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddingInfosToStores < ActiveRecord::Migration[8.0]
   def change
     change_table :stores, bulk: true do |t|
