@@ -28,10 +28,9 @@ Rails.application.routes.draw do
     resources :payment_types
     resources :products
     resources :providers
-    resources :sales, except: %i[update]
     resources :sale_payments, only: :index
     resources :sale_products, only: :index
-    resources :sales, except: %i[update]
+    resources :sales
     resources :shippings, except: [:update] do
       patch :validate, on: :member
       patch :cancel, on: :member
