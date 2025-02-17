@@ -15,9 +15,5 @@ class StoreSerializer < ActiveModel::Serializer
              :created_at,
              :updated_at,
              :color,
-             :store_membership
-
-  def store_membership
-    StoreMembership.find_by(user: scope, store: object)
-  end
+             :is_import_enabled
 end

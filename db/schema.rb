@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_09_135124) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_17_165840) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -372,6 +372,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_09_135124) do
     t.string "email_address"
     t.string "color"
     t.string "city"
+    t.boolean "is_import_enabled", default: false
     t.index ["country_id"], name: "index_stores_on_country_id"
     t.index ["deleted_at"], name: "index_stores_on_deleted_at"
   end

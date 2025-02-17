@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class SalePolicy < Presets::UserEditablePolicy
-  def permitted_attributes_for_create
+  def permitted_attributes_for_create # rubocop:disable Metrics/MethodLength
     [
+      :created_at,
       :store_id,
       :customer_id,
       :total_amount_cents,

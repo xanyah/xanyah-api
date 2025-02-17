@@ -9,6 +9,10 @@ class Shipping < ApplicationRecord
   has_many :shipping_products, dependent: :destroy
 
   validates_ownership_of :provider, with: :store
+  validates :created_at,
+            absence: true,
+            unless: proc { |s| s.store&.is_import_enabled? },
+            on: :create
 
   accepts_nested_attributes_for :shipping_products, allow_destroy: true
 end

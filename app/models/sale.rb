@@ -16,6 +16,10 @@ class Sale < ApplicationRecord
   accepts_nested_attributes_for :sale_products, allow_destroy: true
 
   validates_ownership_of :customer, with: :store
+  validates :created_at,
+            absence: true,
+            unless: proc { |s| s.store&.is_import_enabled? },
+            on: :create
 
   monetize :total_amount_cents
 

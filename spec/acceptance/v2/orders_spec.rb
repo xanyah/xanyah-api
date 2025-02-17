@@ -22,6 +22,7 @@ resource 'Orders', document: :v2 do
       with_options scope: :order, with_example: true do
         parameter :store_id, "Orders's store id", required: true
         parameter :customer_id, "Orders's customer id", required: true
+        parameter :created_at, "Orders's creation date"
         parameter :order_products_attributes,
                   "Orders's products",
                   type: :array,

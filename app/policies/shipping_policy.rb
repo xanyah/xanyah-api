@@ -6,6 +6,7 @@ class ShippingPolicy < Presets::UserEditablePolicy
 
   def permitted_attributes_for_create
     [
+      :created_at,
       :store_id,
       :provider_id,
       { shipping_products_attributes: %i[

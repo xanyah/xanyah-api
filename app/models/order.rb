@@ -12,4 +12,9 @@ class Order < ApplicationRecord
   has_many :products, through: :order_products
 
   accepts_nested_attributes_for :order_products, allow_destroy: true
+
+  validates :created_at,
+            absence: true,
+            unless: proc { |s| s.store&.is_import_enabled? },
+            on: :create
 end

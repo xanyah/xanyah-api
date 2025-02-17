@@ -34,7 +34,7 @@ class StorePolicy < ApplicationPolicy
   end
 
   def permitted_attributes_for_update
-    %i[
+    attributes = %i[
       name
       address1
       address2
@@ -45,6 +45,8 @@ class StorePolicy < ApplicationPolicy
       color
       city
     ]
+    attributes << :is_import_enabled if user.store_owner?(record)
+    attributes
   end
 
   class Scope < ApplicationPolicy::Scope
