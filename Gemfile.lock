@@ -379,7 +379,7 @@ GEM
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
-    simplecov-console (0.9.2)
+    simplecov-console (0.9.3)
       ansi
       simplecov
       terminal-table
@@ -450,7 +450,7 @@ DEPENDENCIES
   rubocop-thread_safety (~> 0.6)
   sidekiq (~> 7.3)
   simplecov (~> 0.22)
-  simplecov-console (~> 0.4)
+  simplecov-console (~> 0.9)
   tzinfo-data
   validators (~> 3.4)
 
