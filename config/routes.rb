@@ -26,7 +26,9 @@ Rails.application.routes.draw do
     end
     resources :order_products, only: :index
     resources :payment_types
-    resources :products
+    resources :products do
+      get :next_sku, on: :collection
+    end
     resources :providers
     resources :sale_payments, only: :index
     resources :sale_products, only: :index
@@ -38,7 +40,6 @@ Rails.application.routes.draw do
     resources :shipping_products
     resources :store_memberships, except: :create
     resources :stores, except: :create
-    resources :products
     resources :vat_rates, only: %i[index show]
   end
 end

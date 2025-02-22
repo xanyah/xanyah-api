@@ -59,6 +59,17 @@ resource 'Products', document: :v2 do
     end
   end
 
+  route '/v2/products/next_sku', 'Products collection' do
+    get 'Returns next SKU' do
+      parameter 'store_id', 'Filter by store'
+
+      example_request 'Returns next SKU' do
+        expect(response_status).to eq(200)
+        expect(JSON.parse(response_body)['next_sku']).to be_a(Integer)
+      end
+    end
+  end
+
   route '/v2/products/:id', 'Single product' do
     let!(:product) { create(:product, store: membership.store) }
 
