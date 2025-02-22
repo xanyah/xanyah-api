@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   belongs_to :category, optional: false
   belongs_to :manufacturer, optional: false
   belongs_to :store, optional: false
+  belongs_to :vat_rate, optional: false
 
   validates_ownership_of :category, with: :store
   validates_ownership_of :manufacturer, with: :store

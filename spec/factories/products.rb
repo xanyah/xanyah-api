@@ -18,5 +18,6 @@ FactoryBot.define do
 
     category { build(:category, store:) }
     manufacturer { build(:manufacturer, store:) }
+    vat_rate { VatRate.first }
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_17_165840) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_22_201914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -50,11 +50,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_17_165840) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at", precision: nil
-    t.uuid "vat_rate_id"
     t.index ["category_id"], name: "index_categories_on_category_id"
     t.index ["deleted_at"], name: "index_categories_on_deleted_at"
     t.index ["store_id"], name: "index_categories_on_store_id"
-    t.index ["vat_rate_id"], name: "index_categories_on_vat_rate_id"
   end
 
   create_table "countries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -247,10 +245,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_17_165840) do
     t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "EUR", null: false
     t.string "manufacturer_sku"
+    t.uuid "vat_rate_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
     t.index ["store_id"], name: "index_products_on_store_id"
+    t.index ["vat_rate_id"], name: "index_products_on_vat_rate_id"
   end
 
   create_table "providers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

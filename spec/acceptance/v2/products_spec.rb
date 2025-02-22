@@ -38,6 +38,7 @@ resource 'Products', document: :v2 do
         parameter :provider_id, "Product's provider"
         parameter :sku, "Product's SKU (store barcode of the product. Can be UPC)"
         parameter :store_id, "Product's store id", required: true
+        parameter :vat_rate_id, "Product's VAT rate", required: true
         parameter :tax_free_amount_cents, "Product's tax free amount"
         parameter :tax_free_amount_currency, "Product's tax free amount currency"
         parameter :upc, "Product's UPC (original barcode of the product)"
@@ -47,6 +48,7 @@ resource 'Products', document: :v2 do
       let(:category_id) { create(:category, store: membership.store).id }
       let(:manufacturer_id) { create(:manufacturer, store: membership.store).id }
       let(:provider_id) { create(:provider, store: membership.store).id }
+      let(:vat_rate_id) { VatRate.first.id }
       let(:store_id) { membership.store_id }
       let(:product) { attributes_for(:product, store: membership.store) }
 
@@ -80,6 +82,7 @@ resource 'Products', document: :v2 do
         parameter :manufacturer_sku, "Product's manufacturer SKU"
         parameter :name, "Product's name"
         parameter :provider_id, "Product's provider"
+        parameter :vat_rate_id, "Product's VAT rate"
         parameter :sku, "Product's SKU (store barcode of the product. Can be UPC)"
         parameter :tax_free_amount_cents, "Product's tax free amount"
         parameter :tax_free_amount_currency, "Product's tax free amount currency"

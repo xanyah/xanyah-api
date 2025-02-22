@@ -21,6 +21,7 @@ class ProductSerializer < ActiveModel::Serializer
 
   belongs_to :category
   belongs_to :manufacturer
+  belongs_to :vat_rate
 
   has_many :product_custom_attributes
 

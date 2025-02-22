@@ -28,12 +28,10 @@ resource 'Categories', document: :v2 do
     post 'Create a category' do
       with_options scope: :category, with_example: true, required: true do
         parameter :name, "Category's name"
-        parameter :vat_rate_id, "Category's TVA rate"
         parameter :store_id, "Category's store id"
       end
 
       let(:name) { category[:name] }
-      let(:vat_rate_id) { VatRate.first.id }
       let(:store_id) { membership.store_id }
       let(:category) { attributes_for(:category) }
 

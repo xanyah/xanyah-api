@@ -3,7 +3,6 @@
 class Category < ApplicationRecord
   belongs_to :store, optional: false
   belongs_to :category, optional: true
-  belongs_to :vat_rate, optional: false
 
   validates_ownership_of :category, with: :store
 

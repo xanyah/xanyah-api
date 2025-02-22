@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProductPolicy < Presets::UserEditablePolicy
-  def permitted_attributes_for_create
+  def permitted_attributes_for_create # rubocop:disable Metrics/MethodLength
     [
       :name,
       :category_id,
@@ -19,6 +19,7 @@ class ProductPolicy < Presets::UserEditablePolicy
       :sku,
       :upc,
       :manufacturer_sku,
+      :vat_rate_id,
       { product_custom_attributes_attributes: %i[custom_attribute_id value],
         images: [] }
     ]
@@ -41,6 +42,7 @@ class ProductPolicy < Presets::UserEditablePolicy
       :sku,
       :upc,
       :manufacturer_sku,
+      :vat_rate_id,
       { product_custom_attributes_attributes: %i[id custom_attribute_id value],
         images: [] }
     ]

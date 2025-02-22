@@ -5,7 +5,6 @@ FactoryBot.define do
     sequence :name do |n|
       "#{Faker::Beer.style} #{n}"
     end
-    vat_rate { VatRate.first }
     store
   end
 end
